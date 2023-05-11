@@ -226,8 +226,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 4px 8px -4px rgba(1, 24, 48, 0.2);
           box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 4px 8px -4px rgba(1, 24, 48, 0.2);
   border: none;
-  -webkit-transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.5s;
-  transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.5s;
+  -webkit-transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.6s;
+  transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.6s;
 }
 .pds-card h6 {
   display: -webkit-box;
@@ -241,8 +241,8 @@ h1, h2, h3, h4, h5, h6 {
           box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.5), 0px 16px 32px -8px rgba(1, 24, 48, 0.35);
 }
 .pds-card:hover .card-cover img {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .card-cover {
@@ -261,8 +261,8 @@ h1, h2, h3, h4, h5, h6 {
      object-fit: cover;
   -o-object-position: center center;
      object-position: center center;
-  -webkit-transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 1s;
-  transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 1s;
+  -webkit-transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.5s;
+  transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.5s;
 }
 
 .card-cover-overlay {

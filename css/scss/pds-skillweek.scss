@@ -79,7 +79,7 @@
     border-radius: (8/16)+ rem;
     box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 4px 8px -4px rgba(1, 24, 48, 0.2);
     border: none;
-    transition: cubic-bezier(.76,.34,.23,.65) .5s;
+    transition: cubic-bezier(.76,.34,.23,.65) .6s;
     h6{
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -92,7 +92,7 @@
         box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.5), 0px 16px 32px -8px rgba(1, 24, 48, 0.35);
         .card-cover{
             img{
-                transform: scale(1.2);
+                transform: scale(1.1);
             }
         }
     }
@@ -113,7 +113,7 @@
         object-fit: cover;
         object-position: center center;
         // border-radius:20px 20px 0 0;
-        transition: cubic-bezier(.76,.34,.23,.65) 1s;
+        transition: cubic-bezier(.76,.34,.23,.65) .5s;
     }
 }
 
