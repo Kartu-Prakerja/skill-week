@@ -401,17 +401,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-secondary);
 }
 
-#mc_embed_signup input.mce_inline_error {
-  border-color: var(--danger) !important;
-}
-
-#mc_embed_signup div.mce_inline_error {
-  background-color: var(--bg-danger) !important;
-  border-radius: 4px;
-  color: var(--danger) !important;
-  font-weight: 400 !important;
-}
-
 /* media querys */
 .btn-primary {
   --bs-btn-color: #fff;
@@ -486,4 +475,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-secondary {
   color: var(--text-secondary) !important;
+}
+
+.paragraph-lg {
+  font-size: 1.25rem;
+  line-height: 2rem;
 }
