@@ -140,6 +140,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
   color: var(--text-default);
+  line-height: 1.5rem;
 }
 
 .paragraph-regular {
@@ -171,8 +172,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   background-size: 500% auto;
-  -webkit-animation: textShine 8s ease-in-out infinite alternate;
-          animation: textShine 8s ease-in-out infinite alternate;
+  -webkit-animation: textShine 6s cubic-bezier(0.76, 0.34, 0.23, 0.65) infinite alternate;
+          animation: textShine 6s cubic-bezier(0.76, 0.34, 0.23, 0.65) infinite alternate;
   /* animation: textShine 8s linear infinite; */
 }
 
@@ -226,8 +227,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 4px 8px -4px rgba(1, 24, 48, 0.2);
           box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 4px 8px -4px rgba(1, 24, 48, 0.2);
   border: none;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.5s;
+  transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 0.5s;
 }
 .pds-card h6 {
   display: -webkit-box;
@@ -236,8 +237,12 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 .pds-card:hover {
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 8px 16px -4px rgba(1, 24, 48, 0.1);
-          box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 8px 16px -4px rgba(1, 24, 48, 0.1);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.5), 0px 16px 32px -8px rgba(1, 24, 48, 0.35);
+          box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.5), 0px 16px 32px -8px rgba(1, 24, 48, 0.35);
+}
+.pds-card:hover .card-cover img {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .card-cover {
@@ -246,6 +251,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 160px;
   background: var(--bg-default);
   position: relative;
+  overflow: hidden;
 }
 .card-cover img {
   width: 100%;
@@ -255,6 +261,8 @@ h1, h2, h3, h4, h5, h6 {
      object-fit: cover;
   -o-object-position: center center;
      object-position: center center;
+  -webkit-transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 1s;
+  transition: cubic-bezier(0.76, 0.34, 0.23, 0.65) 1s;
 }
 
 .card-cover-overlay {
