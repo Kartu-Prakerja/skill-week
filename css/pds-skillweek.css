@@ -285,9 +285,15 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--secondary);
 }
 
-.card-company-name {
+.card-company {
   font-size: 0.875rem;
   color: var(--text-secondary);
+}
+.card-company img {
+  width: 32px;
+  height: 32px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .section-footer .top-wrapper {

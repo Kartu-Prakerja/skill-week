@@ -136,9 +136,17 @@
     }
 }
 
-.card-company-name{
+.card-company{
     font-size: (14/16)+ rem;
     color: var(--text-secondary);
+    img{
+        width: 32px;
+        height: 32px;
+        // border: solid 1px var(--border-default);
+        object-fit: contain;
+        // padding: .25rem;
+        // border-radius: 4px;
+    }
 }
 
 
