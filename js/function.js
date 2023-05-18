@@ -62,7 +62,6 @@ var pushEvents = function(target) {
         var price = _this.parents('div.card-body').find('.course-price').html();
         var course_name = _this.parents('div.card-body').find('h6.course-title').html();
         var lp_name = _this.parents('div.card-body').find('.course-lp-name').html();
-        console.log(events, price, course_name, lp_name)
         if(window.DataLayer !== undefined) {
             dataLayer.push({'event': events, 'course_name': course_name, 'price': price, 'lp_name' : lp_name});
         }
