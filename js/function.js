@@ -1,7 +1,6 @@
 /** function load course */
 var templateCourse = function(target, data){ 
     var pills = data.course_type == "Online" ? "text-bg-help" : "text-bg-warning";
-    console.log(pills)
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
@@ -11,17 +10,17 @@ var templateCourse = function(target, data){
                 "</div>" +
             "</div>" +
             "<div class='card-body'>" +
-                "<h6 class='mb-2' title='"+ data.course_name +"'>"+ data.course_name +"</h6>" +
+                "<h6 class='mb-2 course-title' title='"+ data.course_name +"'>"+ data.course_name +"</h6>" +
                 "<div>" +
-                    "<div class='card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
+                    "<div class='course-price card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
                     "<div class='card-company'>" +
                         "<img class='me-1' src='"+ data.lp_logo +"' alt='"+ data.lp_name +"'>" +
-                        "<span class=''>"+ data.lp_name +"</span>" +
+                        "<span class='course-lp-name'>"+ data.lp_name +"</span>" +
                     "</div>" +
                 "</div>" +
                 "<div class='d-flex mt-3'>" +
-                    "<a href='"+ data.course_form_request +"' class='btn btn-outline-primary me-2' target='_blank' rel='rel='nofollow'>Lihat Pelatihan</a>" +
-                    "<a href='"+ data.course_url +"' class='btn btn-primary' target='_blank' rel='rel='nofollow'>Ikut Pelatihan</a>" +
+                    "<a href='"+ data.course_form_request +"' class='see-detail-course btn btn-outline-primary me-2' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail'>Lihat Pelatihan</a>" +
+                    "<a href='"+ data.course_url +"' class='apply-course btn btn-primary' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Ikut Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
@@ -32,7 +31,7 @@ var templateCourse = function(target, data){
 /** function to invoke load more */
 var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, currentPage, paging) {
     $(target).on('click', function () {
-        _this = $(target); 
+        var _this = $(target); 
         start = end;
         end = end + loadItem;
         currentPage = currentPage + 1;
@@ -55,6 +54,21 @@ var checkLoadMore = function(target, paging, currentPage) {
     }
 }
 
+// Push event GA function
+var pushEvents = function(target) {
+    $(target).on('click', function(e) {
+        var _this = $(this);
+        var events = _this.attr('data-event');
+        var price = _this.parents('div.card-body').find('.course-price').html();
+        var course_name = _this.parents('div.card-body').find('h6.course-title').html();
+        var lp_name = _this.parents('div.card-body').find('.course-lp-name').html();
+        console.log(events, price, course_name, lp_name)
+        if(window.DataLayer !== undefined) {
+            dataLayer.push({'event': events, 'course_name': course_name, 'price': price, 'lp_name' : lp_name});
+        }
+    })
+}
+
 /** function to init the content at the first time */
 function courseLoader(a){
     $(document).ready(function(){
@@ -75,7 +89,10 @@ function courseLoader(a){
                 })
                 // loadmore more button show / hide
                 checkLoadMore(loadMoreTarget, paging, currentPage);
-                btnLoadMore(loadMoreTarget, loadItem, start, end, data, appendTarget, currentPage, paging)
+                btnLoadMore(loadMoreTarget, loadItem, start, end, data, appendTarget, currentPage, paging);
+                // // invoke function push event GA
+                pushEvents('.see-detail-course');
+                pushEvents('.apply-course');
             }, 1500)
         }).fail(function(){
             console.log("An error has occurred.");
