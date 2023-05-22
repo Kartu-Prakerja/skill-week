@@ -4,7 +4,7 @@ var templateCourse = function(target, data){
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
-                "<img src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_name +"'>" +
+                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_name +"'>" +
                 "<div class='card-cover-overlay'>" +
                     "<span class='badge rounded-pill " + pills +"'>"+ data.course_type +"</span>" +
                 "</div>" +
@@ -14,7 +14,7 @@ var templateCourse = function(target, data){
                 "<div>" +
                     "<div class='course-price card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
                     "<div class='card-company'>" +
-                        "<img class='me-1' src='"+ data.lp_logo +"' alt='"+ data.lp_name +"'>" +
+                        "<img loading='lazy' class='me-1' src='"+ data.lp_logo +"' alt='"+ data.lp_name +"'>" +
                         "<span class='course-lp-name'>"+ data.lp_name +"</span>" +
                     "</div>" +
                 "</div>" +
