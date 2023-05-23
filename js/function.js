@@ -1,16 +1,16 @@
 /** function load course */
 var templateCourse = function(target, data){ 
-    var pills = data.course_type == "Online" ? "text-bg-help" : "text-bg-warning";
+    var pills = data.course_type == "Online" ? "text-bg-warning" : "text-bg-help";
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
-                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_name +"'>" +
+                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
                 "<div class='card-cover-overlay'>" +
                     "<span class='badge rounded-pill " + pills +"'>"+ data.course_type +"</span>" +
                 "</div>" +
             "</div>" +
             "<div class='card-body'>" +
-                "<h6 class='mb-2 course-title' title='"+ data.course_name +"'>"+ data.course_name +"</h6>" +
+                "<h6 class='mb-2 course-title' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
                 "<div>" +
                     "<div class='course-price card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
                     "<div class='card-company'>" +
@@ -18,9 +18,9 @@ var templateCourse = function(target, data){
                         "<span class='course-lp-name'>"+ data.lp_name +"</span>" +
                     "</div>" +
                 "</div>" +
-                "<div class='d-flex mt-3'>" +
-                    "<a href='"+ data.course_form_request +"' class='see-detail-course btn btn-outline-primary me-2' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail'>Lihat Pelatihan</a>" +
-                    "<a href='"+ data.course_url +"' class='apply-course btn btn-primary' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Ikut Pelatihan</a>" +
+                "<div class='mt-3 text-center'>" +
+                    "<a href='"+ data.course_form_request +"?utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
+                    "<a href='"+ data.course_url +"?utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
@@ -60,10 +60,10 @@ var pushEvents = function(target) {
         var _this = $(this);
         var events = _this.attr('data-event');
         var price = _this.parents('div.card-body').find('.course-price').html();
-        var course_name = _this.parents('div.card-body').find('h6.course-title').html();
+        var course_title = _this.parents('div.card-body').find('h6.course-title').html();
         var lp_name = _this.parents('div.card-body').find('.course-lp-name').html();
         if(window.DataLayer !== undefined) {
-            dataLayer.push({'event': events, 'course_name': course_name, 'price': price, 'lp_name' : lp_name});
+            dataLayer.push({'event': events, 'course_title': course_title, 'price': price, 'lp_name' : lp_name});
         }
     })
 }
@@ -73,7 +73,7 @@ function courseLoader(a){
     $(document).ready(function(){
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
-        var loadItem = 8;
+        var loadItem = 12;
         var currentPage = 1;
 
         $.getJSON("js/course.json", function(data){
@@ -84,6 +84,7 @@ function courseLoader(a){
             setTimeout(function() {
                 appendTarget.html('');
                 $.each(data.slice(start, end), function(i, list) {
+                    console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
                     templateCourse(appendTarget, list);
                 })
                 // loadmore more button show / hide

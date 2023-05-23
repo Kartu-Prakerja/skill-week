@@ -1,15 +1,15 @@
 [
     {
-        "course_name" : "Meningkatkan Kemampuan Pengelolaan Waktu sebagai Pengawas Kantor (Daring)",
+        "course_title" : "Meningkatkan Kemampuan Pengelolaan Waktu sebagai Pengawas Kantor (Daring)",
         "course_type" : "Online",
-        "course_image" : "img/course-1.jpeg",
+        "course_image" : "https://lh3.googleusercontent.com/pw/AJFCJaVEH_iPKQ41P4oGHGjkrnETx2y1HUmxbjwM0RTD1Pw0FQqHJMQRjxxxECPy7XKjqU9zDBkVOedBpeiNY404sf6AfU5-mZpiH6Xn_QvUL7UVGu3r2hvUgcEOGZ23gUtSOJCLtxZtG2UByoUW-c7xh9Q2=w1181-h787-s-no",
         "course_price" : "Gratis",
         "course_url" : "https://prakerja.cybersacademy.id/course/Strategi-Pemasaran-Agro-Wisata-Bagi-Pengembang-Bisnis",
         "course_form_request": "https://docs.google.com/forms/d/1bPoPHiitfMzK4EgsVbCUiXs6pgQdeoEQo1gDeM3y1AE/edit?ts=645cb084",
         "lp_name" : "STUDiLMU",
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Studilmu.png"
     }, {
-        "course_name" : "Strategi Pemasaran Agro Wisata Bagi Pengembang Bisnis (Daring)",
+        "course_title" : "Strategi Pemasaran Agro Wisata Bagi Pengembang Bisnis (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-2.webp",
         "course_price" : "Rp 500.000",
@@ -18,7 +18,7 @@
         "lp_name" : "Suvi Training",
         "lp_logo" : "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/companies-logo/N7cfyJwsuvi_training.png"
     }, {
-        "course_name" : "Merancang Pembelajaran Inovatif dengan Moda Bauran (Luring) Kota Surabaya",
+        "course_title" : "Merancang Pembelajaran Inovatif dengan Moda Bauran (Luring) Kota Surabaya",
         "course_type" : "Offline",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Rp 50.000",
@@ -28,7 +28,7 @@
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     },
     {
-        "course_name" : "Teknik Penulisan Kode Pemrograman Perangkat Lunak Aplikasi menggunakan Bahasa C bagi Pengembang Aplikasi dan Sistem (Daring)",
+        "course_title" : "Teknik Penulisan Kode Pemrograman Perangkat Lunak Aplikasi menggunakan Bahasa C bagi Pengembang Aplikasi dan Sistem (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-2.webp",
         "course_price" : "Gratis",
@@ -37,7 +37,7 @@
         "lp_name" : "Rumah Siap kerja",
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     }, {
-        "course_name" : "Memotret dan Mengolah Foto bagi Seniman Digital (Daring)",
+        "course_title" : "Memotret dan Mengolah Foto bagi Seniman Digital (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Rp 1.500.000",
@@ -47,7 +47,7 @@
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     },
     {
-        "course_name" : "Bahasa Inggris Pemasaran Produk (Daring)",
+        "course_title" : "Bahasa Inggris Pemasaran Produk (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Gratis",
@@ -56,7 +56,7 @@
         "lp_name" : "Rumah Siap kerja",
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     }, {
-        "course_name" : "Melakukan Perencanaan Pemasaran Digital untuk Spesialis Pemasaran Pemula (Luring) Kota Semarang",
+        "course_title" : "Melakukan Perencanaan Pemasaran Digital untuk Spesialis Pemasaran Pemula (Luring) Kota Semarang",
         "course_type" : "Offline",
         "course_image" : "img/course-2.webp",
         "course_price" : "Rp1.000.000",
@@ -66,7 +66,7 @@
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     },
     {
-        "course_name" : "Membuat Desain Media Sosial Dengan Canva (Daring)",
+        "course_title" : "Membuat Desain Media Sosial Dengan Canva (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Gratis",
@@ -75,7 +75,7 @@
         "lp_name" : "Rumah Siap kerja",
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     },{
-        "course_name" : "Membuat Laporan Keuangan Sederhana untuk Bisnis Rintisan (UMKM) (Luring) Kota Semarang",
+        "course_title" : "Membuat Laporan Keuangan Sederhana untuk Bisnis Rintisan (UMKM) (Luring) Kota Semarang",
         "course_type" : "Offline",
         "course_image" : "img/course-2.webp",
         "course_price" : "Rp 300.000",
@@ -84,7 +84,7 @@
         "lp_name" : "Rumah Siap kerja",
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     },{
-        "course_name" : "Menjadi Profesional Hubungan Masyarakat dengan Menerapkan Teknik Berbicara di Depan Umum (Luring) Kota Medan",
+        "course_title" : "Menjadi Profesional Hubungan Masyarakat dengan Menerapkan Teknik Berbicara di Depan Umum (Luring) Kota Medan",
         "course_type" : "Offline",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Rp 450.000",
@@ -93,7 +93,7 @@
         "lp_name" : "GETI Incubator",
         "lp_logo" : "img/logo-rk.svg"
     },{
-        "course_name" : "Mengelola Keuangan Pribadi (Daring)",
+        "course_title" : "Mengelola Keuangan Pribadi (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-2.webp",
         "course_price" : "Rp 1.500.000",
@@ -103,7 +103,7 @@
         "lp_logo" : "https://static-asset-cdn.prakerja.go.id/companies-logo/Rumah_Siap_Kerja.png"
     },
     {
-        "course_name" : "Menguasai Strategi Penjualan bagi Sales Bisnis (Luring) Kota Denpasar",
+        "course_title" : "Menguasai Strategi Penjualan bagi Sales Bisnis (Luring) Kota Denpasar",
         "course_type" : "Offline",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Gratis",
@@ -112,7 +112,7 @@
         "lp_name" : "Course-Net Indonesia",
         "lp_logo" : "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/companies-logo/Te0nNIgcourse-net.png"
     },{
-        "course_name" : "Teknik Menyambut dan Memproses Reservasi bagi Resepsionis Hotel (Luring) Kota Jakarta Selatan",
+        "course_title" : "Teknik Menyambut dan Memproses Reservasi bagi Resepsionis Hotel (Luring) Kota Jakarta Selatan",
         "course_type" : "Offline",
         "course_image" : "img/course-2.webp",
         "course_price" : "Gratis",
@@ -122,7 +122,7 @@
         "lp_logo" : "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/companies-logo/Te0nNIgcourse-net.png"
     },
     {
-        "course_name" : "Pengembangan Konten Storytelling untuk UMKM (Daring)",
+        "course_title" : "Pengembangan Konten Storytelling untuk UMKM (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Gratis",
@@ -131,7 +131,7 @@
         "lp_name" : "Cakap",
         "lp_logo" : "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/companies-logo/hC7EFwscakap.png"
     },{
-        "course_name" : "Membuat Konten Tiktok Inovatif dan Kreatif (Daring)",
+        "course_title" : "Membuat Konten Tiktok Inovatif dan Kreatif (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-1.jpeg",
         "course_price" : "Gratis",
@@ -141,7 +141,7 @@
         "lp_logo" : "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/companies-logo/hC7EFwscakap.png"
     },
     {
-        "course_name" : "Teknik Perbaikan Kelistrikan Rumah (Daring)",
+        "course_title" : "Teknik Perbaikan Kelistrikan Rumah (Daring)",
         "course_type" : "Online",
         "course_image" : "img/course-2.webp",
         "course_price" : "Rp 200.000",
