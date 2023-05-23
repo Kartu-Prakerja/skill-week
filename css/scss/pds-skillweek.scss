@@ -121,7 +121,7 @@
     position: relative;
     overflow: hidden;
     
-    img{
+    &>img{
         width: 100%;
         aspect-ratio: 16 / 9;
         min-height: 160px;
@@ -152,16 +152,29 @@
 }
 
 .card-company{
+    // height: 32px;
+    display: inline-block;
     font-size: (14/16)+ rem;
     color: var(--text-secondary);
+    // outline: solid 1px red;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    color: white;
+    padding-right: 1.5rem;
     img{
         width: 32px;
         height: 32px;
+        background-color: white;
+        border-radius: 4px;
+        display: inline-block;
         // border: solid 1px var(--border-default);
         object-fit: contain;
         // padding: .25rem;
         // border-radius: 4px;
     }
+
 }
 
 
