@@ -101,6 +101,7 @@
         -webkit-box-orient: vertical;  
         overflow: hidden;
         line-height: 1.5rem;
+        min-height: 48px; // handle text hanya 1 line
     }
 
     &:hover{

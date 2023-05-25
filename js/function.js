@@ -1,25 +1,28 @@
+    
 /** function load course */
 var templateCourse = function(target, data){ 
-    var pills = data.course_type == "Online" ? "text-bg-warning" : "text-bg-help";
+    var pills = data.course_type == "Daring LMS" ? "text-bg-warning" : "text-bg-help";
+    var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
-                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
+                "<img src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
                 "<div class='card-cover-overlay'>" +
-                    "<span class='badge rounded-pill " + pills +"'>"+ data.course_type +"</span>" +
+                    "<div class='d-flex justify-content-between'>" +
+                        "<div>" +
+                            "<div class='card-company'><img class='me-1' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'><span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
+                        "</div>" +
+                        "<div><span class='badge rounded-pill " + pills +"'>"+ data.course_type +"</span></div>" +
+                    "</div>" +        
                 "</div>" +
             "</div>" +
             "<div class='card-body'>" +
-                "<h6 class='mb-2 course-title' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
+                "<h6 class='mb-2 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
                 "<div>" +
                     "<div class='course-price card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
-                    "<div class='card-company'>" +
-                        "<img loading='lazy' class='me-1' src='"+ data.lp_logo +"' alt='"+ data.lp_name +"'>" +
-                        "<span class='course-lp-name'>"+ data.lp_name +"</span>" +
-                    "</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
-                    "<a href='"+ data.course_form_request +"?utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
+                    "<a href='"+ course_form_request +"&utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
                     "<a href='"+ data.course_url +"?utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
@@ -84,7 +87,7 @@ function courseLoader(a){
             setTimeout(function() {
                 appendTarget.html('');
                 $.each(data.slice(start, end), function(i, list) {
-                    console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
+                    // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
                     templateCourse(appendTarget, list);
                 })
                 // loadmore more button show / hide
