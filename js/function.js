@@ -113,7 +113,34 @@ function courseLoader(a){
         } else {
             $('header').removeClass("header-fixed");
         }
+
+        // for scroll-top trigger
+        if (scroll >= 400) {
+            $('.scroll-top').addClass("is-show");
+        } else {
+            $('.scroll-top').removeClass("is-show");
+        }
+
     });
+
+    // Scroll to top 
+    $(".scroll-top").on("click", function() {
+        $(window).scrollTop(0);
+    });
+
+    // Menu toggle
+    $('.menu').click (function(){
+        $(this).toggleClass('open');
+        $('.navbar-custom').toggleClass('m-menu');
+        $('body').toggleClass('freeze');
+      });
+
+      $(".navbar-custom").on("click", ".nav-link", function(event){
+        $('.menu').removeClass('open');
+        $('.navbar-custom').removeClass('m-menu');
+        $('body').removeClass('freeze');
+    });
+    
 
     // run course loader
     courseLoader();

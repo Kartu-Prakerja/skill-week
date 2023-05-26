@@ -48,7 +48,17 @@
         <div class="container px-3 px-md-0">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="https://www.prakerja.go.id/"><img src="img/logo-prakerja.svg" alt="Prakerja"></a>
-                <a href="https://dashboard.prakerja.go.id/daftar?utm_source=skill-week&utm_medium=landing-page&utm_content=button" class="btn btn-primary">Buat Akun Prakerja</a>
+                <ul class="d-flex align-items-center navbar-custom">
+                    <li class="nav-item md-hide"><a class="nav-link" href="#Pelatihan">Pelatihan</a></li>
+                    <li class="nav-item md-hide"><a class="nav-link" href="#KategoriPelatihan">Kategori Pelatihan</a></li>
+                    <li class="nav-item md-hide"><a class="nav-link" href="#SyaratKetentuan">Syarat & Kententuan</a></li>
+                    <li class="nav-item md-hide"><a href="https://dashboard.prakerja.go.id/daftar?utm_source=skill-week&utm_medium=landing-page&utm_content=button" class="btn btn-primary">Buat Akun Prakerja</a></li>
+                    <li class="nav-item md-show">
+                        <div class="menu burger-menu" data-menu="13">
+                            <div class="icon"></div>
+                          </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
@@ -64,20 +74,16 @@
                         <p class="text-secondary paragraph-lg">Indonesia Skills Week merupakan event dimana publik ANGKATAN KERJA memperoleh akses layanan pelatihan, magang, kredit usaha, fasilitas berlatih, dll. secara <b class="text-dark">gratis, murah dan mudah</b> yang dilakukan secara terbatas yaitu <b class="text-dark">1 minggu atau 7 hari setiap 2 bulan</b></p>
                     </div>
                     <div class="col-lg-8 text-center py-4">
-                        <h4 class="mb-3">Syarat dan Ketentuan</h4>
-                        <div class="d-lg-flex">
-                            <div class="px-3"><i class="bi bi-check text-success"></i>&nbsp; Sudah memiliki akun Prakerja</div>
-                            <div class="px-3"><i class="bi bi-check text-success"></i>&nbsp; Sudah Verifikasi Muka</div>
-                            <div class="px-3"><i class="bi bi-check text-success"></i>&nbsp; Sudah bisa masuk ke Dashboard Prakerja</div>
-                        </div>
+                        <p>Selengkapnya baca <a href="#KategoriPelatihan" class="link-primary"><b>Kategori Pelatihan</b></a> dan <a href="#SyaratKetentuan" class="link-primary"><b>Syarat & Kententuan</b></a></p>
                     </div>
+                    
                 </div>
             </div>
         </section>
         <!-- Hero end -->
 
         <!-- Course start -->
-        <section class="section-course d-flex align-items-center">
+        <section class="section-course d-flex align-items-center" id="Pelatihan">
             <div class="container py-5 px-4 px-md-0">
                 <div class="row">
                     <div class="col-12 text-center mb-4 mb-lg-5">
@@ -226,6 +232,101 @@
         </section>
         <!-- course end -->
 
+        <!-- section Kategori start -->
+        <section class="section-kategori mb-5" id="KategoriPelatihan">
+            <div class="container py-5">
+                <div class="row justify-content-md-center">
+                    <div class="px-4">
+                        <div class="text-center mb-3">
+                            <h2>Kategori Pelatihan</h2>
+                            <p>Kategori pelatihan yang ditawarkan dalam event Indonesia Skills Week sebagai berikut</p>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-12 col-md-4 card-kategori p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <span class="me-2">1</span>
+                                    <h5>Gratis</h5>
+                                </div>
+                                <p>Pelatihan gratis yaitu pelatihan yang diberikan secara gratis kepada masyarakat yang sudah memiliki akun Prakerja selama periode event.</p>
+                            </div>
+                            <div class="col-12 col-md-4 card-kategori p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <span class="me-2">2</span>
+                                    <h5>Murah</h5>
+                                </div>
+                                <p>Pelatihan murah yaitu pelatihan ditawarkan dalam event Indonesia Skills Week seharga Rp 20.000 dan bisa dibeli oleh masyarakat yang sudah memiliki akun Prakerja selama periode event.</p>
+                            </div>
+                            <div class="col-12 col-md-4 card-kategori p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <span class="me-2">3</span>
+                                    <h5>Diskon</h5>
+                                </div>
+                                <p>Pelatihan diskon yaitu pelatihan yang ditawarkan dalam event Indonesia Skills Week dengan diskon besar (minimal 50%) dan bisa dibeli oleh masyarakat yang sudah memiliki akun Prakerja selama periode event.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section Kategori end -->
+
+        <!-- section SnK start -->
+        <section class="section-snk mb-5" id="SyaratKetentuan">
+            <div class="container py-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="text-center mb-5">
+                            <h2>Syarat & Ketentuan</h2>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 px-md-4">
+                                <ul>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Mempunyai akun Prakerja (Apabila belum terdaftar silahkan mengikuti proses registrasi akun melalui <a href="www.prakerja.go.id" target="_blank" class="link-primary">www.prakerja.go.id</a> )</p>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Usia minimal 18 Tahun</p>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Kuota pelatihan terbatas</p>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Masa aktif voucher pelatihan gratis dan pelatihan harga Rp 20.000 hanya berlaku pada periode event</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 px-md-4">
+                                <ul>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Masa aktif voucher pelatihan diskon berdasarkan kebijakan lembaga penyedia pelatihan</p>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Peserta hanya dapat membeli 1 kali pelatihan gratis atau pelatihan harga Rp 20.000</p>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Peserta dapat membeli lebih dari 1 pelatihan diskon</p>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                                        <p>Pelatihan dan voucher yang sudah dibeli menjadi tanggungjawab peserta sepenuhnya</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section SnK end -->
+
         <!-- section form-->
         <!-- <section class="section-course d-flex align-items-center">
             <div class="container py-5 px-4 px-md-0">
@@ -330,6 +431,9 @@
                 </div>
             </div>
         </div>
+
+        <a class="scroll-top"><i class="bi bi-chevron-up"></i></a>
+
     </footer>
     <!-- Footer end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -341,6 +445,9 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-ES33JTVWV3', { 'debug_mode':true });
+
+        
+
     </script>
     <script src="js/function.js"></script>
 </body>
