@@ -4,7 +4,7 @@ var currentPage = 1;
 
 /** function load course */
 var templateCourse = function(target, data){ 
-    var pills = data.course_type == "Daring LMS" ? "text-bg-warning" : "text-bg-help";
+    var pills = data.course_type == "Online - LMS" ? "text-bg-warning" : "text-bg-help";
     var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
@@ -36,6 +36,10 @@ var templateCourse = function(target, data){
 
 /** function to invoke load more */
 var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, currentPage, paging) {
+    // to unbind the previous event or duplicate event
+    $(target).unbind('click');
+
+    // bind the current one
     $(target).on('click', function () {
         var _this = $(target); 
         start = end;
