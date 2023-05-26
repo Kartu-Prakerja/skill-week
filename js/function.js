@@ -239,7 +239,6 @@ function courseLoader(a){
         $('.navbar-custom').removeClass('m-menu');
         $('body').removeClass('freeze');
     });
-    
 
     // run course loader
     courseLoader();
