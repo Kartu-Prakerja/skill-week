@@ -1,4 +1,7 @@
-    
+// general variable 
+const loadItem = 12;
+var currentPage = 1;
+
 /** function load course */
 var templateCourse = function(target, data){ 
     var pills = data.course_type == "Daring LMS" ? "text-bg-warning" : "text-bg-help";
@@ -6,7 +9,7 @@ var templateCourse = function(target, data){
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
-                "<img src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
+                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between'>" +
                         "<div>" +
@@ -22,8 +25,8 @@ var templateCourse = function(target, data){
                     "<div class='course-price card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
-                    "<a href='"+ course_form_request +"&utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
-                    "<a href='"+ data.course_url +"?utm_source=skill-week&utm_medium=landing-page&utm_content=button' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
+                    "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
+                    "<a href='"+ data.course_url +"?utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
@@ -38,13 +41,96 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
         start = end;
         end = end + loadItem;
         currentPage = currentPage + 1;
-        
         $.each(data.slice(start, end), function(i, list) {
             templateCourse(appendTarget, list);
         })
         // re run logig check load more or hide when it reach max paging
         checkLoadMore(_this, paging, currentPage)
     });
+}
+
+var filterSelect = function(target, data, start, end) {
+    $(target).on("change", function(e) {
+        var appendTarget = $('#course-lists');
+        var loadMoreTarget = $('#load-more');
+        var appendTarget = $('#course-lists');
+        var filter = $(this).find(':selected').text();
+        var keyword = $('#filter-keyword').val();
+
+        if (filter !== 'Semua Kategori') {
+            var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
+            var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+        } else {
+            var dataKeyword = _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+        }
+
+        var dataLength = dataKeyword.length;
+        var paging = Math.ceil(dataLength/loadItem);
+
+        appendTarget.html('');
+        
+        // implement append data
+        $.each(dataKeyword.slice(start, end), function(i, list) {
+            templateCourse(appendTarget, list);
+        });
+
+        btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
+        checkLoadMore(loadMoreTarget, paging, currentPage);
+    })
+}
+
+var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
+    $(formSeaerch).on('submit', function(e) { 
+        e.preventDefault();
+        var appendTarget = $('#course-lists');
+        var loadMoreTarget = $('#load-more');
+        var filterCategory = $('#filter-category');
+        var filter = filterCategory.find(':selected').text();
+        var keyword = $(this).find('input').val();
+
+        // conditional filter
+        if (filter !== 'Semua Kategori') {
+            var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
+            var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+        } else {
+            var dataKeyword = _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+        }
+
+        // define pagination
+        var dataLength = dataKeyword.length;
+        var paging = Math.ceil(dataLength/loadItem);
+
+        appendTarget.html('');
+        
+        // implement append data
+        $.each(dataKeyword.slice(start, end), function(i, list) {
+            templateCourse(appendTarget, list);
+        });
+
+        btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
+        checkLoadMore(loadMoreTarget, paging, currentPage);
+    });
+
+    $(buttonSearch).on('click', function(e) { 
+        $(formSeaerch).trigger('submit')
+    });
+}
+
+var optionList = function(data) {
+    var lookup = {};
+    var result = [];
+
+    for (var item, i = 0; item = data[i++];) {
+        var category = item.course_category;
+        if (!(category in lookup)) {
+            lookup[category] = 1;
+            result.push(category);
+        }
+    }
+    result = result.sort();
+    $.each(result, function(i, value) {
+        $('#filter-category').append('<option value="'+ value +'">'+ value + '</option>');
+    })
 }
 
 /** function to check visiblity load more button */
@@ -76,6 +162,9 @@ function courseLoader(a){
     $(document).ready(function(){
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
+        var filterCategory = $('#filter-category');
+        var formSeaerch = $('#form-search');
+        var buttonSearch = $('#button-search');
         var loadItem = 12;
         var currentPage = 1;
 
@@ -90,12 +179,22 @@ function courseLoader(a){
                     // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
                     templateCourse(appendTarget, list);
                 })
+
                 // loadmore more button show / hide
                 checkLoadMore(loadMoreTarget, paging, currentPage);
                 btnLoadMore(loadMoreTarget, loadItem, start, end, data, appendTarget, currentPage, paging);
+                
+                // load option
+                optionList(data);
+
+                // filter implementation
+                filterSelect(filterCategory, data, start, end);
+                filterKeyword(formSeaerch, buttonSearch, data, start, end);
+
                 // // invoke function push event GA
                 pushEvents('.see-detail-course');
                 pushEvents('.apply-course');
+
             }, 1500)
         }).fail(function(){
             console.log("An error has occurred.");
