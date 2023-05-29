@@ -563,6 +563,7 @@ body{
             bottom: 0;
             z-index: 0;
             background: linear-gradient(0deg, #FFFFFF 21.93%, rgba(255, 255, 255, 0) 100%);
+            z-index: -1;
         }
         .md-hide{
             display: inherit!important;
