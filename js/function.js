@@ -73,7 +73,7 @@ var filterSelect = function(target, data, start, end) {
         var filter = $(this).find(':selected').text();
         var keyword = $('#filter-keyword').val();
 
-        if (filter !== 'Semua Kategori') {
+        if (filter !== 'Semua Topik Pelatihan') {
             var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
             var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
         } else {
@@ -110,13 +110,13 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var keyword = $(this).find('input').val();
 
         // conditional filter
-        if (filter == 'Semua Kategori') {
+        if (filter !== 'Semua Topik Pelatihan') {
             var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
             var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
         } else {
             var dataKeyword = _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
         }
-
+        
         // define pagination
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
