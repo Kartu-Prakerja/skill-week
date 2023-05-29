@@ -645,7 +645,14 @@ body{
     cursor: pointer;
   }
   
-
+  .alert-info {
+    --bs-alert-color: var(--info);
+    --bs-alert-bg: var(--bg-info);
+    --bs-alert-border-color: var(--t200);
+  }
+  .alert-info .alert-link {
+    color: var(--t700);
+  }
 
 /* media querys */
 
