@@ -93,12 +93,13 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var keyword = $(this).find('input').val();
 
         // conditional filter
-        if (filter !== 'Semua Kategori') {
+        if (filter == 'Semua Kategori') {
             var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
             var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
         } else {
             var dataKeyword = _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
         }
+        console.log(dataKeyword)
 
         // define pagination
         var dataLength = dataKeyword.length;
