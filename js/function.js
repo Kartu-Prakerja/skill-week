@@ -1,5 +1,6 @@
 // general variable 
 const loadItem = 12;
+const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek.json";
 var currentPage = 1;
 
 var emptyState = "<div class='col-12 col-md-9'>" +
@@ -17,8 +18,9 @@ var emptyState = "<div class='col-12 col-md-9'>" +
 /** function load course */
 var templateCourse = function(target, data){ 
     // temporary remove detail pelatihan "<a href='"+ data.course_url +"?utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
-    var pills = data.course_type == "Online - LMS" ? "text-bg-warning" : "text-bg-help";
+    var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
+    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + data.course_price;
     var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
@@ -28,14 +30,16 @@ var templateCourse = function(target, data){
                         "<div>" +
                             "<div class='card-company'><img class='me-1' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'><span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
                         "</div>" +
-                        "<div><span class='badge rounded-pill " + pills +"'>"+ data.course_type +"</span></div>" +
+                        "<div><span class='badge rounded-pill text-capitalize " + pills +"'>"+ data.course_type +"</span></div>" +
                     "</div>" +        
                 "</div>" +
             "</div>" +
             "<div class='card-body'>" +
                 "<h6 class='mb-2 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
+
                 "<div>" +
-                    "<div class='course-price card-price mb-1 color-secondary'>"+ data.course_price +"</div>" +
+                    "<div class='course-real-price mb-1'><span>Rp "+ data.course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
+                    "<div class='course-price card-price mb-1 color-secondary'>"+ finalPrice +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
                     "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
@@ -193,7 +197,7 @@ function courseLoader(a){
         var loadItem = 12;
         var currentPage = 1;
 
-        $.getJSON("js/course.json", function(data){
+        $.getJSON(courseListURL, function(data){
             var dataLength = data.length;
             var paging = Math.ceil(dataLength/loadItem);
             var start = 0;
