@@ -501,6 +501,21 @@ body{
     overflow: hidden;
 }
 
+.course-price{
+    font-size: 1rem;
+}
+.course-real-price{
+    & span:first-child{
+        font-size: (12/16)+rem;
+        color: var(--text-disabled);
+        text-decoration: line-through;
+    }
+}
+.paragraph-md{
+    p{
+        line-height: 170%;
+    }
+}
 .scroll-top{
     width: 32px;
     height: 32px;
@@ -652,6 +667,11 @@ body{
   }
   .alert-info .alert-link {
     color: var(--t700);
+  }
+
+  .text-bg-ghost-success{
+    background-color: var(--g100);
+    color: var(--success)
   }
 
 /* media querys */

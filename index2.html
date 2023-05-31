@@ -48,9 +48,19 @@
         <div class="container px-3 px-md-0">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="https://www.prakerja.go.id/"><img src="img/logo-prakerja.svg" alt="Prakerja"></a>
-                <a href="https://dashboard.prakerja.go.id/daftar" class="btn btn-primary">Buat Akun Prakerja</a>
+                <ul class="d-flex align-items-center navbar-custom">
+                    <li class="nav-item md-hide"><a class="nav-link" href="#Pelatihan">Pelatihan</a></li>
+                    <li class="nav-item md-hide"><a class="nav-link" href="#KategoriPelatihan">Kategori Pelatihan</a></li>
+                    <li class="nav-item md-hide"><a class="nav-link" href="#SyaratKetentuan">Syarat & Kententuan</a></li>
+                    <li class="nav-item md-hide"><a href="https://dashboard.prakerja.go.id/daftar?utm_source=skill-week&utm_medium=landing-page&utm_content=button" class="btn btn-primary">Buat Akun Prakerja</a></li>
+                    <li class="nav-item md-show">
+                        <div class="menu burger-menu" data-menu="13">
+                            <div class="icon"></div>
+                          </div>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </div>    
     </header>
     <!-- Header end -->
 
@@ -97,7 +107,7 @@
                     <div class="col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
                         <div class="card pds-card">
                            <div class="card-cover">
-                              <img loading="lazy" src="https://lh3.googleusercontent.com/pw/AJFCJaVEH_iPKQ41P4oGHGjkrnETx2y1HUmxbjwM0RTD1Pw0FQqHJMQRjxxxECPy7XKjqU9zDBkVOedBpeiNY404sf6AfU5-mZpiH6Xn_QvUL7UVGu3r2hvUgcEOGZ23gUtSOJCLtxZtG2UByoUW-c7xh9Q2=w1181-h787-s-no" class="card-img-top" alt="Meningkatkan Kemampuan Pengelolaan Waktu sebagai Pengawas Kantor (Daring)">
+                              <img loading="lazy" src="https://lh3.googleusercontent.com/pw/AJFCJaV67EaISiQD6WKifE-ba4jaNgXST1xBHHWfhrtyfEcB_5Ey1h4h6YEODmGWf0TU5oK0PF8NTe-ZARaoBcGip0bHISvS54T6xKPt2Yaj_GpJAVdGIOzJuRcdOJUkArl7C83aV_BlpiUDYhqHDztvbQuw=w1080-h504-s-no?authuser=0" class="card-img-top" alt="Meningkatkan Kemampuan Pengelolaan Waktu sebagai Pengawas Kantor (Daring)">
                               <div class="card-cover-overlay">
                                 <div class="d-flex justify-content-between">
                                     <div>
@@ -110,11 +120,13 @@
                            <div class="card-body">
                               <h6 class="mb-2 course-title" title="Meningkatkan Kemampuan Pengelolaan Waktu sebagai Pengawas Kantor (Daring)">Strategi Pemasaran Agro Wisata Bagi Pengembang Bisnis (Daring)</h6>
                               <div>
-                                 <div class="course-price card-price mb-1 color-secondary">Gratis</div>
+                                <div class="course-real-price mb-1"><span>Rp 500.000</span> <span class="badge text-bg-ghost-success">96%</span></div>
+                                 <div class="course-price card-price mb-1 color-secondary">Rp 20.000</div>
                               </div>
                               <div class="mt-3 text-center">
                                 <a href="https://docs.google.com/forms/d/1bPoPHiitfMzK4EgsVbCUiXs6pgQdeoEQo1gDeM3y1AE/edit?ts=645cb084?utm_source=skill-week&amp;utm_medium=landing-page&amp;utm_content=button" class="apply-course btn btn-primary w-100 mb-3" target="_blank" rel="nofollow" data-event="skill_week_apply_course">Dapatkan Voucher Pelatihan</a>
-                                <a href="https://prakerja.cybersacademy.id/course/Strategi-Pemasaran-Agro-Wisata-Bagi-Pengembang-Bisnis?utm_source=skill-week&amp;utm_medium=landing-page&amp;utm_content=button" class="see-detail-course p-2 link-secondary" target="_blank" rel="nofollow" data-event="skill_week_click_course_detail text-link">Deskripsi Pelatihan</a></div>
+                                <a href="#" class="link-secondary w-100" data-bs-toggle="modal" data-bs-target="#deskripsiPelatihanModal">Deskripsi Pelatihan</a>
+                            </div>
                            </div>
                         </div>
                      </div>
@@ -137,9 +149,11 @@
                               <div>
                                  <div class="course-price card-price mb-1 color-secondary">Gratis</div>
                               </div>
-                              <div class="mt-3 text-center">
-                                <a href="https://docs.google.com/forms/d/1bPoPHiitfMzK4EgsVbCUiXs6pgQdeoEQo1gDeM3y1AE/edit?ts=645cb084?utm_source=skill-week&amp;utm_medium=landing-page&amp;utm_content=button" class="apply-course btn btn-primary w-100 mb-3" target="_blank" rel="nofollow" data-event="skill_week_apply_course">Dapatkan Voucher Pelatihan</a>
-                                <a href="https://prakerja.cybersacademy.id/course/Strategi-Pemasaran-Agro-Wisata-Bagi-Pengembang-Bisnis?utm_source=skill-week&amp;utm_medium=landing-page&amp;utm_content=button" class="see-detail-course p-2 link-secondary" target="_blank" rel="nofollow" data-event="skill_week_click_course_detail text-link">Deskripsi Pelatihan</a></div>
+                              <div class="d-flex mt-3 text-center">
+                                <a href="#" class="btn btn-small p-2 link-secondary w-100" target="_blank" rel="nofollow" data-event="skill_week_click_course_detail text-link">Detail Pelatihan</a>
+                                <a href="https://docs.google.com/forms/d/1bPoPHiitfMzK4EgsVbCUiXs6pgQdeoEQo1gDeM3y1AE/edit?ts=645cb084?utm_source=skill-week&amp;utm_medium=landing-page&amp;utm_content=button" class="apply-course btn btn-primary w-100" target="_blank" rel="nofollow" data-event="skill_week_apply_course">Dapatkan Voucher</a>
+                                
+                            </div>
                            </div>
                         </div>
                      </div>
@@ -514,6 +528,44 @@
         <!-- course end -->
     </main>
 
+
+    <!-- Modal start-->
+    <div class="modal modal-lg fade" id="deskripsiPelatihanModal" tabindex="-1" aria-labelledby="deskripsiPelatihanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header align-items-start align-items-lg-center">
+            <h1 class="modal-title fs-5" id="deskripsiPelatihanModalLabel">Strategi Pemasaran Agro Wisata Bagi Pengembang Bisnis (Daring)</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <article class="paragraph-md">
+                <p>
+                    Judul Program: "Membuat Desain Grafis Dengan Adobe Photoshop Untuk Menjadi Perancang Grafis" dibuat sesuai rujukan okupasi (KBJI 2166.03) Perancang Grafis. <br><br>
+
+    Program pelatihan ini merupakan pelatihan dengan menggunakan metode Self-Paced Learning  adalah metode ajar yang digunakan mengkombinasi antara  ceramah, studi kasus dan  simulasi, sedangkan evaluasi menggunakan medote   Pre test,  Post-test,Formatif test dan tugas praktik. Jenis Sertifikat yang diperoleh dalam pelatihan ini  : <br> 1. Sertifikat kompetensi lulus (diperoleh apabila nilai post tes minimal 60 atau lebih, <br> 2. Sertifikat penyelesaian (diperoleh bila nilai post tes kurang dari 60) <br><br>
+
+    Hai Sobat, Pada Kelas ini sangat relevan untuk pemula / tingkat dasar yang memiliki peranan sangat penting bagi seorang desainer percetakan. Namun  masih banyak orang yang belum mengetahui cara membuat desain menggunakan aplikasi Adobe Photoshop cs 6. <br><br>
+
+    Adobe Photoshop cs 6 adalah aplikasi desain grafis yang banyak digunakan oleh seorang desainer grafis untuk membuat berbagai macam desain. Dalam pelatihan ini akan membahas teori desain grafis dan praktek membuat berbagai jenis desain  percetakan seperti, design undangan pernikahan, design gantungan kunci/PIN, design benner, design brosur/fliyer, design kartu nama / id card, design mockup kaos sablon, dan editing foto dengan  aplikasi Adobe Photoshop cs 6. <br><br>
+
+    Dengan demikian, anda akan lebih mudah dan cepat untuk merancang, serta membuat desain yang kreatif. <br><br>
+
+    Setelah menyelesaikan pelatihan ini anda akan mempunyai kompetensi yang relevan dengan jenis pekerjaan dibidang spesialis desain percetakan. <br><br>
+
+    Pelatihan online ini menggunakan metode Self-Paced Learning yakni ceramah, demonstrasi + demo praktek, Pre/Post-test, Kuis Formatif, Uji Praktik Mandiri (study kasus), Sesi Konsultasi dengan Fasilitator dan Diskusi.
+                </p>
+            </article>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Tutup</button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform" class="btn btn-primary" target="_blank">Dapatkan Voucher Pelatihan</a>
+            <!-- <button type="button" class="btn btn-primary">Dapatkan Voucher Pelatihan</button> -->
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- Modal end-->
+
     <!-- Footer start -->
     <footer class="section-footer">
         <div class="top-wrapper">
@@ -616,15 +668,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/function.js"></script>
     <script>
-        $(window).scroll(function() {
-            var scroll = $(window).scrollTop();
-            if (scroll >= 60) {
-                $('header').addClass("header-fixed");
-            } else {
-                $('header').removeClass("header-fixed");
-            }
-        });
+        
     </script>
 </body>
 </html>
