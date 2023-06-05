@@ -17,11 +17,11 @@ var emptyState = "<div class='col-12 col-md-9'>" +
 
 /** function load course */
 var templateCourse = function(target, data){ 
-    // temporary remove detail pelatihan "<a href='"+ data.course_url +"?utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
-    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + data.course_price;
-    var template = "<div class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
+    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + data.course_after_discount;
+    var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
+    var template = "<div id='" + data.index +"' class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
                 "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
@@ -36,18 +36,40 @@ var templateCourse = function(target, data){
             "</div>" +
             "<div class='card-body'>" +
                 "<h6 class='mb-2 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
-
                 "<div>" +
                     "<div class='course-real-price mb-1'><span>Rp "+ data.course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
-                    "<div class='course-price card-price mb-1 color-secondary'>"+ finalPrice +"</div>" +
+                    "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
                     "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
+                    "<a href='#deskripsi-pelatihan' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
     "</div>";
-    $(target).append(template);
+    $(target).append(template).ready(function () {
+        // trigger modal
+        btnDescription('.see-detail-course', data)
+    });
+}
+
+// on click course description 
+
+var btnDescription = function (target, data) {
+    $(target).unbind('click');
+    $(target).on('click', function (e) {
+        e.preventDefault();
+
+        var _this = $(this);
+        var index = _this.data('index');
+        var description = data.description;
+        var title = data.course_title;
+        var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
+        $('#deskripsiPelatihanModal .modal-title').html(title);
+        $('#deskripsiPelatihanModal article p').html(description);
+        $('#deskripsiPelatihanModal #modal-link-voucher').attr('href', course_form_request);
+        $('#deskripsiPelatihanModal').modal('show');
+    });
 }
 
 /** function to invoke load more */
@@ -220,7 +242,7 @@ function courseLoader(a){
                 filterSelect(filterCategory, data, start, end);
                 filterKeyword(formSeaerch, buttonSearch, data, start, end);
 
-                // // invoke function push event GA
+                // invoke function push event GA
                 pushEvents('.see-detail-course');
                 pushEvents('.apply-course');
 
