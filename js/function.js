@@ -42,24 +42,25 @@ var templateCourse = function(target, data){
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
                     "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
-                    "<a href='#deskripsi-pelatihan' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
+                    "<a id='detail-course"+ data.index +"'href='#deskripsi-pelatihan' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
     "</div>";
     $(target).append(template).ready(function () {
         // trigger modal
-        btnDescription('.see-detail-course', data)
+        btnDescription('#detail-course' + data.index, data);
     });
 }
 
 // on click course description 
 
 var btnDescription = function (target, data) {
+
     $(target).unbind('click');
     $(target).on('click', function (e) {
+        console.log(data);
         e.preventDefault();
-
         var _this = $(this);
         var index = _this.data('index');
         var description = data.description;
