@@ -112,6 +112,7 @@ var filterSelect = function(target, data, start, end) {
         var paging = Math.ceil(dataLength/loadItem);
 
         appendTarget.html('');
+        $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
         
         if (dataKeyword.length !== 0) {
             // implement append data
@@ -151,6 +152,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         
         // remove existing content
         appendTarget.html('');
+        $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
         
         // checking keyword then append with selected filter
         if (dataKeyword.length !== 0) {
@@ -248,6 +250,7 @@ function courseLoaderInit(){
             setTimeout(function() {
                 appendTarget.html('');
 
+                $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
                 $.each(dataKeyword.slice(start, end), function(i, list) {
                     // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
                     templateCourse(appendTarget, list);
