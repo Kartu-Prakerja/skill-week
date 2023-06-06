@@ -90,8 +90,7 @@
       }
 
       .content-block {
-        padding-bottom: 16px;
-        padding-top: 16px;
+        padding: 24px;
       }
 
       .footer {
@@ -104,7 +103,7 @@
         .footer p,
         .footer span,
         .footer a {
-          color: #999999;
+          color: #263444;
           font-size: 16px;
           /* text-align: center;  */
       }
@@ -258,10 +257,6 @@
         width: 0; 
       }
 
-      .powered-by a {
-        text-decoration: none; 
-      }
-
       hr {
         border: 0;
         border-bottom: 1px solid #f6f6f6;
@@ -273,6 +268,14 @@
       }
       .socmed li{
         display: inline-block;
+        margin: 0 24px;
+      }
+      
+      .copyright, 
+      .copyright a{
+        font-size: 14px;
+        color: #67717C;
+        text-decoration: none;
       }
 
       /* -------------------------------------
@@ -310,8 +313,15 @@
         table.body .btn table {
           width: 100% !important; 
         }
+        
         table.body .btn a {
           width: 100% !important; 
+        }
+        table.body .btn-secondary table {
+          width: auto !important; 
+        }
+        table.body .btn-secondary a {
+          width: auto !important; 
         }
         table.body .img-responsive {
           height: auto !important;
@@ -366,7 +376,7 @@
     <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
-        <td>&nbsp;</td>
+        <td></td>
         <td class="container">
           <div class="content">
 
@@ -415,7 +425,7 @@
                           </tbody>
                         </table>
                         <p><i>Mohon untuk tidak membalas email ini. Anda tidak akan menerima tanggapan jika Anda membalas ke alamat email ini.</i></p>
-                        <p><a href="#">Syarat & ketentuan</a></p>
+                        <p><a href="https://skillsweek.prakerja.go.id/#SyaratKetentuan">Syarat & ketentuan</a></p>
                       </td>
                     </tr>
                   </table>
@@ -428,11 +438,11 @@
 
             <!-- START FOOTER -->
             <div class="footer">
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="padding: 0 24px;">
                 <tr>
                     <td class="content-block" style="padding: 16px 0;">
                         <h3>Layanan Contact Center Prakerja</h3>
-                        <p>Call Center : <a href="tel:08001503001" style="color:#F05E00"><b>08001503001</b></a></p>
+                        <p>Call Center : <a href="tel:08001503001" style="color:#F05E00;"><b>08001503001</b></a></p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
                             <tbody>
                               <tr>
@@ -440,7 +450,7 @@
                                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tbody>
                                       <tr>
-                                        <td align="center"> <a href="#" target="_blank"><img src="img/bi-telephone-fill.png" height="16">&nbsp; Bantuan Prakerja</a> </td>
+                                        <td align="center"> <a href="tel:08001503001" target="_blank"><img src="img/bi-telephone-fill.png" height="16">&nbsp; Bantuan Prakerja</a> </td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -460,15 +470,15 @@
                     <td style="padding: 16px 0;">
                         <h3>Ikuti Kami</h3>
                         <ul class="socmed">
-                            <li><a href="#"><img src="img/bi-youtube.png" height="24" alt=""></a></li>
-                            <li><a href="#"><img src="img/bi-instagram.png" height="24" alt=""></a></li>
-                            <li><a href="#"><img src="img/bi-facebook.png" height="24" alt=""></a></li>
-                            <li><a href="#"><img src="img/bi-tiktok.png" height="24" alt=""></a></li>
+                            <li><a href="https://www.youtube.com/channel/UCXU-nRpRs5Hk9bF3r28rSDA"><img src="img/bi-youtube.png" height="24" alt=""></a></li>
+                            <li><a href="https://www.instagram.com/prakerja.go.id/"><img src="img/bi-instagram.png" height="24" alt=""></a></li>
+                            <li><a href="https://www.facebook.com/prakerja.go.id/"><img src="img/bi-facebook.png" height="24" alt=""></a></li>
+                            <li><a href="https://www.tiktok.com/@kitaprakerja"><img src="img/bi-tiktok.png" height="24" alt=""></a></li>
                         </ul>
                     </td>
                 </tr>
                 <tr>
-                  <td class="content-block powered-by">
+                  <td class="content-block copyright">
                     &copy; <a href="https://www.prakerja.go.id/">Kartu Prakerja 2023</a>.
                   </td>
                 </tr>
@@ -478,7 +488,7 @@
 
           </div>
         </td>
-        <td>&nbsp;</td>
+        <td></td>
       </tr>
     </table>
   </body>
