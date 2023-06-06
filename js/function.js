@@ -1,6 +1,7 @@
 // general variable 
 const loadItem = 12;
 const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek.json";
+const queryParams = new URLSearchParams(window.location.search);
 var currentPage = 1;
 
 var emptyState = "<div class='col-12 col-md-9'>" +
@@ -147,9 +148,11 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         // define pagination
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
-
+        
+        // remove existing content
         appendTarget.html('');
         
+        // checking keyword then append with selected filter
         if (dataKeyword.length !== 0) {
             // implement append data
             $.each(dataKeyword.slice(start, end), function(i, list) {
@@ -159,6 +162,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
             appendTarget.html(emptyState);
         }
 
+        // check condition load more and checking load more
         btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
         checkLoadMore(loadMoreTarget, paging, currentPage);
     });
@@ -168,7 +172,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
     });
 }
 
-var optionList = function(data) {
+var optionList = function(data, filter) {
     var lookup = {};
     var result = [];
 
@@ -181,7 +185,8 @@ var optionList = function(data) {
     }
     result = result.sort();
     $.each(result, function(i, value) {
-        $('#filter-category').append('<option value="'+ value +'">'+ value + '</option>');
+        var selected = filter.toLowerCase() == value.toLowerCase() ? 'selected' : '';
+        $('#filter-category').append('<option value="'+ value +'" '+ selected +'>'+ value + '</option>');
     })
 }
 
@@ -210,7 +215,7 @@ var pushEvents = function(target) {
 }
 
 /** function to init the content at the first time */
-function courseLoader(a){
+function courseLoaderInit(){
     $(document).ready(function(){
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
@@ -219,25 +224,41 @@ function courseLoader(a){
         var buttonSearch = $('#button-search');
         var loadItem = 12;
         var currentPage = 1;
+        var filter = queryParams.get('topic') !== null ? (queryParams.get('topic')).replace(/-|%20/gi, ' ') : '';
+        var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
 
         $.getJSON(courseListURL, function(data){
-            var dataLength = data.length;
+            // get query param by 
+            if (filter !== null || filter.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
+                var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
+                var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+            } else {
+                var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+            }
+
+            if (keyword !== null) {
+                $('#filter-keyword').val(keyword);
+            }
+            
+            var dataLength = dataKeyword.length;
             var paging = Math.ceil(dataLength/loadItem);
             var start = 0;
             var end = loadItem;
+
             setTimeout(function() {
                 appendTarget.html('');
-                $.each(data.slice(start, end), function(i, list) {
+
+                $.each(dataKeyword.slice(start, end), function(i, list) {
                     // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
                     templateCourse(appendTarget, list);
                 })
 
                 // loadmore more button show / hide
                 checkLoadMore(loadMoreTarget, paging, currentPage);
-                btnLoadMore(loadMoreTarget, loadItem, start, end, data, appendTarget, currentPage, paging);
+                btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                 
                 // load option
-                optionList(data);
+                optionList(data, filter);
 
                 // filter implementation
                 filterSelect(filterCategory, data, start, end);
@@ -292,6 +313,6 @@ function courseLoader(a){
         $('body').removeClass('freeze');
     });
 
-    // run course loader
-    courseLoader();
+    // run init course loader
+    courseLoaderInit();
  })(jQuery);
