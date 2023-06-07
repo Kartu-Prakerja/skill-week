@@ -4,6 +4,7 @@ const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/s
 const queryParams = new URLSearchParams(window.location.search);
 var currentPage = 1;
 
+// empty state template
 var emptyState = "<div class='col-12 col-md-9'>" +
     "<div class='alert alert-info' role='alert'>" +
         "<div class='d-flex'>" +
@@ -43,7 +44,7 @@ var templateCourse = function(target, data){
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
                     "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
-                    "<a id='detail-course"+ data.index +"'href='#deskripsi-pelatihan' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
+                    "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
@@ -54,22 +55,26 @@ var templateCourse = function(target, data){
     });
 }
 
-// on click course description 
-
+// 
+/** function on click course description  */
 var btnDescription = function (target, data) {
-
+    // handle or prevent multiple time init the function
     $(target).unbind('click');
     $(target).on('click', function (e) {
-        console.log(data);
+        // to cancel the redirect pages
         e.preventDefault();
         var _this = $(this);
         var index = _this.data('index');
         var description = data.description;
         var title = data.course_title;
         var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
+        
+        // manage the content
         $('#deskripsiPelatihanModal .modal-title').html(title);
         $('#deskripsiPelatihanModal article p').html(description);
         $('#deskripsiPelatihanModal #modal-link-voucher').attr('href', course_form_request);
+
+        // trigger the modal
         $('#deskripsiPelatihanModal').modal('show');
     });
 }
@@ -85,6 +90,8 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
         start = end;
         end = end + loadItem;
         currentPage = currentPage + 1;
+
+        // loop the content and add to the course list
         $.each(data.slice(start, end), function(i, list) {
             templateCourse(appendTarget, list);
         })
@@ -93,6 +100,7 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
     });
 }
 
+/** function to filter courses by topic */
 var filterSelect = function(target, data, start, end) {
     $(target).on("change", function(e) {
         var appendTarget = $('#course-lists');
@@ -101,6 +109,7 @@ var filterSelect = function(target, data, start, end) {
         var filter = $(this).find(':selected').text();
         var keyword = $('#filter-keyword').val();
 
+        // to check the datalist based on current filter & keyword applied
         if (filter !== 'Semua Topik Pelatihan') {
             var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
             var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
@@ -111,11 +120,14 @@ var filterSelect = function(target, data, start, end) {
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
 
+        // remove existing course list
         appendTarget.html('');
+        // replacing counter for number of courses
         $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
         
+        // conditional check based on data length
         if (dataKeyword.length !== 0) {
-            // implement append data
+            // loop the content and add to the course list
             $.each(dataKeyword.slice(start, end), function(i, list) {
                 templateCourse(appendTarget, list);
             });
@@ -123,12 +135,16 @@ var filterSelect = function(target, data, start, end) {
             appendTarget.html(emptyState);
         }
 
+        // load more and check the rest of data
         btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
         checkLoadMore(loadMoreTarget, paging, currentPage);
+
+        // final push to the url current state with filter and keyword search
+        window.history.replaceState(null, null, "?topic="+ filter.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase())
     })
 }
 
-
+/** function to filter courses by keyword */
 var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
     $(formSeaerch).on('submit', function(e) { 
         e.preventDefault();
@@ -167,17 +183,23 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         // check condition load more and checking load more
         btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
         checkLoadMore(loadMoreTarget, paging, currentPage);
+
+        // final push to the url current state with filter and keyword search
+        window.history.replaceState(null, null, "?topic="+ filter.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase())
     });
 
+    // to trigger the submit button
     $(buttonSearch).on('click', function(e) { 
         $(formSeaerch).trigger('submit')
     });
 }
 
+/** function to get unique option */
 var optionList = function(data, filter) {
     var lookup = {};
     var result = [];
 
+    // to get the list of category insert to array
     for (var item, i = 0; item = data[i++];) {
         var category = item.course_category;
         if (!(category in lookup)) {
@@ -209,7 +231,7 @@ var pushEvents = function(target) {
         var events = _this.attr('data-event');
         var price = _this.parents('div.card-body').find('.course-price').html();
         var course_title = _this.parents('div.card-body').find('h6.course-title').html();
-        var lp_name = _this.parents('div.card-body').find('.course-lp-name').html();
+        var lp_name = _this.parents('div.card-cover').find('.course-lp-name').html();
         if(window.DataLayer !== undefined) {
             dataLayer.push({'event': events, 'course_title': course_title, 'price': price, 'lp_name' : lp_name});
         }
