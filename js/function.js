@@ -270,9 +270,12 @@ function courseLoaderInit(){
             var end = loadItem;
 
             setTimeout(function() {
+                // remove existing content
                 appendTarget.html('');
-
+                // counting the data
                 $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
+                
+                // loop the content and add to the course list
                 $.each(dataKeyword.slice(start, end), function(i, list) {
                     // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
                     templateCourse(appendTarget, list);
