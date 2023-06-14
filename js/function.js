@@ -5,7 +5,7 @@ const queryParams = new URLSearchParams(window.location.search);
 var currentPage = 1;
 
 // empty state template
-var emptyState = "<div class='col-12 col-md-9'>" +
+var emptyState = "<div class='col-12 col-md-12'>" +
     "<div class='alert alert-info' role='alert'>" +
         "<div class='d-flex'>" +
             "<div class='pe-3'><i class='bi bi-info-circle-fill fs-4'></i></div>" +
