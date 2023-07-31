@@ -241,3 +241,18 @@
     --bs-btn-disabled-bg: var(--n100);
     --bs-btn-disabled-border-color: var(--n100);
 }
+
+.btn-ghost-white {
+    --bs-btn-color: var(--text-default);
+    --bs-btn-bg: rgba(255, 255, 255, 0);
+    --bs-btn-hover-color: var(--text-default);
+    --bs-btn-hover-bg: rgba(255, 255, 255, 0.5);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: var(--text-default);
+    --bs-btn-active-bg: var(--s100);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--n200);
+    --bs-btn-disabled-bg: var(--n100);
+    --bs-btn-disabled-border-color: var(--n100);
+    --bs-btn-active-border-color: var(--n100);
+  }

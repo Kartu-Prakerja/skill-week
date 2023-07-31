@@ -25,10 +25,27 @@
     display: block;
 }
 
+
+
 .navbar-custom{
     list-style-type: none;
     margin: 0;
 
+    a.nav-link{
+      position: relative;
+      // display: inline-block;
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      &:hover{
+        background-color: rgba(#2A72C7, .05);
+      }
+    }
+    
+    a.nav-link.nav-link-active{
+      color: var(--primary);
+      background-color: rgba(#2A72C7, .05);
+      
+    }
     // mobile custom
     &.m-menu{
         width: 100%;
@@ -79,7 +96,7 @@
     }
 
     li{
-        margin: 0 1rem;
+        margin: 0 .5rem;
     }
 }
 
