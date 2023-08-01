@@ -418,7 +418,9 @@ body{
   .section-full-img{
     position: relative;
     .full-img-cover{
-        img{
+      position: relative;
+      z-index: -1;
+        img:nth-child(1){
             width: 100%;
             aspect-ratio: 16/6;
             object-fit: cover;
@@ -686,8 +688,13 @@ body{
 
 .pattern-1{
   position: absolute;
-  top:-1.5rem;
-  right:-1.5rem;
+  top:-1rem;
+  right:0;
+  max-width: 5rem;
+}
+
+.section-breadcrumb{
+  padding-top: 70px;
 }
 
 
@@ -738,14 +745,15 @@ body{
       .section-full-img{
       .box-wrapper{
         position: absolute;
-        bottom: 0;
-        left: 5rem;
+        bottom: 1.5rem;
+        left: 1.5rem;
         }
 
         &.type-2{
           .box-wrapper{
             background-color: var(--primary);
-            bottom: 5rem;
+            bottom: 3rem;
+            left:1rem;
             h3, p{
               color: white;
             }
@@ -760,6 +768,11 @@ body{
         --bs-modal-margin: .5rem;
         --bs-modal-border-width: 1px;
         --bs-modal-border-radius: .5rem;
+    }
+
+    .pattern-1{
+      right: -1rem;
+      max-width: none;
     }
 }
 
