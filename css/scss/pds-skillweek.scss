@@ -113,6 +113,10 @@ body{
     left: 0;
     bottom: 0;
     width: 100%;
+
+    .justify-content-between > div {
+      max-width: 50%;
+    }
 }
 
 .card-price{
@@ -125,7 +129,6 @@ body{
 }
 
 .card-company{
-    display: inline-block !important;
     font-size: calc(14/16)+ rem;
     color: var(--text-secondary);
     white-space: nowrap;

@@ -18,22 +18,23 @@ var emptyState = "<div class='col-12 col-md-12'>" +
     "</div>";
 
 /** function load course */
-var templateCourse = function(target, data){ 
+var templateCourse = function(target, data, cardClass){ 
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link'
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + data.course_after_discount;
     var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
-    var template = "<div id='" + data.index +"' class='col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5'>" +
+    var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+    var template = "<div id='" + data.index +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" +
                 "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
                 "<div class='card-cover-overlay'>" +
-                    "<div class='d-flex justify-content-between'>" +
-                        "<div>" +
-                            "<div class='card-company'><img class='me-1' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'><span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
+                    "<div class='d-flex justify-content-between align-middle'>" +
+                        "<div class='align-self-center'>" +
+                            "<div class='card-company'><img class='me-1 card-logo' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'><span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
                         "</div>" +
-                        "<div><span class='badge rounded-pill text-capitalize " + pills +"'>"+ data.course_type +"</span></div>" +
+                        "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>"+ data.course_type +"</span></div>" +
                     "</div>" +        
                 "</div>" +
             "</div>" +
@@ -251,58 +252,97 @@ function courseLoaderInit(){
         var currentPage = 1;
         var filter = queryParams.get('topic') !== null ? (queryParams.get('topic')).replace(/-|%20/gi, ' ') : '';
         var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
-
-        $.getJSON(courseListURL, function(data){
-            // get query param by 
-            if (filter !== null || filter.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
-                var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
-                var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-            } else {
-                var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-            }
-
-            if (keyword !== null) {
-                $('#filter-keyword').val(keyword);
-            }
-            
-            var dataLength = dataKeyword.length;
-            var paging = Math.ceil(dataLength/loadItem);
-            var start = 0;
-            var end = loadItem;
-
-            setTimeout(function() {
-                // remove existing content
-                appendTarget.html('');
-                // counting the data
-                $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
+        
+        if (appendTarget !== undefined) {
+            $.getJSON(courseListURL, function(data){
+                // get query param by 
+                if (filter !== null || filter.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
+                    var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
+                    var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+                } else {
+                    var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+                }
+    
+                if (keyword !== null) {
+                    $('#filter-keyword').val(keyword);
+                }
                 
-                // loop the content and add to the course list
-                $.each(dataKeyword.slice(start, end), function(i, list) {
-                    // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
-                    templateCourse(appendTarget, list);
-                })
-
-                // loadmore more button show / hide
-                checkLoadMore(loadMoreTarget, paging, currentPage);
-                btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
-                
-                // load option
-                optionList(data, filter);
-
-                // filter implementation
-                filterSelect(filterCategory, data, start, end);
-                filterKeyword(formSeaerch, buttonSearch, data, start, end);
-
-                // invoke function push event GA
-                pushEvents('.see-detail-course');
-                pushEvents('.apply-course');
-
-            }, 1500)
-        }).fail(function(){
-            console.log("An error has occurred.");
-        });
+                var dataLength = dataKeyword.length;
+                var paging = Math.ceil(dataLength/loadItem);
+                var start = 0;
+                var end = loadItem;
+    
+                setTimeout(function() {
+                    // remove existing content
+                    appendTarget.html('');
+                    // counting the data
+                    $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
+                    
+                    // loop the content and add to the course list
+                    $.each(dataKeyword.slice(start, end), function(i, list) {
+                        // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
+                        templateCourse(appendTarget, list);
+                    })
+    
+                    // loadmore more button show / hide
+                    checkLoadMore(loadMoreTarget, paging, currentPage);
+                    btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
+                    
+                    // load option
+                    optionList(data, filter);
+    
+                    // filter implementation
+                    filterSelect(filterCategory, data, start, end);
+                    filterKeyword(formSeaerch, buttonSearch, data, start, end);
+    
+                    // invoke function push event GA
+                    pushEvents('.see-detail-course');
+                    pushEvents('.apply-course');
+    
+                }, 1500)
+            }).fail(function(){
+                console.log("An error has occurred.");
+            });
+        }
     });
 }
+
+// function to load course on homepage
+function courseLoaderHome() {
+    $(document).ready(function(){
+        var appendTarget = $('#courseCarousel');
+        if (appendTarget !== undefined) {
+            $.getJSON(courseListURL, function(data){
+                dataToDisplay = _.sample(data, 10)
+                appendTarget.html('').addClass('owl-carousel');
+                $.each(dataToDisplay, function(i, list) {
+                    templateCourse(appendTarget, list, 'home');
+                })
+            }).done(function() {
+                $(appendTarget).owlCarousel({
+                    loop:true,
+                    margin:24,
+                    nav:true,
+                    dots: false,
+                    responsive:{
+                        0:{
+                            items:1,
+                            margin: 16
+                        },
+                        600:{
+                            items:3,
+                            margin: 16
+                        },
+                        1000:{
+                            items:4
+                        }
+                    }
+                });
+            })
+        }  
+    })
+}
+
 
 /** init function */
 (function($){
@@ -342,6 +382,22 @@ function courseLoaderInit(){
         $('body').removeClass('freeze');
     });
 
+    $('#coworkingCarousel').owlCarousel({
+        loop:true,
+        margin:24,
+        nav:true,
+        autoplay: true,
+        responsive:{
+            0:{
+                items:1,
+                margin: 0
+            }
+        }
+    });
+
     // run init course loader
     courseLoaderInit();
+
+    // run init course home
+    courseLoaderHome();
  })(jQuery);
