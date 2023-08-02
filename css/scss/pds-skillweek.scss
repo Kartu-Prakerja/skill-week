@@ -269,7 +269,7 @@ body{
         border-radius: .5rem;
     }
 
-    &.bg-y100{
+    &.type-y100{
       &::before{
         background-color: var(--y100);
       }
@@ -700,8 +700,8 @@ body{
 }
 
 .page-cws-logo{
-  width: 9.25rem;
-  height: 9.25rem;
+  width: 6rem;
+  height: 6rem;
   border: solid 1px var(--border-default);
   border-radius: .5rem;
   padding: .5rem;
@@ -713,6 +713,31 @@ body{
   }
 }
 
+.pds-list{
+  li{
+    margin-bottom: .5rem;
+  }
+  a{
+    overflow-wrap: break-word;
+  }
+}
+
+.section-cws-nav{
+  border-top: solid 1px var(--border-default);
+  .cws-link-left,
+  .cws-link-right{
+    display: block;
+    padding: 2rem 1rem;
+    text-decoration: none;
+    color: var(--text-default);
+    &:hover{
+      background-color: var(--bg-default);
+    }
+  }
+  .cws-link-right{
+    text-align: right;
+  }
+}
 
 /* media querys */
 
@@ -788,6 +813,17 @@ body{
     .pattern-1{
       right: -1rem;
       max-width: none;
+    }
+    .section-cws-nav{
+      .cws-link-left,
+      .cws-link-right{
+        font-size: 1.5rem;
+      }
+    }
+    .page-cws-logo{
+      width: 9.25rem;
+      height: 9.25rem;
+
     }
 }
 
