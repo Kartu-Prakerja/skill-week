@@ -396,6 +396,19 @@ function courseLoaderHome() {
         }
     });
 
+    $('.cws-carousel').owlCarousel({
+        loop:true,
+        margin:24,
+        nav:true,
+        autoplay: true,
+        responsive:{
+            0:{
+                items:1,
+                margin: 0
+            }
+        }
+    });
+
     // run init course loader
     courseLoaderInit();
 
