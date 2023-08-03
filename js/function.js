@@ -254,8 +254,9 @@ function courseLoaderInit(){
         var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
         
         if (appendTarget !== undefined) {
-            $.getJSON(courseListURL, function(data){
+            $.getJSON(courseListURL, function(courses){
                 // get query param by 
+                var data = _.shuffle(courses)
                 if (filter !== null || filter.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
                     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
                     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
