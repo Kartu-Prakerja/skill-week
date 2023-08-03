@@ -1,0 +1,45 @@
+section.section-hero
+  .container.py-md-5.py-5.px-4.px-md-0
+    .row
+      .col-12.text-center.mb-3.mb-lg-4
+        h2.mb-3 Pelatihan yang Tersedia
+        p
+          | Pelajari lebih lanjut, baca tentang 
+          a.link-primary(href='#KategoriPelatihan')
+            b Kategori Pelatihan
+          |  dan 
+          a.link-primary(href='#SyaratKetentuan')
+            b Syarat &amp; Ketentuan
+    .row.justify-content-md-center
+      .col-lg-8
+        form#form-search(action='#search-pelatian')
+          .input-group.input-group-lg.custom-search-2.mb-3
+            button#button-addon1.btn.btn-outline-light(type='button')
+              i.bi.bi-search
+            input.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
+            button#button-addon1.btn.btn-outline-light(type='button' data-bs-toggle='modal' data-bs-target='#modalFilter')
+              i.bi.bi-sliders2
+        .d-flex.justify-content-between.align-items-center
+          #course-counter.text-secondary
+            .col-12.col-md-12.col-xl-12.col-xxl-12.mb-12.mb-lg-12 Memuat pelatihan, mohon tunggu...
+          .dropdown
+            button.btn.btn-ghost-white.btn-small(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+              i.bi.bi-sort-down
+            ul.dropdown-menu
+              li
+                a.dropdown-item(href='#') Terbaru
+              li
+                a.dropdown-item(href='#') Terlama
+              li
+                a.dropdown-item(href='#') A-Z
+              li
+                a.dropdown-item(href='#') Z-A
+    .row.justify-content-md-center
+      .col-12.col-md-8.mt-3
+        .alert.alert-info.text-center.lh-base(role='alert')
+          i.bi.bi-info-circle
+          |  Saat ini pendaftaran sedang ditutup, tunggu 
+          b Indonesia Skills Week
+          |  selanjutnya pada Agustus 2023! 
+          br
+          a.link-primary(href='https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link' target='_blank' title='Klik disini untuk daftar pengingat') Klik disini untuk daftar pengingat

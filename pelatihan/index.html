@@ -50,32 +50,55 @@
       </div>
     </header>
     <main>
-      <!-- Hero start-->
       <section class="section-hero">
         <div class="container py-md-5 py-5 px-4 px-md-0">
-          <div class="row d-flex align-items-center">
-            <div class="col-md-5"><img class="w-100" src="../img/img-hey-you.webp" alt="Prakerja ISW"/><img class="ornament-1" src="../img/img-illustartion-1.svg" alt="Prakerja Illustration"/></div>
-            <div class="col-md-7 mt-3 mt-md-0">
-              <h1 class="mb-4 display-4 mt-3 md-md-0">Indonesia Skills Week by <span class="text-primary">Prakerja</span></h1>
-              <p class="text-secondary paragraph-lg">Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara <b class="text-dark">gratis, murah dan mudah</b> selama <b class="text-dark">1 minggu</b>.<br/>Tidak terbatas hanya pada akses Pelatihan, kamu juga bisa explore <a class="link-primary" href="#coworking-space" title="Coworking Space"> <b>Coworking Space</b></a>, <a class="link-primary" href="#modal-produktif" title="Modal Produktif "> <b>Modal Produktif </b></a>dan <a class="link-primary" href="#beasiswa-sertifikasi" title="Sertifikasi"> <b>Sertifikasi </b></a>loh. Yuk cek sekarang!</p>
-              <div class="d-flex justify-content-end"></div>
+          <div class="row">
+            <div class="col-12 text-center mb-3 mb-lg-4">
+              <h2 class="mb-3">Pelatihan yang Tersedia</h2>
+              <p>Pelajari lebih lanjut, baca tentang <a class="link-primary" href="#KategoriPelatihan"><b>Kategori Pelatihan</b></a> dan <a class="link-primary" href="#SyaratKetentuan"><b>Syarat &amp; Ketentuan</b></a></p>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-lg-8">
+              <form id="form-search" action="#search-pelatian">
+                <div class="input-group input-group-lg custom-search-2 mb-3">
+                  <button class="btn btn-outline-light" id="button-addon1" type="button"><i class="bi bi-search"></i></button>
+                  <input class="form-control" type="text" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cari Pelatihan..."/>
+                  <button class="btn btn-outline-light" id="button-addon1" type="button" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-sliders2"></i></button>
+                </div>
+              </form>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-secondary" id="course-counter">
+                  <div class="col-12 col-md-12 col-xl-12 col-xxl-12 mb-12 mb-lg-12">Memuat pelatihan, mohon tunggu...</div>
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-ghost-white btn-small" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-sort-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Terbaru</a></li>
+                    <li><a class="dropdown-item" href="#">Terlama</a></li>
+                    <li><a class="dropdown-item" href="#">A-Z</a></li>
+                    <li><a class="dropdown-item" href="#">Z-A</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-12 col-md-8 mt-3">
+              <div class="alert alert-info text-center lh-base" role="alert"><i class="bi bi-info-circle"></i> Saat ini pendaftaran sedang ditutup, tunggu <b>Indonesia Skills Week</b> selanjutnya pada Agustus 2023! <br/><a class="link-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link" target="_blank" title="Klik disini untuk daftar pengingat">Klik disini untuk daftar pengingat</a></div>
             </div>
           </div>
         </div>
       </section>
-      <!-- Hero end-->
-      <section class="section-course">
-        <div class="container py-5 px-4 px-md-0">
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <h3>Pelatihan</h3><a class="btn text-primary" href="pelatihan.html">Lihat Semua <i class="bi bi-chevron-right"></i></a>
-          </div>
-          <!-- Set up your HTML-->
-          <div class="row justify-content-md-center" id="courseCarousel">
-            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+      <!-- Course start-->
+      <section class="section-course d-flex align-items-center" id="Pelatihan">
+        <div class="container pb-5 px-4 px-md-0">
+          <div class="row justify-content-md-center" id="course-lists">
+            <div class="col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
               <div class="card pds-card">
                 <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
                   <div class="d-flex card-cover-overlay justify-content-between align-items-center">
-                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span></div><span class="skeleton-box rounded-pill" style="width:20%;"></span>
                   </div>
                 </div>
                 <div class="card-body">
@@ -88,11 +111,11 @@
                 </div>
               </div>
             </div>
-            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+            <div class="col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
               <div class="card pds-card">
                 <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
                   <div class="d-flex card-cover-overlay justify-content-between align-items-center">
-                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span></div><span class="skeleton-box rounded-pill" style="width:20%;"></span>
                   </div>
                 </div>
                 <div class="card-body">
@@ -105,11 +128,11 @@
                 </div>
               </div>
             </div>
-            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+            <div class="col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
               <div class="card pds-card">
                 <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
                   <div class="d-flex card-cover-overlay justify-content-between align-items-center">
-                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span></div><span class="skeleton-box rounded-pill" style="width:20%;"></span>
                   </div>
                 </div>
                 <div class="card-body">
@@ -122,11 +145,11 @@
                 </div>
               </div>
             </div>
-            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+            <div class="col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
               <div class="card pds-card">
                 <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
                   <div class="d-flex card-cover-overlay justify-content-between align-items-center">
-                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span></div><span class="skeleton-box rounded-pill" style="width:20%;"></span>
                   </div>
                 </div>
                 <div class="card-body">
@@ -140,58 +163,243 @@
               </div>
             </div>
           </div>
+          <div class="row justify-content-md-center">
+            <div class="col-12 text-center">
+              <button class="btn btn-ghost-primary visually-hidden" id="load-more">Muat Lebih Banyak</button>
+            </div>
+          </div>
         </div>
       </section>
-      <section class="section-coworking">
-        <div class="container py-5 px-4 px-md-0">
-          <div class="row flex-lg-row-reverse">
-            <div class="mb-3 col-lg-5">
-              <div class="nusa-box rounded-3">
-                <h3>Coworking Space</h3>
-                <p>Coworking space merupakan konsep inovatif di dunia kerja yang menyediakan ruang kerja bersama untuk individu atau kelompok yang ingin bekerja secara mandiri atau berkolaborasi dengan orang lain. Program ini memberikan fasilitas lengkap seperti meja, kursi, akses internet, dan area bersama lainnya, menciptakan lingkungan yang inspiratif dan produktif. Coworking space juga menyediakan kesempatan untuk berinteraksi dan bertukar ide dengan profesional dari berbagai bidang, memperluas jaringan sosial, dan menciptakan kolaborasi yang berpotensi menghasilkan proyek-proyek kreatif dan bisnis yang sukses.</p><a class="btn btn-primary" href="coworking.html">Pelajari Selengkapnya</a>
+      <!-- section highlight start-->
+      <section class="section-highlight mb-5" id="KategoriPelatihan">
+        <div class="container py-5">
+          <div class="row justify-content-md-center">
+            <div class="px-4">
+              <div class="text-center mb-3">
+                <h2>Kategori Pelatihan</h2>
+                <p>Kategori pelatihan yang ditawarkan dalam event Indonesia Skills Week sebagai berikut</p>
               </div>
-            </div>
-            <div class="col-lg-7">
-              <div class="owl-carousel img-ratio-16-9" id="coworkingCarousel">
-                <div><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1374&amp;q=80" alt=""/></div>
-                <div><img src="https://images.unsplash.com/photo-1614070776241-fb47cec38278?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt=""/></div>
-                <div><img src="https://images.unsplash.com/photo-1562664348-2188b99b5157?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt=""/></div>
-                <div><img src="https://images.unsplash.com/photo-1600508774634-4e11d34730e2?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt=""/></div>
+              <div class="row pt-3">
+                <div class="col-12 col-md-4 card-highlight p-4">
+                  <div class="d-flex align-items-center mb-3"><span class="me-2">1</span>
+                    <h5>Gratis</h5>
+                  </div>
+                  <p>Pelatihan gratis yaitu pelatihan yang diberikan secara gratis kepada masyarakat yang sudah memiliki akun Prakerja selama periode event.</p>
+                </div>
+                <div class="col-12 col-md-4 card-highlight p-4">
+                  <div class="d-flex align-items-center mb-3"><span class="me-2">2</span>
+                    <h5>Murah</h5>
+                  </div>
+                  <p>Pelatihan murah yaitu pelatihan ditawarkan dalam event Indonesia Skills Week seharga 20 ribu rupiah dan bisa dibeli oleh masyarakat yang sudah memiliki akun Prakerja selama periode event.</p>
+                </div>
+                <div class="col-12 col-md-4 card-highlight p-4">
+                  <div class="d-flex align-items-center mb-3"><span class="me-2">3</span>
+                    <h5>Diskon</h5>
+                  </div>
+                  <p>Pelatihan diskon yaitu pelatihan yang ditawarkan dalam event Indonesia Skills Week dengan diskon besar (minimal 50%) dan bisa dibeli oleh masyarakat yang sudah memiliki akun Prakerja selama periode event.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="section-full-img">
-        <div class="container py-5 px-4 px-md-0 position-relative">
-          <div class="box-wrapper col-lg-6 col-xl-5 p-lg-4 rounded-3">
-            <h3 id="modal-produktif">Modal Produktif</h3>
-            <p>Program Modal Produktif adalah program finansial yang bertujuan memberikan dukungan kepada wirausaha, pelaku usaha mikro, dan UMKM untuk mengembangkan usaha. Program ini memberikan akses ke modal usaha dengan persyaratan pinjaman yang mudah dan bunga yang terjangkau. Modal Produktif dapat digunakan untuk meningkatkan produksi, memperluas jangkauan pasar, mengembangkan produk baru, serta meningkatkan kapasitas produksi.</p>
-            <div class="row mp-prakerja mb-3">
-              <div class="col-md-6 p-2">
-                <div class="rounded border d-flex d-lg-block justify-content-between align-items-center p-3"><img class="mb-md-3 mw-100" src="img/mp-bni.png" height="36" alt=""/><a class="btn btn-primary" href="#">Ikuti Program</a></div>
+      <!-- section highlight end-->
+      <!-- section SnK start-->
+      <section class="section-snk mb-5" id="SyaratKetentuan">
+        <div class="container py-lg-5">
+          <div class="row justify-content-center">
+            <div class="col-lg-10">
+              <div class="text-center mb-5">
+                <h2>Syarat &amp; Ketentuan</h2>
               </div>
-              <div class="col-md-6 p-2">
-                <div class="rounded border d-flex d-lg-block justify-content-between align-items-center p-3"><img class="mb-md-3 mw-100" src="img/mp-gopay.png" height="36" alt=""/><a class="btn btn-primary" href="#">Ikuti Program</a></div>
+              <div class="row">
+                <div class="col-12 col-md-6 px-md-4">
+                  <ul>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Mempunyai akun Prakerja (Apabila belum terdaftar silahkan mengikuti proses registrasi akun melalui <a class="link-primary" href="www.prakerja.go.id" target="_blank">www.prakerja.go.id</a>&nbsp;)</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>WNI usia minimal 18 Tahun</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Kuota pelatihan terbatas</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Masa aktif voucher pelatihan gratis dan pelatihan harga Rp 20.000 hanya berlaku pada periode event</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Tidak akan mempengaruhi untuk mendapatkan <b>&quot;insentif Pasca Pelatihan Prakerja&quot;</b></p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 col-md-6 px-md-4">
+                  <ul>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Pelatihan tidak bisa dibeli menggunakan saldo <b>Kartu Prakerja</b></p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Masa aktif voucher pelatihan diskon berdasarkan kebijakan lembaga penyedia pelatihan</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Peserta hanya dapat membeli 1 kali pelatihan gratis atau pelatihan harga Rp 20.000</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Peserta dapat membeli lebih dari 1 pelatihan diskon</p>
+                    </li>
+                    <li class="d-flex align-items-start"><i class="bi bi-check text-success fs-3 lh-1 me-2"></i>
+                      <p>Pelatihan dan voucher yang sudah dibeli menjadi tanggungjawab peserta sepenuhnya</p>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-          <div class="full-img-cover"><img src="img/bg-modal-produktif.webp" alt=""/><img class="pattern-1" src="img/pattern-1.svg" alt=""/></div>
         </div>
       </section>
-      <section class="section-beasiswa">
-        <div class="container py-5 px-4 px-md-0">
-          <div class="row flex-lg-row-reverse">
-            <div class="col-lg-6">
-              <div class="box-wrapper p-0 p-lg-4 mb-3">
-                <h3 id="beasiswa-sertifikasi">Beasiswa Sertifikasi</h3>
-                <p>Program beasiswa khusus bagi peserta Kartu Prakerja! Dapatkan kesempatan unik untuk mengembangkan keterampilan dan pengetahuan melalui pelatihan berkelas. Berani hadapi tantangan masa depan dengan beasiswa ini!</p><a class="btn btn-secondary" href="">Segera Hadir!</a>
-              </div>
+      <!-- section SnK end-->
+      <!-- Modal start-->
+      <div class="modal modal-lg fade modal-full pds-modal-custom" id="modalFilter" tabindex="-1" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header align-items-start align-items-lg-center">
+              <button class="header-anchor btn btn-ghost-white" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-chevron-left"></i><b>Filter Pelatihan</b></button>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
-            <div class="col-lg-6"><img class="w-100" src="../img/img-beasiswa-sertfikasi.webp" alt=""/></div>
+            <div class="modal-body">
+              <section class="mb-4">
+                <h6 class="mb-3">Topik Pelatihan</h6>
+                <div class="column-3-1">
+                  <div class="form-check">
+                    <input class="form-check-input" id="check1" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check1">Bahasa Asing</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check2" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check2">Gaya hidup</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check3" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check3">Keuangan</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check4" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check4">Makanan dan Minuman</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Manajemen</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Penjualan dan Pemasaran</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Perkantoran</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Pertanian</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Sosial dan Perilaku</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Teknik</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Teknologi Informasi</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check5" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check5">Lainnya</label>
+                  </div>
+                </div>
+              </section>
+              <!-- <hr>-->
+              <section class="mb-4">
+                <h6 class="mb-3">Harga</h6>
+                <div class="column-3-1">
+                  <div class="form-check">
+                    <input class="form-check-input" id="check6" type="radio" value=""/>
+                    <label class="form-check-label" for="check6">Gratis</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check7" type="radio" value=""/>
+                    <label class="form-check-label" for="check7">Rp 20.000,-</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check8" type="radio" value=""/>
+                    <label class="form-check-label" for="check8">Diskon</label>
+                  </div>
+                </div>
+              </section>
+              <!-- <hr>-->
+              <section class="mb-4">
+                <h6 class="mb-3">Lembaga Pelatihan</h6>
+                <div class="column-3-1">
+                  <div class="form-check">
+                    <input class="form-check-input" id="check11" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check11">Skillvul</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check12" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check12">Akademia</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check13" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check13">Bright Future</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check13" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check13">Animatua</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check11" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check11">Skillvul</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check12" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check12">Akademia</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check13" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check13">Bright Future</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check13" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check13">Animatua</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check11" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check11">Skillvul</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check12" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check12">Akademia</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check13" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check13">Bright Future</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="check13" type="checkbox" value=""/>
+                    <label class="form-check-label" for="check13">Animatua</label>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-outline-primary" type="button col-6" data-bs-dismiss="modal">Reset</button>
+              <button class="btn btn-primary" type="button col-6">Tampilkan</button>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+      <!-- Modal end-->
     </main><!-- Footer start -->
     <footer class="section-footer">
       <div class="top-wrapper">

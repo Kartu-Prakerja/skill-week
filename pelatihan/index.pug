@@ -12,19 +12,10 @@ html(lang="id")
     body
         include ../pug/includes/navigation.pug
         main
-            //- section course
-            include ../pug/home/section_hero.pug
-
-            //- section course
-            include ../pug/home/section_course.pug
-            
-            //- section coworking
-            include ../pug/home/section_coworking.pug
-
-            //- section modal
-            include ../pug/home/section_modal_produktif.pug
-
-            //- section modal
-            include ../pug/home/section_beasiswa.pug
+           include ../pug/course/section_search_filter.pug
+           include ../pug/course/section_course.pug
+           include ../pug/course/section_course_category.pug
+           include ../pug/course/section_terms.pug
+           include ../pug/course/section_modal_filter.pug
         include ../pug/includes/footer.pug
     include ../pug/includes/html_foot.pug
