@@ -133,6 +133,14 @@
         outline: dashed 1px var(--primary);
         background-color: var(--b600);
     }
+    i{
+        height: 32px;
+        display: inline-block;
+        &::before{
+            transform: translateY(50%);
+            margin-top: -1px;
+        }
+    }
 }
 
 @media (min-width: 992px) { 

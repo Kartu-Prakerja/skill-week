@@ -364,32 +364,6 @@ body{
         line-height: 170%;
     }
 }
-.scroll-top{
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    background-color: var(--primary);
-    color: white;
-    text-align: center;
-    line-height: 32px;
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 88;
-    cursor: pointer;
-    visibility: hidden;
-    &.is-show{
-        visibility: visible;
-    }
-    &:hover{
-        color: white;
-        background-color: var(--b600);
-    }
-    &:active{
-        outline: dashed 1px var(--primary);
-        background-color: var(--b600);
-    }
-}
 
 
   .alert-info {
