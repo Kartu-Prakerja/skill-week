@@ -371,8 +371,24 @@
  }
 
  .img-ratio-16-9{
-  aspect-ratio: 16/9;
-  object-fit: cover;
+  img{
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+ }
+
+ .theme-sabrina{
+  height: 340px;
+  background-color: var(--bg-default);
+  border-radius: .5rem;
+  div{
+    height: 100%;
+    img{
+      width: 100%;
+      height: 100%!important;
+      object-fit: contain;
+    }
+  }
  }
 
 

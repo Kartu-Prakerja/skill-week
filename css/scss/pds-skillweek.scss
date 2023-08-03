@@ -250,8 +250,8 @@ body{
     text-decoration: none;
 }
 
-// Section Kategori
-.section-kategori{
+// Section highlight
+.section-highlight{
     position: relative;
     &>div{
         position: relative;
@@ -271,9 +271,15 @@ body{
         margin-right: auto;
         border-radius: .5rem;
     }
+
+    &.bg-y100{
+      &::before{
+        background-color: var(--y100);
+      }
+    }
 }
 
-.card-kategori{
+.card-highlight{
     &>div{
         span{
             color: var(--primary);
@@ -311,11 +317,31 @@ body{
             }
         }
     }
+
+    &.type-2{
+      &>div{
+        span{
+          color: var(--secondary);
+          &::before, &::after{
+            border-radius: 0;
+            transform: rotate(45deg);
+        }
+        &::before{
+          background-color: var(--o200);
+        }
+
+        &::after{
+          background-color: var(--b200);
+        }
+
+        }
+      }
+    }
 }
 
 .section-course,
 .section-snk,
-.section-kategori{
+.section-highlight{
     position: relative;
     padding-top: 64px;
     margin-top: -64px;
@@ -391,19 +417,35 @@ body{
   }
 
 
-  .section-modpro{
+
+  .section-full-img{
     position: relative;
-    .modpro-cover{
-        
-        img{
+    .full-img-cover{
+      position: relative;
+      z-index: -1;
+        img:nth-child(1){
             width: 100%;
             aspect-ratio: 16/6;
             object-fit: cover;
             border-radius: .5rem;
         }
+        &.small{
+          img{
+            aspect-ratio: 16/5;
+          }
+        }
     }
     .box-wrapper{
         background-color: white;
+    }
+
+    &.type-2{
+      .box-wrapper{
+        background-color: var(--primary);
+          h3, p{
+            color: white;
+          }
+    }
     }
   }
 
@@ -529,16 +571,21 @@ body{
 
 .cws-card{
     width: 100%;
-    height: 425px;
+    height: 400px;
+    // aspect-ratio: 9/12;
     display: block;
     position: relative;
-    outline: solid 1px red;
     padding: 0;
+    border-radius: .5rem;
+    overflow: hidden;
+    background-color: var(--s100);
+    
     img{
         max-width: 100%;
     }
 
     & > img{
+      transition: cubic-bezier(.76,.34,.23,.65) .5s;
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -553,12 +600,122 @@ body{
         left: 0;
         z-index: 34;
     }
+    .cws-top-content,
+    .cws-bottom-content{
+      width: 100%;
+      position: relative;
+      text-align: center;
+      &::before{
+        position: absolute;
+        display: block;
+        content: '';
+        width: 100%;
+        height: 100%;
+        left: 0;
+      }
+      
+    }
 
     .cws-logo{
-        width: 96px;
+      position: relative;
+      z-index: 2;
+      width: 128px;
+      height: 96px;
+      // outline: solid 1px red;
+      object-fit: contain;
+    }
+
+    .cws-top-content{
+      padding: 1rem 1rem 2rem 1rem;
+      &::before{
+        top:0;
+        background: linear-gradient(0deg, rgba(38, 52, 68, 0.00) 0%, #263444 100%);
+      }
+    }
+
+    .cws-bottom-content{
+        padding: 2rem 1rem 1rem 1rem;
+        // outline: solid 1px red;
+        bottom: 0;
+        background: var(--gradient-dark-blue-mask-a, linear-gradient(0deg, #173F6D 5.21%, rgba(29, 80, 139, 0.00) 100%));
+      
+      span, h6{
+        position: relative;
+        z-index: 2;
+        
+      }
+      h6{
+        color: white;
+      }
+    }
+
+
+
+    .cws-promo{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      width: 8rem;
+      height: 8rem;
+      border-radius: 4rem;
+      background-color: rgba(white, .9);
+      color: var(--secondary);
+      padding:.5rem;
+      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cws-location{
+      font-size: 0.875rem;
+      color: white;
+    }
+
+    &:hover{
+      & > img{
+        scale: 1.2;
+    }
+    }
+
+    &.cws-mitra{
+      background-image: url('../img/cover-gabung-mitra3.webp');
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      background-size: contain;
+      background-color: var(--primary)!important;
     }
     
 }
+
+.pattern-1{
+  position: absolute;
+  top:-1rem;
+  right:0;
+  // outline: solid 1px red;
+  height: 50%;
+  aspect-ratio: 1/1!important;
+}
+
+.section-breadcrumb{
+  padding-top: 70px;
+}
+
+.page-cws-logo{
+  width: 9.25rem;
+  height: 9.25rem;
+  border: solid 1px var(--border-default);
+  border-radius: .5rem;
+  padding: .5rem;
+  img{
+    // outline: solid 1px red;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
 
 /* media querys */
 
@@ -574,7 +731,7 @@ body{
         right: 0;
         bottom:1rem;
       }
-    .section-kategori{
+    .section-highlight{
         &:before{
             width: calc(100% - 48px);
         }
@@ -591,7 +748,7 @@ body{
            background-size: 35%;
        }
    }
-   .section-kategori{
+   .section-highlight{
         &:before{
             width: calc(100% - 96px);
         }
@@ -603,13 +760,25 @@ body{
         padding: 1.5rem;
       }
 
-      .section-modpro{
+      .section-full-img{
       .box-wrapper{
         position: absolute;
-        bottom: 0;
-        left: 5rem;
-    }
-    }
+        bottom: 1.5rem;
+        left: 1.5rem;
+        }
+
+        &.type-2{
+          .box-wrapper{
+            background-color: var(--primary);
+            bottom: 3rem;
+            left:1rem;
+            h3, p{
+              color: white;
+            }
+          }
+        }
+
+      }
     .column-3-1{
         column-count: 3;
     }
@@ -617,6 +786,11 @@ body{
         --bs-modal-margin: .5rem;
         --bs-modal-border-width: 1px;
         --bs-modal-border-radius: .5rem;
+    }
+
+    .pattern-1{
+      right: -1rem;
+      max-width: none;
     }
 }
 
