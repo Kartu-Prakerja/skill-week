@@ -327,7 +327,7 @@ function courseLoaderHome() {
                     dots: false,
                     responsive:{
                         0:{
-                            items:1,
+                            items:1.2,
                             margin: 16
                         },
                         600:{
@@ -383,6 +383,7 @@ function courseLoaderHome() {
         $('body').removeClass('freeze');
     });
 
+    
     $('#coworkingCarousel').owlCarousel({
         loop:true,
         margin:24,
