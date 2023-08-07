@@ -346,6 +346,7 @@ body{
     position: relative;
     padding-top: 64px;
     margin-top: -64px;
+    // outline: solid 1px red;
     overflow: hidden;
 }
 
@@ -546,7 +547,7 @@ body{
 
 .cws-card{
     width: 100%;
-    height: 400px;
+    height: 350px;
     // aspect-ratio: 9/12;
     display: block;
     position: relative;
@@ -601,7 +602,7 @@ body{
     }
 
     .cws-top-content{
-      padding: 1rem 1rem 2rem 1rem;
+      padding: 1rem 1rem 1rem 1rem;
       &::before{
         top:0;
         background: linear-gradient(0deg, rgba(38, 52, 68, 0.00) 0%, #263444 100%);
@@ -609,7 +610,7 @@ body{
     }
 
     .cws-bottom-content{
-        padding: 2rem 1rem 1rem 1rem;
+        padding: 1rem 1rem 1rem 1rem;
         // outline: solid 1px red;
         bottom: 0;
         background: var(--gradient-dark-blue-mask-a, linear-gradient(0deg, #173F6D 5.21%, rgba(29, 80, 139, 0.00) 100%));
@@ -630,11 +631,11 @@ body{
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       width: 8rem;
-      height: 8rem;
+      // height: 8rem;
       border-radius: 4rem;
       background-color: rgba(white, .9);
       color: var(--secondary);
-      padding:.5rem;
+      padding:1rem .5rem;
       vertical-align: middle;
       display: flex;
       align-items: center;
