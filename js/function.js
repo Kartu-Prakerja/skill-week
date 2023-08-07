@@ -197,23 +197,50 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 }
 
 /** function to get unique option */
-var optionList = function(data, filter) {
-    var lookup = {};
-    var result = [];
+var optionList = function(data, filterLP, filterCategory) {
+    var lookupCategory = {}, lookupCourseLP = {};
+    var resultCategory = [], resultCourseLP = [];
 
     // to get the list of category insert to array
     for (var item, i = 0; item = data[i++];) {
-        var category = item.course_category;
-        if (!(category in lookup)) {
-            lookup[category] = 1;
-            result.push(category);
+        var category = item.course_category.toLowerCase();
+        var courseLP = item.lp_name.toLowerCase();
+        
+        if (!(category in lookupCategory)) {
+            lookupCategory[category] = 1;
+            resultCategory.push(category);
+        }
+
+        if (!(courseLP in lookupCourseLP)) {
+            lookupCourseLP[courseLP] = 1;
+            resultCourseLP.push(courseLP);
         }
     }
-    result = result.sort();
-    $.each(result, function(i, value) {
-        var selected = filter.toLowerCase() == value.toLowerCase() ? 'selected' : '';
-        $('#filter-category').append('<option value="'+ value +'" '+ selected +'>'+ value + '</option>');
+    resultCategory = resultCategory.sort();
+    resultCourseLP = resultCourseLP.sort();
+
+    console.log(resultCategory);
+
+    $.each(resultCategory, function(i, value) {
+        // var selected = filterCategory.toLowerCase() == value.toLowerCase() ? 'selected' : '';
+        $('#course-category').append('<div class="form-check">' +
+                '<input class="form-check-input" id="filter-category-'+ i +'" type="checkbox" value="'+ value +'">' +
+                '<label class="form-check-label text-capitalize" for="filter-category-'+ i +'">'+ value +'</label>' +
+            '</div>'
+        );
     })
+
+    $.each(resultCourseLP, function(i, value) {
+        // var selected = filter.toLowerCase() == value.toLowerCase() ? 'selected' : '';
+        // $('#filter-category').append('<option value="'+ value +'" '+ selected +'>'+ value + '</option>');
+        $('#course-LP').append('<div class="form-check">' +
+                '<input class="form-check-input" id="filter-lp-'+ i +'" type="checkbox" value="'+ value +'">' +
+                '<label class="form-check-label text-capitalize" for="filter-lp-'+ i +'">'+ value +'</label>' +
+            '</div>'
+        );
+    })
+
+    resultCourseLP
 }
 
 /** function to check visiblity load more button */
@@ -252,6 +279,8 @@ function courseLoaderInit(){
         var currentPage = 1;
         var filter = queryParams.get('topic') !== null ? (queryParams.get('topic')).replace(/-|%20/gi, ' ') : '';
         var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
+
+        console.log(keyword);
         
         if (appendTarget !== undefined) {
             $.getJSON(courseListURL, function(courses){
@@ -290,6 +319,7 @@ function courseLoaderInit(){
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
+                    console.log('test option list');
                     optionList(data, filter);
     
                     // filter implementation
