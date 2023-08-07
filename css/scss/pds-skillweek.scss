@@ -547,8 +547,8 @@ body{
 
 .cws-card{
     width: 100%;
-    height: 350px;
-    // aspect-ratio: 9/12;
+    aspect-ratio: 4/3.75;
+    min-height: 350px;
     display: block;
     position: relative;
     padding: 0;
@@ -596,13 +596,13 @@ body{
       position: relative;
       z-index: 2;
       width: 128px;
-      height: 96px;
+      height: 80px;
       // outline: solid 1px red;
       object-fit: contain;
     }
 
     .cws-top-content{
-      padding: 1rem 1rem 1rem 1rem;
+      padding: 1rem 1rem .5rem 1rem;
       &::before{
         top:0;
         background: linear-gradient(0deg, rgba(38, 52, 68, 0.00) 0%, #263444 100%);
@@ -610,12 +610,13 @@ body{
     }
 
     .cws-bottom-content{
-        padding: 1rem 1rem 1rem 1rem;
+        padding: .5rem 1rem 1.5rem 1rem;
         // outline: solid 1px red;
         bottom: 0;
         background: var(--gradient-dark-blue-mask-a, linear-gradient(0deg, #173F6D 5.21%, rgba(29, 80, 139, 0.00) 100%));
+        // background-color: yellow;
       
-      span, h6{
+      span, h6, a{
         position: relative;
         z-index: 2;
         
@@ -630,18 +631,30 @@ body{
     .cws-promo{
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      width: 8rem;
-      // height: 8rem;
+      width: 7rem;
+      height: 7rem;
       border-radius: 4rem;
-      background-color: rgba(white, .9);
+      background-color: rgba(white, .75);
       color: var(--secondary);
-      padding:1rem .5rem;
+      padding:.5rem .5rem;
       vertical-align: middle;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-left: auto;
       margin-right: auto;
+      font-size: 14px;
+      position: relative;
+      &::before{
+        content: '';
+        display: block;
+        width: 7.5rem;
+        height: 7.5rem;
+        border: solid 2px rgba(white, .75);
+        position: absolute;
+        z-index: -1;
+        border-radius: 100%;
+      }
     }
 
     .cws-location{
