@@ -255,7 +255,7 @@ var optionList = function(data) {
     // list result category
     resultCategory = resultCategory.sort();
     resultCourseLP = resultCourseLP.sort();
-
+    $('#course-LP, #course-category').html('');
     // append data to list category
     $.each(resultCategory, function(i, value) {
         // var selected = filterCategory.toLowerCase() == value.toLowerCase() ? 'selected' : '';
