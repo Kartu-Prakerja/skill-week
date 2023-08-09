@@ -62,7 +62,7 @@
             <div class="col-lg-8">
               <form id="form-search" action="#search-pelatian">
                 <div class="input-group input-group-lg custom-search-2 mb-3">
-                  <button class="btn btn-outline-light" id="button-addon1" type="button"><i class="bi bi-search"></i></button>
+                  <button class="btn btn-outline-light" id="button-search" type="button"><i class="bi bi-search"></i></button>
                   <input class="form-control" id="filter-keyword" type="text" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cari Pelatihan..."/>
                   <button class="btn btn-outline-light" id="button-addon1" type="button" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-sliders2"></i></button>
                 </div>
@@ -70,15 +70,6 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="text-secondary" id="course-counter">
                   <div class="col-12 col-md-12 col-xl-12 col-xxl-12 mb-12 mb-lg-12">Memuat pelatihan, mohon tunggu...</div>
-                </div>
-                <div class="dropdown">
-                  <button class="btn btn-ghost-white btn-small" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-sort-down"></i></button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Terbaru</a></li>
-                    <li><a class="dropdown-item" href="#">Terlama</a></li>
-                    <li><a class="dropdown-item" href="#">A-Z</a></li>
-                    <li><a class="dropdown-item" href="#">Z-A</a></li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -263,33 +254,31 @@
             <div class="modal-body">
               <section class="mb-4">
                 <h6 class="mb-3">Harga</h6>
-                <div class="column-3-1">
+                <div class="course-filter column-3-1" id="course-price">
                   <div class="form-check">
-                    <input class="form-check-input" id="filter-price-1" type="checkbox" value="gratis"/>
-                    <label class="form-check-label text-capitalize" for="filter-price-1">gratis</label>
+                    <input class="form-check-input filter-price" id="filter-price-1" type="checkbox" value="0"/>
+                    <label class="form-check-label text-capitalize" for="filter-price-1">gratis (Rp 0)</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" id="filter-price-2" type="checkbox" value="Rp 20.000,-"/>
+                    <input class="form-check-input filter-price" id="filter-price-2" type="checkbox" value="20,000"/>
                     <label class="form-check-label text-capitalize" for="filter-price-2">Rp 20.000,-</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" id="filter-price-3" type="checkbox" value="diskon"/>
-                    <label class="form-check-label text-capitalize" for="filter-price-3">diskon</label>
                   </div>
                 </div>
               </section>
               <section class="mb-4">
                 <h6 class="mb-3">Topik Pelatihan</h6>
-                <div class="column-3-1" id="course-category"></div>
+                <div class="course-filter column-3-1" id="course-category"></div>
+                <p>Memuat Filter Topik Pelatihan</p>
               </section>
               <section class="mb-4">
                 <h6 class="mb-3">Lembaga Pelatihan</h6>
-                <div class="column-3-1" id="course-LP"></div>
+                <div class="course-filter column-3-1" id="course-LP"></div>
+                <p>Memuat Filter Lembaga Pelatihan</p>
               </section>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-outline-primary" type="button col-6" data-bs-dismiss="modal">Reset</button>
-              <button class="btn btn-primary" type="button col-6">Tampilkan</button>
+              <button class="btn btn-outline-primary disabled" id="btn-reset-filter" type="button col-6">Reset</button>
+              <button class="btn btn-primary" id="btn-apply-filter" type="button col-6">Tampilkan Hasil</button>
             </div>
           </div>
         </div>

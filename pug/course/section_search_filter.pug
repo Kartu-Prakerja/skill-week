@@ -14,7 +14,7 @@ section.section-hero
       .col-lg-8
         form#form-search(action='#search-pelatian')
           .input-group.input-group-lg.custom-search-2.mb-3
-            button#button-addon1.btn.btn-outline-light(type='button')
+            button#button-search.btn.btn-outline-light(type='button')
               i.bi.bi-search
             input#filter-keyword.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
             button#button-addon1.btn.btn-outline-light(type='button' data-bs-toggle='modal' data-bs-target='#modalFilter')
@@ -22,7 +22,7 @@ section.section-hero
         .d-flex.justify-content-between.align-items-center
           #course-counter.text-secondary
             .col-12.col-md-12.col-xl-12.col-xxl-12.mb-12.mb-lg-12 Memuat pelatihan, mohon tunggu...
-          .dropdown
+          //- .dropdown
             button.btn.btn-ghost-white.btn-small(type='button' data-bs-toggle='dropdown' aria-expanded='false')
               i.bi.bi-sort-down
             ul.dropdown-menu

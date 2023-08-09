@@ -39,13 +39,14 @@ var templateCourse = function(target, data, cardClass){
                 "</div>" +
             "</div>" +
             "<div class='card-body'>" +
-                "<h6 class='mb-2 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
+                "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
+                "<span class='mb-2 badge border bg-light bg-gradient text-dark text-capitalize'>"+ data.course_category+ "</span>" +
                 "<div>" +
                     "<div class='course-real-price mb-1'><span>Rp "+ data.course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
-                    "<a href='"+ notif_course_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Ingatkan Saya</a>" +
+                    "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
                     "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
@@ -103,21 +104,30 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
 }
 
 /** function to filter courses by topic */
-var filterSelect = function(target, data, start, end) {
-    $(target).on("change", function(e) {
+var filterCourse = function(target, data, start, end) {
+    $(target).click(function(e) {
+        // console.log(data, 'data');
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
         var appendTarget = $('#course-lists');
-        var filter = $(this).find(':selected').text();
+        var filterCategory = [], filterPrice = [], filterLP = [], dataFilter = data
         var keyword = $('#filter-keyword').val();
 
+        $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
+        $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
+        $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
+
         // to check the datalist based on current filter & keyword applied
-        if (filter !== 'Semua Topik Pelatihan') {
-            var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
-            var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
-        } else {
-            var dataKeyword = _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+        if (!_.isEmpty(filterPrice)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+        } 
+        if (!_.isEmpty(filterCategory)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
+        }  
+        if (!_.isEmpty(filterLP)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
+        var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
 
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
@@ -141,8 +151,15 @@ var filterSelect = function(target, data, start, end) {
         btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
         checkLoadMore(loadMoreTarget, paging, currentPage);
 
+        // hide filter
+        $('#modalFilter').modal('hide')
+
         // final push to the url current state with filter and keyword search
-        window.history.replaceState(null, null, "?topic="+ filter.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase())
+        var filterCategoryJoin =  filterCategory.join(",");
+        var filterPriceJoin = filterPrice.join(",");
+        var filterLPJoin = filterLP.join(",");
+
+        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase())
     })
 }
 
@@ -152,17 +169,32 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         e.preventDefault();
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
-        var filterCategory = $('#filter-category');
-        var filter = filterCategory.find(':selected').text();
+        var filterCategory = [], filterPrice = [], filterLP = [], dataFilter = data
         var keyword = $(this).find('input').val();
 
-        // conditional filter
-        if (filter !== 'Semua Topik Pelatihan') {
-            var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
-            var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
-        } else {
-            var dataKeyword = _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+        console.log(keyword)
+
+        $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
+        $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
+        $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
+        // var keyword = $(this).find('input').val();
+
+
+        $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
+        $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
+        $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
+
+        // to check the datalist based on current filter & keyword applied
+        if (!_.isEmpty(filterPrice)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+        } 
+        if (!_.isEmpty(filterCategory)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
+        }  
+        if (!_.isEmpty(filterLP)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
+        var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
         
         // define pagination
         var dataLength = dataKeyword.length;
@@ -187,7 +219,11 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         checkLoadMore(loadMoreTarget, paging, currentPage);
 
         // final push to the url current state with filter and keyword search
-        window.history.replaceState(null, null, "?topic="+ filter.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase())
+        var filterCategoryJoin =  filterCategory.join(",");
+        var filterPriceJoin = filterPrice.join(",");
+        var filterLPJoin = filterLP.join(",");
+
+        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase())
     });
 
     // to trigger the submit button
@@ -197,7 +233,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 }
 
 /** function to get unique option */
-var optionList = function(data, filterLP, filterCategory) {
+var optionList = function(data) {
     var lookupCategory = {}, lookupCourseLP = {};
     var resultCategory = [], resultCourseLP = [];
 
@@ -216,31 +252,51 @@ var optionList = function(data, filterLP, filterCategory) {
             resultCourseLP.push(courseLP);
         }
     }
+    // list result category
     resultCategory = resultCategory.sort();
     resultCourseLP = resultCourseLP.sort();
 
-    console.log(resultCategory);
-
+    // append data to list category
     $.each(resultCategory, function(i, value) {
         // var selected = filterCategory.toLowerCase() == value.toLowerCase() ? 'selected' : '';
         $('#course-category').append('<div class="form-check">' +
-                '<input class="form-check-input" id="filter-category-'+ i +'" type="checkbox" value="'+ value +'">' +
+                '<input class="form-check-input filter-category" id="filter-category-'+ i +'" type="checkbox" value="'+ value +'">' +
                 '<label class="form-check-label text-capitalize" for="filter-category-'+ i +'">'+ value +'</label>' +
             '</div>'
         );
     })
 
+    // append data to list LP
     $.each(resultCourseLP, function(i, value) {
         // var selected = filter.toLowerCase() == value.toLowerCase() ? 'selected' : '';
         // $('#filter-category').append('<option value="'+ value +'" '+ selected +'>'+ value + '</option>');
         $('#course-LP').append('<div class="form-check">' +
-                '<input class="form-check-input" id="filter-lp-'+ i +'" type="checkbox" value="'+ value +'">' +
+                '<input class="form-check-input filter-lp" id="filter-lp-'+ i +'" type="checkbox" value="'+ value +'">' +
                 '<label class="form-check-label text-capitalize" for="filter-lp-'+ i +'">'+ value +'</label>' +
             '</div>'
         );
     })
 
     resultCourseLP
+}
+
+function resetFilter(param, target) {
+    $(param).click(function (e) {
+        $(this).addClass('disabled');
+        $(target).prop("checked", false);
+    });
+}
+
+function filterWatcher(param, target) {
+    $(param).click(function (e) {
+        if ($(param).is(':checked')) {
+            $(target).removeClass('disabled');
+            $('#button-addon1').attr('class', 'btn btn-info')
+        } else {
+            $(target).addClass('disabled');
+            $('#button-addon1').attr('class', 'btn btn-outline-light')
+        }
+    });
 }
 
 /** function to check visiblity load more button */
@@ -267,32 +323,47 @@ var pushEvents = function(target) {
     })
 }
 
+var pushEventsFilter = function(target) {
+    $(target).on('click', function(e) {
+        var _this = $(this);
+        var events = _this.attr('data-event');
+        var price = _this.parents('div.card-body').find('.course-price').html();
+        var course_title = _this.parents('div.card-body').find('h6.course-title').html();
+        var lp_name = _this.parents('div.card-cover').find('.course-lp-name').html();
+        if(window.DataLayer !== undefined) {
+            dataLayer.push({'event': events, 'course_title': course_title, 'price': price, 'lp_name' : lp_name});
+        }
+    })
+}
+
 /** function to init the content at the first time */
 function courseLoaderInit(){
     $(document).ready(function(){
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
-        var filterCategory = $('#filter-category');
+        var applyFilter = $('#btn-apply-filter');
         var formSeaerch = $('#form-search');
         var buttonSearch = $('#button-search');
         var loadItem = 12;
         var currentPage = 1;
-        var filter = queryParams.get('topic') !== null ? (queryParams.get('topic')).replace(/-|%20/gi, ' ') : '';
+        var filterTopic = queryParams.get('topic') !== null ? (queryParams.get('topic')).replace(/-|%20/gi, ' ') : '';
+        var filterPrice = queryParams.get('price') !== null ? (queryParams.get('price')).replace(/-|%20/gi, ' ') : '';
+        var filterLP = queryParams.get('lp') !== null ? (queryParams.get('lp')).replace(/-|%20/gi, ' ') : '';
         var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
 
-        console.log(keyword);
         
         if (appendTarget !== undefined) {
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 var data = _.shuffle(courses)
-                if (filter !== null || filter.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
-                    var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filter.toLowerCase()) !== -1; })
-                    var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                } else {
-                    var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                }
-    
+                // if (filterTopic !== null || filterTopic.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
+                //     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filterTopic.toLowerCase()) !== -1; })
+                //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+                // } else {
+                //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+                // }
+                
+                var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
                 if (keyword !== null) {
                     $('#filter-keyword').val(keyword);
                 }
@@ -319,11 +390,16 @@ function courseLoaderInit(){
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
-                    console.log('test option list');
-                    optionList(data, filter);
-    
+                    optionList(data);
+
+                    // trigger reset filter
+                    resetFilter('#btn-reset-filter', 'input.form-check-input');
+                    
+                    // reset button function to enable or disabled
+                    filterWatcher(".form-check-input", "#btn-reset-filter");
+                    
                     // filter implementation
-                    filterSelect(filterCategory, data, start, end);
+                    filterCourse(applyFilter, data, start, end);
                     filterKeyword(formSeaerch, buttonSearch, data, start, end);
     
                     // invoke function push event GA
