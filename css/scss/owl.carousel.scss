@@ -372,9 +372,9 @@
     margin-top: 15px;
   }
 
-  .owl-nav{
-    display: none;
-   }
+  // .owl-nav{
+  //   display: none;
+  //  }
  }
 
  .img-ratio-16-9{
@@ -431,3 +431,20 @@
     background: var(--primary);
   }
 }
+
+// @media (max-width: 576px) { 
+//   #courseCarousel{
+//     .owl-nav{
+//       display: none;
+//     }
+//   }
+   
+// }
+// #courseCarousel{
+//   .owl-nav{
+//     // outline: solid 1px red;
+//     float: none;
+//     margin: auto;
+//     text-align: center;
+//   }
+// }

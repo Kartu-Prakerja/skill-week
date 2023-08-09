@@ -46,8 +46,8 @@ var templateCourse = function(target, data, cardClass){
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
-                    "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
-                    "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
+                    "<a href='"+ course_form_request +"&utm_source=skillsweek&utm_medium=landing-page&utm_content=button' class='apply-course text-truncate btn btn-primary w-100 mb-2' target='_blank' rel='nofollow' data-event='skill_week_apply_course'>Dapatkan Voucher Pelatihan</a>" +
+                    "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary text-truncate' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
         "</div>" +
@@ -291,7 +291,7 @@ function filterWatcher(param, target) {
     $(param).click(function (e) {
         if ($(param).is(':checked')) {
             $(target).removeClass('disabled');
-            $('#button-addon1').attr('class', 'btn btn-info')
+            $('#button-addon1').attr('class', 'btn btn-primary')
         } else {
             $(target).addClass('disabled');
             $('#button-addon1').attr('class', 'btn btn-outline-light')
@@ -434,7 +434,8 @@ function courseLoaderHome() {
                     responsive:{
                         0:{
                             items:1.2,
-                            margin: 16
+                            margin: 16,
+                            nav: false
                         },
                         600:{
                             items:3,
@@ -493,7 +494,7 @@ function courseLoaderHome() {
     $('#coworkingCarousel').owlCarousel({
         loop:true,
         margin:24,
-        nav:true,
+        nav:false,
         autoplay: true,
         responsive:{
             0:{
