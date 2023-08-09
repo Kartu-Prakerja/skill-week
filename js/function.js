@@ -22,7 +22,7 @@ var templateCourse = function(target, data, cardClass){
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link'
-    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + data.course_after_discount;
+    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
     var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
     var template = "<div id='" + data.index +"' class='"+ listClass +"'>" +
@@ -42,7 +42,7 @@ var templateCourse = function(target, data, cardClass){
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
                 "<span class='mb-2 badge border bg-light bg-gradient text-dark text-capitalize'>"+ data.course_category+ "</span>" +
                 "<div>" +
-                    "<div class='course-real-price mb-1'><span>Rp "+ data.course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
+                    "<div class='course-real-price mb-1'><span>Rp "+ Number(data.course_price).toLocaleString('id') +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
@@ -283,6 +283,7 @@ var optionList = function(data) {
 function resetFilter(param, target) {
     $(param).click(function (e) {
         $(this).addClass('disabled');
+        $('#button-addon1').attr('class', 'btn btn-outline-light');
         $(target).prop("checked", false);
     });
 }
