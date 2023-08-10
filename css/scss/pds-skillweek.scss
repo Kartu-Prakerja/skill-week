@@ -736,6 +736,11 @@ body{
   border-color: var(--primary);
 }
 
+.text-info{
+  color: var(--info)!important;
+}
+
+
 /* media querys */
 
 @media (min-width: 576px) { 
