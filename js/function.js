@@ -435,7 +435,8 @@ function courseLoaderHome() {
                     responsive:{
                         0:{
                             items:1.2,
-                            margin: 16
+                            margin: 16,
+                            nav:false,
                         },
                         600:{
                             items:3,
