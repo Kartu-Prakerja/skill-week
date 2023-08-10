@@ -292,7 +292,7 @@ function filterWatcher(param, target) {
     $(param).click(function (e) {
         if ($(param).is(':checked')) {
             $(target).removeClass('disabled');
-            $('#button-addon1').attr('class', 'btn btn-info')
+            $('#button-addon1').attr('class', 'btn btn-primary')
         } else {
             $(target).addClass('disabled');
             $('#button-addon1').attr('class', 'btn btn-outline-light')
