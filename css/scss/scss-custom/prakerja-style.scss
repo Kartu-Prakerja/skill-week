@@ -1,0 +1,149 @@
+// custom colors
+// $primary:       #2A72C7;
+// $secondary:     #263444;
+// $success:       #24A939;
+$info:          #2491A9;
+// $warning:       #F2BA01;
+// $danger:        #DF2020;
+$light:         #F1F3F5;
+$dark:          #263444;
+
+
+// bootstrap 5 (vanilla)
+// @import "../scss-bootstrap/bootstrap.scss";
+
+// custom style
+@import "pds-style";
+@import "header";
+@import "footer";
+@import "button";
+@import "badge";
+
+
+
+body{
+
+    // activated when modal mobile navigation opened
+    &.freeze{
+        overflow: hidden;
+        
+    }
+
+}
+
+  .paragraph-lg{
+    font-size: calc(20/16)+ rem;
+    line-height: 2rem;
+  }
+
+  // Skeleton loader
+  .skeleton-box {
+    display: inline-block;
+    height: 1em;
+    position: relative;
+    overflow: hidden;
+    background-color: #DDDBDD;
+  
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(#fff, 0) 0,
+        rgba(#fff, 0.2) 20%,
+        rgba(#fff, 0.5) 60%,
+        rgba(#fff, 0)
+      );
+      animation: shimmer 2s infinite;
+      content: '';
+    }
+  
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  }
+  
+  
+.text-primary{
+    color:var(--primary)!important;
+}
+
+.link-primary {
+    color: var(--primary) !important;
+  }
+  .link-primary:hover, .link-primary:focus {
+    color: var(--b600) !important;
+  }
+
+.link-secondary{
+    color: var(--text-secondary)!important;
+    text-decoration: none;
+}
+
+.paragraph-md{
+    p{
+        line-height: 170%;
+    }
+}
+  .alert-info {
+    --bs-alert-color: var(--info);
+    --bs-alert-bg: var(--bg-info);
+    --bs-alert-border-color: var(--t200);
+  }
+  .alert-info .alert-link {
+    color: var(--t700);
+  }
+
+  .text-bg-ghost-success{
+    background-color: var(--g100);
+    color: var(--success)
+  }
+
+
+/* media querys */
+
+@media (min-width: 576px) { 
+   
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    
+    
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+
+    
+
+}
+
+@media (min-width: 1200px) { 
+    
+   
+}
+
+.alert-secondary {
+  --bs-alert-color: var(--o600);
+  --bs-alert-bg: var(--o100);
+  --bs-alert-border-color: var(--o200);
+  --bs-alert-link-color: var(--o700);
+}
+
+.alert-help {
+  --bs-alert-color: var(--p600);
+  --bs-alert-bg: var(--p100);
+  --bs-alert-border-color: var(--p200);
+  --bs-alert-link-color: var(--p700);
+}
+
+.outline{
+  outline: solid 1px red;
+}

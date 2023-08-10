@@ -1,0 +1,39 @@
+// Modal start
+#modalFilter.modal.modal-lg.fade.modal-full.pds-modal-custom(tabindex='-1' aria-labelledby='' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+    .modal-content
+      .modal-header.align-items-start.align-items-lg-center
+        button.header-anchor.btn.btn-ghost-white(data-bs-dismiss='modal' aria-label='Close')
+          i.bi.bi-chevron-left
+          b Filter Pelatihan
+        // <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      .modal-body
+        section.mb-4
+          h6.mb-3 Harga
+          #course-price.course-filter.column-3-1
+            .form-check
+              input#filter-price-1.form-check-input.filter-price(type='checkbox' value='0')
+              label.form-check-label.text-capitalize(for='filter-price-1') gratis (Rp 0)
+            .form-check
+              input#filter-price-2.form-check-input.filter-price(type='checkbox' value='20,000')
+              label.form-check-label.text-capitalize(for='filter-price-2') Rp 20.000,-
+            //- .form-check
+              input#filter-price-3.form-check-input.filter-price(type='checkbox' value='discount')
+              label.form-check-label.text-capitalize(for='filter-price-3') diskon
+        section.mb-4
+          h6.mb-3 Topik Pelatihan
+          #course-category.course-filter.column-3-1
+            p Memuat Daftar Topik Pelatihan...
+          //- start loading by category
+            
+        section.mb-4
+          h6.mb-3 Lembaga Pelatihan
+          #course-LP.course-filter.column-3-1
+            p Memuat Daftar Lembaga Pelatihan...
+          //- start loading by LP
+          
+            
+      .modal-footer
+        button#btn-reset-filter.btn.btn-outline-primary.disabled(type='button col-6') Reset
+        button#btn-apply-filter.btn.btn-primary(type='button col-6') Tampilkan Hasil
+// Modal end

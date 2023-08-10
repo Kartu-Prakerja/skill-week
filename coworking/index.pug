@@ -1,0 +1,18 @@
+- var pageActive = 'coworking'
+- var baseURL = '../'
+- var contentDescription = {}
+- contentDescription.title = "Coworking Space - Prakerja.go.id"
+- contentDescription.description = "Manajemen Pelaksana Kartu Prakerja (MPPKP) menjalin kerja sama dengan Mitra Coworking Space untuk menyediakan ruang/fasilitas belajar bagi penerima Kartu Prakerja aktif dan alumni dengan harga terjangkau. Penerima Kartu Prakerja dapat mengakses fasilitas coworking space sesuai dengan ketentuan yang berlaku di lokasi yang dipilih."
+
+//- doctype html
+html(lang="id")
+    include ../pug/includes/html_head.pug
+    body
+        include ../pug/includes/navigation.pug
+        main
+           include ../pug/coworking/section_hero.pug
+           include ../pug/coworking/section_mitra_resmi.pug
+           include ../pug/coworking/section_ketentuan_umum.pug
+           include ../pug/coworking/section_gabung_mitra.pug
+        include ../pug/includes/footer.pug
+    include ../pug/includes/html_foot.pug
