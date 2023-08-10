@@ -70,11 +70,13 @@ var btnDescription = function (target, data) {
         var index = _this.data('index');
         var description = data.description;
         var title = data.course_title;
+        var course_url = data.course_url;
         var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
         
         // manage the content
         $('#deskripsiPelatihanModal .modal-title').html(title);
-        $('#deskripsiPelatihanModal article p').html(description);
+        $('#deskripsiPelatihanModal .course-url .link-pelatihan').attr({'href': course_url, 'title' : title }).html(course_url)
+        $('#deskripsiPelatihanModal .course-descriptions p').html(description);
         $('#deskripsiPelatihanModal #modal-link-voucher').attr('href', course_form_request);
 
         // trigger the modal
