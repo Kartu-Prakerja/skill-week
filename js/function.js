@@ -495,7 +495,7 @@ function courseLoaderHome() {
     $('#coworkingCarousel').owlCarousel({
         loop:true,
         margin:24,
-        nav:true,
+        nav:false,
         autoplay: true,
         responsive:{
             0:{
