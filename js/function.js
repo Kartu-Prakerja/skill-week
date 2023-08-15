@@ -427,7 +427,11 @@ function courseLoaderHome() {
                 appendTarget.html('').addClass('owl-carousel');
                 $.each(dataToDisplay, function(i, list) {
                     templateCourse(appendTarget, list, 'home');
-                })
+                });
+                
+                // invoke function push event GA
+                pushEvents('.see-detail-course');
+                pushEvents('.apply-course');
             }).done(function() {
                 $(appendTarget).owlCarousel({
                     loop:true,
