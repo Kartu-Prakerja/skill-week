@@ -1,0 +1,90 @@
+.badge{
+    font-weight: 400;
+}
+.text-bg-primary {
+    color: #fff !important;
+    background-color: RGBA(42, 114, 199, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-secondary {
+    color: #fff !important;
+    background-color: RGBA(240, 94, 0, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-success {
+    color: #fff !important;
+    background-color: RGBA(36, 169, 57, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-info {
+    color: #fff !important;
+    background-color: RGBA(36, 145, 169, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-warning {
+    color: var(--text-default) !important;
+    background-color: RGBA(242, 186, 1, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-danger {
+    color: #fff !important;
+    background-color: RGBA(223, 32, 32, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-light {
+    color: var(--s600) !important;
+    background-color: RGBA(241, 243, 245, var(--bs-bg-opacity, 1)) !important;
+  }
+  
+  .text-bg-dark {
+    color: #fff !important;
+    background-color: RGBA(38, 52, 68, var(--bs-bg-opacity, 1)) !important;
+  }
+
+  .text-bg-help {
+    color: #fff !important;
+    background-color: RGBA(149, 42, 199, var(--bs-bg-opacity, 1)) !important;
+  }
+
+
+  // ghost variant
+
+  .text-bg-ghost-primary {
+    color:  var(--primary);
+    background-color: var(--b100);
+  }
+
+  .text-bg-ghost-secondary {
+    color:  var(--secondary);
+    background-color: var(--o100);
+  }
+
+  .text-bg-ghost-danger {
+    color:  var(--danger);
+    background-color: var(--r100);
+  }
+
+  .text-bg-ghost-warning {
+    color:  var(--y700);
+    background-color: var(--y100);
+  }
+
+  .text-bg-ghost-info {
+    color:  var(--info);
+    background-color: var(--t100);
+  }
+
+  .text-bg-ghost-help {
+    color:  var(--help);
+    background-color: var(--p100);
+  }
+
+  .text-bg-ghost-light {
+    color:  var(--s400);
+    background-color: var(--s100);
+  }
+
+  .text-bg-ghost-dark {
+    color:  var(--n400);
+    background-color: var(--n100);
+  }
