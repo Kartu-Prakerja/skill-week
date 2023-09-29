@@ -45,7 +45,9 @@
             <li class="nav-item md-hide"><a class="nav-link" href="/v3/">Beranda</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="/v3/pelatihan/index.html">Pelatihan</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="/v3/tanyajawab/index.html">Tanya Jawab</a></li>
-            <li class="nav-item md-hide"><a class="btn btn-primary" href="#"><i class="bi bi-person-circle me-2"></i>Masuk</a></li>
+            <li class="nav-item md-hide">
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-person-circle me-2"></i>Masuk</button>
+            </li>
             <li class="nav-item md-show">
               <div class="menu burger-menu" data-menu="13">
                 <div class="icon"></div>
@@ -241,7 +243,41 @@
         </div>
       </div>
     </div>
-    <!-- Modal end--><!-- Footer start -->
+    <!-- Modal end--><!-- Modal Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom"><img class="me-2" src="/v3/img/img-ornament-1.svg"/>
+            <h3 class="modal-title" id="exampleModalLabel">Masuk ISW</h3>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p class="paragraph-md mb-4">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
+            <form></form>
+            <div class="mb-3">
+              <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+              <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="nama@email.com"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="exampleInputPassword1"><b>Password akun Prakerja</b></label>
+              <div class="input-group mb-3">
+                <input class="form-control" type="text" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2"/>
+                <button class="btn btn-outline-light" id="button-addon2" type="button"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="mb-3"> 
+              <button class="btn btn-primary w-100" type="submit">Masuk</button>
+            </div>
+            <div> 
+              <button class="btn w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-start border-top">
+            <p class="fs-7 px-2">Belum punya akun? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Prakerja</b></a>.</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- Footer start -->
     <footer class="section-footer">
       <div class="top-wrapper">
         <div class="container pt-4 pt-md-5 px-4 px-md-0">

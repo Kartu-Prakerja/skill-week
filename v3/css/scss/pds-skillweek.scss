@@ -281,6 +281,10 @@ body{
     font-size: calc(20/16)+ rem;
     line-height: 2rem;
   }
+  .paragraph-md{
+    font-size: calc(16/16)+ rem;
+    line-height: 1.75rem;
+  }
 
   .skeleton-box {
     display: inline-block;
@@ -868,16 +872,30 @@ body{
           color: var(--primary);
           background-image: none;
           font-family: "bootstrap-icons";
-          content: '\F4F9';
+          content: '\F2E5';
+          
         }
         &.collapsed{
           &::after{
-            content: '\F2E5';
+            content: '\F4F9';
           }
         }
 
       }
     }
+  }
+}
+
+// custom modal
+.pds-modal{
+  .modal-header{
+    border-bottom: none;
+    &.modal-header-custom{
+      background: linear-gradient(90deg, #FEF8E6 0%, #FCEFC4 33.33%, #FBE6A2 66.67%, #F9DD80 100%);
+    }
+  }
+  .modal-footer{
+    border-top: none;
   }
 }
 

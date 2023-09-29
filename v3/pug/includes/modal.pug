@@ -19,3 +19,43 @@
         a.btn.btn-primary.apply-course.disabled(href='https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform' target='_blank' data-event='skill_week_apply_course' title='Pendaftaran sedang ditutup') Dapatkan Voucher Pelatihan
         // <button type="button" class="btn btn-primary">Dapatkan Voucher Pelatihan</button>
 // Modal end
+
+
+
+<!-- Modal Login -->
+#loginModal.modal.fade(tabindex='-1' aria-labelledby='loginModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal
+    .modal-content
+      .modal-header.modal-header-custom
+        img.me-2(src=baseURL+"img/img-ornament-1.svg")
+        h3#exampleModalLabel.modal-title Masuk ISW
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.p-4
+        p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
+
+        form
+        .mb-3
+          label.form-label(for='exampleInputEmail1')
+            b Alamat Email yang terdaftar di Prakerja
+          input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder="nama@email.com")
+        .mb-3
+          label.form-label(for='exampleInputPassword1')
+            b Password akun Prakerja
+          .input-group.mb-3
+            input.form-control(type='text' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2')
+            button#button-addon2.btn.btn-outline-light(type='button')
+              i.bi.bi-eye
+        //- .mb-3.form-check
+        //-   input#exampleCheck1.form-check-input(type='checkbox')
+        //-   label.form-check-label(for='exampleCheck1') Check me out
+        div.mb-3 
+          button.btn.btn-primary.w-100(type='submit') Masuk
+        div 
+          button.btn.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
+      .modal-footer.justify-content-start.border-top
+       
+        p.fs-7.px-2 Belum punya akun? Yuk 
+          a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
+            b Buat Akun Prakerja
+          |.
+  
