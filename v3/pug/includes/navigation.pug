@@ -12,8 +12,9 @@ header.pdt-header
         li.nav-item.md-hide
           a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
         li.nav-item.md-hide
-          button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#loginModal")
-            i.bi.bi-person-circle.me-2
+          button.btn.btn-primary.text-truncate(data-bs-toggle="modal" data-bs-target="#loginModal" style="max-width:200px" title="bambang_soehardjo@gmail.com")
+            i.bi.bi-person-circle.me-2 
+            //- | bambang_soehardjo@gmail.com
             | Masuk
         li.nav-item.md-show
           .menu.burger-menu(data-menu='13')
