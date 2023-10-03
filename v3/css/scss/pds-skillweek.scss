@@ -72,6 +72,17 @@ body{
     }
 }
 
+.hero-wrapper{
+  position: relative;
+}
+
+.img-hero{
+  width: 100%;
+  object-fit: contain;
+  max-height: 30vh;
+  display: block;
+}
+
 .section-standard{
     position: relative;
     padding-top: 4rem;
@@ -468,6 +479,10 @@ body{
 
   .ornament-1{
     float: right;
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+    max-height: 32px;
   }
 
   .nusa-box{
@@ -911,12 +926,21 @@ body{
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
 
+  .hero-wrapper{
+    position: initial;
+  }
+  .img-hero{
+    max-height: 60vh;
+  }
+
     .ornament-1{
         float:none;
         position: absolute;
         right: 0;
         bottom:1rem;
+        max-height:none;
       }
+      
     .section-highlight{
         &:before{
             width: calc(100% - 48px);

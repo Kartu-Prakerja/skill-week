@@ -59,6 +59,32 @@
             b Buat Akun Prakerja
             i.bi.bi-arrow-up-right-square-fill.ms-1
 
+<!-- Modal User Sukses Login -->
+#loginSuccessModal.modal.fade(tabindex='-1' aria-labelledby='loginSuccessModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal
+    .modal-content
+      .modal-header.modal-header-custom.p-4
+        .text-center.w-100
+          img(src=baseURL+"img/img-login-success.svg", alt="")
+          h4.modal-title.mt-3 Berhasil Masuk
+        //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.px-4
+        form
+          .mb-3
+            label.form-label(for='exampleInputEmail1')
+              b Alamat Email yang terdaftar di Prakerja
+            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly=true)
+
+        p
+          | Akun kamu 
+          b (bambang@gmail.com)
+          | berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
+          
+      .modal-footer.ps-4.pb-4.pe-4
+        button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal" data-bs-target="#confirmLogoutModal"  data-bs-dismiss='modal')
+          | Keluar
+        button.btn.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+          | Tutup
 
 <!-- Modal User Sudah Login -->
 #loginAlreadyModal.modal.fade(tabindex='-1' aria-labelledby='loginAlreadyModal' aria-hidden='true')
@@ -82,8 +108,30 @@
           | berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
-        button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+        button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal" data-bs-target="#confirmLogoutModal"  data-bs-dismiss='modal')
           | Keluar
+        button.btn.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+          | Tutup
+
+<!-- Modal Konfirmasi Logout  -->
+#confirmLogoutModal.modal.fade(tabindex='-1' aria-labelledby='confirmLogoutModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal
+    .modal-content
+      .modal-header.modal-header-custom.p-4.align-items-start.position-relative
+        .text-center.w-100
+          img(src=baseURL+"img/img-login-already.svg", alt="")
+          h4.modal-title.mt-3 Kamu yakin akan keluar menggunakan akun ini?
+        button.btn-close.position-absolute(type='button' data-bs-dismiss='modal' aria-label='Close' style="right:1.5rem;")
+      //- .modal-body.px-4
+
+      .modal-footer.ps-4.pb-4.pe-4
+        .row.p-0.w-100
+          .col-12.col-md-6.ps-0
+            button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+              | Ya
+          .col-12.col-md-6.pe-0
+            button.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+              | Batal
         
           
 
@@ -141,7 +189,7 @@
           .mb-3
             label.form-label(for='exampleInputEmail1')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" disabled)
+            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly=true)
 
         .alert.alert-info.mt-3.d-flex.align-items-top.mb-0
           i.fs-5.bi.bi-info-circle-fill.me-3
