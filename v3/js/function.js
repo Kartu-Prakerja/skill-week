@@ -526,6 +526,23 @@ function courseLoaderHome() {
         }
     });
 
+    // show hide password 
+    $('.show-password').click(function(e){
+        var target = e.currentTarget
+        $(target).hasClass('show-password-target')?hidePassword($(target)):showPassword($(target))
+    })
+    function hidePassword(e){
+        e.removeClass('show-password-target').addClass('hide')
+        e.prev('input').attr('type','password')
+        e.children().addClass('bi-eye').removeClass('bi-eye-slash')
+    }
+    function showPassword(e){
+        e.removeClass('hide').addClass('show-password-target')
+        e.prev('input').attr('type','text')
+        e.children().removeClass('bi-eye').addClass('bi-eye-slash')
+    }
+    
+
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
 

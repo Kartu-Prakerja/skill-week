@@ -55,16 +55,26 @@ section.section-hero
                         
                         ol 
                             li.mb-3
-                                button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#loginModal")
+                                h6 Default
+                                button.btn.btn-primary.text-truncate.max-width-200(data-bs-toggle="modal" data-bs-target="#loginModal")
                                     i.bi.bi-person-circle.me-2
                                     | Masuk
+
+                                br
+                                br
+
+                                h6 Sudah Login + truncate + title
+                                button.btn.btn-primary.text-truncate.max-width-200(data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com")
+                                    i.bi.bi-person-circle.me-2 
+                                    | bambang_soehardjo@gmail.com
+                                
                             li.mb-3
                                 button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#loginSuccessModal")
                                     
                                     | Success Message
 
                             li.mb-3
-                                button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#loginFailedModal")
+                                button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#loginErrorModal")
                                     
                                     | Error States 
 
@@ -73,8 +83,7 @@ section.section-hero
                                     
                                     | Sudah Login
 
-                            li.mb-3 
-                                button#liveToastBtn.btn.btn-primary(type='button') Show live toast
+                            
 
 
                         hr 
@@ -87,8 +96,11 @@ section.section-hero
                                 button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#getCourseLoginModal")
                                     | Ambil Pelatihan - Sudah Login
                             li.mb-3
-                                button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#getCourseToast")
-                                    | Toast Message Sukses ambil pelatihan
+                                button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#getCourseFailedModal")
+                                    | Ambil Pelatihan - Sudah Login - Gagal
+
+                            li.mb-3 
+                                button#liveToastBtn.btn.btn-primary(type='button') Toast Sukses Ambil Pelatihan
 
                         
                 
@@ -104,7 +116,7 @@ section.section-hero
             
             .accordion-item 
                 h2.accordion-header 
-                    button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseThree")
+                    button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree")
                         | Accordion Item #3
                 
                 .accordion-collapse.collapse#collapseThree(data-bs-parent="#accordionExample1")

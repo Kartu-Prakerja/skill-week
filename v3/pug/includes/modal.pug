@@ -28,7 +28,7 @@
     .modal-content
       .modal-header.modal-header-custom
         img.me-2(src=baseURL+"img/img-ornament-1.svg")
-        h4#exampleModalLabel.modal-title Masuk ISW
+        h4#exampleModalLabel.modal-title Masuk Akun
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
         p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
@@ -42,8 +42,8 @@
             label.form-label(for='exampleInputPassword1')
               b Password akun Prakerja
             .input-group.mb-3
-              input.form-control(type='text' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2')
-              button#button-addon2.btn.btn-outline-light(type='button')
+              input.form-control.show-password-target(type='password' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2')
+              button#button-addon2.btn.btn-outline-light.show-password(type='button')
                 i.bi.bi-eye
         //- .mb-3.form-check
         //-   input#exampleCheck1.form-check-input(type='checkbox')
@@ -51,13 +51,13 @@
         div.mb-3 
           button.btn.btn-primary.w-100(type='submit') Masuk
         div 
-          button.btn.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
+          button.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
       .modal-footer.justify-content-start.border-top
        
         p.fs-7.px-2 Belum punya akun? Yuk 
           a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
             b Buat Akun Prakerja
-            i.bi.bi-arrow-up-right-square-fill.ms-1
+            i.bi.bi-arrow-up-right-square.ms-1
 
 <!-- Modal User Sukses Login -->
 #loginSuccessModal.modal.fade(tabindex='-1' aria-labelledby='loginSuccessModal' aria-hidden='true')
@@ -69,22 +69,57 @@
           h4.modal-title.mt-3 Berhasil Masuk
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
-        form
-          .mb-3
-            label.form-label(for='exampleInputEmail1')
-              b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly=true)
-
         p
           | Akun kamu 
           b (bambang@gmail.com)
           | berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
-        button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal" data-bs-target="#confirmLogoutModal"  data-bs-dismiss='modal')
-          | Keluar
-        button.btn.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
-          | Tutup
+        button.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+          | Mengerti
+
+
+<!-- Modal Error Login -->
+#loginErrorModal.modal.fade(tabindex='-1' aria-labelledby='loginErrorModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal.login-modal
+    .modal-content
+      .modal-header.modal-header-custom
+        img.me-2(src=baseURL+"img/img-ornament-1.svg")
+        h4#exampleModalLabel.modal-title Masuk Akun
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.p-4
+        p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
+
+        form
+          .mb-3
+            label.form-label(for='exampleInputEmail1')
+              b Alamat Email yang terdaftar di Prakerja
+            input#exampleInputEmail1.form-control.is-invalid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="barambang@gmail.me")
+          .mb-3
+            label.form-label(for='exampleInputPassword1')
+              b Password akun Prakerja
+            .input-group.mb-3
+              input.form-control.show-password-target.is-invalid(type='password' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2' value="Prakerja123!")
+              button#button-addon2.btn.btn-outline-light.show-password(type='button')
+                i.bi.bi-eye
+        .alert.alert-danger.mt-3.d-flex.align-items-top.mb-3
+          i.fs-5.bi.bi-exclamation-triangle-fill.me-3
+          div
+            div.fs-7
+              | Alamat email atau password salah. Mohon periksa kembali.
+
+        div.mb-3 
+          button.btn.btn-primary.w-100(type='submit') Masuk
+        div 
+          button.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
+      .modal-footer.justify-content-start.border-top
+       
+        p.fs-7.px-2 Belum punya akun? Yuk 
+          a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
+            b Buat Akun Prakerja
+            i.bi.bi-arrow-up-right-square.ms-1
+
+
 
 <!-- Modal User Sudah Login -->
 #loginAlreadyModal.modal.fade(tabindex='-1' aria-labelledby='loginAlreadyModal' aria-hidden='true')
@@ -100,7 +135,7 @@
           .mb-3
             label.form-label(for='exampleInputEmail1')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" disabled)
+            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
 
         p
           | Akun kamu 
@@ -110,7 +145,7 @@
       .modal-footer.ps-4.pb-4.pe-4
         button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal" data-bs-target="#confirmLogoutModal"  data-bs-dismiss='modal')
           | Keluar
-        button.btn.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+        button.btn.btn-borderless-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
           | Tutup
 
 <!-- Modal Konfirmasi Logout  -->
@@ -160,14 +195,14 @@
           
       .modal-footer.p-0
           .d-flex.w-100.p-4
-            button.btn.w-100.me-1(type='button' data-bs-dismiss='modal') Kembali
+            button.btn.w-100.btn-borderless-primary.me-1(type='button' data-bs-dismiss='modal') Kembali
             button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss='modal')
               i.bi.bi-person-circle.me-2
               | Masuk
           .fs-7.w-100.p-3.border-top.text-center Belum punya akun? Yuk 
             a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
               b Buat Akun Prakerja
-              i.bi.bi-arrow-up-right-square-fill.ms-1
+              i.bi.bi-arrow-up-right-square.ms-1
 
 
 <!-- Modal Get Course - Sudah Login -->
@@ -189,7 +224,7 @@
           .mb-3
             label.form-label(for='exampleInputEmail1')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly=true)
+            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
 
         .alert.alert-info.mt-3.d-flex.align-items-top.mb-0
           i.fs-5.bi.bi-info-circle-fill.me-3
@@ -201,7 +236,42 @@
           
       .modal-footer.p-0
           .d-flex.w-100.p-4
-            button.btn.w-100.me-1(type='button' data-bs-dismiss='modal') Kembali
+            button.btn.btn-borderless-primary.w-100.me-1(type='button' data-bs-dismiss='modal') Kembali
+            button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss='modal')
+              | Ambil Voucher
+
+<!-- Modal Get Course - Sudah Login - GAGAL -->
+#getCourseFailedModal.modal.fade(tabindex='-1' aria-labelledby='getCourseFailedModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal
+    .modal-content
+      .modal-header.modal-header-custom.p-4
+        h4#exampleModalLabel.modal-title  Ambil Voucher Pelatihan?
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.px-4
+        //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
+        .row.border.rounded.p-3.m-0
+          .col-12.col-md-4.p-0
+            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
+          .col-12.col-md-8.p-0.ps-3.pt-3.pt-md-0
+            h6 Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)
+          
+        form.mt-3
+          .mb-3
+            label.form-label(for='exampleInputEmail1')
+              b Alamat Email yang terdaftar di Prakerja
+            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
+
+        .alert.alert-danger.mt-3.d-flex.align-items-top.mb-3
+          i.fs-5.bi.bi-exclamation-triangle-fill.me-3
+          div
+            h6.text-danger Ambil Voucher Pelatihan Gagal
+            div.fs-7
+              | Kamu sudah mengambil pelatihan ini atau pelatihan gratis sebelumnya. Pelatihan Gratis hanya bisa diambil 1x.
+              
+          
+      .modal-footer.p-0
+          .d-flex.w-100.p-4
+            button.btn.btn-borderless-primary.w-100.me-1(type='button' data-bs-dismiss='modal') Kembali
             button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss='modal')
               | Ambil Voucher
           
