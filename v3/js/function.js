@@ -425,9 +425,11 @@ function courseLoaderHome() {
         var appendTarget = $('#courseCarousel');
         if (appendTarget !== undefined) {
             $.getJSON(courseListURL, function(data){
-                dataToDisplay = _.sample(data, 10)
+                // dataToDisplay = _.sample(data, 10)
+                dataDiscount = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
+                console.log(dataDiscount, 'datadiscount');
                 appendTarget.html('').addClass('owl-carousel');
-                $.each(dataToDisplay, function(i, list) {
+                $.each(dataDiscount, function(i, list) {
                     templateCourse(appendTarget, list, 'home');
                 });
                 
