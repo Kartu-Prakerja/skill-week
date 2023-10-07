@@ -422,22 +422,36 @@ function courseLoaderInit(){
 // function to load course on homepage
 function courseLoaderHome() {
     $(document).ready(function(){
-        var appendTarget = $('#courseCarousel');
-        if (appendTarget !== undefined) {
+        var appendLimited = $('#courseCarouselDiscount');
+        var appendTwenty = $('#courseCarouselTwenty');
+        var appendFree = $('#courseCarouselFree');
+        if (appendLimited.length || appendTwenty.length || appendFree.length) {
             $.getJSON(courseListURL, function(data){
+                console.log(data)
                 // dataToDisplay = _.sample(data, 10)
-                dataDiscount = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
-                console.log(dataDiscount, 'datadiscount');
-                appendTarget.html('').addClass('owl-carousel');
-                $.each(dataDiscount, function(i, list) {
-                    templateCourse(appendTarget, list, 'home');
+                dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
+                dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
+                dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
+                appendLimited.html('').addClass('owl-carousel');
+                appendTwenty.html('').addClass('owl-carousel');
+                appendFree.html('').addClass('owl-carousel');
+                $.each(dataLimited, function(i, list) {
+                    templateCourse(appendLimited, list, 'home');
+                });
+
+                $.each(dataTwenty, function(i, list) {
+                    templateCourse(appendTwenty, list, 'home');
+                });
+
+                $.each(dataFree, function(i, list) {
+                    templateCourse(appendFree, list, 'home');
                 });
                 
                 // invoke function push event GA
                 pushEvents('.see-detail-course');
                 pushEvents('.apply-course');
             }).done(function() {
-                $(appendTarget).owlCarousel({
+                $('.owl-carousel').owlCarousel({
                     loop:true,
                     margin:24,
                     nav:true,
