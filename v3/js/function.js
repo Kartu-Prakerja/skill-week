@@ -464,10 +464,16 @@ function courseLoaderHome() {
                         },
                         600:{
                             items:3,
-                            margin: 16
+                            margin: 16,
+                            nav:false,
                         },
                         1000:{
-                            items:4
+                            items:4,
+                            nav:false
+                        },
+                        1200:{
+                            items:4,
+                            nav:true
                         }
                     }
                 });
