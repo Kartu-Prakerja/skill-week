@@ -427,7 +427,7 @@ function courseLoaderHome() {
         var appendLimited = $('#courseCarouselDiscount');
         var appendTwenty = $('#courseCarouselTwenty');
         var appendFree = $('#courseCarouselFree');
-        var courseProvider = $('#course-provider-list');
+        var appendTarget = $('#course-provider-list');
         var loadMoreTarget = $('#load-more-lp');
         var loadItem = 12;
         var currentPage = 1;
@@ -459,7 +459,7 @@ function courseLoaderHome() {
                 }
                 // list result lp
                 resultCourseLP = _.sortBy(resultCourseLP, 'lp_name');
-                courseProvider.html('');
+                appendTarget.html('');
 
                 var dataLength = resultCourseLP.length;
                 var paging = Math.ceil(dataLength/loadItem);
@@ -469,7 +469,7 @@ function courseLoaderHome() {
                 // append data to list LP
             
                 $.each(resultCourseLP.slice(start, end), function(i, value) {
-                    courseProvider.append('<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
+                    appendTarget.append('<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
                             '<a class="text-capitalize card-company-list" href="'+ 'pelatihan/index.html?topic=&keyword=&price=&lp=' + value.lp_name.replace(/\s+/gi, '-').toLowerCase() +'" title="'+ data.course_title  +'">' + 
                                 '<img class="me-1 card-logo" height="40" src="'+ value.lp_logo +'" alt="'+ value.lp_name +'"/>' + 
                                 '<span class="lp-name">'+ value.lp_name  +'</span>' +
@@ -478,7 +478,7 @@ function courseLoaderHome() {
                     );
                 })
 
-                btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
+                btnLoadMore(loadMoreTarget, loadItem, start, end, resultCourseLP, appendTarget, currentPage, paging);
 
                 $.each(dataLimited, function(i, list) {
                     templateCourse(appendLimited, list, 'home');
