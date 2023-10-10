@@ -13,9 +13,12 @@ header.pdt-header
           a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
         li.nav-item.md-hide
           button.btn.btn-primary.text-truncate.max-width-200(data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com")
-            i.bi.bi-person-circle.me-2 
+            .d-flex.align-items-center
+              i.bi.bi-person-circle.me-2 
+              span.skeleton-box.rounded-pill(style='width:50')
+              //- | Masuk
             //- | bambang_soehardjo@gmail.com
-            | Masuk
+              
         li.nav-item.md-show
           .menu.burger-menu(data-menu='13')
             .icon

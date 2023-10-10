@@ -20,9 +20,9 @@ var emptyState = "<div class='col-12 col-md-12'>" +
 /** function load course */
 var templateCourse = function(target, data, cardClass){ 
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
-    var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
+    // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var course_detail = 'detailpelatihan.html';
+    var course_detail = 'pelatihan/detail.html#' + data.course_title.replace(/\s+/gi, '-').toLowerCase();
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
     var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
@@ -281,7 +281,7 @@ var optionList = function(data) {
         );
     })
 
-    resultCourseLP
+    // resultCourseLP
 }
 
 function resetFilter(param, target) {
@@ -344,6 +344,7 @@ var pushEventsFilter = function(target) {
 /** function to init the content at the first time */
 function courseLoaderInit(){
     $(document).ready(function(){
+        console.log('test pelatihan')
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
         var applyFilter = $('#btn-apply-filter');
@@ -356,6 +357,7 @@ function courseLoaderInit(){
         var filterLP = queryParams.get('lp') !== null ? (queryParams.get('lp')).replace(/-|%20/gi, ' ') : '';
         var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
 
+        console.log(filterTopic, filterLP, filterPrice)
         
         if (appendTarget !== undefined) {
             $.getJSON(courseListURL, function(courses){
@@ -425,16 +427,59 @@ function courseLoaderHome() {
         var appendLimited = $('#courseCarouselDiscount');
         var appendTwenty = $('#courseCarouselTwenty');
         var appendFree = $('#courseCarouselFree');
+        var courseProvider = $('#course-provider-list');
+        var loadMoreTarget = $('#load-more-lp');
+        var loadItem = 12;
+        var currentPage = 1;
+        
+        // check if this content is available on landing page or not
         if (appendLimited.length || appendTwenty.length || appendFree.length) {
             $.getJSON(courseListURL, function(data){
-                console.log(data)
-                // dataToDisplay = _.sample(data, 10)
                 dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
                 dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
                 dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
                 appendLimited.html('').addClass('owl-carousel');
                 appendTwenty.html('').addClass('owl-carousel');
                 appendFree.html('').addClass('owl-carousel');
+
+                var lookupCourseLP = {};
+                var resultCourseLP = [];
+
+                // to get the list of category insert to array
+                for (var item, i = 0; item = data[i++];) {
+                    var courseLP = item.lp_name.toLowerCase();
+
+                    if (!(courseLP in lookupCourseLP)) {
+                        lookupCourseLP[courseLP] = 1;
+                        resultCourseLP.push({
+                            "lp_name" : item.lp_name,
+                            "lp_logo" : item.lp_logo
+                        });
+                    }
+                }
+                // list result lp
+                resultCourseLP = _.sortBy(resultCourseLP, 'lp_name');
+                courseProvider.html('');
+
+                var dataLength = resultCourseLP.length;
+                var paging = Math.ceil(dataLength/loadItem);
+                var start = 0;
+                var end = loadItem;
+
+                // append data to list LP
+            
+                $.each(resultCourseLP.slice(start, end), function(i, value) {
+                    courseProvider.append('<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
+                            '<a class="text-capitalize card-company-list" href="'+ 'pelatihan/index.html?topic=&keyword=&price=&lp=' + value.lp_name.replace(/\s+/gi, '-').toLowerCase() +'" title="'+ data.course_title  +'">' + 
+                                '<img class="me-1 card-logo" height="40" src="'+ value.lp_logo +'" alt="'+ value.lp_name +'"/>' + 
+                                '<span class="lp-name">'+ value.lp_name  +'</span>' +
+                            '</a>'+
+                        '</div>'
+                    );
+                })
+
+                btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
+
                 $.each(dataLimited, function(i, list) {
                     templateCourse(appendLimited, list, 'home');
                 });
@@ -448,8 +493,8 @@ function courseLoaderHome() {
                 });
                 
                 // invoke function push event GA
-                pushEvents('.see-detail-course');
-                pushEvents('.apply-course');
+                // pushEvents('.see-detail-course');
+                // pushEvents('.apply-course');
             }).done(function() {
                 $('.owl-carousel').owlCarousel({
                     loop:true,
@@ -565,17 +610,17 @@ function courseLoaderHome() {
     }
     
 
-    const toastTrigger = document.getElementById('liveToastBtn')
-    const toastLiveExample = document.getElementById('liveToast')
+    var toastTrigger = $('#liveToastBtn');
+    var toastLiveExample = $('#liveToast');
 
-    if (toastTrigger) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-    toastTrigger.addEventListener('click', () => {
-        toastBootstrap.show()
-    })
+    if (toastTrigger.length) {
+        var toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastTrigger.addEventListener('click', () => {
+            toastBootstrap.show()
+        })
     }
 
-    // run init course loader
+    // run init course loader on page course
     courseLoaderInit();
 
     // run init course home
