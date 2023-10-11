@@ -593,6 +593,8 @@ function courseLoaderHome() {
         }
     });
 
+    
+
     // show hide password 
     $('.show-password').click(function(e){
         var target = e.currentTarget
