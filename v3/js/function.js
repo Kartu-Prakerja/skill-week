@@ -21,7 +21,7 @@ var emptyState = "<div class='col-12 col-md-12'>" +
 var templateCourse = function(target, data, cardClass){ 
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
-    var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
+    // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
     var course_detail = 'pelatihan/detail.html#' + data.course_title.replace(/\s+/gi, '-').toLowerCase();
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
@@ -631,11 +631,11 @@ function courseLoaderHome() {
 
 
 function shareCourse(){
-    const shareButton = document.querySelector('.share-button');
-    const shareDialog = document.querySelector('.share-dialog');
-    const closeButton = document.querySelector('.close-button');
+    var shareButton = $('.share-button');
+    var shareDialog = $('.share-dialog');
+    // var closeButton = $('.close-button');
     
-    shareButton.addEventListener('click', event => {
+    $(shareButton).click(function() {
     if (navigator.share) { 
         navigator.share({
         title: 'WebShare API Demo',
@@ -649,8 +649,8 @@ function shareCourse(){
         }
     });
     
-    closeButton.addEventListener('click', event => {
-    shareDialog.classList.remove('is-open');
+    $(shareDialog).click(function(){
+        shareDialog.classList.remove('is-open');
     });
 }
 
