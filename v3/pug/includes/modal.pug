@@ -28,7 +28,7 @@
     .modal-content
       .modal-header.modal-header-custom
         img.me-2(src=baseURL+"img/img-ornament-1.svg")
-        h4#exampleModalLabel.modal-title Masuk Akun
+        h4.modal-title Masuk Akun
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
         p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
@@ -85,7 +85,7 @@
     .modal-content
       .modal-header.modal-header-custom
         img.me-2(src=baseURL+"img/img-ornament-1.svg")
-        h4#exampleModalLabel.modal-title Masuk Akun
+        h4.modal-title Masuk Akun
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
         p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
@@ -176,7 +176,7 @@
   .modal-dialog.modal-dialog-centered.pds-modal
     .modal-content
       .modal-header.modal-header-custom.p-4
-        h4#exampleModalLabel.modal-title  Ambil Voucher Pelatihan?
+        h4.modal-title  Ambil Voucher Pelatihan?
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
         //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
@@ -191,7 +191,9 @@
           i.fs-5.bi.bi-info-circle-fill.me-3
           div
             div.fs-7
-              | Untuk mendapatkan voucher pelatihan, kamu harus masuk terlebih dahulu ke Indonesia Skills Week.
+              | Untuk mendapatkan voucher pelatihan, kamu harus
+              b &nbsp;masuk&nbsp;
+              | terlebih dahulu ke Indonesia Skills Week.
           
       .modal-footer.p-0
           .d-flex.w-100.p-4
@@ -210,7 +212,7 @@
   .modal-dialog.modal-dialog-centered.pds-modal
     .modal-content
       .modal-header.modal-header-custom.p-4
-        h4#exampleModalLabel.modal-title  Ambil Voucher Pelatihan?
+        h4.modal-title  Ambil Voucher Pelatihan?
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
         //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
@@ -225,7 +227,7 @@
             label.form-label(for='exampleInputEmail1')
               b Alamat Email yang terdaftar di Prakerja
             input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
-
+        
         .alert.alert-info.mt-3.d-flex.align-items-top.mb-0
           i.fs-5.bi.bi-info-circle-fill.me-3
           div
@@ -240,12 +242,81 @@
             button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss='modal')
               | Ambil Voucher
 
+<!-- Modal Get Free Course - Belum Login -->
+#getFreeCourseNotLoginModal.modal.fade(tabindex='-1' aria-labelledby='getFreeCourseNotLoginModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal
+    .modal-content
+      .modal-header.modal-header-custom.p-4
+        h4.modal-title  Ambil Pelatihan Gratis?
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.px-4
+        p.paragraph-md.mb-4 Kamu yakin akan mengambil pelatihan ini?
+        .row.border.rounded.p-3.m-0
+          .col-12.col-md-4.p-0
+            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
+          .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0
+            h6 Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)
+          
+        .alert.alert-warning.mt-3.d-flex.align-items-top.mb-0
+          i.fs-5.bi.bi-info-circle-fill.me-3
+          div
+            div.fs-7
+              | Untuk mengambil pelatihan ini, kamu harus
+              b &nbsp;masuk&nbsp;
+              | terlebih dahulu ke Indonesia Skills Week.
+          
+      .modal-footer.p-0
+          .d-flex.w-100.p-4
+            button.btn.w-100.btn-borderless-primary.me-1(type='button' data-bs-dismiss='modal') Kembali
+            button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss='modal')
+              i.bi.bi-person-circle.me-2
+              | Masuk
+          .fs-7.w-100.p-3.border-top.text-center Belum punya akun? Yuk 
+            a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
+              b Buat Akun Prakerja
+              i.bi.bi-arrow-up-right-square.ms-1
+
+<!-- Modal Get Course - Sudah Login -->
+#getFreeCourseLoginModal.modal.fade(tabindex='-1' aria-labelledby='getFreeCourseLoginModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.pds-modal
+    .modal-content
+      .modal-header.modal-header-custom.p-4
+        h4.modal-title  Ambil Pelatihan Gratis?
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.px-4
+        p.paragraph-md.mb-4 Kamu yakin akan mengambil pelatihan ini?
+        .row.border.rounded.p-3.m-0
+          .col-12.col-md-4.p-0
+            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
+          .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0
+            h6 Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)
+          
+        form.mt-3
+          .mb-3
+            label.form-label(for='exampleInputEmail1')
+              b Alamat Email yang terdaftar di Prakerja
+            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
+        
+        .alert.alert-info.mt-3.d-flex.align-items-top.mb-0
+          i.fs-5.bi.bi-info-circle-fill.me-3
+          div
+            div.fs-7
+              | Pelatihan
+              b &nbsp;gratis&nbsp;
+              | tidak membutuhkan voucher untuk mengambil pelatihan.
+          
+      .modal-footer.p-0
+          .d-flex.w-100.p-4
+            button.btn.btn-borderless-primary.w-100.me-1(type='button' data-bs-dismiss='modal') Kembali
+            button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss='modal')
+              | Ambil Pelatihan
+
 <!-- Modal Get Course - Sudah Login - GAGAL -->
 #getCourseFailedModal.modal.fade(tabindex='-1' aria-labelledby='getCourseFailedModal' aria-hidden='true')
   .modal-dialog.modal-dialog-centered.pds-modal
     .modal-content
       .modal-header.modal-header-custom.p-4
-        h4#exampleModalLabel.modal-title  Ambil Voucher Pelatihan?
+        h4.modal-title  Ambil Voucher Pelatihan?
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
         //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
