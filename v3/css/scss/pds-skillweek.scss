@@ -988,17 +988,25 @@ body{
   white-space: nowrap;
 }
 
+.custom-header-carousel{
+  h4{
+    margin: 0;
+  }
+}
 
+.custom-rfs-h4{
+  font-size: calc(1rem + 0.6vw);
+}
 
 
 /* media querys */
 
 @media (max-width: 575px) { 
   .custom-header-carousel{
-    h3{
-    }
+    
     .btn{
-      font-size: calc(14/16)+rem;
+      // font-size: calc(14/16)+rem;
+      font-size: calc(.675rem + 0.3vw);
       // padding: 4px 4px;
       i{
         display: none;
@@ -1019,6 +1027,7 @@ body{
   }
   .img-hero{
     max-height: 60vh;
+    min-height: 420px;
   }
 
     .ornament-1{
