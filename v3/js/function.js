@@ -638,7 +638,7 @@ function shareCourse(){
     $(shareButton).click(function() {
     if (navigator.share) { 
         navigator.share({
-        title: 'WebShare API Demo',
+        title: 'Bagikan Pelatihan Ini',
         url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
         }).then(() => {
         console.log('Thanks for sharing!');
