@@ -631,14 +631,14 @@ function courseLoaderHome() {
 
 
 function shareCourse(){
-    var shareButton = $('.share-button');
-    var shareDialog = $('.share-dialog');
-    // var closeButton = $('.close-button');
-    
-    $(shareButton).click(function() {
+    const shareButton = document.querySelector('.share-button');
+    const shareDialog = document.querySelector('.share-dialog');
+    const closeButton = document.querySelector('.close-button');
+
+    shareButton.addEventListener('click', event => {
     if (navigator.share) { 
-        navigator.share({
-        title: 'Bagikan Pelatihan Ini',
+    navigator.share({
+        title: 'WebShare API Demo',
         url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
         }).then(() => {
         console.log('Thanks for sharing!');
@@ -648,9 +648,9 @@ function shareCourse(){
             shareDialog.classList.add('is-open');
         }
     });
-    
-    $(shareDialog).click(function(){
-        shareDialog.classList.remove('is-open');
+
+    closeButton.addEventListener('click', event => {
+    shareDialog.classList.remove('is-open');
     });
 }
 
