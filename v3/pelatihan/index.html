@@ -166,6 +166,49 @@
           </div>
         </div>
       </section>
+      <!-- Modal start-->
+      <div class="modal modal-lg fade modal-full pds-modal-custom" id="modalFilter" tabindex="-1" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header align-items-start align-items-lg-center">
+              <button class="header-anchor btn btn-ghost-white" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-chevron-left"></i><b>Filter Pelatihan</b></button>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            </div>
+            <div class="modal-body">
+              <section class="mb-4">
+                <h6 class="mb-3">Harga</h6>
+                <div class="course-filter column-3-1" id="course-price">
+                  <div class="form-check">
+                    <input class="form-check-input filter-price" id="filter-price-1" type="checkbox" value="0"/>
+                    <label class="form-check-label text-capitalize" for="filter-price-1">gratis (Rp 0)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-price" id="filter-price-2" type="checkbox" value="20000"/>
+                    <label class="form-check-label text-capitalize" for="filter-price-2">Rp 20.000,-</label>
+                  </div>
+                </div>
+              </section>
+              <section class="mb-4">
+                <h6 class="mb-3">Topik Pelatihan</h6>
+                <div class="course-filter column-3-1" id="course-category">
+                  <p>Memuat Daftar Topik Pelatihan...</p>
+                </div>
+              </section>
+              <section class="mb-4">
+                <h6 class="mb-3">Lembaga Pelatihan</h6>
+                <div class="course-filter column-3-1" id="course-LP">
+                  <p>Memuat Daftar Lembaga Pelatihan...</p>
+                </div>
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-outline-primary disabled" id="btn-reset-filter" type="button col-6">Reset</button>
+              <button class="btn btn-primary" id="btn-apply-filter" type="button col-6">Tampilkan Hasil</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal end-->
     </main>
     <!-- Modal start-->
     <div class="modal modal-lg fade" id="deskripsiPelatihanModal" tabindex="-1" aria-labelledby="deskripsiPelatihanModalLabel" aria-hidden="true">

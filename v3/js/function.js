@@ -1,6 +1,33 @@
+/**
+ * TASK LIST
+ * 1. HANDLE LOGIN USER
+ * 1.1 MUNCULIN POPUP UNTUK USER KALAU BELUM LOGIN
+ * 1.1.1 KALAU USER SKIP GAK PERLU MUNCULIN POP-UP
+ * 1.2 CEK LOCAL STORAGE UNTUK LOGIN USER
+ * 1.2.1 SIMPAN KE LOCAL STORAGE KALAU USER SUDAH LOGIN
+ * 1.2.2 SET WAKTU UNTUK NGE TIMEOUT LOCALSTORAGE
+ * 1.2.3 HAPUS LOCAL STORAGE KALAU USER MAU GANTI AKUN DAN HAPUS SESSION POPUP UNTUK MINTA USER LOGIN KEMBALI
+ * 1.3 POP UP KONFIRMASI UNTUK AMBIL VOUCHER
+ * 
+ * 2. SIMPAN PELATIHAN YANG SUDAH DIAMBIL PESERTA (FLAG PELATIHAN MANA YANG SUDAH DIAMBIL)
+ * 2.1 HANDLE PROSES SUBMISSION PELATIHAN YANG MAU DI AMBIL PESERTA
+ * 
+ * 3. DETAIL PELATIHAN
+ * 3.1 HANDLE DEFAULT CONTENT UNTUK PELATIHAN YANG TIDAK DITEMUKAN (404) PAGE
+ * 3.2 HANDLE SHARE CONTENT
+ * 
+ * 4. HANDLE FILTER & SEARCH
+ * 4.1 STORE KE LOCAL STORAGE UNTUK DAFTAR PELATIHAN
+ * 4.2 HANDLE PANGGIL KE LOCAL STORAGE / AMBIL DARI JSON
+ */
+
 // general variable 
+const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
+const baseUrl = '/v3/pelatihan/detail.html'
 const loadItem = 12;
-const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek.json";
+const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_3.json";
+const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
+const checkVoucher = '';
 const queryParams = new URLSearchParams(window.location.search);
 var currentPage = 1;
 
@@ -22,7 +49,7 @@ var templateCourse = function(target, data, cardClass){
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var course_detail = 'pelatihan/detail.html#' + data.course_title.replace(/\s+/gi, '-').toLowerCase();
+    var course_detail = baseUrl +'?title=' + data.course_title.replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
     var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
@@ -56,7 +83,8 @@ var templateCourse = function(target, data, cardClass){
     "</div>";
     $(target).append(template).ready(function () {
         // trigger modal
-        btnDescription('#detail-course' + data.index, data);
+        // skipped because already have the page detail
+        // btnDescription('#detail-course' + data.index, data);
     });
 }
 
@@ -176,7 +204,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var filterCategory = [], filterPrice = [], filterLP = [], dataFilter = data
         var keyword = $(this).find('input').val();
 
-        console.log(keyword)
+        // console.log(keyword)
 
         $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
         $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
@@ -352,25 +380,51 @@ function courseLoaderInit(){
         var buttonSearch = $('#button-search');
         var loadItem = 12;
         var currentPage = 1;
-        var filterTopic = queryParams.get('topic') !== null ? (queryParams.get('topic')).replace(/-|%20/gi, ' ') : '';
-        var filterPrice = queryParams.get('price') !== null ? (queryParams.get('price')).replace(/-|%20/gi, ' ') : '';
-        var filterLP = queryParams.get('lp') !== null ? (queryParams.get('lp')).replace(/-|%20/gi, ' ') : '';
-        var keyword = queryParams.get('keyword') !== null ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
+        var filterTopic = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic')).replace(/-|%20/gi, ' ')).split(',') : '';
+        var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price')).replace(/-|%20/gi, ' ')).split(',') : '';
+        var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp')).replace(/-|%20/gi, ' ')).split(',') : '';
+        var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
 
-        console.log(filterTopic, filterLP, filterPrice)
+        console.log(_.isEmpty(filterTopic), 'topic');
+        console.log(_.isEmpty(filterPrice), 'price');
+        console.log(_.isEmpty(filterLP), 'LP');
+
+        if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
+            console.log('tidak empty')
+            $('#button-addon1').attr('class', 'btn btn-primary')
+        }
         
         if (appendTarget !== undefined) {
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 var data = _.shuffle(courses)
-                // if (filterTopic !== null || filterTopic.toLowerCase() == 'Semua Topik Pelatihan'.toLowerCase()) {
+                console.log(data,'data')
+
+                if (!_.isEmpty(filterPrice)) {
+                    data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    console.log(data, 'masuk filter price')
+                } 
+                if (!_.isEmpty(filterTopic)) {
+                    data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
+                    console.log(data, 'masuk filter topic')
+                }  
+                if (!_.isEmpty(filterLP)) {
+                    data = _.filter(data, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
+                    console.log(data, 'masuk filter lp')
+                }
+
+                var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
+
+                console.log(dataKeyword, 'datakeyword');
+
+                // if (!_.isEmpty(filterTopic) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
                 //     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filterTopic.toLowerCase()) !== -1; })
                 //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
                 // } else {
-                //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+                //     var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
                 // }
                 
-                var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+                // var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
                 if (keyword !== null) {
                     $('#filter-keyword').val(keyword);
                 }
@@ -387,17 +441,21 @@ function courseLoaderInit(){
                     $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
                     
                     // loop the content and add to the course list
-                    $.each(dataKeyword.slice(start, end), function(i, list) {
-                        // console.log(list.course_title.includes('Meningkatkan Kemampuan').toLowerCase())
-                        templateCourse(appendTarget, list);
-                    })
+                    if (!_.isEmpty(dataKeyword)) {
+                        $.each(dataKeyword.slice(start, end), function(i, list) {
+                            console.log(dataKeyword, 'slice');
+                            templateCourse(appendTarget, list);
+                        })
+                    } else {
+                        appendTarget.html(emptyState);
+                    }
     
                     // loadmore more button show / hide
                     checkLoadMore(loadMoreTarget, paging, currentPage);
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
-                    optionList(data);
+                    optionList(courses);
 
                     // trigger reset filter
                     resetFilter('#btn-reset-filter', 'input.form-check-input');
@@ -497,7 +555,7 @@ function courseLoaderHome() {
                 // pushEvents('.apply-course');
             }).done(function() {
                 $('.owl-carousel').owlCarousel({
-                    loop:true,
+                    loop:false,
                     margin:24,
                     nav:true,
                     dots: false,
@@ -639,18 +697,18 @@ function shareCourse(){
     if (navigator.share) { 
     navigator.share({
         title: 'WebShare API Demo',
-        url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+        url: 'CurrentURL'
         }).then(() => {
         console.log('Thanks for sharing!');
         })
         .catch(console.error);
         } else {
-            shareDialog.classList.add('is-open');
+            shareDialog.addClass('is-open');
         }
     });
-
-    closeButton.addEventListener('click', event => {
-    shareDialog.classList.remove('is-open');
+    
+    $(shareDialog).click(function(){
+        shareDialog.removeClass('is-open');
     });
 }
 
