@@ -265,7 +265,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 }
 
 /** function to get unique option */
-var optionList = function(data) {
+var optionList = function(data, filterLP, filterPrice, filterCategory) {
     var lookupCategory = {}, lookupCourseLP = {};
     var resultCategory = [], resultCourseLP = [];
 
@@ -289,25 +289,34 @@ var optionList = function(data) {
     resultCourseLP = resultCourseLP.sort();
     $('#course-LP, #course-category').html('');
     // append data to list category
-    $.each(resultCategory, function(i, value) {
-        // var selected = filterCategory.toLowerCase() == value.toLowerCase() ? 'selected' : '';
+    _.each(resultCategory, function(value, i) {
+        var checked = _.indexOf(filterCategory, value) !== -1 ? 'checked' : '';
         $('#course-category').append('<div class="form-check">' +
-                '<input class="form-check-input filter-category" id="filter-category-'+ i +'" type="checkbox" value="'+ value +'">' +
+                '<input class="form-check-input filter-category" id="filter-category-'+ i +'" type="checkbox" value="'+ value +'" '+ checked +'>' +
                 '<label class="form-check-label text-capitalize" for="filter-category-'+ i +'">'+ value +'</label>' +
             '</div>'
         );
     })
 
     // append data to list LP
-    $.each(resultCourseLP, function(i, value) {
-        // var selected = filter.toLowerCase() == value.toLowerCase() ? 'selected' : '';
-        // $('#filter-category').append('<option value="'+ value +'" '+ selected +'>'+ value + '</option>');
+    _.each(resultCourseLP, function(value, i) {
+        var checked = _.indexOf(filterLP, value) !== -1 ? 'checked' : '';
+        // $('#filter-category').append('<option value="'+ value +'" '+ checked +'>'+ value + '</option>');
         $('#course-LP').append('<div class="form-check">' +
-                '<input class="form-check-input filter-lp" id="filter-lp-'+ i +'" type="checkbox" value="'+ value +'">' +
+                '<input class="form-check-input filter-lp" id="filter-lp-'+ i +'" type="checkbox" value="'+ value +'" '+ checked +'>' +
                 '<label class="form-check-label text-capitalize" for="filter-lp-'+ i +'">'+ value +'</label>' +
             '</div>'
         );
     })
+
+    // loop price selected
+    _.each(filterPrice, function(value) {
+        $('.filter-price[value="'+ value +'"]').attr('checked', true);
+    })
+    
+    if(!_.isEmpty(filterLP) || !_.isEmpty(filterPrice) || !_.isEmpty(filterCategory)) {
+        $('#btn-reset-filter').removeClass('disabled')
+    }
 
     // resultCourseLP
 }
@@ -372,7 +381,6 @@ var pushEventsFilter = function(target) {
 /** function to init the content at the first time */
 function courseLoaderInit(){
     $(document).ready(function(){
-        console.log('test pelatihan')
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
         var applyFilter = $('#btn-apply-filter');
@@ -385,37 +393,26 @@ function courseLoaderInit(){
         var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp')).replace(/-|%20/gi, ' ')).split(',') : '';
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
 
-        console.log(_.isEmpty(filterTopic), 'topic');
-        console.log(_.isEmpty(filterPrice), 'price');
-        console.log(_.isEmpty(filterLP), 'LP');
-
         if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
-            console.log('tidak empty')
             $('#button-addon1').attr('class', 'btn btn-primary')
         }
         
-        if (appendTarget !== undefined) {
+        if (appendTarget.length) {
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 var data = _.shuffle(courses)
-                console.log(data,'data')
 
                 if (!_.isEmpty(filterPrice)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
-                    console.log(data, 'masuk filter price')
                 } 
                 if (!_.isEmpty(filterTopic)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
-                    console.log(data, 'masuk filter topic')
                 }  
                 if (!_.isEmpty(filterLP)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
-                    console.log(data, 'masuk filter lp')
                 }
-
                 var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
 
-                console.log(dataKeyword, 'datakeyword');
 
                 // if (!_.isEmpty(filterTopic) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
                 //     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filterTopic.toLowerCase()) !== -1; })
@@ -455,7 +452,7 @@ function courseLoaderInit(){
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
-                    optionList(courses);
+                    optionList(courses, filterLP, filterPrice, filterTopic);
 
                     // trigger reset filter
                     resetFilter('#btn-reset-filter', 'input.form-check-input');
@@ -464,8 +461,8 @@ function courseLoaderInit(){
                     filterWatcher(".form-check-input", "#btn-reset-filter");
                     
                     // filter implementation
-                    filterCourse(applyFilter, data, start, end);
-                    filterKeyword(formSeaerch, buttonSearch, data, start, end);
+                    filterCourse(applyFilter, courses, start, end);
+                    filterKeyword(formSeaerch, buttonSearch, courses, start, end);
     
                     // invoke function push event GA
                     pushEvents('.see-detail-course');
@@ -712,5 +709,5 @@ function shareCourse(){
     });
 }
 
-shareCourse();
+// shareCourse();
  
