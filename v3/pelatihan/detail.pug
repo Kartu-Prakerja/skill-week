@@ -13,9 +13,118 @@ html(lang="id")
         include ../pug/includes/analytics_no_script.pug
         include ../pug/includes/navigation.pug
         main
-           include ../pug/course/section_breadcrumbs.pug
-           include ../pug/course/section_course_detail.pug
-           include ../pug/course/section_similar_course.pug
+            //- Skeleton breadcrumbs
+            section#breadcrumb-detail.pt-5
+                .container.pt-md-5.pt-5.px-4.px-md-0
+                    nav(aria-label="breadcrumb")
+                        ol.breadcrumb 
+                            li.breadcrumb-item 
+                                span.skeleton-box.rounded-pill(style="width:20px")
+                            li.breadcrumb-item 
+                                span.skeleton-box.rounded-pill(style="width:128px")
+                            li.breadcrumb-item.active
+                                span.skeleton-box.rounded-pill(style="width:128px")
+
+            //- Skeleton Course Detail
+            section#detail-course.section-detail-course
+                .container.py-5.px-4.px-md-0
+                    .row.flex-row-reverse
+                        .col-12.col-md-4.col-lg-4
+                            .skeleton-box.w-100.rounded.mb-3(style="min-height: 30vh;")
+                            .mb-3
+                                span.skeleton-box.rounded-pill(style="width:128px")
+                            .mb-3
+                                span.skeleton-box.rounded-pill(style="width:40%;height:32px;")
+
+                            .mb-3
+                                span.skeleton-box.rounded(style="width:70%;height:48px;")
+                            .mb-3
+                                span.skeleton-box.rounded-pill(style="width:60%")
+
+                        .col-12.col-md-8.col-lg-8.pe-xl-4
+                            .mb-2 
+                                span.skeleton-box.rounded(style="width:100%; height:40px;")
+                            .mb2 
+                                span.skeleton-box.rounded(style="width:70%; height:40px;")
+
+                            .mt-3 
+                                span.skeleton-box.rounded.me-2(style="width:32px;height:32px;")
+                                span.skeleton-box.rounded(style="width:40%; height:32px;")
+
+
+                            .row.mt-5.mb-4 
+                                .col-12.col-md-6.col-lg-4.mb-4.d-flex 
+                                    span.skeleton-box.rounded-pill.me-2(style="width:18px;height:18px;")
+                                    .w-100 
+                                        span.skeleton-box.rounded-pill.mb-2(style="width:50%;height:18px;")
+                                        span.skeleton-box.rounded-pill(style="width:70%;height:18px;")
+                                .col-12.col-md-6.col-lg-4.mb-4.d-flex 
+                                    span.skeleton-box.rounded-pill.me-2(style="width:18px;height:18px;")
+                                    .w-100 
+                                        span.skeleton-box.rounded-pill.mb-2(style="width:50%;height:18px;")
+                                        span.skeleton-box.rounded-pill(style="width:70%;height:18px;")
+                                .col-12.col-md-6.col-lg-4.mb-4.d-flex 
+                                    span.skeleton-box.rounded-pill.me-2(style="width:18px;height:18px;")
+                                    .w-100 
+                                        span.skeleton-box.rounded-pill.mb-2(style="width:50%;height:18px;")
+                                        span.skeleton-box.rounded-pill(style="width:70%;height:18px;")
+
+                                .col-12.col-md-6.col-lg-4.mb-4.d-flex 
+                                    span.skeleton-box.rounded-pill.me-2(style="width:18px;height:18px;")
+                                    .w-100 
+                                        span.skeleton-box.rounded-pill.mb-2(style="width:50%;height:18px;")
+                                        span.skeleton-box.rounded-pill(style="width:70%;height:18px;")
+
+                                .col-12.col-md-6.col-lg-4.mb-4.d-flex 
+                                    span.skeleton-box.rounded-pill.me-2(style="width:18px;height:18px;")
+                                    .w-100 
+                                        span.skeleton-box.rounded-pill.mb-2(style="width:50%;height:18px;")
+                                        span.skeleton-box.rounded-pill(style="width:70%;height:18px;")
+                                .col-12.col-md-6.col-lg-4.mb-4.d-flex 
+                                    span.skeleton-box.rounded-pill.me-2(style="width:18px;height:18px;")
+                                    .w-100 
+                                        span.skeleton-box.rounded-pill.mb-2(style="width:50%;height:18px;")
+                                        span.skeleton-box.rounded-pill(style="width:70%;height:18px;")
+
+                            hr 
+
+                            article
+                                section.py-3
+                                    .mb-3 
+                                        span.skeleton-box.rounded(style="width:40%; height:32px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:100%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:90%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:100%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:50%; height:18px;")
+                                    .mt-4 
+                                        span.skeleton-box.rounded(style="width:100%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:90%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:100%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:50%; height:18px;")
+
+                                section.py-3
+                                    .mb-3 
+                                        span.skeleton-box.rounded(style="width:40%; height:32px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:90%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:80%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:70%; height:18px;")
+                                    .mt-2 
+                                        span.skeleton-box.rounded(style="width:50%; height:18px;")
+
+                            hr
+            //- include ../pug/course/section_breadcrumbs.pug
+            //- include ../pug/course/section_course_detail.pug
+            include ../pug/course/section_similar_course.pug
 
         include ../pug/includes/modal.pug
         include ../pug/includes/share.pug

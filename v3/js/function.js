@@ -29,7 +29,10 @@ const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/s
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = '';
 const queryParams = new URLSearchParams(window.location.search);
+var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? localStorage.getItem('course_list') : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
+var dataUser = localStorage.getItem('users')
+console.log(dataCourse)
 
 // empty state template
 var emptyState = "<div class='col-12 col-md-12'>" +
@@ -86,6 +89,79 @@ var templateCourse = function(target, data, cardClass){
         // skipped because already have the page detail
         // btnDescription('#detail-course' + data.index, data);
     });
+}
+
+var templateDetail = function(data) {
+    return '<section class="section-detail-course">' +
+    '<div class="container py-5 px-4 px-md-0">' +
+      '<div class="row flex-row-reverse">' +
+        '<div class="col-12 col-md-4 col-lg-4"><img class="w-100 rounded" src="'+ data.course_image +'" alt=""/>' +
+          '<div class="mt-3">' +
+            '<div class="course-real-price mb-1"><span class="me-1">Rp '+ data.course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
+            '<div class="course-price card-price mb-1 color-secondary fs-4">Rp '+ data.course_after_discount +'</div>' +
+          '</div>' +
+          '<div class="course-cta px-3 px-lg-0">' +
+            '<button class="my-3 btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getCourseNotLoginModal">Dapatkan Voucher Pelatihan </button>' +
+          '</div>' +
+          '<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
+          '<button class="btn btn-light share-button mb-3" type="button" title="Bagikan halaman ini"><i class="bi bi-share">&nbsp;</i>bagikan</button>' +
+        '</div>' +
+        '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
+          '<h1 class="mb-3">'+ data.course_title +'</h1>'+
+          '<a class="card-company-link d-inline-flex p-2 text-decoration-none" href="pelatihan/index.html?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
+          '<div class="row mt-5 mb-4"> ' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>' +
+              '<div class="ps-2"> ' +
+                '<h6 class="fs-7 mb-2">Instruktur</h6>' +
+                '<p class="fs-7">'+ data.instructure_name +'</p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-clock"> </i>' +
+              '<div class="ps-2"> ' +
+                '<h6 class="fs-7 mb-2">Durasi Pelatihan</h6>' +
+                '<p class="fs-7">'+ data.duration +'</p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-video"> </i>' +
+              '<div class="ps-2"> ' +
+                '<h6 class="fs-7 mb-2">Metode Ajar</h6><span class="badge rounded-pill text-bg-warning">'+ data.course_type+ '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-tag"> </i>' +
+              '<div class="ps-2"> ' +
+                '<h6 class="fs-7 mb-2">Kategori</h6>' +
+                '<p class="fs-7">'+ data.course_category +'</p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-ticket-detailed"> </i>' +
+              '<div class="ps-2"> ' +
+                '<h6 class="fs-7 mb-2">Kuota Pelatihan</h6>' +
+                '<p class="fs-7">' +
+                   data.quota+ '<i>&nbsp;(Selama masih tersedia)</i></p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-link-45deg"></i>' +
+              '<div class="ps-2 overflow-hidden">' +
+                '<h6 class="fs-7 mb-2">Link Pelatihan</h6><a class="fs-7 d-flex align-items-center" href="#"> <span class="pds-truncate">'+ data.course_url +'</span><i class="bi bi-arrow-up-right-square-fill"></i></a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<hr/>' +
+          '<article>' +
+            '<section class="py-3">' +
+              '<h4 class="mb-4">Deskripsi Pelatihan </h4>' +
+              '<article id="description">'+ (data.description).replace(/\n/g,'</br>') +'</article>' +
+            '</section>' +
+            '<section class="py-3" id="CaraRedeemVoucher">' +
+              '<h4 class="mb-4">Cara Redeem Voucher</h4>' +
+              '<article id="how-to-redeem">'+ (data.how_to_redeem).replace(/\n/g,'</br>') +'</article>' +
+            '</section>' +
+            '<hr/>' +
+          '</article>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+  '</section>'
 }
 
 // 
@@ -582,6 +658,25 @@ function courseLoaderHome() {
     })
 }
 
+function courseLoaderDetail () {
+    $(document).ready(function(){
+            var courseId = !_.isEmpty(queryParams.get('id')) ? queryParams.get('id') : 'ISW-P0005'; // ISW-P0005 == default
+            var appendTarget = $('#detail-course');
+            
+            if (appendTarget.length) {
+                $.getJSON(courseListURL, function(courses){
+                    var detail = _.findWhere(courses, { 'course_id': courseId })
+                    var similar = _.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId })
+                    console.log(similar)
+                    appendTarget.html('').append(templateDetail(detail));
+                })
+            }
+
+    })
+        
+    // $(target).html('').append(templateDetail)
+}
+
 
 /** init function */
 (function($){
@@ -682,6 +777,8 @@ function courseLoaderHome() {
 
     // run init course home
     courseLoaderHome();
+
+    courseLoaderDetail(dataCourse);
  })(jQuery);
 
 
