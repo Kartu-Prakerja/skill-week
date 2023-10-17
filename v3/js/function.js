@@ -23,7 +23,7 @@
 
 // general variable 
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
-const baseUrl = '/v3/pelatihan/detail.html'
+const BaseURL = '/v3/'
 const loadItem = 12;
 const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_3.json";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
@@ -52,7 +52,7 @@ var templateCourse = function(target, data, cardClass){
     var pills = data.course_type.toLowerCase() == "Daring LMS (online)".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var course_detail = baseUrl +'?title=' + data.course_title.replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
+    var course_detail = BaseURL +'pelatihan/detail.html?title=' + data.course_title.replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
     var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
@@ -108,7 +108,7 @@ var templateDetail = function(data) {
         '</div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
-          '<a class="card-company-link d-inline-flex p-2 text-decoration-none" href="pelatihan/index.html?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
+          '<a class="card-company-link d-inline-flex p-2 text-decoration-none" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
           '<div class="row mt-5 mb-4"> ' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>' +
               '<div class="ps-2"> ' +
@@ -464,9 +464,9 @@ function courseLoaderInit(){
         var buttonSearch = $('#button-search');
         var loadItem = 12;
         var currentPage = 1;
-        var filterTopic = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic')).replace(/-|%20/gi, ' ')).split(',') : '';
-        var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price')).replace(/-|%20/gi, ' ')).split(',') : '';
-        var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp')).replace(/-|%20/gi, ' ')).split(',') : '';
+        var filterTopic = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
+        var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
+        var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
 
         if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
@@ -569,9 +569,9 @@ function courseLoaderHome() {
                 dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
                 dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
                 dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
-                appendLimited.html('').addClass('owl-carousel');
-                appendTwenty.html('').addClass('owl-carousel');
-                appendFree.html('').addClass('owl-carousel');
+                appendLimited.html('');
+                appendTwenty.html('');
+                appendFree.html('');
 
                 var lookupCourseLP = {};
                 var resultCourseLP = [];
@@ -661,14 +661,46 @@ function courseLoaderHome() {
 function courseLoaderDetail () {
     $(document).ready(function(){
             var courseId = !_.isEmpty(queryParams.get('id')) ? queryParams.get('id') : 'ISW-P0005'; // ISW-P0005 == default
-            var appendTarget = $('#detail-course');
+            var appendDetail = $('#detail-course');
+            var appendSimilar = $('#courseCarousel');
             
-            if (appendTarget.length) {
+            if (appendDetail.length) {
                 $.getJSON(courseListURL, function(courses){
                     var detail = _.findWhere(courses, { 'course_id': courseId })
                     var similar = _.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId })
                     console.log(similar)
-                    appendTarget.html('').append(templateDetail(detail));
+                    appendDetail.html('').append(templateDetail(detail));
+                    appendSimilar.html('');
+                    $.each(similar, function(i, list) {
+                        templateCourse(appendSimilar, list, 'detail');
+                    });
+                }).done(function() {
+                    $('.owl-carousel').owlCarousel({
+                        loop:false,
+                        margin:24,
+                        nav:true,
+                        dots: false,
+                        responsive:{
+                            0:{
+                                items:1.2,
+                                margin: 16,
+                                nav:false,
+                            },
+                            600:{
+                                items:3,
+                                margin: 16,
+                                nav:false,
+                            },
+                            1000:{
+                                items:4,
+                                nav:false
+                            },
+                            1200:{
+                                items:4,
+                                nav:true
+                            }
+                        }
+                    });
                 })
             }
 
