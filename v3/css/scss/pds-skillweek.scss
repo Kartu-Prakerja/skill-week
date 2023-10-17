@@ -1013,6 +1013,12 @@ body{
       }
     }
   }
+  #breadcrumb-detail {
+    .breadcrumb-item.active {
+      max-width: 50%;
+    }
+  }
+  
 }
 
 @media (min-width: 576px) { 

@@ -29,29 +29,28 @@
       .modal-header.modal-header-custom
         img.me-2(src=baseURL+"img/img-ornament-1.svg")
         h4.modal-title Masuk Akun
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+        button.login-dismiss.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
         p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
-
-        form
+        form#login-form.needs-validation(novalidate)
           .mb-3
-            label.form-label(for='exampleInputEmail1')
+            label.form-label(for='userEmail')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control(type='email' aria-describedby='userEmail' placeholder="nama@email.com")
+            input#userEmail.form-control(type='email' aria-describedby='userEmail' placeholder="nama@email.com" required)
           .mb-3
-            label.form-label(for='exampleInputPassword1')
+            label.form-label(for='user-password')
               b Password akun Prakerja
             .input-group.mb-3
-              input.form-control.show-password-target(type='password' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2')
+              input#user-password.form-control.show-password-target(type='password' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2' required)
               button#button-addon2.btn.btn-outline-light.show-password(type='button')
                 i.bi.bi-eye
         //- .mb-3.form-check
         //-   input#exampleCheck1.form-check-input(type='checkbox')
         //-   label.form-check-label(for='exampleCheck1') Check me out
         div.mb-3 
-          button.btn.btn-primary.w-100(type='submit') Masuk
+          button#submit-login.btn.btn-primary.w-100(type='submit') Masuk
         div 
-          button.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
+          button.login-dismiss.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
       .modal-footer.justify-content-start.border-top
        
         p.fs-7.px-2 Belum punya akun? Yuk 

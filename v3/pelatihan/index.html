@@ -46,7 +46,7 @@
             <li class="nav-item md-hide"><a class="nav-link nav-link-active" href="/v3/pelatihan/index.html">Pelatihan</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="/v3/tanyajawab/index.html">Tanya Jawab</a></li>
             <li class="nav-item md-hide">
-              <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com">
+              <button class="btn btn-primary text-truncate max-width-200" id="btn-login">
                 <div class="d-flex align-items-center"><i class="bi bi-person-circle me-2"> </i><span class="skeleton-box rounded-pill" style="width:50"></span></div>
               </button>
             </li>
@@ -239,28 +239,28 @@
         <div class="modal-content">
           <div class="modal-header modal-header-custom"><img class="me-2" src="/v3/img/img-ornament-1.svg"/>
             <h4 class="modal-title">Masuk Akun</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button class="login-dismiss btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
             <p class="paragraph-md mb-4">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
-            <form>
+            <form class="needs-validation" id="login-form" novalidate="novalidate">
               <div class="mb-3">
-                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com"/>
+                <label class="form-label" for="userEmail"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control" id="userEmail" type="email" aria-describedby="userEmail" placeholder="nama@email.com" required="required"/>
               </div>
               <div class="mb-3">
-                <label class="form-label" for="exampleInputPassword1"><b>Password akun Prakerja</b></label>
+                <label class="form-label" for="user-password"><b>Password akun Prakerja</b></label>
                 <div class="input-group mb-3">
-                  <input class="form-control show-password-target" type="password" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2"/>
+                  <input class="form-control show-password-target" id="user-password" type="password" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2" required="required"/>
                   <button class="btn btn-outline-light show-password" id="button-addon2" type="button"><i class="bi bi-eye"></i></button>
                 </div>
               </div>
             </form>
             <div class="mb-3"> 
-              <button class="btn btn-primary w-100" type="submit">Masuk</button>
+              <button class="btn btn-primary w-100" id="submit-login" type="submit">Masuk</button>
             </div>
             <div> 
-              <button class="btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
+              <button class="login-dismiss btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
             </div>
           </div>
           <div class="modal-footer justify-content-start border-top">
