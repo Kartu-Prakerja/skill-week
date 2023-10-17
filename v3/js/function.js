@@ -1,12 +1,12 @@
 /**
  * TASK LIST
- * 1. HANDLE LOGIN USER
- * 1.1 MUNCULIN POPUP UNTUK USER KALAU BELUM LOGIN
- * 1.1.1 KALAU USER SKIP GAK PERLU MUNCULIN POP-UP
- * 1.2 CEK LOCAL STORAGE UNTUK LOGIN USER
- * 1.2.1 SIMPAN KE LOCAL STORAGE KALAU USER SUDAH LOGIN
+ * 1. HANDLE LOGIN USER (√)
+ * 1.1 MUNCULIN POPUP UNTUK USER KALAU BELUM LOGIN (√)
+ * 1.1.1 KALAU USER SKIP GAK PERLU MUNCULIN POP-UP (√)
+ * 1.2 CEK LOCAL STORAGE UNTUK LOGIN USER (√)
+ * 1.2.1 SIMPAN KE LOCAL STORAGE KALAU USER SUDAH LOGIN (√)
  * 1.2.2 SET WAKTU UNTUK NGE TIMEOUT LOCALSTORAGE
- * 1.2.3 HAPUS LOCAL STORAGE KALAU USER MAU GANTI AKUN DAN HAPUS SESSION POPUP UNTUK MINTA USER LOGIN KEMBALI
+ * 1.2.3 HAPUS LOCAL STORAGE KALAU USER MAU GANTI AKUN DAN HAPUS SESSION POPUP UNTUK MINTA USER LOGIN KEMBALI (√)
  * 1.3 POP UP KONFIRMASI UNTUK AMBIL VOUCHER
  * 
  * 2. SIMPAN PELATIHAN YANG SUDAH DIAMBIL PESERTA (FLAG PELATIHAN MANA YANG SUDAH DIAMBIL)
@@ -17,8 +17,8 @@
  * 3.2 HANDLE SHARE CONTENT
  * 
  * 4. HANDLE FILTER & SEARCH
- * 4.1 STORE KE LOCAL STORAGE UNTUK DAFTAR PELATIHAN
- * 4.2 HANDLE PANGGIL KE LOCAL STORAGE / AMBIL DARI JSON
+ * 4.1 STORE KE LOCAL STORAGE UNTUK DAFTAR PELATIHAN (√)
+ * 4.2 HANDLE PANGGIL KE LOCAL STORAGE / AMBIL DARI JSON (√)
  */
 
 // general variable 
@@ -31,8 +31,23 @@ const checkVoucher = '';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? localStorage.getItem('course_list') : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
-var dataUser = localStorage.getItem('users');
+var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
 var isPopupSkip = localStorage.getItem('login-popup-skip');
+var forms = document.querySelectorAll('.needs-validation');
+
+// Loop over them and prevent submission
+Array.prototype.slice.call(forms)
+.forEach(function (form) {
+  form.addEventListener('submit', function (event) {
+    if (!form.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    form.classList.add('was-validated')
+  }, false)
+})
+
 
 // empty state template
 var emptyState = "<div class='col-12 col-md-12'>" +
@@ -723,7 +738,10 @@ function courseLoaderDetail () {
 function homeCheckLogin() {
     var loginText = !_.isNull(dataUser) ? dataUser.email : 'Masuk';
     var loginButton = $('#btn-login');
+    var logoutButton = $('#btn-logout');
     var loginModal = $('#loginModal');
+    var successLoginModal = $('#loginSuccessModal');
+    var afterLoginModal = $('#loginAlreadyModal');
     var loginSkip = $('.login-dismiss');
     var formLogin = $("#login-form");
     var btnFormLogin = $('#submit-login');
@@ -743,28 +761,53 @@ function homeCheckLogin() {
             loginModal.modal('show');
             loginSkip.click(function() {
                 localStorage.setItem('login-popup-skip', true);
+                formLogin.find('.alert.alert-danger').addClass('visually-hidden');
+                btnFormLogin.removeClass('disabled').html('Masuk');
             })
         }
 
         formLogin.submit(function(e) {
             e.preventDefault();
-            console.log('test')
             var dataPost = {
-                "email": formLogin.find('input#user-email').val(),
-                "password": formLogin.find('input#user-password').val()
+                "email": formLogin.find('input#userEmail').val(),
+                "password": formLogin.find('input#userPassword').val()
             };
 
-            $.ajax({
-                dataType: "json",
-                contentType : "application/json",
-                type: "POST",
-                url: checkLogin,
-                data: JSON.stringify(dataPost)
-            }).done(function (data) {
-                console.log(data)
-            }).fail(function(data) {
-                console.log(data)
-              })
+            console.log(dataPost)
+
+            if(!_.isEmpty(dataPost.email) && !_.isEmpty(dataPost.password)) {
+                
+                btnFormLogin.addClass('disabled').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"> </span><span class="sr-only"> Loading...</span>');
+
+                $.ajax({
+                    dataType: "json",
+                    contentType : "application/json",
+                    type: "POST",
+                    url: checkLogin,
+                    data: JSON.stringify(dataPost)
+                }).done(function (response) {
+                    var data = response.data
+                    console.log(data)
+                    if(data.stat.step !== 7) {
+                        btnFormLogin.removeClass('disabled').html('Masuk');
+                        formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
+                    } else {
+                        localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
+                        loginButton.find('i').after(dataPost.email);
+
+                        formLogin.find('.alert.alert-danger').addClass('visually-hidden');
+                        btnFormLogin.removeClass('disabled').html('Masuk');
+                        // hide modal login
+                        loginModal.modal('hide');
+                        // show success login modal
+                        successLoginModal.find('.email-account').text(dataPost.email).modal('show');
+                    }
+                }).fail(function(data) {
+                    formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
+                    btnFormLogin.removeClass('disabled').html('Masuk');
+                    console.log(data)
+                })
+            }
 
         })
 
@@ -772,6 +815,19 @@ function homeCheckLogin() {
             console.log('form submit')
             // formLogin.trigger('submit');
         })
+        
+    } else {
+        loginButton.find('span').after(loginText).remove();
+        // handle login
+        loginButton.click(function() {
+            afterLoginModal.find('#validEmailUser').val(dataUser.email)
+            afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
+            afterLoginModal.modal('show');
+            logoutButton.click(function() {
+                localStorage.removeItem('users');
+                window.location.reload();
+            })
+        });
         
     }
 }
