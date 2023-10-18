@@ -158,7 +158,7 @@ var templateDetail = function(data) {
             '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-link-45deg"></i>' +
               '<div class="ps-2 overflow-hidden">' +
-                '<h6 class="fs-7 mb-2">Link Pelatihan</h6><a class="fs-7 d-flex align-items-center" href="#"> <span class="pds-truncate">'+ data.course_url +'</span><i class="bi bi-arrow-up-right-square-fill"></i></a>' +
+                '<h6 class="fs-7 mb-2">Link Pelatihan</h6><a class="fs-7 d-flex align-items-center" href="'+ data.course_url +'" target="_blank" title="'+ data.course_title +'"> <span class="pds-truncate">'+ data.course_url +'</span><i class="bi bi-arrow-up-right-square-fill"></i></a>' +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -692,42 +692,53 @@ function courseLoaderDetail () {
         $.getJSON(courseListURL, function(courses){
             var detail = _.findWhere(courses, { 'course_id': courseId });
             var similar = _.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId });
-            var similarCourseLink = BaseURL + 'pelatihan.html?topic='+ courses.course_category +'&keyword=&price=&lp='
+            var similarCourseLink = BaseURL + 'pelatihan.html?topic='+ courses.course_category +'&keyword=&price=&lp=';
+            var similarButton = $('.similar-course');
             appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
             
             appendSimilar.html('');
-            $.each(similar, function(i, list) {
-                templateCourse(appendSimilar, list, 'detail');
-            });
+            similarButton.attr('href', similarCourseLink);
+            console.log(similar);
+            if (!_.isEmpty(similar)) {
+                console.log('masuk tidak kosong')
+                $.when(
+                    $.each(similar, function(i, list) {
+                        templateCourse(appendSimilar, list, 'detail');
+                    })
+                ).then(function() {
+                    $('.owl-carousel').owlCarousel({
+                        loop:false,
+                        margin:24,
+                        nav:true,
+                        dots: false,
+                        responsive:{
+                            0:{
+                                items:1.2,
+                                margin: 16,
+                                nav:false,
+                            },
+                            600:{
+                                items:3,
+                                margin: 16,
+                                nav:false,
+                            },
+                            1000:{
+                                items:4,
+                                nav:false
+                            },
+                            1200:{
+                                items:4,
+                                nav:true
+                            }
+                        }
+                    });
+                })
+            } else {
+                console.log('masuk kosong');
+                appendSimilar.html('<div class="col-12 col-md-12"><div class="alert alert-info" role="alert"><div class="d-flex"><div class="pe-3"><i class="bi bi-info-circle-fill fs-4"></i></div><div><h6 class="alert-heading">Pelatihan serupa ditemukan</h6><p>Mohon periksa kembali kata kunci Anda dan pastikan ejaan dan tata bahasa yang benar. Anda juga dapat mencoba menggunakan kata kunci yang berbeda atau mencari di topik pelatihan yang berbeda.</p></div></div></div></div>').css({"display": "block"})
+            }
 
-        }).done(function() {
-            $('.owl-carousel').owlCarousel({
-                loop:false,
-                margin:24,
-                nav:true,
-                dots: false,
-                responsive:{
-                    0:{
-                        items:1.2,
-                        margin: 16,
-                        nav:false,
-                    },
-                    600:{
-                        items:3,
-                        margin: 16,
-                        nav:false,
-                    },
-                    1000:{
-                        items:4,
-                        nav:false
-                    },
-                    1200:{
-                        items:4,
-                        nav:true
-                    }
-                }
-            });
         })
     }
 
@@ -749,7 +760,7 @@ function homeCheckLogin() {
     // trigger popup
     if (_.isNull(dataUser)) {
         // set wording to login
-        loginButton.find('span').after(loginText).remove();
+        loginButton.find('span').removeClass('skeleton-box rounded-pill').html(loginText)
         
         // handle login
         loginButton.click(function() {
@@ -793,14 +804,15 @@ function homeCheckLogin() {
                         formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
                     } else {
                         localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
-                        loginButton.find('i').after(dataPost.email);
+                        loginButton.find('.text-users').html(dataPost.email);
 
                         formLogin.find('.alert.alert-danger').addClass('visually-hidden');
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         // hide modal login
                         loginModal.modal('hide');
                         // show success login modal
-                        successLoginModal.find('.email-account').text(dataPost.email).modal('show');
+                        successLoginModal.find('.email-account').text(dataPost.email)
+                        successLoginModal.modal('show');
                     }
                 }).fail(function(data) {
                     formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
