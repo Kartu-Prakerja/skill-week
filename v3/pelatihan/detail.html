@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://www.prakerja.go.id/favicon.ico" rel="shortcut icon"/>
     <title>Judul Pelatihan</title>
+    <link rel="canonical" href="https://skillsweek.prakerja.go.id"/>
+    <link rel="alternate" hreflang="id" href="https://skillsweek.prakerja.go.id"/>
     <meta property="og:image" content="https://github.com/Kartu-Prakerja/skill-week/blob/main/img/cover-id-skillweek-by-prakerja.jpg?raw=true"/>
     <meta property="og:image:width" content="400"/>
     <meta property="og:image:height" content="627"/>
@@ -46,7 +48,7 @@
             <li class="nav-item md-hide"><a class="nav-link" href="/v3/pelatihan/index.html">Pelatihan</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="/v3/tanyajawab/index.html">Tanya Jawab</a></li>
             <li class="nav-item md-hide">
-              <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com">
+              <button class="btn btn-primary text-truncate" id="btn-login">
                 <div class="d-flex align-items-center"><i class="bi bi-person-circle me-2"> </i><span class="skeleton-box rounded-pill" style="width:50"></span></div>
               </button>
             </li>
@@ -134,7 +136,7 @@
       <section class="section-course">
         <div class="container py-0 px-4 px-md-0">
           <div class="d-flex align-items-center justify-content-between mb-3 custom-header-carousel">
-            <h4>Pelatihan Serupa</h4><a class="btn text-primary" href="/v3/pelatihan/index.html?topic=&amp;keyword=&amp;price=20000&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
+            <h4>Pelatihan Serupa</h4><a class="btn text-primary similar-course" href="/v3/pelatihan/index.html?topic=&amp;keyword=&amp;price=&amp;lp=" title="lihat semua pelatihan">Lihat Semua <i class="bi bi-chevron-right"></i></a>
           </div>
           <!-- Set up your HTML-->
           <div class="row justify-content-md-center owl-carousel" id="courseCarousel">
@@ -239,29 +241,36 @@
         <div class="modal-content">
           <div class="modal-header modal-header-custom"><img class="me-2" src="/v3/img/img-ornament-1.svg"/>
             <h4 class="modal-title">Masuk Akun</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button class="login-dismiss btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
             <p class="paragraph-md mb-4">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
-            <form>
-              <div class="mb-3">
-                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com"/>
+            <form class="row g-3 needs-validation" id="login-form" novalidate="novalidate">
+              <div class="col-12">
+                <label class="form-label" for="userEmail"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control" id="userEmail" type="email" placeholder="nama@email.com" required="required"/>
+                <div class="invalid-feedback">Masukan email dan format yang sesuai</div>
               </div>
-              <div class="mb-3">
-                <label class="form-label" for="exampleInputPassword1"><b>Password akun Prakerja</b></label>
-                <div class="input-group mb-3">
-                  <input class="form-control show-password-target" type="password" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2"/>
+              <div class="col-12">
+                <label class="form-label" for="userPassword"><b>Password akun Prakerja</b></label>
+                <div class="input-group">
+                  <input class="form-control" id="userPassword" type="password" laceholder="Masukkan Password" required="required"/>
                   <button class="btn btn-outline-light show-password" id="button-addon2" type="button"><i class="bi bi-eye"></i></button>
+                  <div class="invalid-feedback">Masukan Password yang benar</div>
                 </div>
               </div>
+              <div class="alert alert-danger mt-3 d-flex align-items-top mb-3 visually-hidden"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
+                <div>
+                  <div class="fs-7 text-error">Alamat email atau password salah. Mohon periksa kembali.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary w-100" id="submit-login" type="submit">Masuk</button>
+              </div>
+              <div> 
+                <button class="login-dismiss btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
+              </div>
             </form>
-            <div class="mb-3"> 
-              <button class="btn btn-primary w-100" type="submit">Masuk</button>
-            </div>
-            <div> 
-              <button class="btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
-            </div>
           </div>
           <div class="modal-footer justify-content-start border-top">
             <p class="fs-7 px-2">Belum punya akun? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Prakerja</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></p>
@@ -278,7 +287,7 @@
             </div>
           </div>
           <div class="modal-body px-4">
-            <p>Akun kamu <b>(bambang@gmail.com)</b>berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
+            <p>Akun kamu <b class="email-account">(bambang@gmail.com)</b> berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
           </div>
           <div class="modal-footer ps-4 pb-4 pe-4">
             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Mengerti</button>
@@ -337,11 +346,11 @@
           <div class="modal-body px-4">
             <form>
               <div class="mb-3">
-                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control is-valid" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="bambang@gmail.com" readonly="readonly"/>
+                <label class="form-label" for="validEmailUser"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control is-valid" id="validEmailUser" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="your-email@domain.com" readonly="readonly"/>
               </div>
             </form>
-            <p>Akun kamu <b>(bambang@gmail.com)</b>berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
+            <p>Akun kamu <b class="text-email">(your-email@domain.com)</b> berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
           </div>
           <div class="modal-footer ps-4 pb-4 pe-4">
             <button class="btn btn-ghost-danger w-100" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal" data-bs-dismiss="modal">Keluar</button>
@@ -362,7 +371,7 @@
           <div class="modal-footer ps-4 pb-4 pe-4">
             <div class="row p-0 w-100">
               <div class="col-12 col-md-6 ps-0 pe-0 pe-lg-2">
-                <button class="btn btn-ghost-danger w-100 mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-dismiss="modal">Ya</button>
+                <button class="btn btn-ghost-danger w-100 mb-3 mb-lg-0" id="btn-logout" data-bs-toggle="modal" data-bs-dismiss="modal">Ya</button>
               </div>
               <div class="col-12 col-md-6 ps-0 pe-0 ps-lg-2">
                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Batal</button>

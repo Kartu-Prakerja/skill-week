@@ -29,29 +29,54 @@
       .modal-header.modal-header-custom
         img.me-2(src=baseURL+"img/img-ornament-1.svg")
         h4.modal-title Masuk Akun
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+        button.login-dismiss.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
         p.paragraph-md.mb-4 Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.
-
-        form
-          .mb-3
-            label.form-label(for='exampleInputEmail1')
+        form#login-form.row.g-3.needs-validation(novalidate)
+          .col-12
+            label.form-label(for='userEmail')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control(type='email' aria-describedby='userEmail' placeholder="nama@email.com")
-          .mb-3
-            label.form-label(for='exampleInputPassword1')
+            input#userEmail.form-control(type='email'  placeholder="nama@email.com" required)
+            .invalid-feedback
+              | Masukan email dan format yang sesuai
+          .col-12
+            label.form-label(for='userPassword')
               b Password akun Prakerja
-            .input-group.mb-3
-              input.form-control.show-password-target(type='password' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2')
+            .input-group
+              input#userPassword.form-control(type='password' laceholder="Masukkan Password" required)
               button#button-addon2.btn.btn-outline-light.show-password(type='button')
                 i.bi.bi-eye
-        //- .mb-3.form-check
-        //-   input#exampleCheck1.form-check-input(type='checkbox')
-        //-   label.form-check-label(for='exampleCheck1') Check me out
-        div.mb-3 
-          button.btn.btn-primary.w-100(type='submit') Masuk
-        div 
-          button.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
+              .invalid-feedback
+                | Masukan Password yang benar
+          .alert.alert-danger.mt-3.d-flex.align-items-top.mb-3.visually-hidden
+            i.fs-5.bi.bi-exclamation-triangle-fill.me-3
+            div
+              div.fs-7.text-error
+                | Alamat email atau password salah. Mohon periksa kembali.
+          .col-12
+            button#submit-login.btn.btn-primary.w-100(type='submit') Masuk
+          div 
+            button.login-dismiss.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
+            
+        //- form#login-form.needs-validation(novalidate)
+        //-   .mb-3
+        //-     label.form-label(for='userEmail')
+        //-       b Alamat Email yang terdaftar di Prakerja
+        //-     input#userEmail.form-control(type='email' aria-describedby='userEmail' placeholder="nama@email.com" required)
+        //-   .mb-3
+        //-     label.form-label(for='user-password')
+        //-       b Password akun Prakerja
+        //-     .input-group.mb-3
+        //-       input#user-password.form-control.show-password-target(type='password' placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby='button-addon2' required)
+        //-       button#button-addon2.btn.btn-outline-light.show-password(type='button')
+        //-         i.bi.bi-eye
+        //- //- .mb-3.form-check
+        //- //-   input#exampleCheck1.form-check-input(type='checkbox')
+        //- //-   label.form-check-label(for='exampleCheck1') Check me out
+        //- div.mb-3 
+        //-   button#submit-login.btn.btn-primary.w-100(type='submit') Masuk
+        //- div 
+        //-   button.login-dismiss.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
       .modal-footer.justify-content-start.border-top
        
         p.fs-7.px-2 Belum punya akun? Yuk 
@@ -71,8 +96,8 @@
       .modal-body.px-4
         p
           | Akun kamu 
-          b (bambang@gmail.com)
-          | berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
+          b.email-account (bambang@gmail.com)
+          |  berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
         button.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
@@ -133,14 +158,14 @@
       .modal-body.px-4
         form
           .mb-3
-            label.form-label(for='exampleInputEmail1')
+            label.form-label(for='validEmailUser')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
+            input#validEmailUser.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="your-email@domain.com" readonly)
 
         p
           | Akun kamu 
-          b (bambang@gmail.com)
-          | berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
+          b.text-email (your-email@domain.com)
+          |  berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
         button.btn.btn-ghost-danger.w-100(data-bs-toggle="modal" data-bs-target="#confirmLogoutModal"  data-bs-dismiss='modal')
@@ -162,10 +187,10 @@
       .modal-footer.ps-4.pb-4.pe-4
         .row.p-0.w-100
           .col-12.col-md-6.ps-0.pe-0.pe-lg-2
-            button.btn.btn-ghost-danger.w-100.mb-3.mb-lg-0(data-bs-toggle="modal"  data-bs-dismiss='modal')
+            button#btn-logout.btn.btn-ghost-danger.w-100.mb-3.mb-lg-0(data-bs-toggle="modal" data-bs-dismiss='modal')
               | Ya
           .col-12.col-md-6.ps-0.pe-0.ps-lg-2
-            button.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+            button.btn.btn-primary.w-100(data-bs-toggle="modal" data-bs-dismiss='modal')
               | Batal
         
           
