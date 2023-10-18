@@ -879,11 +879,13 @@ body{
 
     .accordion-header {
       // outline: solid 1px red;
+      font-size: 1rem!important;
       .accordion-button{
         background-color: white;
         border: none;
         box-shadow: none;
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+        font-weight: bold;
         color: var(--text-default);
 
         &::after{
@@ -1011,6 +1013,9 @@ body{
   a{
     text-decoration: none;
     color: var(--primary);
+  }
+  h4{
+    margin:0;
   }
 }
 

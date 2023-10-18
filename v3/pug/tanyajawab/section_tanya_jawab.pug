@@ -2,7 +2,8 @@ section
     .container.py-md-5.py-5.px-4.px-md-0
         .row.justify-content-center
             .col-12.col-xl-10.mb-3.mb-lg-4
-                h2.mb-3.text-center Tanya Jawab
+                section.py-5
+                    h2.text-center Tanya Jawab
 
                 section
                     div.heading-sticky
@@ -81,24 +82,98 @@ section
                             
                         .accordion-item 
                             h5.accordion-header 
-                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1")
-                                    | Accordion Item #1
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA1" aria-expanded="true" aria-controls="collapseA1")
+                                    | Apa itu Indonesia Skills Week?
                             
-                            .accordion-collapse.collapse#collapse1(data-bs-parent="#accordionTentangISW")
+                            .accordion-collapse.collapse#collapseA1(data-bs-parent="#accordionTentangISW")
                                 .accordion-body
-                                    strong This is the first item's accordion body.
-                                    | It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    p   Indonesia Skills Week adalah event satu pekan yang diselenggarakan oleh Manajemen Pelaksana Program Kartu Prakerja (MPPKP) setiap dua bulan dengan memberikan pelatihan secara gratis, murah dan mudah dalam waktu terbatas yang bertujuan untuk meningkatkan kesadaran masyarakat Indonesia terhadap pentingnya pembelajaran sepanjang hayat 
+                                        i (lifelong learning) 
+                                        | melalui berbagai pelatihan peningkatan keterampilan.
                         
                         .accordion-item 
                             h5.accordion-header 
-                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2")
-                                    | Accordion Item #3
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA2" aria-expanded="true" aria-controls="collapseA2")
+                                    | Siapa saja yang bisa mendaftar Indonesia Skills Week?
                             
-                            .accordion-collapse.collapse#collapse2(data-bs-parent="#accordionTentangISW")
+                            .accordion-collapse.collapse#collapseA2(data-bs-parent="#accordionTentangISW")
                                 .accordion-body
-                                    strong This is the first item's accordion body.
-                                    | It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    p Kamu bisa mendaftar Event Indonesia Skills Week jika kamu memenuhi syarat berikut ini:
+                                    ol 
+                                        li  Mempunyai akun Prakerja (Apabila belum terdaftar silahkan mengikuti proses registrasi akun melalui 
+                                            a(href="www.prakerja.go.id" target="_blank") www.prakerja.go.id 
+                                            | )
+                                        li  WNI usia minimal 18 Tahun
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA3" aria-expanded="true" aria-controls="collapseA3")
+                                    | Saya belum terdaftar sebagai Penerima Kartu Prakerja, apakah saya boleh mendaftar event ISW ini?
                             
+                            .accordion-collapse.collapse#collapseA3(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Boleh, silakan mengikuti proses registrasi terlebih dahulu melalui 
+                                        a(href="www.prakerja.go.id" target="_blank") www.prakerja.go.id
+                                        | , setelah memiliki akun Prakerja, silahkan memilih  pelatihan yang ditawarkan di event ISW
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA4" aria-expanded="true" aria-controls="collapseA4")
+                                    | Apakah jika saya terdaftar di acara ISW otomatis saya juga menjadi penerima Program Kartu Prakerja?
+                            
+                            .accordion-collapse.collapse#collapseA4(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Event ini adalah event terpisah diluar pelatihan yang diselenggarakan oleh Program Kartu Prakerja. Jadi peserta ISW adalah WNI berumur minimal 18 Tahun dan mempunyai akun Prakerja (terverifikasi sebagai peserta Kartu Prakerja, maupun yang menjadi daftar blacklist yaitu TNI, Polri, ASN, Direktur BUMN, Perangkat desa dll)
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA5" aria-expanded="true" aria-controls="collapseA5")
+                                    | Jika saya sudah memiliki akun Prakerja, bagaimana saya bisa mendaftar pelatihan di ISW?
+                            
+                            .accordion-collapse.collapse#collapseA5(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Peserta silahkan datang ke laman ISW 
+                                        a(href="https://skillsweek.prakerja.go.id/") https://skillsweek.prakerja.go.id/
+                                        | , memilih pelatihan yang diinginkan, lalu menunggu proses validasi dari MPPKP  selama 1x24 jam, kemudian PMO Prakerja akan memberikan kode voucher pelatihan tersebut melalui email yang didaftarkan.
+                                    p   Peserta yang telah mendapatkan kode voucher dari pelatihan yang dipilih kemudian bisa langsung menuju laman/website pelatihan tersebut dan mengisi kode voucher berdasarkan petunjuk yang diberikan oleh masing-masing lembaga penyelenggara pelatihan dalam email yang diberikan oleh MPPKP.
+
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA6" aria-expanded="true" aria-controls="collapseA6")
+                                    | Apakah daftar blacklist Kartu Prakerja bisa mendaftar Indonesia Skills Week?
+                            
+                            .accordion-collapse.collapse#collapseA6(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Bisa namun tetap harus membuat akun Prakerja terlebih dahulu di 
+                                        a(href="www.prakerja.go.id" target="_blank") www.prakerja.go.id
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA7" aria-expanded="true" aria-controls="collapseA7")
+                                    | Apakah ada kuota penerima bagi pendaftar event Indonesia Skills Week?
+                            
+                            .accordion-collapse.collapse#collapseA7(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Tidak ada batasan jumlah pendaftar. Akan tetap ada kuota pelatihan yang diberikan oleh Lembaga Pelatihan. Selama pelatihan yang kamu pilih masih tersedia, kamu masih bisa mengikuti pelatihan di  event Indonesia Skills Week.
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA8" aria-expanded="true" aria-controls="collapseA8")
+                                    | Siapa yang akan melaksanakan event Indonesia Skills Week?
+                            
+                            .accordion-collapse.collapse#collapseA8(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Event Indonesia Skills Weeks dilaksanakan oleh Manajemen Pelaksana Program Kartu Prakerja (MPPKP) dengan bekerjasama dengan berbagai lembaga penyedia pelatihan yang bergabung di dalam Event Indonesia Skills Week.
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseA9" aria-expanded="true" aria-controls="collapseA9")
+                                    | Apa saja produk yang bisa saya ikuti dalam Indonesia Skills Week Periode Oktober?
+                            
+                            .accordion-collapse.collapse#collapseA9(data-bs-parent="#accordionTentangISW")
+                                .accordion-body
+                                    p   Peserta bisa mengikuti berbagai produk pelatihan yang tersedia pada ISW yaitu: Pelatihan gratis, pelatihan murah harga Rp20 ribu, dan diskon besar 50%. Selain itu pada event ISW Oktober ini, peserta dapat mengikuti webinar dengan topik-topik pilihan yang diselenggarakan oleh berbagai lembaga.
 
                 section
                     div.heading-sticky
@@ -108,24 +183,29 @@ section
                     .accordion.pds-accordion#accordionPendafataranISW                          
                         .accordion-item 
                             h5.accordion-header 
-                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1")
-                                    | Accordion Item #1
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseB1" aria-expanded="true" aria-controls="collapseB1")
+                                    | Apakah saya harus membuat akun di Prakerja?
                             
-                            .accordion-collapse.collapse#collapse1(data-bs-parent="#accordionPendafataranISW")
+                            .accordion-collapse.collapse#collapseB1(data-bs-parent="#accordionPendafataranISW")
                                 .accordion-body
-                                    strong This is the first item's accordion body.
-                                    | It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        
+                                    p Ya, jika kamu belum punya akun Prakerja, silakan mendaftar dengan mengikuti proses registrasi akun melalui 
+                                        a(href="https://dashboard.prakerja.go.id/daftar") https://dashboard.prakerja.go.id/daftar 
                         .accordion-item 
                             h5.accordion-header 
-                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2")
-                                    | Accordion Item #3
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseB2" aria-expanded="true" aria-controls="collapseB2")
+                                    | Apakah saya harus mengisi form pendaftaran Indonesia Skills Week seperti periode ISW sebelumnya?
                             
-                            .accordion-collapse.collapse#collapse2(data-bs-parent="#accordionPendafataranISW")
+                            .accordion-collapse.collapse#collapseB2(data-bs-parent="#accordionPendafataranISW")
                                 .accordion-body
-                                    strong This is the first item's accordion body.
-                                    | It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    p Pada periode Oktober 2023 ini, kamu tidak perlu mengisi form pendaftaran ISW lagi. Akan tetapi, kamu tetap harus membuat akun Prakerja terlebih dahulu, lalu memilih pelatihan dan menunggu konfirmasi voucher dari Manajemen Pelaksana Program Kartu Prakerja (MPPKP) sebelum bisa mengakses pelatihan yang dipilih.
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseB3" aria-expanded="true" aria-controls="collapseB3")
+                                    | Bagaimana saya bisa mengecek status pendaftaran event Indonesia Skills Week?
                             
+                            .accordion-collapse.collapse#collapseB3(data-bs-parent="#accordionPendafataranISW")
+                                .accordion-body
+                                    p Kamu bisa mengecek email yang didaftarkan secara reguler. Jika dalam 1x24 jam belum mendapatkan konfirmasi voucher, maka kamu belum dapat mengikuti pelatihan melalui mekanisme ISW.
 
                 section
                     div.heading-sticky
@@ -135,25 +215,143 @@ section
                     .accordion.pds-accordion#accordionPelatihanISW                          
                         .accordion-item 
                             h5.accordion-header 
-                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1")
-                                    | Accordion Item #1
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC1" aria-expanded="true" aria-controls="collapseC1")
+                                    | Berapa jumlah pelatihan yang dapat saya pilih?
                             
-                            .accordion-collapse.collapse#collapse1(data-bs-parent="#accordionPelatihanISW")
+                            .accordion-collapse.collapse#collapseC1(data-bs-parent="#accordionPelatihanISW")
                                 .accordion-body
-                                    strong This is the first item's accordion body.
-                                    | It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        
+                                    p Peserta bisa mengakses pelatihan manapun yang diinginkan selama kuota pelatihan tersebut masih tersedia.
                         .accordion-item 
                             h5.accordion-header 
-                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2")
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC2" aria-expanded="true" aria-controls="collapseC2")
                                     | Accordion Item #3
                             
-                            .accordion-collapse.collapse#collapse2(data-bs-parent="#accordionPelatihanISW")
+                            .accordion-collapse.collapse#collapseC2(data-bs-parent="#accordionPelatihanISW")
                                 .accordion-body
-                                    strong This is the first item's accordion body.
-                                    | It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC3" aria-expanded="true" aria-controls="collapseC3")
+                                    | Accordion Item #3
                             
+                            .accordion-collapse.collapse#collapseC3(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
 
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC4" aria-expanded="true" aria-controls="collapseC4")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC4(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
 
-        
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC5" aria-expanded="true" aria-controls="collapseC5")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC5(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
 
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC6" aria-expanded="true" aria-controls="collapseC6")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC6(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC7" aria-expanded="true" aria-controls="collapseC7")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC7(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC8" aria-expanded="true" aria-controls="collapseC8")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC8(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC9" aria-expanded="true" aria-controls="collapseC9")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC9(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC10" aria-expanded="true" aria-controls="collapseC10")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC10(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC11" aria-expanded="true" aria-controls="collapseC11")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC11(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC12" aria-expanded="true" aria-controls="collapseC12")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC12(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC13" aria-expanded="true" aria-controls="collapseC13")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC13(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC14" aria-expanded="true" aria-controls="collapseC14")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC14(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC15" aria-expanded="true" aria-controls="collapseC15")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC15(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
+
+                        .accordion-item 
+                            h5.accordion-header 
+                                button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseC16" aria-expanded="true" aria-controls="collapseC16")
+                                    | Accordion Item #3
+                            
+                            .accordion-collapse.collapse#collapseC16(data-bs-parent="#accordionPelatihanISW")
+                                .accordion-body
+                                    p body
