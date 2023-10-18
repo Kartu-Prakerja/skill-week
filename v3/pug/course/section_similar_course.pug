@@ -1,20 +1,34 @@
-section.section-course
+
+//-------- Similar Course States ------- //
+//--------  Un comment code bellow ------- //
+
+//- section.section-course
+//-   .container.py-0.px-4.px-md-0
+//-     .d-flex.align-items-center.justify-content-between.mb-3.custom-header-carousel
+//-       h4 Pelatihan Serupa
+//-       a.btn.text-primary.similar-course(href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=' title="lihat semua pelatihan")
+//-         | Lihat Semua 
+//-         i.bi.bi-chevron-right
+
+//-     #courseCarousel.row.justify-content-md-center.owl-carousel
+//-         include ../includes/course_card.pug
+
+
+//-------- Empty Course States ------- //
+
+section.section-course.mb-4
   .container.py-0.px-4.px-md-0
-    .d-flex.align-items-center.justify-content-between.mb-3.custom-header-carousel
+    .d-flex.align-items-center.justify-content-between.mb-3
       h4 Pelatihan Serupa
-      a.btn.text-primary.similar-course(href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=' title="lihat semua pelatihan")
-        | Lihat Semua 
-        i.bi.bi-chevron-right
-    //- .row
-    //-   .col-12.mt-3
-    //-     .alert.alert-warning.text-center.lh-base(role='alert')
-    //-       i.bi.bi-info-circle-fill.me-2
-    //-       |  Saat ini pendaftaran pelatihan sedang ditutup, tunggu 
-    //-       b Indonesia Skills Week
-    //-       |  selanjutnya pada bulan 
-    //-       b  Oktober 2023! 
-    //-       br
-          a.link-primary(href='https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link' target='_blank' title='Klik disini untuk daftar pengingat') Klik disini untuk daftar pengingat
-    // Set up your HTML
-    #courseCarousel.row.justify-content-md-center.owl-carousel
-        include ../includes/course_card.pug
+      
+    .d-flex.similar-course-empty.rounded.justify-content-center
+        .col-lg-8.d-lg-flex.p-4.justify-content-center 
+          div.p-md-3.mb-3.mb-lg-0
+            img(src=baseURL+"img/img-ornament-1.svg" height="116")
+
+          div.p-md-3
+            h5 Sepertinya tidak ditemukan pelatihan serupa
+            p Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk mengikuti
+            a.btn.btn-primary(href="/pelatihan")  Cari Pelatihan Lainnya
+
+        
