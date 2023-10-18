@@ -60,78 +60,129 @@
       </div>
     </header>
     <main>
-      <section class="section-hero">
+      <section>
         <div class="container py-md-5 py-5 px-4 px-md-0">
-          <div class="row">
-            <div class="col-12 text-center mb-3 mb-lg-4">
-              <h2 class="mb-3">Tanya Jawab</h2>
-            </div>
-          </div>
-          <div class="accordion pds-accordion" id="accordionExample1">
-            <div class="accordion-item"> 
-              <h2 class="accordion-header"> 
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Sampel Modals</button>
-              </h2>
-              <div class="accordion-collapse collapse show" id="collapseOne" data-bs-parent="#accordionExample1">
-                <div class="accordion-body"> 
-                  <h3>Akun</h3>
-                  <ol> 
-                    <li class="mb-3">
-                      <h6>Default</h6>
-                      <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-person-circle me-2"></i>Masuk</button><br/><br/>
-                      <h6>Sudah Login + truncate + title</h6>
-                      <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com"><i class="bi bi-person-circle me-2"> </i>bambang_soehardjo@gmail.com</button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginSuccessModal">Success Message</button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginErrorModal">Error States </button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginAlreadyModal">Sudah Login</button>
-                    </li>
-                  </ol>
-                  <hr/>
-                  <h3>Course</h3>
-                  <ol> 
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseNotLoginModal">Ambil Pelatihan - Belum Login</button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseLoginModal">Ambil Pelatihan - Sudah Login</button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getFreeCourseNotLoginModal">Ambil Pelatihan Gratis - Belum Login</button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getFreeCourseLoginModal">Ambil Pelatihan Gratis - Sudah Login</button>
-                    </li>
-                    <li class="mb-3">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseFailedModal">Ambil Pelatihan - Sudah Login - Gagal</button>
-                    </li>
-                    <li class="mb-3"> 
-                      <button class="btn btn-primary" id="liveToastBtn" type="button">Toast Sukses Ambil Pelatihan</button>
-                    </li>
-                  </ol>
+          <div class="row justify-content-center">
+            <div class="col-12 col-xl-10 mb-3 mb-lg-4">
+              <h2 class="mb-3 text-center">Tanya Jawab</h2>
+              <section>
+                <div class="heading-sticky">
+                  <h4> <a href="#accordionTentangISW"> Tentang Indonesia Skills Week</a></h4>
                 </div>
-              </div>
-            </div>
-            <div class="accordion-item"> 
-              <h2 class="accordion-header"> 
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Accordion Item #1</button>
-              </h2>
-              <div class="accordion-collapse collapse" id="collapseTwo" data-bs-parent="#accordionExample1">
-                <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
-              </div>
-            </div>
-            <div class="accordion-item"> 
-              <h2 class="accordion-header"> 
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Accordion Item #3</button>
-              </h2>
-              <div class="accordion-collapse collapse" id="collapseThree" data-bs-parent="#accordionExample1">
-                <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
-              </div>
+                <div class="accordion pds-accordion" id="accordionTentangISW">
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Sampel Modals</button>
+                    </h5>
+                    <div class="accordion-collapse collapse show" id="collapseOne" data-bs-parent="#accordionTentangISW">
+                      <div class="accordion-body"> 
+                        <h3>Akun</h3>
+                        <ol> 
+                          <li class="mb-3">
+                            <h6>Default</h6>
+                            <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-person-circle me-2"></i>Masuk</button><br/><br/>
+                            <h6>Sudah Login + truncate + title</h6>
+                            <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com"><i class="bi bi-person-circle me-2"> </i>bambang_soehardjo@gmail.com</button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginSuccessModal">Success Message</button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginErrorModal">Error States </button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginAlreadyModal">Sudah Login</button>
+                          </li>
+                        </ol>
+                        <hr/>
+                        <h3>Course</h3>
+                        <ol> 
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseNotLoginModal">Ambil Pelatihan - Belum Login</button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseLoginModal">Ambil Pelatihan - Sudah Login</button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getFreeCourseNotLoginModal">Ambil Pelatihan Gratis - Belum Login</button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getFreeCourseLoginModal">Ambil Pelatihan Gratis - Sudah Login</button>
+                          </li>
+                          <li class="mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseFailedModal">Ambil Pelatihan - Sudah Login - Gagal</button>
+                          </li>
+                          <li class="mb-3"> 
+                            <button class="btn btn-primary" id="liveToastBtn" type="button">Toast Sukses Ambil Pelatihan</button>
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header"> 
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Accordion Item #1</button>
+                    </h5>
+                    <div class="accordion-collapse collapse" id="collapse1" data-bs-parent="#accordionTentangISW">
+                      <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header"> 
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Accordion Item #3</button>
+                    </h5>
+                    <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordionTentangISW">
+                      <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section>
+                <div class="heading-sticky">
+                  <h4> <a href="#accordionPendafataranISW"> Pendaftaran</a></h4>
+                </div>
+                <div class="accordion pds-accordion" id="accordionPendafataranISW">                         
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header"> 
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Accordion Item #1</button>
+                    </h5>
+                    <div class="accordion-collapse collapse" id="collapse1" data-bs-parent="#accordionPendafataranISW">
+                      <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header"> 
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Accordion Item #3</button>
+                    </h5>
+                    <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordionPendafataranISW">
+                      <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section>
+                <div class="heading-sticky">
+                  <h4> <a href="#accordionPelatihanISW"> Pelatihan</a></h4>
+                </div>
+                <div class="accordion pds-accordion" id="accordionPelatihanISW">                         
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header"> 
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Accordion Item #1</button>
+                    </h5>
+                    <div class="accordion-collapse collapse" id="collapse1" data-bs-parent="#accordionPelatihanISW">
+                      <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item"> 
+                    <h5 class="accordion-header"> 
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Accordion Item #3</button>
+                    </h5>
+                    <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordionPelatihanISW">
+                      <div class="accordion-body"><strong>This is the first item's accordion body.</strong>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
         </div>
