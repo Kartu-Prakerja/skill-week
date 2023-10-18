@@ -2,33 +2,33 @@
 //-------- Similar Course States ------- //
 //--------  Un comment code bellow ------- //
 
-//- section.section-course
-//-   .container.py-0.px-4.px-md-0
-//-     .d-flex.align-items-center.justify-content-between.mb-3.custom-header-carousel
-//-       h4 Pelatihan Serupa
-//-       a.btn.text-primary.similar-course(href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=' title="lihat semua pelatihan")
-//-         | Lihat Semua 
-//-         i.bi.bi-chevron-right
+section.section-course
+  .container.py-0.px-4.px-md-0
+    .d-flex.align-items-center.justify-content-between.mb-3.custom-header-carousel
+      h4 Pelatihan Serupa
+      a.btn.text-primary.similar-course(href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=' title="lihat semua pelatihan")
+        | Lihat Semua 
+        i.bi.bi-chevron-right
 
-//-     #courseCarousel.row.justify-content-md-center.owl-carousel
-//-         include ../includes/course_card.pug
+    #courseCarousel.row.justify-content-md-center.owl-carousel
+        include ../includes/course_card.pug
 
 
 //-------- Empty Course States ------- //
 
-section.section-course.mb-4
-  .container.py-0.px-4.px-md-0
-    .d-flex.align-items-center.justify-content-between.mb-3
-      h4 Pelatihan Serupa
+//- section.section-course.mb-4
+//-   .container.py-0.px-4.px-md-0
+//-     .d-flex.align-items-center.justify-content-between.mb-3
+//-       h4 Pelatihan Serupa
       
-    .d-flex.similar-course-empty.rounded.justify-content-center
-        .col-lg-8.d-lg-flex.p-4.justify-content-center 
-          div.p-md-3.mb-3.mb-lg-0
-            img(src=baseURL+"img/img-ornament-1.svg" height="116")
+//-     .d-flex.similar-course-empty.rounded.justify-content-center
+//-         .col-lg-8.d-lg-flex.p-4.justify-content-center 
+//-           div.p-md-3.mb-3.mb-lg-0
+//-             img(src=baseURL+"img/img-ornament-1.svg" height="116")
 
-          div.p-md-3
-            h5 Sepertinya tidak ditemukan pelatihan serupa
-            p Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk ikuti
-            a.btn.btn-primary(href="/pelatihan")  Cari Pelatihan Lainnya
+//-           div.p-md-3
+//-             h5 Sepertinya tidak ditemukan pelatihan serupa
+//-             p Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk ikuti
+//-             a.btn.btn-primary(href="/pelatihan")  Cari Pelatihan Lainnya
 
         

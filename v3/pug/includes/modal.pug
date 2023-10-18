@@ -161,7 +161,6 @@
             label.form-label(for='validEmailUser')
               b Alamat Email yang terdaftar di Prakerja
             input#validEmailUser.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="your-email@domain.com" readonly)
-
         p
           | Akun kamu 
           b.text-email (your-email@domain.com)
@@ -241,7 +240,7 @@
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
         //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
-        .row.border.rounded.p-3.m-0
+        #detail-course.row.border.rounded.p-3.m-0
           .col-12.col-md-4.p-0
             img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
           .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0
@@ -249,9 +248,9 @@
           
         form.mt-3
           .mb-3
-            label.form-label(for='exampleInputEmail1')
+            label.form-label(for='emailUserVoucher')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
+            input#emailUserVoucher.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="" readonly)
         
         .alert.alert-info.mt-3.d-flex.align-items-top.mb-0
           i.fs-5.bi.bi-info-circle-fill.me-3
@@ -264,7 +263,7 @@
       .modal-footer.p-0
           .d-flex.w-100.p-4
             button.btn.btn-borderless-primary.w-100.me-1(type='button' data-bs-dismiss='modal') Kembali
-            button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss='modal')
+            button#get-voucher-botton.btn.btn-primary.w-100.ms-1
               | Ambil Voucher
 
 <!-- Modal Get Free Course - Belum Login -->
@@ -371,6 +370,13 @@
             button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss='modal')
               | Ambil Voucher
           
-          
-        
-  
+.toast-container.position-fixed.top-0.start-50.p-3
+  #success-toast.toast(role='alert' aria-live='assertive' aria-atomic='true')
+    .d-flex.p-3
+        div
+            img(src=baseURL+"img/img-success-get-course.svg" alt='' style="width: 64px")
+        div.px-3
+            h6 Voucher Pelatihan Berhasil Diambil
+            p.p-0.m-0 Kode voucher pelatihan akan dikirim ke email kamu, silakan cek secara berkala.
+        div
+            button.btn-close(type='button' data-bs-dismiss='toast' aria-label='Close')

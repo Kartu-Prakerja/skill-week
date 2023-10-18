@@ -27,7 +27,7 @@ const BaseURL = '/v3/'
 const loadItem = 12;
 const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_3.json";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
-const checkVoucher = '';
+const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? localStorage.getItem('course_list') : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
@@ -117,7 +117,7 @@ var templateDetail = function(data) {
             '<div class="course-price card-price mb-1 color-secondary fs-4">'+ finalPrice +'</div>' +
           '</div>' +
           '<div class="course-cta px-3 px-lg-0">' +
-            '<button class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#getCourseNotLoginModal">Dapatkan Voucher Pelatihan </button>' +
+            '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>' +
           '</div>' +
             //'<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
           '<button class="btn btn-light share-button mb-3 w-100" type="button" title="Bagikan halaman ini"><i class="bi bi-share">&nbsp;</i>bagikan</button>' +
@@ -183,7 +183,7 @@ var templateDetail = function(data) {
 var templateBreadCrumb = function(data) {
     return '<ol class="breadcrumb">' +
     '<li class="breadcrumb-item"> <a href="'+ BaseURL +'"><i class="bi bi-house-door"></i></a></li>' +
-    '<li class="breadcrumb-item"> <a href="'+ BaseURL +'/pelatihann">Pelatihan </a></li>' +
+    '<li class="breadcrumb-item"> <a href="'+ BaseURL +'pelatihan">Pelatihan </a></li>' +
     '<li class="breadcrumb-item active text-truncate">'+ data.course_title +'</li>' +
     '</ol>'
 }
@@ -692,14 +692,68 @@ function courseLoaderDetail () {
         $.getJSON(courseListURL, function(courses){
             var detail = _.findWhere(courses, { 'course_id': courseId });
             var similar = _.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId });
-            var similarCourseLink = BaseURL + 'pelatihan.html?topic='+ courses.course_category +'&keyword=&price=&lp=';
+            var similarCourseLink = BaseURL + 'pelatihan/index.html?topic='+ courses.course_category +'&keyword=&price=&lp=';
             var similarButton = $('.similar-course');
-            appendDetail.html('').append(templateDetail(detail));
+            var getVoucherButton = $('#get-voucher');
+            var requestFormLogin = $('#getCourseLoginModal');
+            var requestFormNotLogin = $('#getCourseNotLoginModal');
+            // appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
+
+            $.when(
+                appendDetail.html('').append(templateDetail(detail))
+            ).then(function() {
+                var getVoucherButton = $('#get-voucher');
+                var requestFormLogin = $('#getCourseLoginModal');
+                var requestFormNotLogin = $('#getCourseNotLoginModal');
+                var requetVoucher = $('#get-voucher-botton');
+
+                getVoucherButton.click(function() {
+                    if (!_.isNull(dataUser.email)) {
+                        requestFormLogin.modal('show');
+                        requestFormLogin.find('#emailUserVoucher').val(dataUser.email);
+                        requestFormLogin.find('#detail-course img').attr('src', detail.course_image);
+                        requestFormLogin.find('#detail-course h6').html(detail.course_title);
+                        requestFormLogin.find('.alert').addClass('alert-info').removeClass('alert-danger').html(' <i class="fs-5 bi bi-info-circle-fill me-3"></i><div><div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div></div>')
+                        requetVoucher.click(function(event) {
+                            event.preventDefault();
+                            _this = $(this);
+                            _this.addClass('disabled').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"> </span><span class="sr-only"> Loading...</span>');
+                            var templateError = ''
+                            var dataPost = {
+                                course_id : courseId
+                            }
+
+                            $.ajax({
+                                dataType: "json",
+                                contentType : "application/json",
+                                type: "POST",
+                                url: checkVoucher,
+                                headers: {
+                                    'Authorization' : dataUser.token
+                                },
+                                data: JSON.stringify(dataPost)
+                            }).done(function (response) {
+                                _this.removeClass('disabled').html('Ambil Voucher');
+                                $('#success-toast').toast('show');
+                                requestFormLogin.modal('hide');
+                            }).fail(function(responses) {
+                                var response = responses.responseJSON;
+                                _this.removeClass('disabled').html('Ambil Voucher');
+                                if(response.code = 'ERR40004') {
+                                    requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
+                                }
+                            })
+                        })
+                    } else {
+                        requestFormNotLogin.modal('show');
+                    }
+                })
+            })
             
             appendSimilar.html('');
             similarButton.attr('href', similarCourseLink);
-            console.log(similar);
+            
             if (!_.isEmpty(similar)) {
                 console.log('masuk tidak kosong')
                 $.when(
@@ -735,8 +789,7 @@ function courseLoaderDetail () {
                     });
                 })
             } else {
-                console.log('masuk kosong');
-                appendSimilar.html('<div class="col-12 col-md-12"><div class="alert alert-info" role="alert"><div class="d-flex"><div class="pe-3"><i class="bi bi-info-circle-fill fs-4"></i></div><div><h6 class="alert-heading">Pelatihan serupa ditemukan</h6><p>Mohon periksa kembali kata kunci Anda dan pastikan ejaan dan tata bahasa yang benar. Anda juga dapat mencoba menggunakan kata kunci yang berbeda atau mencari di topik pelatihan yang berbeda.</p></div></div></div></div>').css({"display": "block"})
+                appendSimilar.html('<section class="section-course mb-4"><div class="container py-0 px-4 px-md-0"><div class="d-flex align-items-center justify-content-between mb-3"><h4>Pelatihan Serupa</h4></div><div class="d-flex similar-course-empty rounded justify-content-center"><div class="col-lg-8 d-lg-flex p-4 justify-content-center"><div class="p-md-3 mb-3 mb-lg-0"><img src="undefinedimg/img-ornament-1.svg" height="116" /></div><div class="p-md-3"><h5>Sepertinya tidak ditemukan pelatihan serupa</h5><p>Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk ikuti</p><a class="btn btn-primary" href="/pelatihan">Cari Pelatihan Lainnya</a></div></div></div></div></section>').css({"display": "block"})
             }
 
         })
@@ -817,7 +870,6 @@ function homeCheckLogin() {
                 }).fail(function(data) {
                     formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
                     btnFormLogin.removeClass('disabled').html('Masuk');
-                    console.log(data)
                 })
             }
 
@@ -837,7 +889,7 @@ function homeCheckLogin() {
             afterLoginModal.modal('show');
             logoutButton.click(function() {
                 localStorage.removeItem('users');
-                window.location.reload();
+                //window.location.reload();
             })
         });
         
@@ -930,7 +982,7 @@ function homeCheckLogin() {
 
     if (toastTrigger.length) {
         var toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-        toastTrigger.addEventListener('click', () => {
+        toastTrigger.click(function(){
             toastBootstrap.show()
         })
     }
