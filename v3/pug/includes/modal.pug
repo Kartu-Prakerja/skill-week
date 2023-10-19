@@ -100,7 +100,7 @@
           |  berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
-        button.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
+        button#success-login.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
           | Mengerti
 
 
@@ -240,7 +240,7 @@
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
         //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
-        #detail-course.row.border.rounded.p-3.m-0
+        .detail-course.row.border.rounded.p-3.m-0
           .col-12.col-md-4.p-0
             img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
           .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0
@@ -275,7 +275,7 @@
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
         p.paragraph-md.mb-4 Kamu yakin akan mengambil pelatihan ini?
-        .row.border.rounded.p-3.m-0
+        .detail-course.row.border.rounded.p-3.m-0
           .col-12.col-md-4.p-0
             img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
           .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0

@@ -592,9 +592,9 @@ function courseLoaderHome() {
             dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
             dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
             dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
-            appendLimited.html('');
-            appendTwenty.html('');
-            appendFree.html('');
+            appendLimited.addClass('owl-carousel').html('');
+            appendTwenty.addClass('owl-carousel').html('');
+            appendFree.addClass('owl-carousel').html('');
 
             var lookupCourseLP = {};
             var resultCourseLP = [];
@@ -691,7 +691,7 @@ function courseLoaderDetail () {
     if (appendDetail.length) {
         $.getJSON(courseListURL, function(courses){
             var detail = _.findWhere(courses, { 'course_id': courseId });
-            var similar = _.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId });
+            var similar = _.sample(_.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId }),10);
             var similarCourseLink = BaseURL + 'pelatihan/index.html?topic='+ courses.course_category +'&keyword=&price=&lp=';
             var similarButton = $('.similar-course');
             var getVoucherButton = $('#get-voucher');
@@ -709,21 +709,19 @@ function courseLoaderDetail () {
                 var requetVoucher = $('#get-voucher-botton');
 
                 getVoucherButton.click(function() {
-                    if (!_.isNull(dataUser.email)) {
+                    if (!_.isNull(localStorage.getItem('users'))) {
                         requestFormLogin.modal('show');
                         requestFormLogin.find('#emailUserVoucher').val(dataUser.email);
-                        requestFormLogin.find('#detail-course img').attr('src', detail.course_image);
-                        requestFormLogin.find('#detail-course h6').html(detail.course_title);
-                        requestFormLogin.find('.alert').addClass('alert-info').removeClass('alert-danger').html(' <i class="fs-5 bi bi-info-circle-fill me-3"></i><div><div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div></div>')
+                        requestFormLogin.find('.detail-course img').attr('src', detail.course_image);
+                        requestFormLogin.find('.detail-course h6').html(detail.course_title);
+                        requestFormLogin.find('.alert').addClass('alert-info').removeClass('alert-danger').html('<i class="fs-5 bi bi-info-circle-fill me-3"></i><div><div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div></div>')
                         requetVoucher.click(function(event) {
                             event.preventDefault();
                             _this = $(this);
                             _this.addClass('disabled').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"> </span><span class="sr-only"> Loading...</span>');
-                            var templateError = ''
                             var dataPost = {
                                 course_id : courseId
                             }
-
                             $.ajax({
                                 dataType: "json",
                                 contentType : "application/json",
@@ -747,6 +745,10 @@ function courseLoaderDetail () {
                         })
                     } else {
                         requestFormNotLogin.modal('show');
+                        console.log('masuk di non login poup');
+                        console.log(requestFormNotLogin.find('.detail-course img'))
+                        requestFormNotLogin.find('img').attr('src', detail.course_image);
+                        requestFormNotLogin.find('h6').html(detail.course_title);
                     }
                 })
             })
@@ -755,12 +757,12 @@ function courseLoaderDetail () {
             similarButton.attr('href', similarCourseLink);
             
             if (!_.isEmpty(similar)) {
-                console.log('masuk tidak kosong')
                 $.when(
                     $.each(similar, function(i, list) {
                         templateCourse(appendSimilar, list, 'detail');
                     })
                 ).then(function() {
+                    console.log('teasd');
                     $('.owl-carousel').owlCarousel({
                         loop:false,
                         margin:24,
@@ -837,8 +839,6 @@ function homeCheckLogin() {
                 "password": formLogin.find('input#userPassword').val()
             };
 
-            console.log(dataPost)
-
             if(!_.isEmpty(dataPost.email) && !_.isEmpty(dataPost.password)) {
                 
                 btnFormLogin.addClass('disabled').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"> </span><span class="sr-only"> Loading...</span>');
@@ -851,7 +851,6 @@ function homeCheckLogin() {
                     data: JSON.stringify(dataPost)
                 }).done(function (response) {
                     var data = response.data
-                    console.log(data)
                     if(data.stat.step !== 7) {
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
@@ -864,8 +863,22 @@ function homeCheckLogin() {
                         // hide modal login
                         loginModal.modal('hide');
                         // show success login modal
-                        successLoginModal.find('.email-account').text(dataPost.email)
+                        successLoginModal.find('#emailUserVoucher').text(dataPost.email);
+                        successLoginModal.find('.email-account').text(dataPost.email);
                         successLoginModal.modal('show');
+                        $('#success-login').click(function(){
+                            window.location.reload()
+                        })
+
+                        loginButton.click(function() {
+                            afterLoginModal.find('#validEmailUser').val(dataUser.email)
+                            afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
+                            afterLoginModal.modal('show');
+                            logoutButton.click(function() {
+                                localStorage.removeItem('users');
+                                window.location.reload();
+                            })
+                        });
                     }
                 }).fail(function(data) {
                     formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
@@ -889,7 +902,7 @@ function homeCheckLogin() {
             afterLoginModal.modal('show');
             logoutButton.click(function() {
                 localStorage.removeItem('users');
-                //window.location.reload();
+                window.location.reload();
             })
         });
         
