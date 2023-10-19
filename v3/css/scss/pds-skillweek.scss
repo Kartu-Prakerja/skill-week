@@ -975,6 +975,18 @@ body{
     margin:0;
   }
 }
+
+.course-cover-sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  z-index: 28;
+}
+@media (max-width: 575px) {
+#breadcrumb-detail .breadcrumb-item.active {
+    max-width: calc(100% - 120px)!important;
+}
+}
 // custom accordion
 .pds-accordion{
   // outline: solid 1px red;

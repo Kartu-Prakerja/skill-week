@@ -109,9 +109,9 @@ var templateCourse = function(target, data, cardClass){
 var templateDetail = function(data) {
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     return '<section class="section-detail-course">' +
-    '<div class="container py-5 px-4 px-md-0">' +
+    '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
-        '<div class="col-12 col-md-4 col-lg-4"><img class="w-100 rounded" src="'+ data.course_image +'" alt=""/>' +
+        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><img class="w-100 rounded" src="'+ data.course_image +'" alt=""/>' +
           '<div class="mt-3">' +
             '<div class="course-real-price mb-1"><span class="me-1">Rp '+ data.course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
             '<div class="course-price card-price mb-1 color-secondary fs-4">'+ finalPrice +'</div>' +
@@ -121,7 +121,7 @@ var templateDetail = function(data) {
           '</div>' +
             //'<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
           '<button class="btn btn-light share-button mb-3 w-100" type="button" title="Bagikan halaman ini"><i class="bi bi-share">&nbsp;</i>bagikan</button>' +
-        '</div>' +
+        '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
           '<a class="card-company-link d-inline-flex p-2 text-decoration-none" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
@@ -181,7 +181,7 @@ var templateDetail = function(data) {
 }
 
 var templateBreadCrumb = function(data) {
-    return '<ol class="breadcrumb">' +
+    return '<ol class="breadcrumb overflow-hidden fs-7">' +
     '<li class="breadcrumb-item"> <a href="'+ BaseURL +'"><i class="bi bi-house-door"></i></a></li>' +
     '<li class="breadcrumb-item"> <a href="'+ BaseURL +'pelatihan">Pelatihan </a></li>' +
     '<li class="breadcrumb-item active text-truncate">'+ data.course_title +'</li>' +
