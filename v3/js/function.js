@@ -7,12 +7,12 @@
  * 1.2.1 SIMPAN KE LOCAL STORAGE KALAU USER SUDAH LOGIN (√)
  * 1.2.2 SET WAKTU UNTUK NGE TIMEOUT LOCALSTORAGE
  * 1.2.3 HAPUS LOCAL STORAGE KALAU USER MAU GANTI AKUN DAN HAPUS SESSION POPUP UNTUK MINTA USER LOGIN KEMBALI (√)
- * 1.3 POP UP KONFIRMASI UNTUK AMBIL VOUCHER
+ * 1.3 POP UP KONFIRMASI UNTUK AMBIL VOUCHER (√)
  * 
- * 2. SIMPAN PELATIHAN YANG SUDAH DIAMBIL PESERTA (FLAG PELATIHAN MANA YANG SUDAH DIAMBIL)
- * 2.1 HANDLE PROSES SUBMISSION PELATIHAN YANG MAU DI AMBIL PESERTA
+ * 2. SIMPAN PELATIHAN YANG SUDAH DIAMBIL PESERTA (FLAG PELATIHAN MANA YANG SUDAH DIAMBIL) (√)
+ * 2.1 HANDLE PROSES SUBMISSION PELATIHAN YANG MAU DI AMBIL PESERTA (√)
  * 
- * 3. DETAIL PELATIHAN
+ * 3. DETAIL PELATIHAN (√)
  * 3.1 HANDLE DEFAULT CONTENT UNTUK PELATIHAN YANG TIDAK DITEMUKAN (404) PAGE
  * 3.2 HANDLE SHARE CONTENT
  * 
@@ -108,6 +108,9 @@ var templateCourse = function(target, data, cardClass){
 
 var templateDetail = function(data) {
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
+    var getVoucherbtn = _.contains(courseTakens, data.course_id) ? '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>' : '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>';
+
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
@@ -116,9 +119,7 @@ var templateDetail = function(data) {
             '<div class="course-real-price mb-1"><span class="me-1">Rp '+ data.course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
             '<div class="course-price card-price mb-1 color-secondary fs-4">'+ finalPrice +'</div>' +
           '</div>' +
-          '<div class="course-cta px-3 px-lg-0">' +
-            '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>' +
-          '</div>' +
+          '<div class="course-cta px-3 px-lg-0">'  +getVoucherbtn +'</div>' +
             //'<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
           '<button class="btn btn-light share-button mb-3 w-100" type="button" title="Bagikan halaman ini"><i class="bi bi-share">&nbsp;</i>bagikan</button>' +
         '</div></div>' +
@@ -651,7 +652,7 @@ function courseLoaderHome() {
             // pushEvents('.apply-course');
         }).done(function() {
             $('.owl-carousel').owlCarousel({
-                loop:false,
+                loop:true,
                 margin:24,
                 nav:true,
                 dots: false,
@@ -699,7 +700,7 @@ function courseLoaderDetail () {
             var requestFormNotLogin = $('#getCourseNotLoginModal');
             // appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
-
+            var courseTakens = _.isNull(localStorage.getItem('course_takens')) ? [] : JSON.parse(localStorage.getItem('course_takens'));
             $.when(
                 appendDetail.html('').append(templateDetail(detail))
             ).then(function() {
@@ -732,9 +733,18 @@ function courseLoaderDetail () {
                                 },
                                 data: JSON.stringify(dataPost)
                             }).done(function (response) {
+                                // return the button process and hide the modal
                                 _this.removeClass('disabled').html('Ambil Voucher');
-                                $('#success-toast').toast('show');
                                 requestFormLogin.modal('hide');
+                                // show toast success
+                                $('#success-toast').toast('show');
+                                // set buton request to disabled
+                                getVoucherButton.addClass('disabled btn-secondary').html('Voucher sudah diambil').removeClass('btn-primary');
+                                // push val to variable
+                                courseTakens.push(courseId);
+                                // set course taken to localstorage
+                                localStorage.setItem('course_takens',JSON.stringify(courseTakens));
+
                             }).fail(function(responses) {
                                 var response = responses.responseJSON;
                                 _this.removeClass('disabled').html('Ambil Voucher');
@@ -745,8 +755,6 @@ function courseLoaderDetail () {
                         })
                     } else {
                         requestFormNotLogin.modal('show');
-                        console.log('masuk di non login poup');
-                        console.log(requestFormNotLogin.find('.detail-course img'))
                         requestFormNotLogin.find('img').attr('src', detail.course_image);
                         requestFormNotLogin.find('h6').html(detail.course_title);
                     }
@@ -762,7 +770,6 @@ function courseLoaderDetail () {
                         templateCourse(appendSimilar, list, 'detail');
                     })
                 ).then(function() {
-                    console.log('teasd');
                     $('.owl-carousel').owlCarousel({
                         loop:false,
                         margin:24,
@@ -876,6 +883,7 @@ function homeCheckLogin() {
                             afterLoginModal.modal('show');
                             logoutButton.click(function() {
                                 localStorage.removeItem('users');
+                                localStorage.removeItem('course_takens');
                                 window.location.reload();
                             })
                         });
@@ -888,10 +896,10 @@ function homeCheckLogin() {
 
         })
 
-        btnFormLogin.click(function() {
-            console.log('form submit')
-            // formLogin.trigger('submit');
-        })
+        // btnFormLogin.click(function() {
+        //     console.log('form submit')
+        //     // formLogin.trigger('submit');
+        // })
         
     } else {
         loginButton.find('span').after(loginText).remove();
@@ -902,6 +910,7 @@ function homeCheckLogin() {
             afterLoginModal.modal('show');
             logoutButton.click(function() {
                 localStorage.removeItem('users');
+                localStorage.removeItem('course_takens');
                 window.location.reload();
             })
         });
