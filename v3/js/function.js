@@ -124,7 +124,7 @@ var templateDetail = function(data) {
         '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
-          '<a class="card-company-link d-inline-flex p-2 text-decoration-none" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
+          '<a class="card-company-link d-inline-flex p-2 text-decoration-none border px-3" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
           '<div class="row mt-5 mb-4"> ' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>' +
               '<div class="ps-2"> ' +
@@ -135,7 +135,7 @@ var templateDetail = function(data) {
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-clock"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Durasi Pelatihan</h6>' +
-                '<p class="fs-7">'+ data.duration +'</p>' +
+                '<p class="fs-7">'+ data.duration +' (Menit)</p>' +
               '</div>' +
             '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-video"> </i>' +
