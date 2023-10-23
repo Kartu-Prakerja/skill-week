@@ -35,6 +35,7 @@ var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorag
 var isPopupSkip = localStorage.getItem('login-popup-skip');
 var forms = document.querySelectorAll('.needs-validation');
 
+console.log(dataCourse);
 // Loop over them and prevent submission
 Array.prototype.slice.call(forms)
 .forEach(function (form) {
@@ -504,6 +505,7 @@ function courseLoaderInit(){
         }
         
         if (appendTarget.length) {
+            console.log('jalan di luar pelatihan')
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 var data = _.shuffle(courses)
@@ -698,7 +700,7 @@ function courseLoaderDetail () {
         $.getJSON(courseListURL, function(courses){
             var detail = _.findWhere(courses, { 'course_id': courseId });
             var similar = _.sample(_.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId }),10);
-            var similarCourseLink = BaseURL + 'pelatihan/index.html?topic='+ courses.course_category +'&keyword=&price=&lp=';
+            var similarCourseLink = BaseURL + 'pelatihan/index.html?topic='+ (detail.course_category).toLowerCase() +'&keyword=&price=&lp=';
             var similarButton = $('.similar-course');
             var getVoucherButton = $('#get-voucher');
             var requestFormLogin = $('#getCourseLoginModal');
