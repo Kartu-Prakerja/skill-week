@@ -114,14 +114,19 @@ var templateDetail = function(data) {
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
-        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><img class="w-100 rounded" src="'+ data.course_image +'" alt=""/>' +
-          '<div class="mt-3">' +
-            '<div class="course-real-price mb-1"><span class="me-1">Rp '+ data.course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
-            '<div class="course-price card-price mb-1 color-secondary fs-4">'+ finalPrice +'</div>' +
+        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
+          '<div class="mt-3 d-flex justify-content-between">' +
+            '<div>' +
+                '<div class="course-real-price mb-1"><span class="me-1">Rp '+ data.course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
+                '<div class="course-price card-price mb-1 color-secondary fs-4">'+ finalPrice +'</div>' +
+            '</div>' +
+            '<div>' +
+                '<button class="btn btn-light share-button" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
+            '</div>' +
           '</div>' +
           '<div class="course-cta px-3 px-lg-0">'  +getVoucherbtn +'</div>' +
             //'<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
-          '<button class="btn btn-light share-button mb-3 w-100" type="button" title="Bagikan halaman ini"><i class="bi bi-share">&nbsp;</i>bagikan</button>' +
+          
         '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
@@ -182,7 +187,7 @@ var templateDetail = function(data) {
 }
 
 var templateBreadCrumb = function(data) {
-    return '<ol class="breadcrumb overflow-hidden fs-7">' +
+    return '<ol class="breadcrumb overflow-hidden fs-7 mb-0">' +
     '<li class="breadcrumb-item"> <a href="'+ BaseURL +'"><i class="bi bi-house-door"></i></a></li>' +
     '<li class="breadcrumb-item"> <a href="'+ BaseURL +'pelatihan">Pelatihan </a></li>' +
     '<li class="breadcrumb-item active text-truncate">'+ data.course_title +'</li>' +

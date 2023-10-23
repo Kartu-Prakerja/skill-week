@@ -982,6 +982,18 @@ body{
   top: 70px;
   z-index: 28;
 }
+.course-cover{
+  // border: solid 1px red;
+  background-color: var(--bg-default);
+  aspect-ratio: 16/9;
+  border-radius: .5rem;
+  overflow: hidden;
+  img{
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border: none;
+  }
+}
 @media (max-width: 575px) {
 #breadcrumb-detail .breadcrumb-item.active {
     max-width: calc(100% - 120px)!important;
