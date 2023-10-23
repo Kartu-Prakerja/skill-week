@@ -1142,7 +1142,20 @@ body{
   background-color: var(--bg-default);
 }
 
+
+
 /* media querys */
+
+@media (max-width: 992px) { 
+  .page-course-detail{
+    .section-footer{
+      padding-bottom: 96px;
+    }
+    .scroll-top{
+      bottom: 96px;
+    }
+  }
+}
 
 @media (max-width: 575px) { 
   .custom-header-carousel{
