@@ -776,7 +776,7 @@ function courseLoaderDetail () {
                     })
                 ).then(function() {
                     $('.owl-carousel').owlCarousel({
-                        loop:false,
+                        loop:true,
                         margin:24,
                         nav:true,
                         dots: false,
