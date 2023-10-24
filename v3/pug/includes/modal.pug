@@ -27,7 +27,7 @@
   .modal-dialog.modal-dialog-centered.pds-modal.login-modal
     .modal-content
       .modal-header.modal-header-custom
-        img.me-2(src=baseURL+"img/img-ornament-1.svg")
+        img.me-2(src=baseURL+"img/img-ornament-1.svg" alt="ISW Login")
         h4.modal-title Masuk Akun
         button.login-dismiss.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
@@ -90,7 +90,7 @@
     .modal-content
       .modal-header.modal-header-custom.p-4
         .text-center.w-100
-          img(src=baseURL+"img/img-login-success.svg", alt="")
+          img(src=baseURL+"img/img-login-success.svg", alt="ISW login success")
           h4.modal-title.mt-3 Berhasil Masuk
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
@@ -109,7 +109,7 @@
   .modal-dialog.modal-dialog-centered.pds-modal.login-modal
     .modal-content
       .modal-header.modal-header-custom
-        img.me-2(src=baseURL+"img/img-ornament-1.svg")
+        img.me-2(src=baseURL+"img/img-ornament-1.svg" alt="ISW Login")
         h4.modal-title Masuk Akun
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.p-4
@@ -152,7 +152,7 @@
     .modal-content
       .modal-header.modal-header-custom.p-4
         .text-center.w-100
-          img(src=baseURL+"img/img-login-already.svg", alt="")
+          img(src=baseURL+"img/img-login-already.svg", alt="ISW Logged In")
           h4.modal-title.mt-3 Kamu Masuk Sebagai
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.px-4
@@ -178,7 +178,7 @@
     .modal-content
       .modal-header.modal-header-custom.p-4.align-items-start.position-relative
         .text-center.w-100
-          img(src=baseURL+"img/img-login-already.svg", alt="")
+          img(src=baseURL+"img/img-login-already.svg", alt="ISW Logout Confirmation")
           h4.modal-title.mt-3 Kamu yakin akan keluar menggunakan akun ini?
         button.btn-close.position-absolute(type='button' data-bs-dismiss='modal' aria-label='Close' style="right:1.5rem;")
       //- .modal-body.px-4
@@ -311,15 +311,15 @@
         p.paragraph-md.mb-4 Kamu yakin akan mengambil pelatihan ini?
         .row.border.rounded.p-3.m-0
           .col-12.col-md-4.p-0
-            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
+            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point")
           .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0
             h6 Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)
           
         form.mt-3
           .mb-3
-            label.form-label(for='exampleInputEmail1')
+            label.form-label(for='exampleInputEmail2')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
+            input#exampleInputEmail2.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
         
         .alert.alert-info.mt-3.d-flex.align-items-top.mb-0
           i.fs-5.bi.bi-info-circle-fill.me-3
@@ -346,15 +346,15 @@
         //- p.paragraph-md.mb-4 Dengan mengkonfirmasi, kode Voucher akan dikirim ke email kamu, silakan cek secara berkala.
         .row.border.rounded.p-3.m-0
           .col-12.col-md-4.p-0
-            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Pelatihan ABC")
+            img.w-100.object-fit-contain.rounded-1(src=baseURL+"img/course-7.jpeg", alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point")
           .col-12.col-md-8.p-0.ps-md-3.pt-3.pt-md-0
             h6 Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)
           
         form.mt-3
           .mb-3
-            label.form-label(for='exampleInputEmail1')
+            label.form-label(for='exampleInputEmail3')
               b Alamat Email yang terdaftar di Prakerja
-            input#exampleInputEmail1.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
+            input#exampleInputEmail3.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="bambang@gmail.com" readonly)
 
         .alert.alert-danger.mt-3.d-flex.align-items-top.mb-3
           i.fs-5.bi.bi-exclamation-triangle-fill.me-3
@@ -374,7 +374,7 @@
   #success-toast.toast(role='alert' aria-live='assertive' aria-atomic='true')
     .d-flex.p-3
         div
-            img(src=baseURL+"img/img-success-get-course.svg" alt='' style="width: 64px")
+            img(src=baseURL+"img/img-success-get-course.svg" alt='ISW Success get Course' style="width: 64px")
         div.px-3
             h6 Voucher Pelatihan Berhasil Diambil
             p.p-0.m-0 Kode voucher pelatihan akan dikirim ke email kamu, silakan cek secara berkala.

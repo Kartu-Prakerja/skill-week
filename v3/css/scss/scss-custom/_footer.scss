@@ -121,6 +121,7 @@
     bottom: 16px;
     right: 16px;
     z-index: 88;
+    border: solid 1px transparent;
     cursor: pointer;
     visibility: hidden;
     &.is-show{
@@ -131,8 +132,8 @@
         background-color: var(--b600);
     }
     &:active{
-        outline: dashed 1px var(--primary);
-        background-color: var(--b600);
+        background-color: var(--b700);
+        border: solid 1px var(--b800);
     }
     i{
         height: 32px;
