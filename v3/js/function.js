@@ -107,6 +107,16 @@ var templateCourse = function(target, data, cardClass){
     });
 }
 
+var templateLP = function(target, data) {
+    var template = '<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
+                        '<a class="text-capitalize card-company-list" href="'+ 'pelatihan/index.html?topic=&keyword=&price=&lp=' + data.lp_name.replace(/\s+/gi, '-').toLowerCase() +'" title="'+ data.course_title  +'">' + 
+                            '<img class="me-1 card-logo" height="40" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/>' + 
+                            '<span class="lp-name">'+ data.lp_name  +'</span>' +
+                        '</a>'+
+                    '</div>'
+    $(target).append(template);
+}
+
 var templateDetail = function(data) {
     var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
@@ -222,7 +232,7 @@ var btnDescription = function (target, data) {
 }
 
 /** function to invoke load more */
-var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, currentPage, paging) {
+var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, currentPage, paging, isListLp) {
     // to unbind the previous event or duplicate event
     $(target).unbind('click');
 
@@ -235,7 +245,11 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
 
         // loop the content and add to the course list
         $.each(data.slice(start, end), function(i, list) {
-            templateCourse(appendTarget, list);
+            if (!isListLp) {
+                templateCourse(appendTarget, list);
+            } else {
+                templateLP(appendTarget, list)
+            }
         })
         // re run logig check load more or hide when it reach max paging
         checkLoadMore(_this, paging, currentPage)
@@ -505,7 +519,6 @@ function courseLoaderInit(){
         }
         
         if (appendTarget.length) {
-            console.log('jalan di luar pelatihan')
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 var data = _.shuffle(courses)
@@ -630,17 +643,11 @@ function courseLoaderHome() {
 
             // append data to list LP
         
-            $.each(resultCourseLP.slice(start, end), function(i, value) {
-                appendTarget.append('<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
-                        '<a class="text-capitalize card-company-list" href="'+ 'pelatihan/index.html?topic=&keyword=&price=&lp=' + value.lp_name.replace(/\s+/gi, '-').toLowerCase() +'" title="'+ data.course_title  +'">' + 
-                            '<img class="me-1 card-logo" height="40" src="'+ value.lp_logo +'" alt="'+ value.lp_name +'"/>' + 
-                            '<span class="lp-name">'+ value.lp_name  +'</span>' +
-                        '</a>'+
-                    '</div>'
-                );
+            $.each(resultCourseLP.slice(start, end), function(i, list) {
+                templateLP(appendTarget, list);
             })
 
-            btnLoadMore(loadMoreTarget, loadItem, start, end, resultCourseLP, appendTarget, currentPage, paging);
+            btnLoadMore(loadMoreTarget, loadItem, start, end, resultCourseLP, appendTarget, currentPage, paging, true);
 
             $.each(dataLimited, function(i, list) {
                 templateCourse(appendLimited, list, 'home');
