@@ -1,0 +1,779 @@
+
+<html lang="id">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://www.prakerja.go.id/favicon.ico" rel="shortcut icon"/>
+    <title>Judul Pelatihan</title>
+    <meta property="og:image" content="https://github.com/Kartu-Prakerja/skill-week/blob/main/img/cover-id-skillweek-by-prakerja.jpg?raw=true"/>
+    <meta property="og:image:width" content="400"/>
+    <meta property="og:image:height" content="627"/>
+    <meta property="og:locale" content="id_ID"/>
+    <meta meta="meta" property="og:type" content="website"/>
+    <meta property="og:description" content="Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara gratis, murah dan mudah selama 1 minggu."/>
+    <meta property="og:site_name" content="Prakerja"/>
+    <meta property="og:url" content="/"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content=""/>
+    <meta name="twitter:title" content="Judul Pelatihan"/>
+    <meta name="twitter:description" content="Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara gratis, murah dan mudah selama 1 minggu."/>
+    <meta name="twitter:image" content="/v3/img/cover-id-skillweek-by-prakerja2.jpg"/>
+    <meta name="twitter:image:width" content="1200"/>
+    <meta name="twitter:image:height" content="630"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:wght@700;900&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="/v3/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/v3/css/pds-skillweek.css"/>
+    <link rel="stylesheet" href="/v3/css/owl.carousel.css"/>
+
+    <style>
+        .hidden {
+    display: none;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 7px;
+  }
+  
+  button, .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  button:hover, .button:hover {
+    border-color: #cdd;
+  }
+  
+  .share-button, .copy-link {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .share-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .share-dialog {
+    display: none;
+    width: 95%;
+    max-width: 500px;
+    box-shadow: 0 8px 16px rgba(0,0,0,.15);
+    z-index: -1;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .share-dialog.is-open {
+    display: block;
+    z-index: 2;
+  }
+  
+  .share-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .targets {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .close-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+  
+  .close-button svg {
+    margin-right: 0;
+  }
+  
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #eee;
+  }
+  
+  .pen-url {
+    margin-right: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+    </style>
+    <!-- Google Tag Manager-->
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript)-->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTFX6N6" height="0" width="0" style="display:none;visibility:hidden">
+        <!-- End Google Tag Manager (noscript)-->
+      </iframe>
+    </noscript>
+    <header class="pdt-header">
+      <div class="container px-4 px-md-0">
+        <div class="d-flex justify-content-between align-items-center"><a href="/v3/"><img src="/v3/img/logo-indonesia-skills-week.webp" height="54" alt="Indonesia Skills Week"/></a>
+          <ul class="d-flex align-items-center navbar-custom">
+            <li class="nav-item md-hide"><a class="nav-link" href="/v3/">Beranda</a></li>
+            <li class="nav-item md-hide"><a class="nav-link" href="/v3/pelatihan/index.html">Pelatihan</a></li>
+            <li class="nav-item md-hide"><a class="nav-link" href="/v3/tanyajawab/index.html">Tanya Jawab</a></li>
+            <li class="nav-item md-hide">
+              <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com">
+                <div class="d-flex align-items-center"><i class="bi bi-person-circle me-2"> </i><span class="skeleton-box rounded-pill" style="width:50"></span></div>
+              </button>
+            </li>
+            <li class="nav-item md-show">
+              <div class="menu burger-menu" data-menu="13">
+                <div class="icon"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="pt-5">
+        <div class="container pt-md-5 pt-5 px-4 px-md-0">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb"> 
+              <li class="breadcrumb-item"> <a href="#"><i class="bi bi-house-door"></i></a></li>
+              <li class="breadcrumb-item"> <a href="#">Pelatihan </a></li>
+              <li class="breadcrumb-item active">$namaPelatihan</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+      <section class="section-detail-course">
+        <div class="container py-5 px-4 px-md-0">
+          <div class="row flex-row-reverse">
+            <!-- thumbnail & cta-->
+            <div class="col-12 col-md-4 col-lg-4"><img class="w-100 rounded" src="/v3/img/course-1.jpeg" alt=""/>
+              <div class="mt-3">
+                <div class="course-real-price mb-1"><span class="me-1">Rp 200.000</span><span class="badge text-bg-ghost-success">50%</span></div>
+                <div class="course-price card-price mb-1 color-secondary fs-4">Rp 100.000</div>
+              </div>
+              <div class="course-cta px-3 px-lg-0">
+                <button class="my-3 btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getCourseNotLoginModal">Dapatkan Voucher Pelatihan </button>
+              </div>
+              <p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>
+              <div class="share-dialog">
+  <div class="share-header">
+    <h3 class="dialog-title">Share this pen</h3>
+    <button class="close-button"><svg><use href="#close"></use></svg></button>
+  </div>
+  <div class="targets">
+    <a class="button">
+      <svg>
+        <use href="#facebook"></use>
+      </svg>
+      <span>Facebook</span>
+    </a>
+    
+    <a class="button">
+      <svg>
+        <use href="#twitter"></use>
+      </svg>
+      <span>Twitter</span>
+    </a>
+    
+    <a class="button">
+      <svg>
+        <use href="#linkedin"></use>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+    
+    <a class="button">
+      <svg>
+        <use href="#email"></use>
+      </svg>
+      <span>Email</span>
+    </a>
+  </div>
+  <div class="link">
+    <div class="pen-url">https://codepen.io/ayoisaiah/pen/YbNazJ</div>
+    <button class="copy-link">Copy Link</button>
+  </div>
+</div>
+
+<button class="share-button" type="button" title="Share this article">
+  <svg>
+    <use href="#share-icon"></use>
+  </svg>
+  <span>Share</span>
+</button>
+
+<svg class="hidden">
+  <defs>
+    <symbol id="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></symbol>
+    
+    <symbol id="facebook" viewBox="0 0 24 24" fill="#3b5998" stroke="#3b5998" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></symbol>
+    
+    <symbol id="twitter" viewBox="0 0 24 24" fill="#1da1f2" stroke="#1da1f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></symbol>
+    
+    <symbol id="email" viewBox="0 0 24 24" fill="#777" stroke="#fafafa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></symbol>
+    
+    <symbol id="linkedin" viewBox="0 0 24 24" fill="#0077B5" stroke="#0077B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></symbol>
+    
+    <symbol id="close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></symbol>
+  </defs>
+</svg>
+            </div>
+            <!-- detail course content-->
+            <div class="col-12 col-md-8 col-lg-8 pe-xl-4">
+              <h1 class="mb-3">Melakukan Digital Marketing Dengan Target Market Untuk Menjadi Spesialis Pemasaran</h1><a class="card-company-link d-inline-flex p-2 text-decoration-none" href="#"><img class="me-1 card-logo" src="/v3/img/logo-rk.svg" alt="RuangKerja"/><span class="lp-name fs-7 text-secondary">Thunderbird School Of Global Management, Arizona State University</span></a>
+              <div class="row mt-5 mb-4"> 
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>
+                  <div class="ps-2"> 
+                    <h6 class="fs-7 mb-2">Instruktur</h6>
+                    <p class="fs-7">Yunita</p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-clock"> </i>
+                  <div class="ps-2"> 
+                    <h6 class="fs-7 mb-2">Durasi Pelatihan</h6>
+                    <p class="fs-7">697 Menit</p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-video"> </i>
+                  <div class="ps-2"> 
+                    <h6 class="fs-7 mb-2">Metode Ajar</h6><span class="badge rounded-pill text-bg-warning">Daring LMS</span>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-tag"> </i>
+                  <div class="ps-2"> 
+                    <h6 class="fs-7 mb-2">Kategori</h6>
+                    <p class="fs-7">Penjualan dan Pemasaran</p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-ticket-detailed"> </i>
+                  <div class="ps-2"> 
+                    <h6 class="fs-7 mb-2">Kuota Pelatihan</h6>
+                    <p class="fs-7">
+                       1.000<i>&nbsp;(Selama masih tersedia)</i></p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-link-45deg"></i>
+                  <div class="ps-2 overflow-hidden">
+                    <h6 class="fs-7 mb-2">Link Pelatihan</h6><a class="fs-7 d-flex align-items-center" href="#"> <span class="pds-truncate">https://www.karier.mu/program/melakukan-digital-marketing-dengan-iklan-sosial-media-untuk-menjadi-spesialis-pemasaran</span><i class="bi bi-arrow-up-right-square-fill"></i></a>
+                  </div>
+                </div>
+              </div>
+              <hr/>
+              <article>
+                <section class="py-3">
+                  <h4 class="mb-4">Deskripsi Pelatihan </h4>
+                  <p>
+                     Pelatihan Online Melakukan Digital Marketing Dengan Iklan Sosial Media Untuk Menjadi Spesialis Pemasaran dibuat sesuai rujukan Okupasi ( KBJI 2431.03 ) Spesialis Pemasaran. </p>
+                  <p>Pada Kelas ini sangat relevan untuk pemula / tingkat dasar yang memiliki peranan sangat penting bagi seorang Spesialis Pemasaran. Namun, masih banyak orang yang belum mengetahui cara  mempromosikan barang dan jasa melalui internet dengan Digital Marketing menggunakan iklan sosial media. </p>
+                  <p>Digital Marketing adalah  suatu aktivitas promosi, baik untuk mempromosikan sebuah brand, produk maupun jasa menggunakan media digital. Dalam pelatihan ini akan dibahas teori digital marketing dan praktek mempromosikan barang dan jasa melalui internet dan iklan sosial media. Diawali dengan meriset target market dan produk, Memahami channel marketing yang tepat untuk menunjang keberhasilan pemasaran produk , Membuat konten marketing, Membuat Copywriting, Memahami cara mendatangkan traffic ke channel marketing dan Membuat iklan promosi sosial media secara mandiri dan professional.</p>
+                  <p>Dengan demikian, anda akan lebih mudah dan cepat untuk mempromosikan barang dengan digital marketing. Setelah menyelesaikan pelatihan ini anda akan mempunyai kompetensi yang relevan dengan jenis pekerjaan dibidang spesialis pemasaran, digital marketing , tenaga pemasaran dan periklanan. </p>
+                  <p>Pelatihan online ini menggunakan metode Self-Paced Learning yakni ceramah, demonstrasi + demo praktek, membaca handout/ebook, Pre/Post-test, Kuis Formatif, Uji Praktik Mandiri (study kasus), Sesi Konsultasi dengan Fasilitator dan Diskusi.</p>
+                </section>
+                <section class="py-3">
+                  <h4 class="mb-4">Cara Redeem Voucher</h4>
+                  <p>Tata Cara Redeem Voucher:</p>
+                  <ol> 
+                    <li class="mb-2"> Langkah 1 : Log in ke karier.mu</li>
+                    <li class="mb-2"> Langkah 2 : Masuk ke "https://www.karier.mu/program/melakukan-digital-marketing-dengan-iklan-sosial-media-untuk-menjadi-spesialis-pemasaran"</li>
+                    <li class="mb-2"> Langkah 3 : Klik "Lanjut Pembayaran"</li>
+                    <li class="mb-2"> Langkah 4 : Masukkan kode voucher pada kolom yang tersedia </li>
+                    <li class="mb-2"> Langkah 5 : Klik "Gunakan" dan Klik "Lanjutkan"</li>
+                    <li class="mb-2"> Langkah 6 : Klik “Belajar Sekarang” dan program yang dibeli dapat dilihat juga pada menu “Programmu”</li>
+                  </ol>
+                </section>
+                <hr/>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-course">
+        <div class="container py-0 px-4 px-md-0">
+          <div class="d-flex align-items-center justify-content-between mb-3 custom-header-carousel">
+            <h4>Pelatihan Serupa</h4><a class="btn text-primary" href="/v3/pelatihan/index.html?topic=&amp;keyword=&amp;price=20000&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
+          </div>
+          <!-- Set up your HTML-->
+          <div class="row justify-content-md-center" id="courseCarousel">
+            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+              <div class="card pds-card">
+                <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
+                  <div class="d-flex card-cover-overlay justify-content-between align-items-center">
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6 class="mb-2"><span class="skeleton-box" style="width:95%;"></span><span class="skeleton-box" style="width:80%;"></span></h6>
+                  <div>
+                    <div class="card-price mb-1"><span class="skeleton-box" style="width:30%;"></span></div>
+                    <div class="course-price card-price mb-1 color-secondary"><span class="skeleton-box" style="width:40%;"></span></div>
+                  </div>
+                  <div class="mt-3 row justify-content-center ps-3 pe-2"><span class="skeleton-box rounded me-2" style="width:100%; height: 32px;"></span><span class="skeleton-box rounded-pill me-2 mt-2" style="width:80%; height: 20px;"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+              <div class="card pds-card">
+                <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
+                  <div class="d-flex card-cover-overlay justify-content-between align-items-center">
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6 class="mb-2"><span class="skeleton-box" style="width:95%;"></span><span class="skeleton-box" style="width:80%;"></span></h6>
+                  <div>
+                    <div class="card-price mb-1"><span class="skeleton-box" style="width:30%;"></span></div>
+                    <div class="course-price card-price mb-1 color-secondary"><span class="skeleton-box" style="width:40%;"></span></div>
+                  </div>
+                  <div class="mt-3 row justify-content-center ps-3 pe-2"><span class="skeleton-box rounded me-2" style="width:100%; height: 32px;"></span><span class="skeleton-box rounded-pill me-2 mt-2" style="width:80%; height: 20px;"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+              <div class="card pds-card">
+                <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
+                  <div class="d-flex card-cover-overlay justify-content-between align-items-center">
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6 class="mb-2"><span class="skeleton-box" style="width:95%;"></span><span class="skeleton-box" style="width:80%;"></span></h6>
+                  <div>
+                    <div class="card-price mb-1"><span class="skeleton-box" style="width:30%;"></span></div>
+                    <div class="course-price card-price mb-1 color-secondary"><span class="skeleton-box" style="width:40%;"></span></div>
+                  </div>
+                  <div class="mt-3 row justify-content-center ps-3 pe-2"><span class="skeleton-box rounded me-2" style="width:100%; height: 32px;"></span><span class="skeleton-box rounded-pill me-2 mt-2" style="width:80%; height: 20px;"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="owl-carousel-card pb-3 col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5">
+              <div class="card pds-card">
+                <div class="card-cover"><span class="skeleton-box" style="width:100%; height: 100%;"></span>
+                  <div class="d-flex card-cover-overlay justify-content-between align-items-center">
+                    <div class="d-flex align-items-center"><span class="skeleton-box rounded me-2" style="width:32px;height: 32px;"></span><span class="skeleton-box rounded-pill" style="width:100px"></span><span class="skeleton-box rounded-pill" style="width:20%;"></span></div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6 class="mb-2"><span class="skeleton-box" style="width:95%;"></span><span class="skeleton-box" style="width:80%;"></span></h6>
+                  <div>
+                    <div class="card-price mb-1"><span class="skeleton-box" style="width:30%;"></span></div>
+                    <div class="course-price card-price mb-1 color-secondary"><span class="skeleton-box" style="width:40%;"></span></div>
+                  </div>
+                  <div class="mt-3 row justify-content-center ps-3 pe-2"><span class="skeleton-box rounded me-2" style="width:100%; height: 32px;"></span><span class="skeleton-box rounded-pill me-2 mt-2" style="width:80%; height: 20px;"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Modal start-->
+    <div class="modal modal-lg fade" id="deskripsiPelatihanModal" tabindex="-1" aria-labelledby="deskripsiPelatihanModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header align-items-start align-items-lg-center">
+            <h1 class="modal-title fs-5" id="deskripsiPelatihanModalLabel">Strategi Pemasaran Agro Wisata Bagi Pengembang Bisnis (Daring)</h1>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <article class="course-url"><b>Link Pelatihan : </b>
+              <p><a class="link-pelatihan" href="" title="" target="_blank">Link Pelatihan</a></p>
+            </article>
+            <article class="course-descriptions paragraph-md"><b>Deskripsi : </b>
+              <p>Judul Program: &quot;Membuat Desain Grafis Dengan Adobe Photoshop Untuk Menjadi Perancang Grafis&quot;</p>
+            </article>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Tutup</button><a class="btn btn-primary apply-course disabled" href="https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform" target="_blank" data-event="skill_week_apply_course" title="Pendaftaran sedang ditutup">Dapatkan Voucher Pelatihan</a>
+            <!-- <button type="button" class="btn btn-primary">Dapatkan Voucher Pelatihan</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal end--><!-- Modal User Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom"><img class="me-2" src="/v3/img/img-ornament-1.svg"/>
+            <h4 class="modal-title" id="exampleModalLabel">Masuk Akun</h4>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p class="paragraph-md mb-4">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
+            <form>
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com"/>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputPassword1"><b>Password akun Prakerja</b></label>
+                <div class="input-group mb-3">
+                  <input class="form-control show-password-target" type="password" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2"/>
+                  <button class="btn btn-outline-light show-password" id="button-addon2" type="button"><i class="bi bi-eye"></i></button>
+                </div>
+              </div>
+            </form>
+            <div class="mb-3"> 
+              <button class="btn btn-primary w-100" type="submit">Masuk</button>
+            </div>
+            <div> 
+              <button class="btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-start border-top">
+            <p class="fs-7 px-2">Belum punya akun? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Prakerja</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></p>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal User Sukses Login -->
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" aria-labelledby="loginSuccessModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom p-4">
+            <div class="text-center w-100"><img src="/v3/img/img-login-success.svg" alt=""/>
+              <h4 class="modal-title mt-3">Berhasil Masuk</h4>
+            </div>
+          </div>
+          <div class="modal-body px-4">
+            <p>Akun kamu <b>(bambang@gmail.com)</b>berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
+          </div>
+          <div class="modal-footer ps-4 pb-4 pe-4">
+            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Mengerti</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal Error Login -->
+    <div class="modal fade" id="loginErrorModal" tabindex="-1" aria-labelledby="loginErrorModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom"><img class="me-2" src="/v3/img/img-ornament-1.svg"/>
+            <h4 class="modal-title" id="exampleModalLabel">Masuk Akun</h4>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p class="paragraph-md mb-4">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
+            <form>
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control is-invalid" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="barambang@gmail.me"/>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputPassword1"><b>Password akun Prakerja</b></label>
+                <div class="input-group mb-3">
+                  <input class="form-control show-password-target is-invalid" type="password" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2" value="Prakerja123!"/>
+                  <button class="btn btn-outline-light show-password" id="button-addon2" type="button"><i class="bi bi-eye"></i></button>
+                </div>
+              </div>
+            </form>
+            <div class="alert alert-danger mt-3 d-flex align-items-top mb-3"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
+              <div>
+                <div class="fs-7">Alamat email atau password salah. Mohon periksa kembali.</div>
+              </div>
+            </div>
+            <div class="mb-3"> 
+              <button class="btn btn-primary w-100" type="submit">Masuk</button>
+            </div>
+            <div> 
+              <button class="btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-start border-top">
+            <p class="fs-7 px-2">Belum punya akun? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Prakerja</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></p>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal User Sudah Login -->
+    <div class="modal fade" id="loginAlreadyModal" tabindex="-1" aria-labelledby="loginAlreadyModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom p-4">
+            <div class="text-center w-100"><img src="/v3/img/img-login-already.svg" alt=""/>
+              <h4 class="modal-title mt-3">Kamu Masuk Sebagai</h4>
+            </div>
+          </div>
+          <div class="modal-body px-4">
+            <form>
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control is-valid" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="bambang@gmail.com" readonly="readonly"/>
+              </div>
+            </form>
+            <p>Akun kamu <b>(bambang@gmail.com)</b>berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
+          </div>
+          <div class="modal-footer ps-4 pb-4 pe-4">
+            <button class="btn btn-ghost-danger w-100" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal" data-bs-dismiss="modal">Keluar</button>
+            <button class="btn btn-borderless-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal Konfirmasi Logout  -->
+    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" aria-labelledby="confirmLogoutModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom p-4 align-items-start position-relative">
+            <div class="text-center w-100"><img src="/v3/img/img-login-already.svg" alt=""/>
+              <h4 class="modal-title mt-3">Kamu yakin akan keluar menggunakan akun ini?</h4>
+            </div>
+            <button class="btn-close position-absolute" type="button" data-bs-dismiss="modal" aria-label="Close" style="right:1.5rem;"></button>
+          </div>
+          <div class="modal-footer ps-4 pb-4 pe-4">
+            <div class="row p-0 w-100">
+              <div class="col-12 col-md-6 ps-0 pe-0 pe-lg-2">
+                <button class="btn btn-ghost-danger w-100 mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-dismiss="modal">Ya</button>
+              </div>
+              <div class="col-12 col-md-6 ps-0 pe-0 ps-lg-2">
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Batal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal Get Course - Belum Login -->
+    <div class="modal fade" id="getCourseNotLoginModal" tabindex="-1" aria-labelledby="getCourseNotLoginModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom p-4">
+            <h4 class="modal-title" id="exampleModalLabel"> Ambil Voucher Pelatihan?</h4>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4">
+            <div class="row border rounded p-3 m-0">
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Pelatihan ABC"/></div>
+              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
+                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
+              </div>
+            </div>
+            <div class="alert alert-warning mt-3 d-flex align-items-top mb-0"><i class="fs-5 bi bi-info-circle-fill me-3"></i>
+              <div>
+                <div class="fs-7">Untuk mendapatkan voucher pelatihan, kamu harus masuk terlebih dahulu ke Indonesia Skills Week.</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer p-0">
+            <div class="d-flex w-100 p-4">
+              <button class="btn w-100 btn-borderless-primary me-1" type="button" data-bs-dismiss="modal">Kembali</button>
+              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal"><i class="bi bi-person-circle me-2"></i>Masuk</button>
+            </div>
+            <div class="fs-7 w-100 p-3 border-top text-center">Belum punya akun? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Prakerja</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal Get Course - Sudah Login -->
+    <div class="modal fade" id="getCourseLoginModal" tabindex="-1" aria-labelledby="getCourseLoginModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom p-4">
+            <h4 class="modal-title" id="exampleModalLabel"> Ambil Voucher Pelatihan?</h4>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4">
+            <div class="row border rounded p-3 m-0">
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Pelatihan ABC"/></div>
+              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
+                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
+              </div>
+            </div>
+            <form class="mt-3">
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control is-valid" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="bambang@gmail.com" readonly="readonly"/>
+              </div>
+            </form>
+            <div class="alert alert-info mt-3 d-flex align-items-top mb-0"><i class="fs-5 bi bi-info-circle-fill me-3"></i>
+              <div>
+                <div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer p-0">
+            <div class="d-flex w-100 p-4">
+              <button class="btn btn-borderless-primary w-100 me-1" type="button" data-bs-dismiss="modal">Kembali</button>
+              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss="modal">Ambil Voucher</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- Modal Get Course - Sudah Login - GAGAL -->
+    <div class="modal fade" id="getCourseFailedModal" tabindex="-1" aria-labelledby="getCourseFailedModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered pds-modal">
+        <div class="modal-content">
+          <div class="modal-header modal-header-custom p-4">
+            <h4 class="modal-title" id="exampleModalLabel"> Ambil Voucher Pelatihan?</h4>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4">
+            <div class="row border rounded p-3 m-0">
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Pelatihan ABC"/></div>
+              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
+                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
+              </div>
+            </div>
+            <form class="mt-3">
+              <div class="mb-3">
+                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+                <input class="form-control is-valid" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="bambang@gmail.com" readonly="readonly"/>
+              </div>
+            </form>
+            <div class="alert alert-danger mt-3 d-flex align-items-top mb-3"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
+              <div>
+                <h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6>
+                <div class="fs-7">Kamu sudah mengambil pelatihan ini atau pelatihan gratis sebelumnya. Pelatihan Gratis hanya bisa diambil 1x.</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer p-0">
+            <div class="d-flex w-100 p-4">
+              <button class="btn btn-borderless-primary w-100 me-1" type="button" data-bs-dismiss="modal">Kembali</button>
+              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss="modal">Ambil Voucher</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- Footer start -->
+    <footer class="section-footer">
+      <div class="top-wrapper">
+        <div class="container pt-4 pt-md-5 px-4 px-md-0">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="d-flex align-items-center mb-3"><img src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-garuda-id.png" alt="Garuda Indonesia"/>
+                <div class="px-3">Kementerian Koordinator Bidang Perekonomian Republik Indonesia</div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="quote-box p-4 rounded-3">
+                <div class="d-flex"><i class="bi bi-quote"></i>
+                  <div class="ps-3">
+                    <p class="paragraph-regular">Program Kartu Prakerja berlanjut pada tahun 2023 dengan skema normal, di mana bantuan pelatihan akan fokus kepada pengembangan kompetensi angkatan kerja, peningkatan produktivitas, dan daya saing angkatan kerja; serta pengembangan kewirausahaan. Pelaksanaan skema normal diatur dalam Peraturan Presiden Nomor 113 Tahun 2022 yang aturan pelaksanaannya tertera pada Permenko Perekonomian Nomor 17 Tahun 2022.</p>
+                    <div class="quote-author"><span>Airlangga Hartarto, Menteri Koordinator Bidang Perekonomian</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row my-5">
+            <div class="col-lg-2 mb-4 mb-lg-0">
+              <h6>Prakerja</h6>
+              <ul class="list-footer-menu">
+                <li> <a href="https://www.prakerja.go.id/">Beranda </a></li>
+                <li> <a href="https://www.prakerja.go.id/tentang-prakerja">Tentang Prakerja </a></li>
+                <li> <a href="https://apply.workable.com/kartu-prakerja/" target="_blank">Karir </a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 mb-4 mb-lg-0">
+              <h6>Peserta</h6>
+              <ul class="list-footer-menu">
+                <li><a href="https://dashboard.prakerja.go.id/daftar" target="_blank">Daftar</a></li>
+                <li><a href="https://dashboard.prakerja.go.id/masuk" target="_blank">Masuk</a></li>
+                <li><a href="https://www.prakerja.go.id/tanya-jawab">Tanya Jawab</a></li>
+                <li><a href="https://www.prakerja.go.id/tren-rekrutmen">Tren Rekrutmen</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 mb-4 mb-lg-0">
+              <h6>Ekosistem</h6>
+              <ul class="list-footer-menu">
+                <li><a href="https://www.prakerja.go.id/lembaga-pelatihan">Lembaga Pelatihan</a></li>
+                <li><a href="https://www.prakerja.go.id/lembaga-pelatihan#list-logo-lp">Mitra Lembaga Pelatihan</a></li>
+                <li><a href="https://www.prakerja.go.id/lembaga-pelatihan#lp-question">FAQ Lembaga Pelatihan</a></li>
+                <li><a href="https://www.prakerja.go.id/lembaga-pelatihan/kriteria-standar-pelatihan">Kriteria Standar Pelatihan</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 mb-4 mb-lg-0">
+              <h6>Lainnya</h6>
+              <ul class="list-footer-menu">
+                <li><a href="https://www.prakerja.go.id/artikel">Artikel</a></li>
+                <li><a href="https://www.prakerja.go.id/publikasi">Publikasi</a></li>
+                <li><a href="https://www.prakerja.go.id/kebijakan-privasi">Kebijakan Privasi</a></li>
+                <li><a href="https://www.prakerja.go.id/syarat-ketentuan">Syarat Ketentuan</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4">
+              <div class="call-center-box p-4 rounded-3">
+                <h6>Pusat Bantuan</h6>
+                <ul class="list-footer-menu">
+                  <li><a href="tel:+628001503001"> <i class="bi bi-telephone-fill"> </i>0800 1503 001</a>&nbsp;(Gratis)</li>
+                  <li><a href="https://bantuan.prakerja.go.id/hc/id/requests/new">Formulir Pengaduan</a></li>
+                  <li><a href="https://www.prakerja.go.id/livechat">Live Chat</a></li>
+                </ul>
+                <h6 class="mt-4">Jam Operasional</h6>
+                <ul class="list-footer-menu">
+                  <li>
+                    <p>Senin - Minggu <br> Pukul 08.00 - 20.00 WIB</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container py-3">
+        <div class="d-lg-flex justify-content-between align-items-center text-center">
+          <div class="social-media"><a href="https://www.youtube.com/channel/UCXU-nRpRs5Hk9bF3r28rSDA" target="_blank"><i class="bi bi-youtube"></i></a><a href="https://www.instagram.com/prakerja.go.id/" target="_blank"><i class="bi bi-instagram"></i></a><a href="https://www.facebook.com/prakerja.go.id/" target="_blank"><i class="bi bi-facebook"></i></a><a href="https://www.linkedin.com/company/kartu-prakerja/" target="_blank"><i class="bi bi-linkedin"></i></a></div>
+          <div class="copyrights mt-3 mt-lg-0"><span>&copy; Kartu Prakerja 2023</span></div>
+        </div>
+      </div><a class="scroll-top"><i class="bi bi-chevron-up"></i></a>
+    </footer>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/v3/js/owl.carousel.min.js"></script>
+  <script src="/v3/js/function.js"></script>
+  <script src="/v3/js/ui-init.js"></script>
+  <script>
+    const shareButton = document.querySelector('.share-button');
+    const shareDialog = document.querySelector('.share-dialog');
+    const closeButton = document.querySelector('.close-button');
+
+    shareButton.addEventListener('click', event => {
+    if (navigator.share) { 
+    navigator.share({
+        title: 'WebShare API Demo',
+        url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+        }).then(() => {
+        console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+        } else {
+            shareDialog.classList.add('is-open');
+        }
+    });
+
+    closeButton.addEventListener('click', event => {
+    shareDialog.classList.remove('is-open');
+    });
+  </script>
+</html>

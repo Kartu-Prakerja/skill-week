@@ -1,0 +1,11 @@
+
+.toast-container.position-fixed.top-0.end-0.p-3
+  #liveToast.toast(role='alert' aria-live='assertive' aria-atomic='true')
+    .d-flex.p-3
+        div
+            img(src=baseURL+"img/img-success-get-course.svg" alt='' style="width: 64px")
+        div.px-3
+            h6 Voucher Pelatihan Berhasil Diambil
+            p.p-0.m-0 Kode voucher pelatihan akan dikirim ke email kamu, silakan cek secara berkala.
+        div
+            button.btn-close(type='button' data-bs-dismiss='toast' aria-label='Close')

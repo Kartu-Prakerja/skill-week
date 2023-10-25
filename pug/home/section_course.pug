@@ -1,20 +1,22 @@
 section.section-course
-  .container.py-5.px-4.px-md-0
-    .d-flex.align-items-center.justify-content-between.mb-3
-      h3 Pelatihan
-      a.btn.text-primary(href='/pelatihan')
+  .container.py-3.py-lg-5.px-4.px-md-0
+    .d-flex.align-items-center.justify-content-between.mb-3.custom-header-carousel 
+      h4.custom-rfs-h4
+        span Pelatihan&nbsp;
+        | Diskon Besar
+      a.btn.text-primary(href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=')
         | Lihat Semua 
         i.bi.bi-chevron-right
-    .row
-      .col-12.mt-3
-        .alert.alert-warning.text-center.lh-base(role='alert')
-          i.bi.bi-info-circle-fill.me-2
-          |  Saat ini pendaftaran pelatihan sedang ditutup, tunggu 
-          b Indonesia Skills Week
-          |  selanjutnya pada bulan 
-          b  Oktober 2023! 
-          br
+    //- .row
+    //-   .col-12.mt-3
+    //-     .alert.alert-warning.text-center.lh-base(role='alert')
+    //-       i.bi.bi-info-circle-fill.me-2
+    //-       |  Saat ini pendaftaran pelatihan sedang ditutup, tunggu 
+    //-       b Indonesia Skills Week
+    //-       |  selanjutnya pada bulan 
+    //-       b  Oktober 2023! 
+    //-       br
           a.link-primary(href='https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link' target='_blank' title='Klik disini untuk daftar pengingat') Klik disini untuk daftar pengingat
     // Set up your HTML
-    #courseCarousel.row.justify-content-md-center
+    #courseCarouselDiscount.row.justify-content-md-center
         include ../includes/course_card.pug

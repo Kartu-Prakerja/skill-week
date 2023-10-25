@@ -1,22 +1,24 @@
 //-- Header start
 header.pdt-header
-  .container.px-4.px-md-0
+  .container-md.px-4.px-md-0
     .d-flex.justify-content-between.align-items-center
-      a(href='/')
-        img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' alt='Indonesia Skills Week')
+      a(href=baseURL+'')
+        img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
       ul.d-flex.align-items-center.navbar-custom
         li.nav-item.md-hide
-          a.nav-link(href='/' class={"nav-link-active" : pageActive === ''}) Beranda
+          a.nav-link(href=baseURL+'' class={"nav-link-active" : pageActive === ''}) Beranda
         li.nav-item.md-hide
-          a.nav-link(href='/pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
+          a.nav-link(href=baseURL+'pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
         li.nav-item.md-hide
-          a.nav-link(href='/coworking/index.html' class={"nav-link-active" : pageActive === 'coworking'}) Coworking Space
+          a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
         li.nav-item.md-hide
-          a.nav-link(href='/#modal-produktif') Modal Produktif
-        li.nav-item.md-hide
-          a.nav-link(href='/beasiswa/index.html' class={"nav-link-active" : pageActive === 'beasiswa'}) Beasiswa Sertifikasi
-        li.nav-item.md-hide
-          a.btn.btn-primary(href='https://dashboard.prakerja.go.id/daftar?utm_source=skill-week&utm_medium=landing-page&utm_content=button') Buat Akun Prakerja
+          button#btn-login.btn.btn-primary
+            .text-truncate.max-width-200
+              i.bi.bi-person-circle.me-2 
+              span.text-users.skeleton-box.rounded-pill(style='width:50')
+              //- | Masuk
+              //- | bambang_soehardjo@gmail.com
+              
         li.nav-item.md-show
           .menu.burger-menu(data-menu='13')
             .icon

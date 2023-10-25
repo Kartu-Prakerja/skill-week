@@ -1,0 +1,396 @@
+
+<section>
+  <div class="container py-md-5 py-5 px-4 px-md-0">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10 mb-3 mb-lg-4">
+        <section class="py-5">
+          <h2 class="text-center">Tanya Jawab</h2>
+        </section>
+        <section>
+          <div class="heading-sticky">
+            <h4> <a href="#accordionTentangISW"> Tentang Indonesia Skills Week</a></h4>
+          </div>
+          <div class="accordion pds-accordion" id="accordionTentangISW">
+            <div class="accordion-item"> 
+              <h5 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Sampel Modals</button>
+              </h5>
+              <div class="accordion-collapse collapse show" id="collapseOne" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body"> 
+                  <h3>Akun</h3>
+                  <ol> 
+                    <li class="mb-3">
+                      <h6>Default</h6>
+                      <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-person-circle me-2"></i>Masuk</button><br/><br/>
+                      <h6>Sudah Login + truncate + title</h6>
+                      <button class="btn btn-primary text-truncate max-width-200" data-bs-toggle="modal" data-bs-target="#loginModal" title="bambang_soehardjo@gmail.com"><i class="bi bi-person-circle me-2"> </i>bambang_soehardjo@gmail.com</button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginSuccessModal">Success Message</button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginErrorModal">Error States </button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginAlreadyModal">Sudah Login</button>
+                    </li>
+                  </ol>
+                  <hr/>
+                  <h3>Course</h3>
+                  <ol> 
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseNotLoginModal">Ambil Pelatihan - Belum Login</button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseLoginModal">Ambil Pelatihan - Sudah Login</button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getFreeCourseNotLoginModal">Ambil Pelatihan Gratis - Belum Login</button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getFreeCourseLoginModal">Ambil Pelatihan Gratis - Sudah Login</button>
+                    </li>
+                    <li class="mb-3">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getCourseFailedModal">Ambil Pelatihan - Sudah Login - Gagal</button>
+                    </li>
+                    <li class="mb-3"> 
+                      <button class="btn btn-primary" id="liveToastBtn" type="button">Toast Sukses Ambil Pelatihan</button>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA1" aria-expanded="true" aria-controls="collapseA1">Apa itu Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse show" id="collapseA1" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Indonesia Skills Week adalah event satu pekan yang diselenggarakan oleh Manajemen Pelaksana Program Kartu Prakerja (MPPKP) setiap dua bulan dengan memberikan pelatihan secara gratis, murah dan mudah dalam waktu terbatas yang bertujuan untuk meningkatkan kesadaran masyarakat Indonesia terhadap pentingnya pembelajaran sepanjang hayat <i>(lifelong learning) </i>melalui berbagai pelatihan peningkatan keterampilan.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA2" aria-expanded="false" aria-controls="collapseA2">Siapa saja yang bisa mendaftar Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA2" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>Kamu bisa mendaftar Event Indonesia Skills Week jika kamu memenuhi syarat berikut ini:</p>
+                  <ol> 
+                    <li> Mempunyai akun Prakerja (Apabila belum terdaftar silahkan mengikuti proses registrasi akun melalui <a href="www.prakerja.go.id" target="_blank">www.prakerja.go.id </a>)</li>
+                    <li> WNI usia minimal 18 Tahun</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA3" aria-expanded="false" aria-controls="collapseA3">Saya belum terdaftar sebagai Penerima Kartu Prakerja, apakah saya boleh mendaftar event ISW ini?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA3" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Boleh, silakan mengikuti proses registrasi terlebih dahulu melalui <a href="www.prakerja.go.id" target="_blank">www.prakerja.go.id</a>, setelah memiliki akun Prakerja, silahkan memilih  pelatihan yang ditawarkan di event ISW</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA4" aria-expanded="false" aria-controls="collapseA4">Apakah jika saya terdaftar di acara ISW otomatis saya juga menjadi penerima Program Kartu Prakerja?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA4" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Event ini adalah event terpisah diluar pelatihan yang diselenggarakan oleh Program Kartu Prakerja. Jadi peserta ISW adalah WNI berumur minimal 18 Tahun dan mempunyai akun Prakerja (terverifikasi sebagai peserta Kartu Prakerja, maupun yang menjadi daftar blacklist yaitu TNI, Polri, ASN, Direktur BUMN, Perangkat desa dll)</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA5" aria-expanded="false" aria-controls="collapseA5">Jika saya sudah memiliki akun Prakerja, bagaimana saya bisa mendaftar pelatihan di ISW?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA5" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Peserta silahkan datang ke laman ISW <a href="https://skillsweek.prakerja.go.id/">https://skillsweek.prakerja.go.id/</a>, memilih pelatihan yang diinginkan, lalu menunggu proses validasi dari MPPKP  selama 1x24 jam, kemudian PMO Prakerja akan memberikan kode voucher pelatihan tersebut melalui email yang didaftarkan.</p>
+                  <p>  Peserta yang telah mendapatkan kode voucher dari pelatihan yang dipilih kemudian bisa langsung menuju laman/website pelatihan tersebut dan mengisi kode voucher berdasarkan petunjuk yang diberikan oleh masing-masing lembaga penyelenggara pelatihan dalam email yang diberikan oleh MPPKP.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA6" aria-expanded="false" aria-controls="collapseA6">Apakah daftar blacklist Kartu Prakerja bisa mendaftar Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA6" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Bisa namun tetap harus membuat akun Prakerja terlebih dahulu di <a href="www.prakerja.go.id" target="_blank">www.prakerja.go.id</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA7" aria-expanded="false" aria-controls="collapseA7">Apakah ada kuota penerima bagi pendaftar event Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA7" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Tidak ada batasan jumlah pendaftar. Akan tetap ada kuota pelatihan yang diberikan oleh Lembaga Pelatihan. Selama pelatihan yang kamu pilih masih tersedia, kamu masih bisa mengikuti pelatihan di  event Indonesia Skills Week.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA8" aria-expanded="false" aria-controls="collapseA8">Siapa yang akan melaksanakan event Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA8" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Event Indonesia Skills Weeks dilaksanakan oleh Manajemen Pelaksana Program Kartu Prakerja (MPPKP) dengan bekerjasama dengan berbagai lembaga penyedia pelatihan yang bergabung di dalam Event Indonesia Skills Week.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA9" aria-expanded="false" aria-controls="collapseA9">Apa saja produk yang bisa saya ikuti dalam Indonesia Skills Week Periode Oktober?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseA9" data-bs-parent="#accordionTentangISW">
+                <div class="accordion-body">
+                  <p>  Peserta bisa mengikuti berbagai produk pelatihan yang tersedia pada ISW yaitu: Pelatihan gratis, pelatihan murah harga Rp20 ribu, dan diskon besar 50%. Selain itu pada event ISW Oktober ini, peserta dapat mengikuti webinar dengan topik-topik pilihan yang diselenggarakan oleh berbagai lembaga.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mt-4">
+          <div class="heading-sticky">
+            <h4> <a href="#accordionPendafataranISW"> Pendaftaran</a></h4>
+          </div>
+          <div class="accordion pds-accordion" id="accordionPendafataranISW">                         
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseB1" aria-expanded="false" aria-controls="collapseB1">Apakah saya harus membuat akun di Prakerja?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseB1" data-bs-parent="#accordionPendafataranISW">
+                <div class="accordion-body">
+                  <p>Ya, jika kamu belum punya akun Prakerja, silakan mendaftar dengan mengikuti proses registrasi akun melalui <a href="https://dashboard.prakerja.go.id/daftar">https://dashboard.prakerja.go.id/daftar </a></p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseB2" aria-expanded="false" aria-controls="collapseB2">Apakah saya harus mengisi form pendaftaran Indonesia Skills Week seperti periode ISW sebelumnya?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseB2" data-bs-parent="#accordionPendafataranISW">
+                <div class="accordion-body">
+                  <p>Pada periode Oktober 2023 ini, kamu tidak perlu mengisi form pendaftaran ISW lagi. Akan tetapi, kamu tetap harus membuat akun Prakerja terlebih dahulu, lalu memilih pelatihan dan menunggu konfirmasi voucher dari Manajemen Pelaksana Program Kartu Prakerja (MPPKP) sebelum bisa mengakses pelatihan yang dipilih.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseB3" aria-expanded="false" aria-controls="collapseB3">Bagaimana saya bisa mengecek status pendaftaran event Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseB3" data-bs-parent="#accordionPendafataranISW">
+                <div class="accordion-body">
+                  <p>Kamu bisa mengecek email yang didaftarkan secara reguler. Jika dalam 1x24 jam belum mendapatkan konfirmasi voucher, maka kamu belum dapat mengikuti pelatihan melalui mekanisme ISW.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mt-4">
+          <div class="heading-sticky">
+            <h4> <a href="#accordionPelatihanISW"> Pelatihan</a></h4>
+          </div>
+          <div class="accordion pds-accordion" id="accordionPelatihanISW">               
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC1" aria-expanded="false" aria-controls="collapseC1">Berapa jumlah pelatihan yang dapat saya pilih?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC1" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Peserta bisa mengakses pelatihan manapun yang diinginkan selama kuota pelatihan tersebut masih tersedia.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC2" aria-expanded="false" aria-controls="collapseC2">Ada berapa kategori pelatihan yang tersedia dalam ISW?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC2" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Ada tiga kategori pelatihan yang bisa peserta akses</p>
+                  <ol> 
+                    <li>
+                      <h6>Pelatihan Gratis</h6>
+                      <ol> 
+                        <li> 
+                          <p>Pelatihan Gratis Khusus ISW: Pelatihan ini adalah pelatihan-pelatihan secara gratis oleh Lembaga Pelatihan yang hanya berlaku selama event ISW ini.</p>
+                        </li>
+                        <li> 
+                          <p>Pelatihan Gratis Selamanya: Pelatihan ini adalah pelatihan-pelatihan gratis yang selalu diberikan Lembaga Pelatihan bahkan sebelum event ISW berlangsung</p>
+                        </li>
+                      </ol>
+                    </li>
+                    <li> 
+                      <h6>Pelatihan Murah Rp 20.000</h6>
+                      <p>Pelatihan ini adalah pelatihan-pelatihan yang ditawarkan oleh Lembaga Pelatihan yang dapat diakses oleh peserta ISW dengan hanya membayar RP 20.000 dalam laman pelatihan yang disediakan oleh LP.  Peserta silakan mengakses pelatihan  di laman pelatihan dengan voucher yang diberikan MPPKP melalui email.</p>
+                    </li>
+                    <li> 
+                      <h6>Pelatihan Diskon besar min. 50%</h6>
+                      <p>Pelatihan ini adalah pelatihan-pelatihan berbayar yang telah diberikan diskon besar minimal 50% dari harga reguler. Harga bisa bervariatif setelah diskon.. Peserta silakan mengakses pelatihan  di laman pelatihan dengan voucher yang diberikan MPPKP melalui email.</p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC3" aria-expanded="false" aria-controls="collapseC3">Apakah jenis pelatihan yang ada di Kartu Prakerja skema normal sama dengan yang ada di event Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC3" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Tidak, standar pelatihan di ISW berbeda dengan pelatihan Prakerja di skema normal. Standar pelatihan ISW sesuai dengan standar yang dimiliki dan dijalankan oleh masing-masing lembaga penyelenggara pelatihan.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC4" aria-expanded="false" aria-controls="collapseC4">Apakah saya harus membayar pelatihan untuk mengikuti pelatihan yang ditawarkan di ISW?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC4" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Ini akan tergantung kepada pelatihan yang dipilih. Akan tersedia kategori pelatihan gratis, Pelatihan Murah, dan Pelatihan dengan diskon besar-besaran bagi para calon peserta ISW. Pembelian pelatihan murah dan diskon dibayar oleh Peserta menggunakan biaya pribadi.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC5" aria-expanded="false" aria-controls="collapseC5">Apakah ada insentif dalam bentuk uang bagi pelatihan berbayar yang saya pilih seperti pelatihan-pelatihan yang ada pada Program Kartu Prakerja ketika saya menyelesaikan pelatihan?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC5" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Tidak ada insentif uang bagi peserta yang menyelesaikan pelatihan ataupun pemberian insentif bagi pelatihan berbayar yang peserta pilih pada Event ISW ini.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC6" aria-expanded="false" aria-controls="collapseC6">Bagaimana proses pembayaran untuk pelatihan berbayar yang saya pilih?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC6" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Peserta akan melakukan pembayaran secara langsung kepada Lembaga Pelatihan melalui laman pelatihan dari Lembaga Pelatihan.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC7" aria-expanded="false" aria-controls="collapseC7">Dimana saja saya dapat menggunakan voucher pelatihan untuk mendapatkan pelatihan?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC7" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Voucher pelatihan digunakan untuk pelatihan yang dipilih akan dikirimkan via email peserta oleh Manajemen Pelaksana Program Kartu Prakerja (MPPKP).</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC8" aria-expanded="false" aria-controls="collapseC8">Apa saja bentuk moda pelatihan yang dapat saya pilih dengan voucher Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC8" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Ada 2 bentuk pelatihan yang tersedia:</p>
+                  <ol> 
+                    <li>Full Webinar</li>
+                    <li>Full Pembelajaran Mandiri (Self-Paced Learning) melalui LMS</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC9" aria-expanded="false" aria-controls="collapseC9">Apakah ada batas waktu pembelian pelatihan?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC9" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Batas waktu pembelian pelatihan adalah selama event ISW dilaksanakan yaitu pada tanggal <b>26 Oktober 2023- 2 November 2023</b></p>.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC10" aria-expanded="false" aria-controls="collapseC10">Apakah ada batas waktu dalam menyelesaikan pelatihan di ISW?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC10" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <ol> 
+                    <li>Pelatihan Gratis		    : Jangka waktu penyelesaian 1 bulan setelah penutupan proses pembelian</li>
+                    <li>Pelatihan Murah		    : Jangka waktu penyelesaian sampai dengan akhir tahun.</li>
+                    <li>Pelatihan Diskon Besar	: Jangka waktu penyelesaian sampai dengan akhir tahun.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC11" aria-expanded="false" aria-controls="collapseC11">Apakah saya masih bisa membeli pelatihan yang saya inginkan setelah periode ISW selesai?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC11" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Kamu bisa membeli pelatihan pada laman lembaga penyedia pelatihan tersebut akan tetapi sesuai dengan harga dan aturan yang diterapkan masing-masing lembaga tersebut.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC12" aria-expanded="false" aria-controls="collapseC12">Apakah saya dapat membeli  lebih dari satu pelatihan?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC12" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Kamu dapat membeli lebih dari satu pelatihan untuk pelatihan dengan kategori harga diskon besar-besaran; akan tetapi untuk pelatihan dengan kategori gratis dan murah, hanya boleh membeli satu pelatihan.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC13" aria-expanded="false" aria-controls="collapseC13">Bagaimana jika redeem voucher saya bermasalah?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC13" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Kamu bisa langsung menghubungi contact center Lembaga Pelatihan</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC14" aria-expanded="false" aria-controls="collapseC14">Apakah pelatihan yang sudah saya pilih namun belum diikuti bisa diganti?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC14" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Tidak bisa</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC15" aria-expanded="false" aria-controls="collapseC15">Bagaimana cara melakukan redeem voucher Indonesia Skills Week?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC15" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Tata cara melakukan redeem voucher sesuai dengan masing-masing cara dari Lembaga Pelatihan, tata cara redeem akan diinformasikan kepada Peserta melalui email.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item"> 
+              <h5 class="accordion-header"> 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC16" aria-expanded="false" aria-controls="collapseC16">Apakah saya masih bisa mengakses pelatihan yang saya beli setelah batas waktu periode penyelesaian pelatihan?</button>
+              </h5>
+              <div class="accordion-collapse collapse" id="collapseC16" data-bs-parent="#accordionPelatihanISW">
+                <div class="accordion-body">
+                  <p>Kamu masih dimungkinkan mengakses pelatihan dan itu bergantung kebijakan masing-masing lembaga pelatihan mengenai akses kepada pelatihan tersebut.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
