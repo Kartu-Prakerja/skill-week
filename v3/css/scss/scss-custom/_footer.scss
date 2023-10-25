@@ -136,12 +136,15 @@
         border: solid 1px var(--b800);
     }
     i{
-        height: 32px;
+        height: 100%;
         // outline: solid 1px red;
+        vertical-align: top;
         display: inline-block;
+        // margin-top: -5px;
         &::before{
-            transform: translateY(50%);
-            margin-top: -1px;
+            transform: translateY(49%);
+            vertical-align: top;
+            // margin-top: -5px;
         }
     }
 }
