@@ -844,16 +844,19 @@ function courseLoaderDetail () {
 
                             }).fail(function(responses) {
                                 var response = responses.responseJSON;
+                                console.log(response)
                                 _this.removeClass('disabled').html('Ambil Voucher');
                                 if(response.code = 'ERR40004') {
-                                    requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
-                                } else if (response.code = 'ERR40005') {
-                                    requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
-                                    $('#get-voucher-botton').click(function() {
-                                        localStorage.removeItem('users');
-                                        window.location.reload();
-                                    })
-                                }
+                                    if (response.message == "[ERR40005] sign expired") {
+                                        requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
+                                        $('#get-voucher-botton').click(function() {
+                                            localStorage.removeItem('users');
+                                            window.location.reload();
+                                        })
+                                    } else {
+                                        requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
+                                    }
+                                } 
 
                                 // run mixpanel event
                                 // mixpanel.track('Get Voucher Failed', {
