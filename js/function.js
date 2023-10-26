@@ -300,8 +300,22 @@ var filterCourse = function(target, data, start, end) {
 
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
-            filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
-            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            console.log(filterPrice.length)
+            if (filterPrice.length == 3) {
+                dataFilter = dataFilter
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                console.log('harga diskon besar & 20000')
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+                console.log('harga diskon besar & 0')
+                filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+            } else if (_.contains(filterPrice, 'diskon besar')) {
+                console.log('harga diskon besar only')
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+            } else {
+                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            }
         } 
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
@@ -374,7 +388,21 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
-            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            if (filterPrice.length == 3) {
+                dataFilter = dataFilter
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                console.log('harga diskon besar & 20000')
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+                console.log('harga diskon besar & 0')
+                filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+            } else if (_.contains(filterPrice, 'diskon besar')) {
+                console.log('harga diskon besar only')
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+            } else {
+                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            }
         } 
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
@@ -564,7 +592,23 @@ function courseLoaderInit(){
                 var data = _.shuffle(courses)
 
                 if (!_.isEmpty(filterPrice)) {
-                    data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    console.log(filterPrice.length)
+                    if (filterPrice.length == 3) {
+                        data = data
+                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                        console.log('harga diskon besar & 20000')
+                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+                        console.log('harga diskon besar & 0')
+                        filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+                    } else if (_.contains(filterPrice, 'diskon besar')) {
+                        console.log('harga diskon besar only')
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+                    } else {
+                        data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    }
                 } 
                 if (!_.isEmpty(filterTopic)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
