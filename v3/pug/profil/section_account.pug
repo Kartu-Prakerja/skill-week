@@ -8,15 +8,12 @@ section.section-profile.pt-5
 
             .col-12.col-md-8.col-lg-5.pe-xl-4
                 
-                form.mb-3
-                    .mb-3
-                        label.form-label(for='validEmailUser')
-                        b Alamat Email yang terdaftar di Prakerja
-                        input#validEmailUser.form-control.is-valid(type='email' aria-describedby='userEmail' placeholder="nama@email.com" value="your-email@domain.com" readonly)
+                .mb-3
                     p
-                    | Akun kamu 
-                    //- b.text-email (your-email@domain.com)
-                    |  berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
+                        | Kamu masuk sebagai 
+                        b.text-email (your-email@domain.com)
+                        | , tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
+                    
 
                 button.btn.btn-ghost-danger.px-4(data-bs-toggle="modal" data-bs-target="#confirmLogoutModal"  data-bs-dismiss='modal')
                     | Keluar

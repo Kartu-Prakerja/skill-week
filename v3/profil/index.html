@@ -70,14 +70,9 @@
           <div class="row flex-row-reverse">
             <div class="col-12 col-md-4 col-lg-7 text-center text-sm-start text-lg-center py-3"><img class="ratio-1-1" src="../img/img-login-already.svg" alt="ISW Logged In"/></div>
             <div class="col-12 col-md-8 col-lg-5 pe-xl-4">
-              <form class="mb-3">
-                <div class="mb-3">
-                  <label class="form-label" for="validEmailUser"></label><b>Alamat Email yang terdaftar di Prakerja</b>
-                  <input class="form-control is-valid" id="validEmailUser" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="your-email@domain.com" readonly="readonly"/>
-                </div>
-                <p></p>Akun kamu 
-                 berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
-              </form>
+              <div class="mb-3">
+                <p>Kamu masuk sebagai <b class="text-email">(your-email@domain.com)</b>, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
+              </div>
               <button class="btn btn-ghost-danger px-4" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal" data-bs-dismiss="modal">Keluar</button>
             </div>
           </div>
@@ -87,7 +82,7 @@
         <div class="container py-lg-5 py-4 px-4 px-md-0">
           <div class="row justify-content-center">
             <div class="col-12">
-              <h3 class="heading-sticky-2 bg-s100 pb-2">Pelatihan Saya</h3>
+              <h3 class="bg-s100 pb-2">Pelatihan Saya</h3>
               <p> Daftar pelatihan yang kamu ambil di Indonesia Skills Week</p>
               <article> 
                 <div class="card pds-card pds-card-list mb-3">
@@ -148,6 +143,15 @@
                       <div class="course-price card-price mb-1">Gratis</div>
                     </div>
                     <div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-primary w-100 mb-2 text-truncate" href="#" title="">Selengkapnya</a></div>
+                  </div>
+                </div>
+                <div class="d-flex rounded justify-content-center bg-white">
+                  <div class="col-lg-8 d-lg-flex p-4 justify-content-center"> 
+                    <div class="p-md-3 mb-3 mb-lg-0"><img src="../img/img-ornament-1.svg" height="116"/></div>
+                    <div class="p-md-3">
+                      <h5>Kamu belum mengambil pelatihan</h5>
+                      <p>Yuk cari pelatihan sesuai minat kamu</p><a class="btn btn-primary" href="/pelatihan"> Cari Pelatihan</a>
+                    </div>
                   </div>
                 </div>
               </article>
