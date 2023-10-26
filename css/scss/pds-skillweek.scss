@@ -1150,6 +1150,33 @@ body{
   background-color: var(--bg-default);
 }
 
+#toast-sucess-copy {
+  button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    margin-left: .5rem!important;
+  }
+
+  .mr-auto {
+    margin-right: auto;
+    margin-left: 10px;
+  }
+}
+
 
 
 /* media querys */

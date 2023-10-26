@@ -140,6 +140,7 @@ var templateDetail = function(data) {
     var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
     var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
     var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
+    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">' + data.total + '</b>&nbsp; peserta mengambil pelatihan ini</p>' : ''
     var getVoucherbtn;
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
@@ -159,11 +160,10 @@ var templateDetail = function(data) {
                 '<div class="course-price card-price mb-1 fs-4 '+ colorPrice +'">'+ finalPrice +'</div>' +
             '</div>' +
             '<div>' +
-                // '<button class="btn btn-light share-button" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
+                '<button class="btn btn-light share-button" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
             '</div>' +
           '</div>' +
-          '<div class="course-cta px-3 px-lg-0">'+ getVoucherbtn +'</div>' +
-            //'<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
+          '<div class="course-cta px-3 px-lg-0">'+ getVoucherbtn +'</div>' + getTotal +
           
         '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
@@ -798,6 +798,19 @@ function courseLoaderDetail () {
                 var closeButton = $('.close-button');
 
                 shareBtn.click(function() {
+                    var shareFacebook = $('#share-facebook');
+                    var shareTwitter = $('#share-twitter');
+                    var shareLinkedin = $('#share-linkedin');
+                    var shareEmail = $('#share-email');
+                    var copyLink = $('#copy-link');
+                    var url = $('.pen-url');
+
+                    shareFacebook.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                    shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Dapatkan voucher pelatihan ' + detail.course_title + ' hanya di Indonesia Skills Week, dan jutaan voucher lainnya&url='+  window.location.href +'&hashtags=IndonesiSKillsWeek,PelatihanMurah,PelatihanMudah')
+                    shareLinkedin.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+ window.location.href +'&title=Voucher pelatihan ' + detail.course_title + '&source=skillsweek.prakerja.go.id&summary=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya')
+                    shareEmail.attr('href', 'mailto:contact@email.com?subject=Pelatihan'+detail.course_title+' &body=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya!')
+                    url.html(window.location.href);
+                    
                     if (navigator.share) { 
                         navigator.share({
                             title: 'WebShare API Demo',
@@ -808,6 +821,15 @@ function courseLoaderDetail () {
                             .catch(console.error);
                     } else {
                         shareDialog.addClass('is-open');
+
+                        copyLink.click(function() {
+                            // Copy the text inside the text field
+                            navigator.clipboard.writeText(url.text());
+                            $('#toast-sucess-copy').toast('show');
+                            $('.close-toast-copy').click(function() {
+                                $('#toast-sucess-copy').toast('hide');
+                            })
+                        })
                     }
                 })
 
