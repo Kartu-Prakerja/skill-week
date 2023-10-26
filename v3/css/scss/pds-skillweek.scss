@@ -161,6 +161,8 @@ body{
     }
 }
 
+
+
 .card-company,
 .card-company-list,
 .card-company-link{
@@ -984,6 +986,16 @@ body{
   }
 }
 
+.heading-sticky-2{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  z-index: 88;
+  h4{
+    margin:0;
+  }
+}
+
 .course-cover-sticky{
   position: -webkit-sticky;
   position: sticky;
@@ -1216,6 +1228,64 @@ body{
     .column-3-1{
         column-count: 2;
     }
+    .pds-card-list{
+      padding: 1rem;
+      flex-direction: row;
+      &:hover{
+        .card-cover{
+            &>img{
+                transform: none;
+            }
+        }
+      }
+    
+      h6{
+        min-height: auto;
+      }
+    
+      .card-cover{
+        width: 224px;
+        position: initial;
+        overflow:initial;
+        background: none;
+    
+        .card-img-top{
+          width: 100%;
+          // outline: solid 1px red;
+          object-fit: cover;
+          aspect-ratio: auto;
+          border-radius: .5rem;
+        }
+    
+      }
+      .card-cover-overlay{
+        position: absolute;
+        width: calc(100% - 224px - 40px);
+        left:auto;
+        right: 1rem;
+        top: 1rem;
+        height: 32px;
+        padding: 0;
+        background: none;
+        .course-lp-name{
+          color: var(--text-default);
+        }
+      }
+      .card-body{
+        margin-top: calc(32px + 16px);
+        width: 100%;
+        padding: 0 1rem;
+    
+        .pds-card-list-footer{
+          &.text-center{
+            text-align: left!important;
+          }
+          .w-100{
+            width: auto!important;
+          }
+        }
+      }
+    }
 }
 
 // Large devices (desktops, 992px and up)
@@ -1302,5 +1372,7 @@ body{
   }
    
 }
+
+
 
 @import "scss-custom/footer";

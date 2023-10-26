@@ -48,7 +48,7 @@
             <li class="nav-item md-hide"><a class="nav-link" href="../">Beranda</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="../pelatihan/index.html">Pelatihan</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="../tanyajawab/index.html">Tanya Jawab</a></li>
-            <li class="nav-item md-hide"><a class="nav-link nav-link-active" href="../profil/index.html"> <i class="bi bi-person-circle me-2"></i>bambang@gmail.com</a></li>
+            <li class="nav-item md-hide"><a class="nav-link text-truncate max-width-200 nav-link-active" href="../profil/index.html"> <i class="bi bi-person-circle me-2"></i>bambangsarjanateknik@gmail.com</a></li>
             <li class="nav-item md-hide">
               <button class="btn btn-primary" id="btn-login">
                 <div class="text-truncate max-width-200"><i class="bi bi-person-circle me-2"> </i><span class="text-users skeleton-box rounded-pill" style="width:50"></span></div>
@@ -64,24 +64,93 @@
       </div>
     </header>
     <main>
-      <section>
-        <div class="container py-lg-5">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div class="text-center mb-5">
-                <h2>Profil</h2>
-              </div>
+      <section class="section-profile pt-5">
+        <div class="container pt-5 pb-4 pt-lg-5 pb-lg-5 px-4 px-md-0">
+          <h2 class="text-center text-sm-start mb-md-4">Akun Profil</h2>
+          <div class="row flex-row-reverse">
+            <div class="col-12 col-md-4 col-lg-7 text-center text-sm-start text-lg-center py-3"><img class="ratio-1-1" src="../img/img-login-already.svg" alt="ISW Logged In"/></div>
+            <div class="col-12 col-md-8 col-lg-5 pe-xl-4">
+              <form class="mb-3">
+                <div class="mb-3">
+                  <label class="form-label" for="validEmailUser"></label><b>Alamat Email yang terdaftar di Prakerja</b>
+                  <input class="form-control is-valid" id="validEmailUser" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="your-email@domain.com" readonly="readonly"/>
+                </div>
+                <p></p>Akun kamu 
+                 berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
+              </form>
+              <button class="btn btn-ghost-danger px-4" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal" data-bs-dismiss="modal">Keluar</button>
             </div>
           </div>
         </div>
       </section>
-      <section>
-        <div class="container py-lg-5">
+      <section class="bg-s100">
+        <div class="container py-lg-5 py-4 px-4 px-md-0">
           <div class="row justify-content-center">
             <div class="col-12">
-              <div class="text-center mb-5">
-                <h3>Pelatihan Saya</h3>
-              </div>
+              <h3 class="heading-sticky-2 bg-s100 pb-2">Pelatihan Saya</h3>
+              <p> Daftar pelatihan yang kamu ambil di Indonesia Skills Week</p>
+              <article> 
+                <div class="card pds-card pds-card-list mb-3">
+                  <div class="card-cover"> <img class="card-img-top" loading="lazy" src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png" alt="Internet Of Things (IoT) - Fundamentals"/>
+                    <div class="card-cover-overlay"> 
+                      <div class="d-flex justify-content-between align-middle">
+                        <div class="align-self-center"> 
+                          <div class="card-company"> <img class="me-1 card-logo" src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/logo/the-bencoolen-coffee.png" alt="THE BENCOOLEN COFFEE"/><span class="course-lp-name">THE BENCOOLEN COFFEE</span></div>
+                        </div>
+                        <div class="align-self-center"> <span class="badge rounded-pill text-capitalize text-bg-warning">Self-Paced Learning</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="mb-1 course-title text-capitalize" title="Internet Of Things (IoT) - Fundamentals">Internet Of Things (IoT) - Fundamentals</h6><span class="mb-2 badge text-bg-light text-capitalize">Makanan dan Minuman</span>
+                    <div class="d-md-flex">
+                      <div class="course-real-price mb-1 me-md-3"><span>Rp 500.000</span><span class="badge text-bg-ghost-success">100%</span></div>
+                      <div class="course-price card-price mb-1">Gratis</div>
+                    </div>
+                    <div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-primary w-100 mb-2 text-truncate" href="#" title="">Selengkapnya</a></div>
+                  </div>
+                </div>
+                <div class="card pds-card pds-card-list mb-3">
+                  <div class="card-cover"> <img class="card-img-top" loading="lazy" src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0113.png" alt="Smarter Prototyping With Figma"/>
+                    <div class="card-cover-overlay"> 
+                      <div class="d-flex justify-content-between align-middle">
+                        <div class="align-self-center"> 
+                          <div class="card-company"> <img class="me-1 card-logo" src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/logo/alterra-academy.png" alt="Alterra Academy"/><span class="course-lp-name">Alterra Academy</span></div>
+                        </div>
+                        <div class="align-self-center"> <span class="badge rounded-pill text-capitalize text-bg-warning">Self-Paced Learning</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="mb-1 course-title text-capitalize" title="Smarter Prototyping With Figma">Smarter Prototyping With Figma</h6><span class="mb-2 badge text-bg-light text-capitalize">Makanan dan Minuman</span>
+                    <div class="d-md-flex">
+                      <div class="course-real-price mb-1 me-md-3"><span>Rp 69.000</span><span class="badge text-bg-ghost-success">71%</span></div>
+                      <div class="course-price card-price mb-1 color-secondary">Rp 20.000</div>
+                    </div>
+                    <div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-primary w-100 mb-2 text-truncate" href="#" title="">Selengkapnya</a></div>
+                  </div>
+                </div>
+                <div class="card pds-card pds-card-list mb-3">
+                  <div class="card-cover"> <img class="card-img-top" loading="lazy" src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0321.png" alt="Pelatihan Dasar Microsoft Word Untuk Pemula"/>
+                    <div class="card-cover-overlay"> 
+                      <div class="d-flex justify-content-between align-middle">
+                        <div class="align-self-center"> 
+                          <div class="card-company"> <img class="me-1 card-logo" src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/logo/pkbm-sinar-pagi.png" alt="PKBM SINAR PAGI"/><span class="course-lp-name">PKBM SINAR PAGI</span></div>
+                        </div>
+                        <div class="align-self-center"> <span class="badge rounded-pill text-capitalize text-bg-help">Webinar</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="mb-1 course-title text-capitalize" title="Pelatihan Dasar Microsoft Word Untuk Pemula">Pelatihan Dasar Microsoft Word Untuk Pemula</h6><span class="mb-2 badge text-bg-light text-capitalize">Makanan dan Minuman</span>
+                    <div class="d-md-flex"> 
+                      <div class="course-real-price mb-1 me-md-3"><span>Rp 200.000</span><span class="badge text-bg-ghost-success">100%</span></div>
+                      <div class="course-price card-price mb-1">Gratis</div>
+                    </div>
+                    <div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-primary w-100 mb-2 text-truncate" href="#" title="">Selengkapnya</a></div>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </div>
