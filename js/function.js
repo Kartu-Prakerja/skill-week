@@ -813,10 +813,10 @@ function courseLoaderDetail () {
                     
                     if (navigator.share) { 
                         navigator.share({
-                            title: 'WebShare API Demo',
+                            title: 'Indonesia Skill Week - ' + detail.course_title,
                             url: 'CurrentURL'
                             }).then(() => {
-                            console.log('Thanks for sharing!');
+                                console.log('Thanks for sharing!');
                             })
                             .catch(console.error);
                     } else {
