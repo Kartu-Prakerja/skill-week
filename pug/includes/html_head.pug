@@ -51,6 +51,6 @@ head
         var users = JSON.parse(localStorage.getItem('users'));
         mixpanel.init('ef0d1649ccb886338ac7d13f7854fd15', {debug: false, track_pageview: true, persistence: 'localStorage'});
         if (users) {
-            mixpanel.people.set({'distinct_id': users.email, 'email': users.email});
+            mixpanel.people.set({'distinct_id': users.email, '$email': users.email, '$name': (users.email).split('@',1)[0]});
             mixpanel.identify(users.email)
         }
