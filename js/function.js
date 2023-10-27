@@ -104,21 +104,20 @@ var templateCourse = function(target, data, cardClass){
         // trigger modal
         // skipped because already have the page detail
         // btnDescription('#detail-course' + data.index, data);
-        // $('.apply-course').click(function(e) {
-        //     e.preventDefault();
-        //     console.log($(this));
-        //     console.log(data.course_id)
-        //     window.location.href = $(this).attr('href');
-        //     // mixpanel.track('See Detail Course', {
-        //     //     'course_id' : data.course_id,
-        //     //     'course_title': data.course_title,
-        //     //     'course_category' : data.course_category,
-        //     //     'course_price': data.course_price,
-        //     //     'course_discount': data.course_discount,
-        //     //     'course_price_after_discount' : data.course_after_discount,
-        //     //     'course_lp': data.lp_name
-        //     // });
-        // })
+        $('.apply-course').unbind('click');
+        $('.apply-course').click(function(e) {
+            e.preventDefault();
+            mixpanel.track('See Detail Course', {
+                'course_id' : data.course_id,
+                'course_title': data.course_title,
+                'course_category' : data.course_category,
+                'course_price': data.course_price,
+                'course_discount': data.course_discount,
+                'course_price_after_discount' : data.course_after_discount,
+                'course_lp': data.lp_name
+            });
+            window.location.href = $(this).attr('href');
+        })
         
     });
 }
@@ -321,11 +320,12 @@ var filterCourse = function(target, data, start, end) {
         }
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
 
-        // mixpanel.track('Filter Course Option', {
-        //     'filter_price': filterPrice,
-        //     'filter_category' : filterCategory,
-        //     'filter_lp' : filterLP
-        // });
+        mixpanel.track('Filter Course Option', {
+            'filter_price': filterPrice,
+            'filter_category' : filterCategory,
+            'filter_lp' : filterLP,
+            'filter_keyword' : keyword
+        });
 
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
@@ -404,9 +404,12 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
 
         // run mixpanel event
-        // mixpanel.track('Filter Course Keyword', {
-        //     'fiter_keyword': dataKeyword
-        // });
+        mixpanel.track('Filter Course Keyword', {
+            'fiter_keyword': keyword,
+            'filter_price': filterPrice,
+            'filter_category' : filterCategory,
+            'filter_lp' : filterLP
+        });
         
         // define pagination
         var dataLength = dataKeyword.length;
@@ -852,15 +855,15 @@ function courseLoaderDetail () {
                                 course_id : courseId
                             }
                             // run mixpanel event
-                            // mixpanel.track('Get Voucher Request', {
-                            //     'course_id': courseId,
-                            //     'course_title' : detail.course_title,
-                            //     'course_category' : detail.course_category,
-                            //     'course_price': detail.course_price,
-                            //     'course_discount': detail.course_discount,
-                            //     'course_price_after_discount' : detail.course_after_discount,
-                            //     'course_lp': detail.lp_name
-                            // });
+                            mixpanel.track('Get Voucher Request', {
+                                'course_id': courseId,
+                                'course_title' : detail.course_title,
+                                'course_category' : detail.course_category,
+                                'course_price': detail.course_price,
+                                'course_discount': detail.course_discount,
+                                'course_price_after_discount' : detail.course_after_discount,
+                                'course_lp': detail.lp_name
+                            });
 
                             $.ajax({
                                 dataType: "json",
@@ -885,15 +888,15 @@ function courseLoaderDetail () {
                                 localStorage.setItem('course_takens',JSON.stringify(courseTakens));
 
                                 // run mixpanel event
-                                // mixpanel.track('Get Voucher Success', {
-                                //     'course_id': courseId,
-                                //     'course_title' : detail.course_title,
-                                //     'course_category' : detail.course_category,
-                                //     'course_price': detail.course_price,
-                                //     'course_discount': detail.course_discount,
-                                //     'course_price_after_discount' : detail.course_after_discount,
-                                //     'course_lp': detail.lp_name
-                                // });
+                                mixpanel.track('Get Voucher Success', {
+                                    'course_id': courseId,
+                                    'course_title' : detail.course_title,
+                                    'course_category' : detail.course_category,
+                                    'course_price': detail.course_price,
+                                    'course_discount': detail.course_discount,
+                                    'course_price_after_discount' : detail.course_after_discount,
+                                    'course_lp': detail.lp_name
+                                });
 
                             }).fail(function(responses) {
                                 var response = responses.responseJSON;
@@ -903,6 +906,7 @@ function courseLoaderDetail () {
                                         requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
                                         $('#get-voucher-botton').click(function() {
                                             localStorage.removeItem('users');
+                                            mixpanel.reset();
                                             window.location.reload();
                                         })
                                     } else {
@@ -911,15 +915,16 @@ function courseLoaderDetail () {
                                 } 
 
                                 // run mixpanel event
-                                // mixpanel.track('Get Voucher Failed', {
-                                //     'course_id': courseId,
-                                //     'course_title' : detail.course_title,
-                                //     'course_category' : detail.course_category,
-                                //     'course_price': detail.course_price,
-                                //     'course_discount': detail.course_discount,
-                                //     'course_price_after_discount' : detail.course_after_discount,
-                                //     'course_lp': detail.lp_name
-                                // });
+                                mixpanel.track('Get Voucher Failed', {
+                                    'course_id': courseId,
+                                    'course_title' : detail.course_title,
+                                    'course_category' : detail.course_category,
+                                    'course_price': detail.course_price,
+                                    'course_discount': detail.course_discount,
+                                    'course_price_after_discount' : detail.course_after_discount,
+                                    'course_lp': detail.lp_name,
+                                    'error_message' : response.message
+                                });
                             })
                         })
                     } else {
@@ -1034,6 +1039,10 @@ function homeCheckLogin() {
                         localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
                         loginButton.find('.text-users').html(dataPost.email);
 
+                        mixpanel.track('Login Success', {
+                            'email' : dataPost.email
+                        });
+
                         formLogin.find('.alert.alert-danger').addClass('visually-hidden');
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         // hide modal login
@@ -1051,7 +1060,11 @@ function homeCheckLogin() {
                             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
                             afterLoginModal.modal('show');
                             logoutButton.click(function() {
+                                mixpanel.track('Logout Success', {
+                                    'email' : dataPost.email
+                                });
                                 localStorage.removeItem('users');
+                                mixpanel.reset();
                                 localStorage.removeItem('course_takens');
                                 window.location.reload();
                             })
@@ -1074,11 +1087,13 @@ function homeCheckLogin() {
         loginButton.find('span').after(loginText).remove();
         // handle login
         loginButton.click(function() {
+            // window.location.href = 'profil/'
             afterLoginModal.find('#validEmailUser').val(dataUser.email)
             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
             afterLoginModal.modal('show');
             logoutButton.click(function() {
                 localStorage.removeItem('users');
+                mixpanel.reset();
                 localStorage.removeItem('course_takens');
                 window.location.reload();
             })
