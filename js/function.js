@@ -808,6 +808,16 @@ function courseLoaderDetail () {
                     var copyLink = $('#copy-link');
                     var url = $('.pen-url');
 
+                    mixpanel.track('Click Share Button', {
+                        'course_id': courseId,
+                        'course_title' : detail.course_title,
+                        'course_category' : detail.course_category,
+                        'course_price': detail.course_price,
+                        'course_discount': detail.course_discount,
+                        'course_price_after_discount' : detail.course_after_discount,
+                        'course_lp': detail.lp_name
+                    });
+
                     shareFacebook.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
                     shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Dapatkan voucher pelatihan ' + detail.course_title + ' hanya di Indonesia Skills Week, dan jutaan voucher lainnya&url='+  window.location.href +'&hashtags=IndonesiSKillsWeek')
                     shareLinkedin.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+ window.location.href +'&title=Voucher pelatihan ' + detail.course_title + '&source=skillsweek.prakerja.go.id&summary=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya')
@@ -825,13 +835,39 @@ function courseLoaderDetail () {
                     } else {
                         shareDialog.addClass('is-open');
 
+                        $('#target-share a').click(function() {
+                            social = $(this).attr('data-share');
+
+                            mixpanel.track('Share To Social', {
+                                'course_id': courseId,
+                                'course_title' : detail.course_title,
+                                'course_category' : detail.course_category,
+                                'course_price': detail.course_price,
+                                'course_discount': detail.course_discount,
+                                'course_price_after_discount' : detail.course_after_discount,
+                                'course_lp': detail.lp_name,
+                                'url' : window.location.href,
+                                'social_media' : social
+                            });
+                        })
+
                         copyLink.click(function() {
                             // Copy the text inside the text field
                             navigator.clipboard.writeText(url.text());
                             $('#toast-sucess-copy').toast('show');
                             $('.close-toast-copy').click(function() {
                                 $('#toast-sucess-copy').toast('hide');
-                            })
+                            });
+                            mixpanel.track('Copy URL', {
+                                'course_id': courseId,
+                                'course_title' : detail.course_title,
+                                'course_category' : detail.course_category,
+                                'course_price': detail.course_price,
+                                'course_discount': detail.course_discount,
+                                'course_price_after_discount' : detail.course_after_discount,
+                                'course_lp': detail.lp_name,
+                                'url' : window.location.href
+                            });
                         })
                     }
                 })
