@@ -124,6 +124,7 @@
     border: solid 1px transparent;
     cursor: pointer;
     visibility: hidden;
+    padding: 0;
     &.is-show{
         visibility: visible;
     }
@@ -136,14 +137,14 @@
         border: solid 1px var(--b800);
     }
     i{
-        height: 100%;
+        // height: 100%;
         // outline: solid 1px red;
-        vertical-align: top;
-        display: inline-block;
+        // vertical-align: top;
+        // display: inline-block;
         // margin-top: -5px;
         &::before{
-            transform: translateY(49%);
-            vertical-align: top;
+            // transform: translateY(49%);
+            // vertical-align: top;
             // margin-top: -5px;
         }
     }
