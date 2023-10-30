@@ -63,23 +63,24 @@ var emptyState = "<div class='col-12 col-md-12'>" +
     "</div>";
 
 /** function load course */
-var templateCourse = function(target, data, cardClass){ 
+var templateCourse = function(target, data, cardClass, isCourse){ 
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
+    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
-    var template = "<div id='" + data.index +"' class='"+ listClass +"'>" +
+    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+    var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
-            "<div class='card-cover'>" +
-                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
+            "<div class='card-cover'>" + imageCourse +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between align-middle'>" +
                         "<div class='align-self-center'>" +
-                            "<div class='card-company'><img loading='lazy' class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'><span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
+                            "<div class='card-company'>"+ logoLp +"<span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
                         "</div>" +
                         "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>"+ (data.course_type).replace(/Online/g,'') +"</span></div>" +
                         // "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>Daring LMS</span></div>" +
@@ -271,7 +272,7 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
         // loop the content and add to the course list
         $.each(data.slice(start, end), function(i, list) {
             if (!isListLp) {
-                templateCourse(appendTarget, list);
+                templateCourse(appendTarget, list, null, true);
             } else {
                 templateLP(appendTarget, list)
             }
@@ -339,7 +340,7 @@ var filterCourse = function(target, data, start, end) {
         if (dataKeyword.length !== 0) {
             // loop the content and add to the course list
             $.each(dataKeyword.slice(start, end), function(i, list) {
-                templateCourse(appendTarget, list);
+                templateCourse(appendTarget, list, null, true);
             });
         } else {
             appendTarget.html(emptyState);
@@ -423,7 +424,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         if (dataKeyword.length !== 0) {
             // implement append data
             $.each(dataKeyword.slice(start, end), function(i, list) {
-                templateCourse(appendTarget, list);
+                templateCourse(appendTarget, list, null, true);
             });
         } else {
             appendTarget.html(emptyState);
@@ -635,7 +636,7 @@ function courseLoaderInit(){
                     // loop the content and add to the course list
                     if (!_.isEmpty(dataKeyword)) {
                         $.each(dataKeyword.slice(start, end), function(i, list) {
-                            templateCourse(appendTarget, list);
+                            templateCourse(appendTarget, list, null, true);
                         })
                     } else {
                         appendTarget.html(emptyState);
@@ -744,6 +745,7 @@ function courseLoaderHome() {
                 margin:24,
                 nav:true,
                 dots: false,
+                lazyLoad: true,
                 responsive:{
                     0:{
                         items:1.2,
@@ -756,11 +758,11 @@ function courseLoaderHome() {
                         nav:false,
                     },
                     1000:{
-                        items:4,
+                        items:3.75,
                         nav:false
                     },
                     1200:{
-                        items:4,
+                        items:4.2,
                         nav:true
                     }
                 }
@@ -985,6 +987,7 @@ function courseLoaderDetail () {
                         margin:24,
                         nav:true,
                         dots: false,
+                        lazyLoad: true,
                         responsive:{
                             0:{
                                 items:1.2,
@@ -1196,6 +1199,7 @@ function homeCheckLogin() {
         autoplay: true,
         center: true,
         dots: true,
+        lazyLoad:true,
         responsive:{
             1000:{
                 items:3,
@@ -1207,6 +1211,7 @@ function homeCheckLogin() {
             }
         }
     });
+
 
     // show hide password 
     $('.show-password').click(function(e){

@@ -670,6 +670,7 @@ function courseLoaderHome() {
                 margin:24,
                 nav:true,
                 dots: false,
+                lazyLoad: true,
                 responsive:{
                     0:{
                         items:1.2,
