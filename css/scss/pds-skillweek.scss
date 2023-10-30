@@ -92,6 +92,111 @@ body{
     padding-top: 4rem;
 }
 
+
+.section-testimony{
+    &:before{
+        display: block;
+        content: '';
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        left:0;
+        z-index: 0;
+        background: linear-gradient(0deg, #FFFFFF 21.93%, rgba(255, 255, 255, 0) 100%);
+    }
+}
+
+.section-testimony{
+    &:before{
+        top: 0;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+    }
+}
+
+.section-testimony{
+  position: relative;
+  background-color: var(--b100);
+  /* Gradient/b100 - o100 */
+// background: linear-gradient(90deg, #EAF1F9 0%, #EEF0FA 14.29%, #F3EFF9 28.57%, #F8EEF7 42.86%, #FDEDF3 57.14%, #FFEDEE 71.43%, #FFEEE9 85.71%, #FEEFE5 100%);
+}
+
+.section-testimony > div{
+  position: relative;
+  z-index: 4;
+}
+
+.testimony-card{
+  background-color: white;
+  border-radius: 1rem;
+  margin: .5rem .75rem;
+  opacity: .8;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.testimony-header{
+  .testimony-img{
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    overflow: hidden;
+    border: solid 1px white;
+    background-color: var(--s100);
+    img{
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  i{
+    color: var(--b300);
+  }
+}
+
+.testimony-body{
+  // p{
+  //   &::first-letter{
+  //     font-size: 1.5rem;
+  //     color: var(--secondary)
+  //   }
+  // }
+}
+
+.testimony-carousel{
+  padding-top: 4rem;
+  .owl-dots{
+    position: absolute;
+    top: 0;
+    // outline: solid 1px red;
+    width: 100%;
+    text-align: center;
+    margin-top: 1.2rem;
+    padding: 0;
+    .owl-dot{
+      padding:0;
+    }
+  }
+  .owl-item{
+    // outline: solid 1px red;
+    height: 100%;
+    
+    .testimony-card{
+      height: 100%;
+    }
+  }
+  .owl-item.active.center{
+    .testimony-card{
+      opacity: 1;
+      // box-shadow: 0px 0px 0px 4px rgba(42, 114, 199, 0.25);
+    }
+    .testimony-header{
+      i{
+        color: var(--b500);
+      }
+    }
+  }
+}
+
 // Card start 
 
 .pds-card{

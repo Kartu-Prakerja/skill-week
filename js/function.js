@@ -1177,25 +1177,30 @@ function homeCheckLogin() {
     });
 
     
-    $('#coworkingCarousel').owlCarousel({
-        loop:true,
-        margin:24,
-        nav:false,
-        autoplay: true,
-        responsive:{
-            0:{
-                items:1,
-                margin: 0
-            }
-        }
-    });
+    // $('#coworkingCarousel').owlCarousel({
+    //     loop:true,
+    //     margin:24,
+    //     nav:false,
+    //     autoplay: true,
+    //     responsive:{
+    //         0:{
+    //             items:1,
+    //             margin: 0
+    //         }
+    //     }
+    // });
 
-    $('.cws-carousel').owlCarousel({
+    $('.testimony-carousel').owlCarousel({
         loop:true,
-        margin:24,
-        nav:true,
+        // margin:24,
         autoplay: true,
+        center: true,
+        dots: true,
         responsive:{
+            1000:{
+                items:3,
+                margin: 0
+            },
             0:{
                 items:1,
                 margin: 0
