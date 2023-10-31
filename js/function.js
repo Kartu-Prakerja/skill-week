@@ -829,7 +829,7 @@ function courseLoaderDetail () {
                     if (navigator.share) { 
                         navigator.share({
                             title: 'Indonesia Skill Week - ' + detail.course_title,
-                            url: 'CurrentURL'
+                            url: window.location.href
                             }).then(() => {
                                 console.log('Thanks for sharing!');
                             })
