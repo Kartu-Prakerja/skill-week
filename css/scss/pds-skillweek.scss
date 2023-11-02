@@ -354,12 +354,12 @@ body{
   }
   // &.animate-me{
   //   img{
-  //     -webkit-animation-duration: 1s;
-  //     animation-duration: 1s;
-  //     -webkit-animation-fill-mode: both;
-  //     animation-fill-mode: both;
-  //     -webkit-animation-name: tada;
-  //     animation-name: tada;
+      // -webkit-animation-duration: 1s;
+      // animation-duration: 1s;
+      // -webkit-animation-fill-mode: both;
+      // animation-fill-mode: both;
+      // -webkit-animation-name: tada;
+      // animation-name: tada;
   //   }
   //   &:hover{
   //     img{
@@ -442,6 +442,41 @@ body{
     -ms-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
+}
+
+.section-notification{
+  background-color: var(--bs-warning-bg-subtle);
+  .alert{
+    border: transparent;
+  }
+  .alert-icon-circle{
+    background-color: var(--o500);
+    color: white;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 48px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 24px;
+    i{
+      font-size: 1.5rem;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      -webkit-animation-name: tada;
+      animation-name: tada;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+.color-secondary{
+  color: var(--o500);
 }
 
 
