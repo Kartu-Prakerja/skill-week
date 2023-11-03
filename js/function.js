@@ -149,7 +149,7 @@ var templateDetail = function(data) {
      } else if (data.course_discount == '') {
         getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      } else {
-        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Ditutup</button>'
+        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Voucher Ditutup</button>'
      }
 
     return '<section class="section-detail-course">' +
