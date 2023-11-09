@@ -438,3 +438,15 @@ h1, h2, h3, h4, h5, h6{
 .bg-s100{
     background-color:var(--s100);
 }
+
+.color-success{
+    color: var(--g700);
+}
+
+.color-orange, .color-secondary{
+    color: var(--o500);
+}
+
+.color-primary{
+    color: var(--b500);
+}
