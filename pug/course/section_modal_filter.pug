@@ -9,7 +9,7 @@
         // <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       .modal-body
         section.mb-4
-          h6.mb-3 Harga
+          h6.filter-group-sticky.mb-3 Harga
           #course-price.course-filter.column-3-1
             .form-check
               input#filter-price-1.form-check-input.filter-price(type='checkbox' value='0')
@@ -24,13 +24,13 @@
               input#filter-price-3.form-check-input.filter-price(type='checkbox' value='discount')
               label.form-check-label.text-capitalize(for='filter-price-3') diskon
         section.mb-4
-          h6.mb-3 Topik Pelatihan
+          h6.filter-group-sticky.mb-3 Topik Pelatihan
           #course-category.course-filter.column-3-1
             p Memuat Daftar Topik Pelatihan...
           //- start loading by category
             
         section.mb-4
-          h6.mb-3 Lembaga Pelatihan
+          h6.filter-group-sticky.mb-3 Lembaga Pelatihan
           #course-LP.course-filter.column-3-1
             p Memuat Daftar Lembaga Pelatihan...
           //- start loading by LP

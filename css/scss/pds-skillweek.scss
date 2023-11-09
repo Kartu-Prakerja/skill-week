@@ -1139,6 +1139,18 @@ body{
     border: none;
   }
 }
+
+.filter-group-sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1rem;
+  z-index: 8;
+  display: block;
+  padding: .5rem;
+  background: white;
+  border-bottom: dashed 1px var(--border-default);
+  // border-radius: .5rem;
+}
 @media (max-width: 575px) {
 #breadcrumb-detail .breadcrumb-item.active {
     max-width: calc(100% - 120px)!important;
@@ -1154,6 +1166,7 @@ body{
     margin:0;
   }
 }
+
 }
 // custom accordion
 .pds-accordion{
