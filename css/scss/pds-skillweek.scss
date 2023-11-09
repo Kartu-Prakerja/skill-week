@@ -889,11 +889,6 @@ body{
     column-count: 1;
 }
 
-.pds-modal-custom{
-    --bs-modal-margin: 0;
-    --bs-modal-border-width: 0;
-    --bs-modal-border-radius: 0;
-}
 
 .cws-card{
     width: 100%;
@@ -1147,6 +1142,17 @@ body{
 @media (max-width: 575px) {
 #breadcrumb-detail .breadcrumb-item.active {
     max-width: calc(100% - 120px)!important;
+}
+.pds-modal-custom{
+  --bs-modal-border-radius: 0;
+  --bs-modal-border-color: none;
+  --bs-modal-border-width: none;
+  .modal-dialog-scrollable{
+    height: calc(100%);
+  }
+  .modal-dialog{
+    margin:0;
+  }
 }
 }
 // custom accordion
@@ -1441,9 +1447,9 @@ body{
         column-count: 3;
     }
     .pds-modal-custom{
-        --bs-modal-margin: .5rem;
-        --bs-modal-border-width: 1px;
-        --bs-modal-border-radius: .5rem;
+        // --bs-modal-margin: .5rem;
+        // --bs-modal-border-width: 1px;
+        // --bs-modal-border-radius: .5rem;
     }
 
     .pattern-1{
