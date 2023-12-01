@@ -35,6 +35,11 @@ var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorag
 var isPopupSkip = localStorage.getItem('login-popup-skip');
 var forms = document.querySelectorAll('.needs-validation');
 
+// Default version (all methods)
+// import algoliasearch from 'algoliasearch';
+const client = algoliasearch('4NVTBLGFK8', 'a80cbf08790b4013d28757ca8201967e');
+const index = client.initIndex('prakerja_isw')
+
 // Loop over them and prevent submission
 Array.prototype.slice.call(forms)
 .forEach(function (form) {
