@@ -1,12 +1,15 @@
 include notification.pug
 
+
 //-- Header start
 
 header.pdt-header
   .container-md.px-4.px-md-0
     .d-flex.justify-content-between.align-items-center
-      a(href=baseURL+'')
-        img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
+      div.d-flex.justify-content-between.align-items-center
+        a(href=baseURL+'')
+          img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
+        include search.pug
       ul.d-flex.align-items-center.navbar-custom
         li.nav-item.md-hide
           a.nav-link(href=baseURL+'' class={"nav-link-active" : pageActive === ''}) Beranda
@@ -25,3 +28,5 @@ header.pdt-header
         li.nav-item.md-show
           .menu.burger-menu(data-menu='13')
             .icon
+
+

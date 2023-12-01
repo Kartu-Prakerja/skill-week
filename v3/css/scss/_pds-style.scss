@@ -439,7 +439,14 @@ h1, h2, h3, h4, h5, h6{
     background-color:var(--s100);
 }
 
+.color-success{
+    color: var(--g700);
+}
 
-.bg-white{
-    background-color:white;
+.color-orange, .color-secondary{
+    color: var(--o500);
+}
+
+.color-primary{
+    color: var(--b500);
 }

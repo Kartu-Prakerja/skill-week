@@ -23,7 +23,7 @@
 
 // general variable 
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
-const BaseURL = '/v3/'
+const BaseURL = '/'
 const loadItem = 12;
 const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_3.json";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
@@ -35,7 +35,6 @@ var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorag
 var isPopupSkip = localStorage.getItem('login-popup-skip');
 var forms = document.querySelectorAll('.needs-validation');
 
-console.log(dataCourse);
 // Loop over them and prevent submission
 Array.prototype.slice.call(forms)
 .forEach(function (form) {
@@ -64,22 +63,24 @@ var emptyState = "<div class='col-12 col-md-12'>" +
     "</div>";
 
 /** function load course */
-var templateCourse = function(target, data, cardClass){ 
+var templateCourse = function(target, data, cardClass, isCourse){ 
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var course_detail = BaseURL +'pelatihan/detail.html?title=' + data.course_title.replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
-    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var colorPrice = data.course_discount != '100%' ? 'color-secondary' : '';
-    var listClass = cardClass == undefined ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
-    var template = "<div id='" + data.index +"' class='"+ listClass +"'>" +
+    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
+    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
+    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
+    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+    var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
-            "<div class='card-cover'>" +
-                "<img loading='lazy' src='" + data.course_image + "' class='card-img-top' alt='"+ data.course_title +"'>" +
+            "<div class='card-cover'>" + imageCourse +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between align-middle'>" +
                         "<div class='align-self-center'>" +
-                            "<div class='card-company'><img class='me-1 card-logo' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'><span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
+                            "<div class='card-company'>"+ logoLp +"<span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
                         "</div>" +
                         "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>"+ (data.course_type).replace(/Online/g,'') +"</span></div>" +
                         // "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>Daring LMS</span></div>" +
@@ -90,11 +91,11 @@ var templateCourse = function(target, data, cardClass){
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
                 "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" +
                 "<div>" +
-                    "<div class='course-real-price mb-1'><span>Rp "+ Number(data.course_price).toLocaleString('id') +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
+                    "<div class='course-real-price mb-1'><span>"+ course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
                 "</div>" +
                 "<div class='mt-3 text-center'>" +
-                    "<a href='"+ course_detail +"' class='apply-course btn btn-primary w-100 mb-2 text-truncate' rel='nofollow' data-event='skill_week_apply_course'>Selengkapnya</a>" +
+                    "<a href='"+ course_detail +"' class='apply-course "+data.course_id+" btn btn-primary w-100 mb-2 text-truncate' rel='nofollow' data-event='skill_week_apply_course'>Selengkapnya</a>" +
                     // "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
                 '</div>'
             "</div>" +
@@ -104,13 +105,28 @@ var templateCourse = function(target, data, cardClass){
         // trigger modal
         // skipped because already have the page detail
         // btnDescription('#detail-course' + data.index, data);
+        $('.apply-course').unbind('click');
+        $('.apply-course').click(function(e) {
+            e.preventDefault();
+            mixpanel.track('See Detail Course', {
+                'course_id' : data.course_id,
+                'course_title': data.course_title,
+                'course_category' : data.course_category,
+                'course_price': data.course_price,
+                'course_discount': data.course_discount,
+                'course_price_after_discount' : data.course_after_discount,
+                'course_lp': data.lp_name
+            });
+            window.location.href = $(this).attr('href');
+        })
+        
     });
 }
 
 var templateLP = function(target, data) {
     var template = '<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
                         '<a class="text-capitalize card-company-list" href="'+ 'pelatihan/index.html?topic=&keyword=&price=&lp=' + data.lp_name.replace(/\s+/gi, '-').toLowerCase() +'" title="'+ data.course_title  +'">' + 
-                            '<img class="me-1 card-logo" height="40" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/>' + 
+                            '<img class="me-1 card-logo" height="40" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'" loading="lazy"/>' + 
                             '<span class="lp-name">'+ data.lp_name  +'</span>' +
                         '</a>'+
                     '</div>'
@@ -118,30 +134,43 @@ var templateLP = function(target, data) {
 }
 
 var templateDetail = function(data) {
-    var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    //var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
+    var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
     var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
-    var getVoucherbtn = _.contains(courseTakens, data.course_id) ? '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>' : '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>';
+    var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
+    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">' + data.total + '</b>&nbsp; peserta mengambil pelatihan ini</p>' : ''
+    var getVoucherbtn;
+    if(_.contains(courseTakens, data.course_id)) {
+        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+     } else if (data.quota !== '' && Number(data.quota) == data.total) {
+        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+     } else if (data.course_discount == '') {
+        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+     } else {
+        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Voucher Ditutup</button>'
+     }
 
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
-        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
+        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
           '<div class="mt-3 d-flex justify-content-between">' +
             '<div>' +
-                '<div class="course-real-price mb-1"><span class="me-1">Rp '+ data.course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
-                '<div class="course-price card-price mb-1 color-secondary fs-4">'+ finalPrice +'</div>' +
+                '<div class="course-real-price mb-1"><span class="me-1">'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
+                '<div class="course-price card-price mb-1 fs-4 '+ colorPrice +'">'+ finalPrice +'</div>' +
             '</div>' +
             '<div>' +
                 '<button class="btn btn-light share-button" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
             '</div>' +
           '</div>' +
-          '<div class="course-cta px-3 px-lg-0">'  +getVoucherbtn +'</div>' +
-            //'<p class="text-secondary"><b class="fs-7">103</b>&nbsp; peserta mengambil pelatihan ini</p>' +
+          '<div class="course-cta px-3 px-lg-0">'+ getVoucherbtn +'</div>' + getTotal +
           
         '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
-          '<a class="card-company-link d-inline-flex p-2 text-decoration-none border px-3" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img class="me-1 card-logo" src="'+ data.lp_logo +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
+          '<a class="card-company-link d-inline-flex p-2 text-decoration-none border px-3" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img loading="lazy" class="me-1 card-logo" src="'+ data.logo_lp +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
           '<div class="row mt-5 mb-4"> ' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>' +
               '<div class="ps-2"> ' +
@@ -169,8 +198,7 @@ var templateDetail = function(data) {
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-ticket-detailed"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Kuota Pelatihan</h6>' +
-                '<p class="fs-7">' +
-                   data.quota+ '<i>&nbsp;(Selama masih tersedia)</i></p>' +
+                '<p class="fs-7">' + quota + '</p>' +
               '</div>' +
             '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-link-45deg"></i>' +
@@ -246,13 +274,15 @@ var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, cur
         // loop the content and add to the course list
         $.each(data.slice(start, end), function(i, list) {
             if (!isListLp) {
-                templateCourse(appendTarget, list);
+                templateCourse(appendTarget, list, null, true);
             } else {
                 templateLP(appendTarget, list)
             }
         })
         // re run logig check load more or hide when it reach max paging
-        checkLoadMore(_this, paging, currentPage)
+        checkLoadMore(_this, paging, currentPage);
+
+        
     });
 }
 
@@ -272,7 +302,18 @@ var filterCourse = function(target, data, start, end) {
 
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
-            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            if (filterPrice.length == 3) {
+                dataFilter = dataFilter
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+                filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+            } else if (_.contains(filterPrice, 'diskon besar')) {
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+            } else {
+                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            }
         } 
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
@@ -281,6 +322,13 @@ var filterCourse = function(target, data, start, end) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+
+        mixpanel.track('Filter Course Option', {
+            'filter_price': filterPrice,
+            'filter_category' : filterCategory,
+            'filter_lp' : filterLP,
+            'filter_keyword' : keyword
+        });
 
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
@@ -294,7 +342,7 @@ var filterCourse = function(target, data, start, end) {
         if (dataKeyword.length !== 0) {
             // loop the content and add to the course list
             $.each(dataKeyword.slice(start, end), function(i, list) {
-                templateCourse(appendTarget, list);
+                templateCourse(appendTarget, list, null, true);
             });
         } else {
             appendTarget.html(emptyState);
@@ -325,8 +373,6 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var filterCategory = [], filterPrice = [], filterLP = [], dataFilter = data
         var keyword = $(this).find('input').val();
 
-        // console.log(keyword)
-
         $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
         $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
         $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
@@ -339,7 +385,18 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
-            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            if (filterPrice.length == 3) {
+                dataFilter = dataFilter
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+                filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+            } else if (_.contains(filterPrice, 'diskon besar')) {
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+            } else {
+                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+            }
         } 
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
@@ -348,6 +405,14 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
+
+        // run mixpanel event
+        mixpanel.track('Filter Course Keyword', {
+            'fiter_keyword': keyword,
+            'filter_price': filterPrice,
+            'filter_category' : filterCategory,
+            'filter_lp' : filterLP
+        });
         
         // define pagination
         var dataLength = dataKeyword.length;
@@ -361,7 +426,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         if (dataKeyword.length !== 0) {
             // implement append data
             $.each(dataKeyword.slice(start, end), function(i, list) {
-                templateCourse(appendTarget, list);
+                templateCourse(appendTarget, list, null, true);
             });
         } else {
             appendTarget.html(emptyState);
@@ -524,7 +589,19 @@ function courseLoaderInit(){
                 var data = _.shuffle(courses)
 
                 if (!_.isEmpty(filterPrice)) {
-                    data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    if (filterPrice.length == 3) {
+                        data = data
+                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+                        filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+                    } else if (_.contains(filterPrice, 'diskon besar')) {
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+                    } else {
+                        data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                    }
                 } 
                 if (!_.isEmpty(filterTopic)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
@@ -561,7 +638,7 @@ function courseLoaderInit(){
                     // loop the content and add to the course list
                     if (!_.isEmpty(dataKeyword)) {
                         $.each(dataKeyword.slice(start, end), function(i, list) {
-                            templateCourse(appendTarget, list);
+                            templateCourse(appendTarget, list, null, true);
                         })
                     } else {
                         appendTarget.html(emptyState);
@@ -585,8 +662,8 @@ function courseLoaderInit(){
                     filterKeyword(formSeaerch, buttonSearch, courses, start, end);
     
                     // invoke function push event GA
-                    pushEvents('.see-detail-course');
-                    pushEvents('.apply-course');
+                    // pushEvents('.see-detail-course');
+                    // pushEvents('.apply-course');
     
                 }, 1500)
             }).fail(function(){
@@ -628,7 +705,7 @@ function courseLoaderHome() {
                     lookupCourseLP[courseLP] = 1;
                     resultCourseLP.push({
                         "lp_name" : item.lp_name,
-                        "lp_logo" : item.lp_logo
+                        "lp_logo" : item.logo_lp
                     });
                 }
             }
@@ -683,11 +760,11 @@ function courseLoaderHome() {
                         nav:false,
                     },
                     1000:{
-                        items:4,
+                        items:3.75,
                         nav:false
                     },
                     1200:{
-                        items:4,
+                        items:4.2,
                         nav:true
                     }
                 }
@@ -723,6 +800,85 @@ function courseLoaderDetail () {
                 var requestFormLogin = $('#getCourseLoginModal');
                 var requestFormNotLogin = $('#getCourseNotLoginModal');
                 var requetVoucher = $('#get-voucher-botton');
+                var shareBtn = $('.share-button');
+                var shareDialog = $('.share-dialog');
+                var closeButton = $('.close-button');
+
+                shareBtn.click(function() {
+                    var shareFacebook = $('#share-facebook');
+                    var shareTwitter = $('#share-twitter');
+                    var shareLinkedin = $('#share-linkedin');
+                    var shareEmail = $('#share-email');
+                    var copyLink = $('#copy-link');
+                    var url = $('.pen-url');
+
+                    mixpanel.track('Click Share Button', {
+                        'course_id': courseId,
+                        'course_title' : detail.course_title,
+                        'course_category' : detail.course_category,
+                        'course_price': detail.course_price,
+                        'course_discount': detail.course_discount,
+                        'course_price_after_discount' : detail.course_after_discount,
+                        'course_lp': detail.lp_name
+                    });
+
+                    shareFacebook.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                    shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Dapatkan voucher pelatihan ' + detail.course_title + ' hanya di Indonesia Skills Week, dan jutaan voucher lainnya&url='+  window.location.href +'&hashtags=IndonesiSKillsWeek')
+                    shareLinkedin.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+ window.location.href +'&title=Voucher pelatihan ' + detail.course_title + '&source=skillsweek.prakerja.go.id&summary=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya')
+                    shareEmail.attr('href', 'mailto:contact@email.com?subject=Pelatihan'+detail.course_title+' &body=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya!')
+                    url.html(window.location.href);
+                    
+                    if (navigator.share) { 
+                        navigator.share({
+                            title: 'Indonesia Skill Week - ' + detail.course_title,
+                            url: window.location.href
+                            }).then(() => {
+                                console.log('Thanks for sharing!');
+                            })
+                            .catch(console.error);
+                    } else {
+                        shareDialog.addClass('is-open');
+
+                        $('#target-share a').click(function() {
+                            social = $(this).attr('data-share');
+
+                            mixpanel.track('Share To Social', {
+                                'course_id': courseId,
+                                'course_title' : detail.course_title,
+                                'course_category' : detail.course_category,
+                                'course_price': detail.course_price,
+                                'course_discount': detail.course_discount,
+                                'course_price_after_discount' : detail.course_after_discount,
+                                'course_lp': detail.lp_name,
+                                'url' : window.location.href,
+                                'social_media' : social
+                            });
+                        })
+
+                        copyLink.click(function() {
+                            // Copy the text inside the text field
+                            navigator.clipboard.writeText(url.text());
+                            $('#toast-sucess-copy').toast('show');
+                            $('.close-toast-copy').click(function() {
+                                $('#toast-sucess-copy').toast('hide');
+                            });
+                            mixpanel.track('Copy URL', {
+                                'course_id': courseId,
+                                'course_title' : detail.course_title,
+                                'course_category' : detail.course_category,
+                                'course_price': detail.course_price,
+                                'course_discount': detail.course_discount,
+                                'course_price_after_discount' : detail.course_after_discount,
+                                'course_lp': detail.lp_name,
+                                'url' : window.location.href
+                            });
+                        })
+                    }
+                })
+
+                closeButton.click(function() {
+                    shareDialog.removeClass('is-open');
+                })
 
                 getVoucherButton.click(function() {
                     if (!_.isNull(localStorage.getItem('users'))) {
@@ -738,6 +894,17 @@ function courseLoaderDetail () {
                             var dataPost = {
                                 course_id : courseId
                             }
+                            // run mixpanel event
+                            mixpanel.track('Get Voucher Request', {
+                                'course_id': courseId,
+                                'course_title' : detail.course_title,
+                                'course_category' : detail.course_category,
+                                'course_price': detail.course_price,
+                                'course_discount': detail.course_discount,
+                                'course_price_after_discount' : detail.course_after_discount,
+                                'course_lp': detail.lp_name
+                            });
+
                             $.ajax({
                                 dataType: "json",
                                 contentType : "application/json",
@@ -760,12 +927,44 @@ function courseLoaderDetail () {
                                 // set course taken to localstorage
                                 localStorage.setItem('course_takens',JSON.stringify(courseTakens));
 
+                                // run mixpanel event
+                                mixpanel.track('Get Voucher Success', {
+                                    'course_id': courseId,
+                                    'course_title' : detail.course_title,
+                                    'course_category' : detail.course_category,
+                                    'course_price': detail.course_price,
+                                    'course_discount': detail.course_discount,
+                                    'course_price_after_discount' : detail.course_after_discount,
+                                    'course_lp': detail.lp_name
+                                });
+
                             }).fail(function(responses) {
                                 var response = responses.responseJSON;
                                 _this.removeClass('disabled').html('Ambil Voucher');
                                 if(response.code = 'ERR40004') {
-                                    requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
-                                }
+                                    if (response.message == "[ERR40005] sign expired") {
+                                        requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
+                                        $('#get-voucher-botton').click(function() {
+                                            localStorage.removeItem('users');
+                                            mixpanel.reset();
+                                            window.location.reload();
+                                        })
+                                    } else {
+                                        requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
+                                    }
+                                } 
+
+                                // run mixpanel event
+                                mixpanel.track('Get Voucher Failed', {
+                                    'course_id': courseId,
+                                    'course_title' : detail.course_title,
+                                    'course_category' : detail.course_category,
+                                    'course_price': detail.course_price,
+                                    'course_discount': detail.course_discount,
+                                    'course_price_after_discount' : detail.course_after_discount,
+                                    'course_lp': detail.lp_name,
+                                    'error_message' : response.message
+                                });
                             })
                         })
                     } else {
@@ -790,6 +989,7 @@ function courseLoaderDetail () {
                         margin:24,
                         nav:true,
                         dots: false,
+                        lazyLoad: true,
                         responsive:{
                             0:{
                                 items:1.2,
@@ -813,7 +1013,7 @@ function courseLoaderDetail () {
                     });
                 })
             } else {
-                appendSimilar.html('<section class="section-course mb-4"><div class="container py-0 px-4 px-md-0"><div class="d-flex align-items-center justify-content-between mb-3"><h4>Pelatihan Serupa</h4></div><div class="d-flex similar-course-empty rounded justify-content-center"><div class="col-lg-8 d-lg-flex p-4 justify-content-center"><div class="p-md-3 mb-3 mb-lg-0"><img src="undefinedimg/img-ornament-1.svg" height="116" /></div><div class="p-md-3"><h5>Sepertinya tidak ditemukan pelatihan serupa</h5><p>Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk ikuti</p><a class="btn btn-primary" href="/pelatihan">Cari Pelatihan Lainnya</a></div></div></div></div></section>').css({"display": "block"})
+                appendSimilar.html('<section class="section-course mb-4"><div class="container py-0 px-4 px-md-0"><div class="d-flex align-items-center justify-content-between mb-3"><h4>Pelatihan Serupa</h4></div><div class="d-flex similar-course-empty rounded justify-content-center"><div class="col-lg-8 d-lg-flex p-4 justify-content-center"><div class="p-md-3 mb-3 mb-lg-0"><img loading="lazy" src="img/img-ornament-1.svg" height="116" /></div><div class="p-md-3"><h5>Sepertinya tidak ditemukan pelatihan serupa</h5><p>Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk ikuti</p><a class="btn btn-primary" href="/pelatihan">Cari Pelatihan Lainnya</a></div></div></div></div></section>').css({"display": "block"})
             }
 
         })
@@ -880,6 +1080,10 @@ function homeCheckLogin() {
                         localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
                         loginButton.find('.text-users').html(dataPost.email);
 
+                        mixpanel.track('Login Success', {
+                            'email' : dataPost.email
+                        });
+
                         formLogin.find('.alert.alert-danger').addClass('visually-hidden');
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         // hide modal login
@@ -897,7 +1101,11 @@ function homeCheckLogin() {
                             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
                             afterLoginModal.modal('show');
                             logoutButton.click(function() {
+                                mixpanel.track('Logout Success', {
+                                    'email' : dataPost.email
+                                });
                                 localStorage.removeItem('users');
+                                mixpanel.reset();
                                 localStorage.removeItem('course_takens');
                                 window.location.reload();
                             })
@@ -920,11 +1128,13 @@ function homeCheckLogin() {
         loginButton.find('span').after(loginText).remove();
         // handle login
         loginButton.click(function() {
+            // window.location.href = 'profil/'
             afterLoginModal.find('#validEmailUser').val(dataUser.email)
             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
             afterLoginModal.modal('show');
             logoutButton.click(function() {
                 localStorage.removeItem('users');
+                mixpanel.reset();
                 localStorage.removeItem('course_takens');
                 window.location.reload();
             })
@@ -972,12 +1182,31 @@ function homeCheckLogin() {
     });
 
     
-    $('#coworkingCarousel').owlCarousel({
+    // $('#coworkingCarousel').owlCarousel({
+    //     loop:true,
+    //     margin:24,
+    //     nav:false,
+    //     autoplay: true,
+    //     responsive:{
+    //         0:{
+    //             items:1,
+    //             margin: 0
+    //         }
+    //     }
+    // });
+
+    $('.testimony-carousel').owlCarousel({
         loop:true,
-        margin:24,
-        nav:false,
+        // margin:24,
         autoplay: true,
+        center: true,
+        dots: true,
+        lazyLoad:true,
         responsive:{
+            1000:{
+                items:3,
+                margin: 0
+            },
             0:{
                 items:1,
                 margin: 0
@@ -985,18 +1214,6 @@ function homeCheckLogin() {
         }
     });
 
-    $('.cws-carousel').owlCarousel({
-        loop:true,
-        margin:24,
-        nav:true,
-        autoplay: true,
-        responsive:{
-            0:{
-                items:1,
-                margin: 0
-            }
-        }
-    });
 
     // show hide password 
     $('.show-password').click(function(e){
