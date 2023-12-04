@@ -144,11 +144,12 @@ body{
 }
 .text-wrapper{
   display: block;
-  height: 90px;
+  height: 56px;
   overflow: hidden;
+  // outline: solid 1px red;
   span{
     display: block;
-    height: 96px;
+    height: 60px;
     background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -1715,8 +1716,14 @@ body{
 }
 
 @media (min-width: 576px) { 
-
+  .text-wrapper{
+    height: 70px;
+    span{
+      height: 86px;
+    }
+  }
 }
+
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
@@ -1795,6 +1802,12 @@ body{
   }
   .pds-card-list .card-body .pds-card-list-footer .w-100 {
       width: auto !important;
+  }
+  .text-wrapper{
+    height: 90px;
+    span{
+      height: 96px;
+    }
   }
 }
 
