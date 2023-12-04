@@ -935,6 +935,9 @@ body{
   border-radius: 24px;
   box-shadow: 0px 8px 16px -4px rgba(1, 24, 48, 0.1),
     0px 0px 0px 1px rgba(214, 219, 224, 0.2);
+  &.shadow-flat{
+    box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.5);;
+  }
 }
 
 .form-control::placeholder,
@@ -1478,6 +1481,20 @@ body{
   }
 }
 
+.modal-search{
+  display: none;
+  background-color: var(--s100);
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  &.is-show{
+    display: block;
+  }
+}
+
 
 
 /* media querys */
@@ -1544,6 +1561,57 @@ body{
     .column-3-1{
         column-count: 2;
     }
+    .pds-card-list {
+      padding: 1rem;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+  }
+  .pds-card-list:hover .card-cover > img {
+      -webkit-transform: none;
+      transform: none;
+  }
+  .pds-card-list h6 {
+      min-height: auto;
+  }
+  .pds-card-list .card-cover {
+      width: 224px;
+      position: initial;
+      overflow: initial;
+      background: none;
+  }
+  .pds-card-list .card-cover .card-img-top {
+      width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      aspect-ratio: auto;
+      border-radius: 0.5rem;
+  }
+  .pds-card-list .card-cover-overlay {
+      position: absolute;
+      width: calc(100% - 224px - 40px);
+      left: auto;
+      right: 1rem;
+      top: 1rem;
+      height: 32px;
+      padding: 0;
+      background: none;
+  }
+  .pds-card-list .card-cover-overlay .course-lp-name {
+      color: var(--text-default);
+  }
+  .pds-card-list .card-body {
+      margin-top: 48px;
+      width: 100%;
+      padding: 0 1rem;
+  }
+  .pds-card-list .card-body .pds-card-list-footer.text-center {
+      text-align: left !important;
+  }
+  .pds-card-list .card-body .pds-card-list-footer .w-100 {
+      width: auto !important;
+  }
 }
 
 // Large devices (desktops, 992px and up)
@@ -1677,7 +1745,7 @@ body {
 	min-height: 100vh;
   z-index: 10000;
   position: absolute;
-  background: yellow;
+  // background: yellow;
 
 }
 
