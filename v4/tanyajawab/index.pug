@@ -1,0 +1,24 @@
+//- INDEX LANDING PAGES
+//- start variable
+- var pageActive = 'tanyajawab'
+- var baseURL = '../'
+- var contentDescription = {}
+- contentDescription.title = "Tanya Jawab Indonesia Skills Week - Prakerja.go.id"
+- contentDescription.description = "Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara gratis, murah dan mudah selama 1 minggu."
+
+//- doctype html
+<!DOCTYPE html>
+html(lang="id")
+    include ../pug/includes/html_head.pug
+    body
+        include ../pug/includes/analytics_no_script.pug
+        include ../pug/includes/navigation.pug
+        main
+           include ../pug/tanyajawab/section_tanya_jawab.pug
+           include ../pug/tanyajawab/section_course_category.pug
+           include ../pug/tanyajawab/section_terms.pug
+        
+        include ../pug/includes/modal.pug
+        include ../pug/includes/toast.pug
+        include ../pug/includes/footer.pug
+    include ../pug/includes/html_foot.pug
