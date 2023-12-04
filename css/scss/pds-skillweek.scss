@@ -1712,6 +1712,8 @@ body{
       border-radius: 2rem;
     }
   }
+
+  
   
 }
 
@@ -1722,6 +1724,7 @@ body{
       height: 86px;
     }
   }
+  
 }
 
 
@@ -1809,6 +1812,7 @@ body{
       height: 96px;
     }
   }
+  
 }
 
 // Large devices (desktops, 992px and up)
@@ -1896,6 +1900,10 @@ body{
     
       }
       
+    }
+
+    .modal-search-trigger{
+      margin-right: 0;
     }
 }
 
