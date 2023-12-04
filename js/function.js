@@ -571,6 +571,38 @@ var pushEventsFilter = function(target) {
 
 /** function to init the content at the first time */
 function courseLoaderInit(){
+    const { autocomplete, getAlgoliaResults } = window['@algolia/autocomplete-js'];
+    
+    const searchClient = algoliasearch(
+        '4NVTBLGFK8',
+        'a80cbf08790b4013d28757ca8201967e'
+    );
+
+    autocomplete({
+        container: '#form-search',
+        placeholder: 'Cari Judul, Kategori atau Lembaga Paltihan',
+        getSources({ query }) {
+            return [
+              {
+                sourceId: 'products',
+                getItems() {
+                  return getAlgoliaResults({
+                    searchClient,
+                    queries: [
+                      {
+                        indexName: 'prakerja_isw',
+                        query,
+                        params: {
+                          hitsPerPage: 5,
+                        },
+                      },
+                    ],
+                  });
+                },
+              },
+            ];
+          },
+    });      
     // $(document).ready(function(){
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
@@ -588,93 +620,93 @@ function courseLoaderInit(){
             $('#button-addon1').attr('class', 'btn btn-primary')
         }
         
-        if (appendTarget.length) {
-            $.getJSON(courseListURL, function(courses){
-                // get query param by 
-                var data = _.shuffle(courses)
+        // if (appendTarget.length) {
+        //     $.getJSON(courseListURL, function(courses){
+        //         // get query param by 
+        //         var data = _.shuffle(courses)
 
-                if (!_.isEmpty(filterPrice)) {
-                    // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
-                    if (filterPrice.length == 3) {
-                        data = data
-                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "0"})
-                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
-                        filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
-                    } else if (_.contains(filterPrice, 'diskon besar')) {
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
-                    } else {
-                        data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
-                    }
-                } 
-                if (!_.isEmpty(filterTopic)) {
-                    data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
-                }  
-                if (!_.isEmpty(filterLP)) {
-                    data = _.filter(data, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
-                }
-                var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
+        //         if (!_.isEmpty(filterPrice)) {
+        //             // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+        //             if (filterPrice.length == 3) {
+        //                 data = data
+        //             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
+        //                 data = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+        //             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
+        //                 filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
+        //                 data = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+        //             } else if (_.contains(filterPrice, 'diskon besar')) {
+        //                 data = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+        //             } else {
+        //                 data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+        //             }
+        //         } 
+        //         if (!_.isEmpty(filterTopic)) {
+        //             data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
+        //         }  
+        //         if (!_.isEmpty(filterLP)) {
+        //             data = _.filter(data, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
+        //         }
+        //         var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
 
 
-                // if (!_.isEmpty(filterTopic) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
-                //     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filterTopic.toLowerCase()) !== -1; })
-                //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                // } else {
-                //     var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                // }
+        //         // if (!_.isEmpty(filterTopic) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
+        //         //     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filterTopic.toLowerCase()) !== -1; })
+        //         //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+        //         // } else {
+        //         //     var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+        //         // }
                 
-                // var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                if (keyword !== null) {
-                    $('#filter-keyword').val(keyword);
-                }
+        //         // var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
+        //         if (keyword !== null) {
+        //             $('#filter-keyword').val(keyword);
+        //         }
                 
-                var dataLength = dataKeyword.length;
-                var paging = Math.ceil(dataLength/loadItem);
-                var start = 0;
-                var end = loadItem;
+        //         var dataLength = dataKeyword.length;
+        //         var paging = Math.ceil(dataLength/loadItem);
+        //         var start = 0;
+        //         var end = loadItem;
     
-                setTimeout(function() {
-                    // remove existing content
-                    appendTarget.html('');
-                    // counting the data
-                    $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
+        //         setTimeout(function() {
+        //             // remove existing content
+        //             appendTarget.html('');
+        //             // counting the data
+        //             $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
                     
-                    // loop the content and add to the course list
-                    if (!_.isEmpty(dataKeyword)) {
-                        $.each(dataKeyword.slice(start, end), function(i, list) {
-                            templateCourse(appendTarget, list, null, true);
-                        })
-                    } else {
-                        appendTarget.html(emptyState);
-                    }
+        //             // loop the content and add to the course list
+        //             if (!_.isEmpty(dataKeyword)) {
+        //                 $.each(dataKeyword.slice(start, end), function(i, list) {
+        //                     templateCourse(appendTarget, list, null, true);
+        //                 })
+        //             } else {
+        //                 appendTarget.html(emptyState);
+        //             }
     
-                    // loadmore more button show / hide
-                    checkLoadMore(loadMoreTarget, paging, currentPage);
-                    btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
+        //             // loadmore more button show / hide
+        //             checkLoadMore(loadMoreTarget, paging, currentPage);
+        //             btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
-                    // load option
-                    optionList(courses, filterLP, filterPrice, filterTopic);
+        //             // load option
+        //             optionList(courses, filterLP, filterPrice, filterTopic);
 
-                    // trigger reset filter
-                    resetFilter('#btn-reset-filter', 'input.form-check-input');
+        //             // trigger reset filter
+        //             resetFilter('#btn-reset-filter', 'input.form-check-input');
                     
-                    // reset button function to enable or disabled
-                    filterWatcher(".form-check-input", "#btn-reset-filter");
+        //             // reset button function to enable or disabled
+        //             filterWatcher(".form-check-input", "#btn-reset-filter");
                     
-                    // filter implementation
-                    filterCourse(applyFilter, courses, start, end);
-                    filterKeyword(formSeaerch, buttonSearch, courses, start, end);
+        //             // filter implementation
+        //             filterCourse(applyFilter, courses, start, end);
+        //             filterKeyword(formSeaerch, buttonSearch, courses, start, end);
     
-                    // invoke function push event GA
-                    // pushEvents('.see-detail-course');
-                    // pushEvents('.apply-course');
+        //             // invoke function push event GA
+        //             // pushEvents('.see-detail-course');
+        //             // pushEvents('.apply-course');
     
-                }, 1500)
-            }).fail(function(){
-                console.log("An error has occurred.");
-            });
-        }
+        //         }, 1500)
+        //     }).fail(function(){
+        //         console.log("An error has occurred.");
+        //     });
+        // }
     // });
 }
 
