@@ -1,0 +1,161 @@
+// FOOTER START
+.section-footer .top-wrapper{
+    border-top:solid 1px var(--border-default);
+    border-bottom:solid 1px var(--border-default);
+}
+
+.list-footer-menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.list-footer-menu li{
+    padding: .375rem 0;
+}
+.list-footer-menu a,
+.list-footer-menu p{
+    text-decoration: none;
+    color: var(--text-secondary);
+}
+
+.list-footer-menu a:hover{
+    color: var(--text-link);
+}
+
+@media (min-width:992px) {
+    .list-footer-menu li{
+        padding: 1rem 0;
+    }
+}
+
+.call-center-box{
+    background-color: var(--bg-default);
+    border-radius: 1rem;
+    background-image: url('../img/img-street-lamps.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+
+.call-center-box .list-footer-menu li{
+    padding: .5rem 0;
+}
+
+.quote-box{
+    background-color: var(--b100);
+}
+.quote-box .bi{
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.quote-author{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-default);
+    font-size: 0.75rem;
+    position: relative;
+    padding-top: 1rem;
+}
+.quote-author::before{
+    display: block;
+    content: '';
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.social-media{
+    a{
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        margin-right: 3rem;
+        padding: 0 .5rem;
+        
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+    
+}
+
+.social-media a:hover{
+    color: var(--text-link);
+}
+
+.book-frame{
+    padding-left:1.5rem;
+    position: relative;
+}
+.book-frame:before{
+    display: block;
+    content: '';
+    width: 1.5rem;
+    height: 100%;
+    background-color: var(--o400);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.book-frame img{
+    border-radius: 0 1rem 1rem 0;
+}
+
+.copyrights{
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+.scroll-top{
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    // background-color: var(--primary);
+    background-color: rgba(#1d508b, .75);
+    color: white;
+    text-align: center;
+    line-height: 32px;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 88;
+    border: solid 1px transparent;
+    cursor: pointer;
+    visibility: hidden;
+    padding: 0;
+    &.is-show{
+        visibility: visible;
+    }
+    &:hover{
+        color: white;
+        background-color: var(--b600);
+    }
+    &:active{
+        background-color: var(--b700);
+        border: solid 1px var(--b800);
+    }
+    i{
+        // height: 100%;
+        // outline: solid 1px red;
+        // vertical-align: top;
+        // display: inline-block;
+        // margin-top: -5px;
+        &::before{
+            // transform: translateY(49%);
+            // vertical-align: top;
+            // margin-top: -5px;
+        }
+    }
+}
+
+@media (min-width: 992px) { 
+    //
+    .scroll-top{
+        bottom: 24px;
+        right: 24px;
+    }
+
+}
+// FOOTER END

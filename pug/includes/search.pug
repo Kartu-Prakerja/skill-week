@@ -1,85 +1,152 @@
-//- #morphsearch.morphsearch
-//-   form.morphsearch-form
-//-     input.morphsearch-input(type='search' placeholder='Cari Pelatihan...')
-//-     button.morphsearch-submit(type='submit') Search
-//-   .morphsearch-content
-//-     .dummy-column
-//-       h2 Diskon Besar
-//-       a.dummy-media-object(href='http://twitter.com/SaraSoueidan')
-//-         img.round(src='http://0.gravatar.com/avatar/81b58502541f9445253f30497e53c280?s=50&d=identicon&r=G' alt='Sara Soueidan')
-//-         h3 Sara Soueidan
-//-       a.dummy-media-object(href='http://twitter.com/rachsmithtweets')
-//-         img.round(src='http://0.gravatar.com/avatar/48959f453dffdb6236f4b33eb8e9f4b7?s=50&d=identicon&r=G' alt='Rachel Smith')
-//-         h3 Rachel Smith
-//-       a.dummy-media-object(href='http://www.twitter.com/peterfinlan')
-//-         img.round(src='http://0.gravatar.com/avatar/06458359cb9e370d7c15bf6329e5facb?s=50&d=identicon&r=G' alt='Peter Finlan')
-//-         h3 Peter Finlan
-//-       a.dummy-media-object(href='http://www.twitter.com/pcridesagain')
-//-         img.round(src='http://1.gravatar.com/avatar/db7700c89ae12f7d98827642b30c879f?s=50&d=identicon&r=G' alt='Patrick Cox')
-//-         h3 Patrick Cox
-//-       a.dummy-media-object(href='https://twitter.com/twholman')
-//-         img.round(src='http://0.gravatar.com/avatar/cb947f0ebdde8d0f973741b366a51ed6?s=50&d=identicon&r=G' alt='Tim Holman')
-//-         h3 Tim Holman
-//-       a.dummy-media-object(href='https://twitter.com/shaund0na')
-//-         img.round(src='http://1.gravatar.com/avatar/9bc7250110c667cd35c0826059b81b75?s=50&d=identicon&r=G' alt='Shaun Dona')
-//-         h3 Shaun Dona
-//-     .dummy-column
-//-       h2 Serba 20 Ribu
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/08/05/page-preloading-effect/')
-//-         img(src='img/thumbs/PagePreloadingEffect.png' alt='PagePreloadingEffect')
-//-         h3 Page Preloading Effect
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/05/28/arrow-navigation-styles/')
-//-         img(src='img/thumbs/ArrowNavigationStyles.png' alt='ArrowNavigationStyles')
-//-         h3 Arrow Navigation Styles
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/06/19/ideas-for-subtle-hover-effects/')
-//-         img(src='img/thumbs/HoverEffectsIdeasNew.png' alt='HoverEffectsIdeasNew')
-//-         h3 Ideas for Subtle Hover Effects
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/07/14/freebie-halcyon-days-one-page-website-template/')
-//-         img(src='img/thumbs/FreebieHalcyonDays.png' alt='FreebieHalcyonDays')
-//-         h3 Halcyon Days Template
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/05/22/inspiration-for-article-intro-effects/')
-//-         img(src='img/thumbs/ArticleIntroEffects.png' alt='ArticleIntroEffects')
-//-         h3 Inspiration for Article Intro Effects
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/06/26/draggable-dual-view-slideshow/')
-//-         img(src='img/thumbs/DraggableDualViewSlideshow.png' alt='DraggableDualViewSlideshow')
-//-         h3 Draggable Dual-View Slideshow
-//-     .dummy-column
-//-       h2 Gratis
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/10/07/tooltip-styles-inspiration/')
-//-         img(src='img/thumbs/TooltipStylesInspiration.png' alt='TooltipStylesInspiration')
-//-         h3 Tooltip Styles Inspiration
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/09/23/animated-background-headers/')
-//-         img(src='img/thumbs/AnimatedHeaderBackgrounds.png' alt='AnimatedHeaderBackgrounds')
-//-         h3 Animated Background Headers
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/')
-//-         img(src='img/thumbs/OffCanvas.png' alt='OffCanvas')
-//-         h3 Off-Canvas Menu Effects
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/09/02/tab-styles-inspiration/')
-//-         img(src='img/thumbs/TabStyles.png' alt='TabStyles')
-//-         h3 Tab Styles Inspiration
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/')
-//-         img(src='img/thumbs/ResponsiveSVGs.png' alt='ResponsiveSVGs')
-//-         h3 Make SVGs Responsive with CSS
-//-       a.dummy-media-object(href='http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/')
-//-         img(src='img/thumbs/NotificationStyles.png' alt='NotificationStyles')
-//-         h3 Notification Styles Inspiration
-//-   // /morphsearch-content
-//-   span.morphsearch-close
-//- // /morphsearch
 
-.modal-search-trigger.input-group.input-group-lg.custom-search-2.shadow-flat.ms-3
-  button#button-addon1.btn.btn-outline-light(type='button')
-    i.bi.bi-search
-  input.form-control(type='text' aria-label='Search Pelatihan' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
-  //- button#button-addon1.btn.btn-outline-light(type='button' data-bs-toggle='modal' data-bs-target='#modalFilter')
-  //-   i.bi.bi-sliders2
+.modal-search-trigger.input-group.custom-search-2.shadow-none.ms-3
+  .search-wrapper
+    //- Mobile view 
+    .search-mobile.md-show.justify-content-end
+
+    //- Desktop view 
+    .search-desktop.md-hide
+      button.btn(type='button')
+        i.bi.bi-search
+      input.form-control(type='text' aria-label='Search Pelatihan' placeholder='Cari Pelatihan...')
+
 
 .modal-search
+  button.btn.modal-search-close(title="Tutup")
+    i.bi.bi-x-lg.fs-2
   .container 
-    .modal-search-form.d-flex
-      input.form-control(type='text' aria-label='Search Pelatihan' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
+    .modal-search-form.d-flex.mt-5
+      input.form-control.modal-search-input(type='text' aria-label='Search Pelatihan' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
       button.btn.btn-outline-light(type='button')
         i.bi.bi-search
 
+    .row.py-5
+      //- Diskon Besar
+      .col-12.col-lg-4.dummy-collumn
+        h5 Diskon Besar
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp200.000
+              span.course-institution Skillvul
 
-    button.modal-search-close Close
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp200.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp200.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp200.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp200.000
+              span.course-institution Skillvul
+
+      //- Serba 20 Ribu 
+      .col-12.col-lg-4.dummy-collumn
+        h5 Serba 20Ribu
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp20.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp20.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp20.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp20.000
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price Rp20.000
+              span.course-institution Skillvul
+
+      //- Gratis
+      .col-12.col-lg-4.dummy-collumn
+        h5 Gratis
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price.free Gratis
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price.free Gratis
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price.free Gratis
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price.free Gratis
+              span.course-institution Skillvul
+
+        a.course-list-card.d-flex.align-items-center(href="#")
+          img(src="https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/thumbnail/isw-p0361.png")
+          span.d-block.w-100
+            span.course-title Internet Of Things (IoT)
+            span.d-flex.justify-content-between
+              span.course-price.free Gratis
+              span.course-institution Skillvul
+           
