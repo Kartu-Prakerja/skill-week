@@ -5,7 +5,7 @@ include notification.pug
 
 header.pdt-header
   .container-md.px-4.px-md-0
-    .d-flex.justify-content-between.align-items-center
+    .d-flex.justify-content-between.align-items-center.position-relative
       div.d-flex.justify-content-between.align-items-center.col-12.col-lg-auto
         a(href=baseURL+'')
           img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
@@ -14,6 +14,9 @@ header.pdt-header
         include search.pug
         
       ul.d-flex.align-items-center.navbar-custom
+        li.nav-item.md-show
+          .menu.burger-menu(data-menu='13')
+            .icon
         li.nav-item.md-hide
           a.nav-link(href=baseURL+'' class={"nav-link-active" : pageActive === ''}) Beranda
         li.nav-item.md-hide
@@ -32,8 +35,6 @@ header.pdt-header
               //- | Masuk
               //- | bambang_soehardjo@gmail.com
               
-        li.nav-item.md-show
-          .menu.burger-menu(data-menu='13')
-            .icon
+        
 
 

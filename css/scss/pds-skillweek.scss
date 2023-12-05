@@ -1507,9 +1507,6 @@ body{
   }
 }
 
-
-
-
 /* media querys */
 
 @media (max-width: 992px) { 
@@ -1540,11 +1537,15 @@ body{
       max-width: 50%;
     }
   }
-  
 }
 
 @media (min-width: 576px) { 
-  
+  .text-wrapper{
+    height: 70px;
+    span{
+      height: 86px;
+    }
+  }
   
 }
 
@@ -1627,7 +1628,12 @@ body{
   .pds-card-list .card-body .pds-card-list-footer .w-100 {
       width: auto !important;
   }
-  
+  .text-wrapper{
+    height: 90px;
+    span{
+      height: 96px;
+    }
+  }
   
 }
 
@@ -1718,7 +1724,6 @@ body{
       
     }
 
-    
 }
 
 @media (min-width: 1200px) { 
