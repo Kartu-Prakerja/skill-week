@@ -34,6 +34,7 @@
 .navbar-custom{
     list-style-type: none;
     margin: 0;
+    padding-inline-start: 0;
 
     a.nav-link{
       position: relative;
@@ -156,7 +157,7 @@
 
 
 
-  @media (min-width: 768px) { 
+  @media (min-width: 992px) { 
 
     // used for mobile navigation
     .md-hide{
