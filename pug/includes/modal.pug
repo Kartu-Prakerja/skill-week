@@ -85,7 +85,7 @@
             i.bi.bi-arrow-up-right-square.ms-1
 
 <!-- Modal User Sukses Login -->
-#loginSuccessModal.modal.fade(tabindex='-1' aria-labelledby='loginSuccessModal' aria-hidden='true')
+#loginSuccessModal.modal.fade.show(tabindex='-1' aria-labelledby='loginSuccessModal' aria-hidden='true')
   .modal-dialog.modal-dialog-centered.pds-modal
     .modal-content
       .modal-header.modal-header-custom.p-4
@@ -100,9 +100,18 @@
           |  berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
-        button#success-login.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
-          | Mengerti
+        .row.p-0.w-100
+          .col-12.col-md-6.ps-0.pe-0.pe-lg-2
+            button#btn-logout.btn.btn-outline-primary.w-100.mb-3.mb-lg-0(data-bs-toggle="modal" data-bs-dismiss='modal')
+              | Tutup
+          .col-12.col-md-6.ps-0.pe-0.ps-lg-2
+            a(href="#").btn.btn-primary.w-100(data-bs-toggle="modal" data-bs-dismiss='modal')
+              | Buka Profil
 
+
+//- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginSuccessModal">
+//-   | Launch static backdrop modal
+//- </button>
 
 <!-- Modal Error Login -->
 #loginErrorModal.modal.fade(tabindex='-1' aria-labelledby='loginErrorModal' aria-hidden='true')
