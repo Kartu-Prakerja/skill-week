@@ -147,14 +147,36 @@ body{
   height: 56px;
   overflow: hidden;
   // outline: solid 1px red;
-  span{
-    display: block;
-    height: 60px;
-    background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+  background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: spin_words 8s infinite cubic-bezier(.71,.4,.42,1.02);
+  span{
+    display: block;
+    height: 60px;
+    color: var(--o500);
+    background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    // animation: spin_words 8s infinite cubic-bezier(.71,.4,.42,1.02);
+    animation-name: spin_words;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+
+    -moz-animation-name: spin_words;
+    -moz-animation-duration: 8s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+
+    -webkit-animation-name: spin_words;
+    -webkit-animation-duration: 8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
   }
 }
 
