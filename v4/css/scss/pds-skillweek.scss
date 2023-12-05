@@ -144,16 +144,39 @@ body{
 }
 .text-wrapper{
   display: block;
-  height: 90px;
+  height: 56px;
   overflow: hidden;
-  span{
-    display: block;
-    height: 96px;
-    background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+  // outline: solid 1px red;
+  background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: spin_words 8s infinite cubic-bezier(.71,.4,.42,1.02);
+  span{
+    display: block;
+    height: 60px;
+    color: var(--o500);
+    background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    // animation: spin_words 8s infinite cubic-bezier(.71,.4,.42,1.02);
+    animation-name: spin_words;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+
+    -moz-animation-name: spin_words;
+    -moz-animation-duration: 8s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+
+    -webkit-animation-name: spin_words;
+    -webkit-animation-duration: 8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
   }
 }
 
@@ -1484,181 +1507,6 @@ body{
   }
 }
 
-.modal-search-trigger{
-  width: auto;
-  // background-color: yellow;
-  position: relative;
-  margin-right: 48px;
-  .form-control {
-    border-radius: 24px !important;
-    padding-left: 38px;
-    padding-right: 1rem;
-    border: solid 2px var(--border-default);
-  }
-}
-
-.modal-search{
-  display: none;
-  background-color: var(--s100);
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  &.is-show{
-    display: block;
-  }
-  
-}
-
-.search-wrapper{
-
-  position: relative;
-  &:before{
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: none;
-    position: absolute;
-    top:0;
-    left: 0;
-    z-index: 22;
-    border-radius: 20px;
-  }
-  .search-mobile{
-    z-index: -1;
-  }
-  .search-desktop{
-    z-index: -1;
-  }
-  &:hover{
-    cursor: text;
-  }
-}
-
-.search-mobile{
-  width: 38px;
-  height: 38px;
-  // background: var(--r200);
-  position: relative;
-  &::before, &::after{
-    content: '';
-    display: block;
-    position: absolute;
-  }
-  &::before{
-    width: 28px;
-    height: 28px;
-    top: 4px;
-    left: 4px;
-    border: solid 3px var(--n500);
-    border-radius: 16px;
-    z-index: 1;
-  }
-  &:after{
-    width: 10px;
-    height: 4px;
-    bottom: 6px;
-    right: 2px;
-    background-color: var(--n500);
-    transform: rotate(45deg);
-  }
-}
-
-.modal-search-form{
-  position: relative;
-  .form-control {
-    width: 100%;
-    height: 6rem;
-    padding: 1rem 6rem 1rem 2rem;
-    font-weight: 700;
-    border: none;
-    background: var(--n100);
-    font-size: 3rem;
-    border-radius: 3rem;
-    color: var(--secondary);
-    -webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
-    transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
-    &:focus{
-      box-shadow: none;
-    }
-  }
-  .btn{
-    width: 6rem;
-    height: 6rem;
-    position: absolute;
-    top:0;
-    right:0;
-    font-size: 3rem;
-    border-radius: 3rem;
-    border: solid .25rem var(--n100);
-    &:hover{
-      background-color: var(--b500);
-      color: white;
-    }
-  }
-}
-
-.modal-search-close{
-  position: absolute;
-  top:.5rem;
-  right:.5rem;
-  z-index: 2;
-  color: var(--s400);
-  border: none;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border-radius: 24px;
-}
-
-.course-list-card{
-  display: block;
-  padding: .75rem;
-  text-decoration: none;
-  color: var(--text-default);
-  background-color: rgba(black, .05);
-  margin: .5rem 0;
-  border-radius: .5rem;
-  &:hover{
-    background-color: rgba(black, .08);
-  }
-  .course-title{
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-  }
-  img{
-    width: 4.25rem;
-    height: 4.25rem;
-    object-fit: cover;
-    border-radius: .25rem;
-    margin-right: .5rem;
-  }
-  .course-price{
-    font-size: .875rem;
-    font-weight: bold;
-    color: var(--secondary);
-    &.free{
-      color: var(--g700);
-    }
-  }
-  .course-institution{
-    font-size: .875rem;
-    color: var(--text-secondary);
-  }
-}
-
-
-
 /* media querys */
 
 @media (max-width: 992px) { 
@@ -1689,34 +1537,18 @@ body{
       max-width: 50%;
     }
   }
-  .modal-search-form{
-    position: relative;
-    .form-control {
-      width: 100%;
-      height: 4rem;
-      padding: 1rem 4rem 1rem 1rem;
-      font-weight: 700;
-      border: none;
-      background: var(--n100);
-      font-size: 2rem;
-      border-radius: 2rem;
-    }
-    .btn{
-      width: 4rem;
-      height: 4rem;
-      position: absolute;
-      top:0;
-      right:0;
-      font-size: 2rem;
-      border-radius: 2rem;
+}
+
+@media (min-width: 576px) { 
+  .text-wrapper{
+    height: 70px;
+    span{
+      height: 86px;
     }
   }
   
 }
 
-@media (min-width: 576px) { 
-
-}
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
@@ -1796,6 +1628,13 @@ body{
   .pds-card-list .card-body .pds-card-list-footer .w-100 {
       width: auto !important;
   }
+  .text-wrapper{
+    height: 90px;
+    span{
+      height: 96px;
+    }
+  }
+  
 }
 
 // Large devices (desktops, 992px and up)
@@ -1884,6 +1723,7 @@ body{
       }
       
     }
+
 }
 
 @media (min-width: 1200px) { 
