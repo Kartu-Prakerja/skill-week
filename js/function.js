@@ -256,7 +256,7 @@ var templateDetail = function(data) {
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
-        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
+        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_detail_image +'" alt=""/></div>' +
           '<div class="mt-3 d-flex justify-content-between">' +
             '<div>' +
                 '<div class="course-real-price mb-1"><span class="me-1">'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
