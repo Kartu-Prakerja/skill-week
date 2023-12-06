@@ -126,6 +126,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
 
 var templateCourseSearch = function(target, data, cardClass, isCourse){ 
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
+    var pageClass = $('html').attr('page-class');
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
     var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">'
@@ -135,7 +136,7 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
-    var template = '<a class="course-list-card d-flex align-items-center" href="'+ course_detail +'">'+
+    var template = '<a class="course-list-card d-flex align-items-center course-recommend-searc" href="'+ course_detail +'">'+
             imageCourse +
             '<span class="d-block w-100">' +
                 '<span class="course-title">'+ data.course_title +'</span>' +
@@ -146,8 +147,8 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
         // trigger modal
         // skipped because already have the page detail
         // btnDescription('#detail-course' + data.index, data);
-        $('.apply-course').unbind('click');
-        $('.apply-course').click(function(e) {
+        $('.course-recommend-search').unbind('click');
+        $('.course-recommend-search').click(function(e) {
             e.preventDefault();
             mixpanel.track('See Detail Course', {
                 'course_id' : data.course_id,
@@ -157,7 +158,7 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
                 'course_discount': data.course_discount,
                 'course_price_after_discount' : data.course_after_discount,
                 'course_lp': data.lp_name,
-                'source' : cardClass
+                'source' : pageClass
             });
             window.location.href = $(this).attr('href');
         })
@@ -244,6 +245,14 @@ var templateDetail = function(data) {
         getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      }
 
+     var contactCenter = '';
+     if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
+        var phone = !_.isEmpty(data.cs_call_center) ? '<div class="pt-2 pb-2"> <h6>Telepon </h6><a class="btn btn-ghost-primary btn-contact-center" data-service="call center" target="_blank" href="tel:'+ data.cs_call_center +'"> <i class="bi bi-telephone-fill me-2"></i>'+ data.cs_call_center +'</a> </div>' : '';
+        var wa = !_.isEmpty(data.cs_wa) ? '<div class="pt-2 pb-2"><h6>Whatsapp </h6><a class="btn btn-ghost-success btn-contact-center" data-service="whatsapp" target="_blank" href="https://wa.me/'+ data.cs_wa +'"> <i class="bi bi-whatsapp me-2"></i>'+ data.cs_wa +'</a></div>' : '';
+        var email = !_.isEmpty(data.cs_email) ? '<div class="pt-2 pb-2"><h6>Email </h6><a class="btn btn-ghost-light btn-contact-center" data-service="email" target="_blank" href="mailto:'+ data.cs_email + '"> <i class="bi bi-envelope-at me-2"></i>'+ data.cs_email +'</a></div>' : '' 
+        contactCenter = '<section class="py-3"><h4>Contact Center</h4>' + wa + phone + email +'</section>'
+     }
+
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
@@ -309,6 +318,7 @@ var templateDetail = function(data) {
               '<h4 class="mb-4">Cara Redeem Voucher</h4>' +
               '<article id="how-to-redeem">'+ (data.how_to_redeem).replace(/\n/g,'</br>') +'</article>' +
             '</section>' +
+            contactCenter +
             '<hr/>' +
           '</article>' +
         '</div>' +
@@ -895,6 +905,22 @@ function courseLoaderDetail () {
                 var shareBtn = $('.share-button');
                 var shareDialog = $('.share-dialog');
                 var closeButton = $('.close-button');
+                var callCenter = $('.btn-contact-center')
+
+                callCenter.click(function(e) {
+                    var _this = $(this);
+                    var channel = _this.attr('data-service')
+                    mixpanel.track('Contact Center', {
+                        'course_id': courseId,
+                        'course_title' : detail.course_title,
+                        'course_category' : detail.course_category,
+                        'course_price': detail.course_price,
+                        'course_discount': detail.course_discount,
+                        'course_price_after_discount' : detail.course_after_discount,
+                        'course_lp': detail.lp_name,
+                        'channel' : channel
+                    });
+                });
 
                 shareBtn.click(function() {
                     var shareFacebook = $('#share-facebook');
@@ -1254,7 +1280,6 @@ function profile(dataCourse) {
     var emptyCourseContainer = $('#empty-list');
     var loginModal = $('#loginModal');
     var profile = $('.section-profile');
-    console.log(userProfile)
     // check if page profile properties is exists
     // set the text to profile
     if (userProfile.length) {
@@ -1276,9 +1301,7 @@ function profile(dataCourse) {
                     // render the list of the course
                     courseList.html('');
                     _.each(response.voucher, function(val, i) {
-                        console.log(val.CourseID)
                         var detail = _.findWhere(dataCourse, { 'course_id': val.CourseID });
-                        console.log(detail);
                         if (!_.isUndefined(detail)) {
                             templateCourseProfile(courseList, detail, 'profile', true)
                         }
@@ -1308,6 +1331,7 @@ function profile(dataCourse) {
 
 function globalSearch(dataCourse) {
     var formSearch = $('#form-search-global');
+    var pageClass = $('html').attr('page-class');
     if (formSearch.length) {
         var btnFormSearch = formSearch.find('button');
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
@@ -1319,7 +1343,10 @@ function globalSearch(dataCourse) {
         formSearch.submit(function(e) {
             e.preventDefault();
             keyword = formSearch.find('input.modal-search-input').val();
-            console.log(keyword)
+            mixpanel.track('Search Course', {
+                'keyword' : keyword,
+                'source' : pageClass
+            });
             window.location.replace("/pelatihan/index.html?&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price=&lp=&topic=")
         });
 
