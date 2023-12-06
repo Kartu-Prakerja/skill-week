@@ -102,16 +102,12 @@
       .modal-footer.ps-4.pb-4.pe-4
         .row.p-0.w-100
           .col-12.col-md-6.ps-0.pe-0.pe-lg-2
-            button#btn-logout.btn.btn-outline-primary.w-100.mb-3.mb-lg-0(data-bs-toggle="modal" data-bs-dismiss='modal')
+            button.btn.btn-outline-primary.w-100.mb-3.mb-lg-0(data-bs-toggle="modal" data-bs-dismiss='modal' onClick="window.location.reload();")
               | Tutup
           .col-12.col-md-6.ps-0.pe-0.ps-lg-2
-            a(href="#").btn.btn-primary.w-100(data-bs-toggle="modal" data-bs-dismiss='modal')
-              | Buka Profil
+            a.btn.btn-primary.w-100(href="profil/index.html" title="Lihat Profile Sekarang")
+              | Lihat Profil
 
-
-//- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginSuccessModal">
-//-   | Launch static backdrop modal
-//- </button>
 
 <!-- Modal Error Login -->
 #loginErrorModal.modal.fade(tabindex='-1' aria-labelledby='loginErrorModal' aria-hidden='true')

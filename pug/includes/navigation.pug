@@ -10,8 +10,9 @@ header.pdt-header
         a(href=baseURL+'')
           img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
 
-        //- include search 
-        include search.pug
+        if(pageActive !== 'pelatihan')
+          //- include search 
+          include search.pug
         
       ul.d-flex.align-items-center.navbar-custom
         li.nav-item.md-show
@@ -23,11 +24,11 @@ header.pdt-header
           a.nav-link(href=baseURL+'pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
         li.nav-item.md-hide
           a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
-        li.nav-item.md-hide
+        li#profile.nav-item.md-hide.hidden
           a.nav-link.text-truncate.max-width-200(href=baseURL+'profil/index.html' class={"nav-link-active" : pageActive === 'profil'}) 
             i.bi.bi-person-circle.me-2
             | Profil Saya
-        li.nav-item.md-hide
+        li#login.nav-item.md-hide.hidden
           button#btn-login.btn.btn-primary
             .text-truncate.max-width-200
               i.bi.bi-person-circle.me-2 
