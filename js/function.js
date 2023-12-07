@@ -910,7 +910,7 @@ function courseLoaderDetail () {
                 callCenter.click(function(e) {
                     var _this = $(this);
                     var channel = _this.attr('data-service');
-                    var cc_val = _this.html();
+                    var cc_val = _this.text();
                     mixpanel.track('Contact Center', {
                         'course_id': courseId,
                         'course_title' : detail.course_title,
