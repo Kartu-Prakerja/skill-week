@@ -909,7 +909,8 @@ function courseLoaderDetail () {
 
                 callCenter.click(function(e) {
                     var _this = $(this);
-                    var channel = _this.attr('data-service')
+                    var channel = _this.attr('data-service');
+                    var cc_val = _this.html();
                     mixpanel.track('Contact Center', {
                         'course_id': courseId,
                         'course_title' : detail.course_title,
@@ -918,7 +919,8 @@ function courseLoaderDetail () {
                         'course_discount': detail.course_discount,
                         'course_price_after_discount' : detail.course_after_discount,
                         'course_lp': detail.lp_name,
-                        'channel' : channel
+                        'channel' : channel,
+                        'data_contact_center' : cc_val
                     });
                 });
 
@@ -1153,6 +1155,12 @@ function homeCheckLogin() {
     var loginSkip = $('.login-dismiss');
     var formLogin = $("#login-form");
     var btnFormLogin = $('#submit-login');
+    var registerBtn = $('#register-account');
+    
+    // create account redirect
+    registerBtn.click(function(e) {
+        mixpanel.track('Create Account');
+    });
 
     // trigger popup
     if (_.isNull(dataUser)) {

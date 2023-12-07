@@ -33,22 +33,6 @@
     <link rel="stylesheet" href="../css/pds-skillweek.css"/>
     <link rel="stylesheet" href="../css/owl.carousel.css"/>
     <!-- Google Tag Manager-->
-    <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-TTFX6N6');
-    </script>
-    <script type="text/javascript">
-      (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
-      var users = JSON.parse(localStorage.getItem('users'));
-      mixpanel.init('ef0d1649ccb886338ac7d13f7854fd15', {debug: false, track_pageview: true, persistence: 'localStorage'});
-      if (users) {
-          mixpanel.people.set({'distinct_id': users.email, '$email': users.email, '$name': (users.email).split('@',1)[0]});
-          mixpanel.identify(users.email)
-      }
-    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript)-->
@@ -57,15 +41,6 @@
         <!-- End Google Tag Manager (noscript)-->
       </iframe>
     </noscript>
-    <section class="section-notification">
-      <div class="container">
-        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center m-0" role="alert">
-          <div class="alert-icon-circle me-2"><i class="bi bi-bell-fill"></i></div>
-          <div>ISW berikutnya akan hadir pada tanggal <b class="color-secondary">8-15 Desember 2023.</b> Gunakan akun Prakerja untuk masuk ISW, bagi yang belum punya akun <a class="color-secondary" href="https://dashboard.prakerja.go.id/daftar" target="_blank">Daftar Disini</a></div>
-          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      </div>
-    </section>
     <header class="pdt-header">
       <div class="container-md px-4 px-md-0">
         <div class="d-flex justify-content-between align-items-center"><a href="../"><img src="../img/logo-indonesia-skills-week.webp" height="54" width="92" alt="Indonesia Skills Week"/></a>
@@ -73,6 +48,7 @@
             <li class="nav-item md-hide"><a class="nav-link" href="../">Beranda</a></li>
             <li class="nav-item md-hide"><a class="nav-link" href="../pelatihan/index.html">Pelatihan</a></li>
             <li class="nav-item md-hide"><a class="nav-link nav-link-active" href="../tanyajawab/index.html">Tanya Jawab</a></li>
+            <li class="nav-item md-hide"><a class="nav-link text-truncate max-width-200" href="../profil/index.html"> <i class="bi bi-person-circle me-2"></i>bambangsarjanateknik@gmail.com</a></li>
             <li class="nav-item md-hide">
               <button class="btn btn-primary" id="btn-login">
                 <div class="text-truncate max-width-200"><i class="bi bi-person-circle me-2"> </i><span class="text-users skeleton-box rounded-pill" style="width:50"></span></div>
@@ -187,11 +163,11 @@
                   </div>
                   <div class="accordion-item"> 
                     <h5 class="accordion-header"> 
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA9" aria-expanded="false" aria-controls="collapseA9"><span class="d-flex"> <span>9.&nbsp;</span><span>Apa saja produk yang bisa saya ikuti dalam Indonesia Skills Week Periode Oktober?</span></span></button>
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA9" aria-expanded="false" aria-controls="collapseA9"><span class="d-flex"> <span>9.&nbsp;</span><span>Apa saja produk yang bisa saya ikuti dalam Indonesia Skills Week Periode?</span></span></button>
                     </h5>
                     <div class="accordion-collapse collapse" id="collapseA9" data-bs-parent="#accordionTentangISW">
                       <div class="accordion-body">
-                        <p>  Peserta bisa mengikuti berbagai produk pelatihan yang tersedia pada ISW yaitu: Pelatihan gratis, pelatihan murah harga Rp20 ribu, dan diskon besar 50%. Selain itu pada event ISW Oktober ini, peserta dapat mengikuti webinar dengan topik-topik pilihan yang diselenggarakan oleh berbagai lembaga.</p>
+                        <p>  Peserta bisa mengikuti berbagai produk pelatihan yang tersedia pada ISW yaitu: Pelatihan gratis, pelatihan murah harga Rp20 ribu, dan diskon besar 50%. Selain itu pada event ISW ini, peserta dapat mengikuti webinar dengan topik-topik pilihan yang diselenggarakan oleh berbagai lembaga.</p>
                       </div>
                     </div>
                   </div>
@@ -218,7 +194,7 @@
                     </h5>
                     <div class="accordion-collapse collapse" id="collapseB2" data-bs-parent="#accordionPendafataranISW">
                       <div class="accordion-body">
-                        <p>Pada periode Oktober 2023 ini, kamu tidak perlu mengisi form pendaftaran ISW lagi. Akan tetapi, kamu tetap harus membuat akun Prakerja terlebih dahulu, lalu memilih pelatihan dan menunggu konfirmasi voucher dari Manajemen Pelaksana Program Kartu Prakerja (MPPKP) sebelum bisa mengakses pelatihan yang dipilih.</p>
+                        <p>Sejak periode Oktober 2023 ini, kamu tidak perlu mengisi form pendaftaran ISW lagi. Akan tetapi, kamu tetap harus membuat akun Prakerja terlebih dahulu, lalu memilih pelatihan dan menunggu konfirmasi voucher dari Manajemen Pelaksana Program Kartu Prakerja (MPPKP) sebelum bisa mengakses pelatihan yang dipilih.</p>
                       </div>
                     </div>
                   </div>
@@ -350,7 +326,7 @@
                     </h5>
                     <div class="accordion-collapse collapse" id="collapseC9" data-bs-parent="#accordionPelatihanISW">
                       <div class="accordion-body">
-                        <p>Batas waktu pembelian pelatihan adalah selama event ISW dilaksanakan yaitu pada tanggal <b>26 Oktober 2023- 2 November 2023</b>.</p>
+                        <p>Batas waktu pembelian pelatihan adalah selama event ISW dilaksanakan yaitu <b>1 Minggu</b>.</p>
                       </div>
                     </div>
                   </div>
@@ -384,7 +360,7 @@
                     </h5>
                     <div class="accordion-collapse collapse" id="collapseC12" data-bs-parent="#accordionPelatihanISW">
                       <div class="accordion-body">
-                        <p>Kamu dapat membeli lebih dari satu pelatihan untuk berbagai kategori pelatihan yang tersedia selama voucher pelatihan tersedia.</p>
+                        <p>Kamu dapat membeli lebih dari satu pelatihan untuk pelatihan dengan kategori harga diskon besar-besaran; akan tetapi untuk pelatihan dengan kategori gratis dan murah, hanya boleh membeli satu pelatihan.</p>
                       </div>
                     </div>
                   </div>
@@ -866,17 +842,6 @@
             <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="toast-container position-fixed top-0 start-0 p-3">
-      <div class="toast" id="toast-sucess-copy" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">
-        <div class="toast-header">
-          <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img">
-            <rect width="100%" height="100%" fill="#007aff"></rect>
-          </svg><strong class="mr-auto">Skillsweek</strong><small class="text-muted">Saat ini</small>
-          <button class="ml-2 mb-1 close close-toast-copy" type="button" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="toast-body">Link Pelatihan berhasil di copy</div>
       </div>
     </div>
     <div class="toast-container position-fixed top-0 end-0 p-3">
