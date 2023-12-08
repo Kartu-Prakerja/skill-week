@@ -1172,11 +1172,17 @@ function homeCheckLogin() {
     var loginSkip = $('.login-dismiss');
     var formLogin = $("#login-form");
     var btnFormLogin = $('#submit-login');
-    var registerBtn = $('#register-account');
+    var registerBtn = $('.register-account');
     
     // create account redirect
     registerBtn.click(function(e) {
-        mixpanel.track('Create Account');
+        // e.preventDefault();
+        var _this = $(this);
+        var source = _this.attr('data-source');
+
+        mixpanel.track('Create Account', {
+            'source' : source
+        });
     });
 
     // trigger popup
