@@ -74,7 +74,8 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
+    var Trending = Number(data.total) >= 5 ? "<span class='mb-2 ml-2 badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" + imageCourse +
@@ -90,7 +91,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
             "</div>" +
             "<div class='card-body'>" +
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
-                "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" +
+                "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" + Trending +
                 "<div>" +
                     "<div class='course-real-price mb-1'><span>"+ course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
@@ -235,7 +236,7 @@ var templateDetail = function(data) {
     var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
     var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
     var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
-    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">' + data.total + '</b>&nbsp; peserta mengambil pelatihan ini</p>' : ''
+    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
     var getVoucherbtn;
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
@@ -247,9 +248,25 @@ var templateDetail = function(data) {
 
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
-        var phone = !_.isEmpty(data.cs_call_center) ? '<div class="pt-2 pb-2"> <h6>Telepon </h6><a class="btn btn-ghost-primary btn-contact-center" data-service="call center" target="_blank" href="tel:'+ data.cs_call_center +'"> <i class="bi bi-telephone-fill me-2"></i>'+ data.cs_call_center +'</a> </div>' : '';
-        var wa = !_.isEmpty(data.cs_wa) ? '<div class="pt-2 pb-2"><h6>Whatsapp </h6><a class="btn btn-ghost-success btn-contact-center" data-service="whatsapp" target="_blank" href="https://wa.me/'+ data.cs_wa +'"> <i class="bi bi-whatsapp me-2"></i>'+ data.cs_wa +'</a></div>' : '';
-        var email = !_.isEmpty(data.cs_email) ? '<div class="pt-2 pb-2"><h6>Email </h6><a class="btn btn-ghost-light btn-contact-center" data-service="email" target="_blank" href="mailto:'+ data.cs_email + '"> <i class="bi bi-envelope-at me-2"></i>'+ data.cs_email +'</a></div>' : '' 
+        var html_call_center = '', html_wa = '', html_email = '';
+        _.each(data.cs_call_center.trim().split(','), function(number) {
+            if (!_.isEmpty(number)) {
+                return html_call_center += '<a class="btn btn-ghost-primary btn-contact-center" data-service="call center" target="_blank" href="tel:'+ number +'"> <i class="bi bi-telephone-fill me-2"></i>'+ number +'</a>'
+            }
+        })
+        _.each(data.cs_wa.trim().split(','), function(number) {
+            if (!_.isEmpty(number)) {
+                return html_wa += '<a class="btn btn-ghost-success btn-contact-center" data-service="whatsapp" target="_blank" href="https://wa.me/'+ number +'"> <i class="bi bi-whatsapp me-2"></i>'+ number +'</a>'
+            }
+        })
+        _.each(data.cs_email.trim().split(','), function(number) {
+            if (!_.isEmpty(number)) {
+                return html_email += '<a class="btn btn-ghost-light btn-contact-center" data-service="email" target="_blank" href="mailto:'+ number + '"> <i class="bi bi-envelope-at me-2"></i>'+ number +'</a>'
+            }
+        })
+        var phone = !_.isEmpty(data.cs_call_center) ? '<div class="pt-2 pb-2"><h6>Telepon </h6>'+ html_call_center +'</div>' : '';
+        var wa = !_.isEmpty(data.cs_wa) ? '<div class="pt-2 pb-2"><h6>Whatsapp </h6>'+ html_wa +'</div>' : '';
+        var email = !_.isEmpty(data.cs_email) ? '<div class="pt-2 pb-2"><h6>Email </h6>' + html_email +'</div>' : '' 
         contactCenter = '<section class="py-3"><h4>Contact Center</h4>' + wa + phone + email +'</section>'
      }
 
