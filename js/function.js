@@ -1265,8 +1265,14 @@ function homeCheckLogin() {
                         });
                     }
                 }).fail(function(data) {
+                    var response = data.responseJSON;
                     formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
                     btnFormLogin.removeClass('disabled').html('Masuk');
+                    mixpanel.track('Login Error', {
+                        'email' : dataPost.email,
+                        'error Code' : response.errorCode,
+                        'error Message' : response.message
+                    });
                 })
             }
 
