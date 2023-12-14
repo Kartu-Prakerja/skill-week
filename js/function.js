@@ -251,17 +251,17 @@ var templateDetail = function(data) {
         var html_call_center = '', html_wa = '', html_email = '';
         _.each(data.cs_call_center.trim().split(','), function(number) {
             if (!_.isEmpty(number)) {
-                return html_call_center += '<a class="btn btn-ghost-primary btn-contact-center" data-service="call center" target="_blank" href="tel:'+ number +'"> <i class="bi bi-telephone-fill me-2"></i>'+ number +'</a>'
+                return html_call_center += '<a class="btn btn-ghost-primary btn-contact-center mb-2" data-service="call center" target="_blank" href="tel:'+ number +'"> <i class="bi bi-telephone-fill me-2"></i>'+ number +'</a>'
             }
         })
         _.each(data.cs_wa.trim().split(','), function(number) {
             if (!_.isEmpty(number)) {
-                return html_wa += '<a class="btn btn-ghost-success btn-contact-center" data-service="whatsapp" target="_blank" href="https://wa.me/'+ number +'"> <i class="bi bi-whatsapp me-2"></i>'+ number +'</a>'
+                return html_wa += '<a class="btn btn-ghost-success btn-contact-center mb-2" data-service="whatsapp" target="_blank" href="https://wa.me/'+ number +'"> <i class="bi bi-whatsapp me-2"></i>'+ number +'</a>'
             }
         })
         _.each(data.cs_email.trim().split(','), function(number) {
             if (!_.isEmpty(number)) {
-                return html_email += '<a class="btn btn-ghost-light btn-contact-center" data-service="email" target="_blank" href="mailto:'+ number + '"> <i class="bi bi-envelope-at me-2"></i>'+ number +'</a>'
+                return html_email += '<a class="btn btn-ghost-light btn-contact-center mb-2" data-service="email" target="_blank" href="mailto:'+ number + '"> <i class="bi bi-envelope-at me-2"></i>'+ number +'</a>'
             }
         })
         var phone = !_.isEmpty(data.cs_call_center) ? '<div class="pt-2 pb-2"><h6>Telepon </h6>'+ html_call_center +'</div>' : '';
