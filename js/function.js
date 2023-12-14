@@ -25,11 +25,12 @@
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
 const BaseURL = '/'
 const loadItem = 12;
-const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_3.json";
+const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_4.json";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
+const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
 const queryParams = new URLSearchParams(window.location.search);
-var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? localStorage.getItem('course_list') : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
+var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
 var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
 var isPopupSkip = localStorage.getItem('login-popup-skip');
@@ -73,7 +74,8 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
+    var Trending = Number(data.total) >= 5 ? "<span class='mb-2 ml-2 badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
             "<div class='card-cover'>" + imageCourse +
@@ -89,7 +91,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
             "</div>" +
             "<div class='card-body'>" +
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
-                "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" +
+                "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" + Trending +
                 "<div>" +
                     "<div class='course-real-price mb-1'><span>"+ course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
@@ -115,11 +117,105 @@ var templateCourse = function(target, data, cardClass, isCourse){
                 'course_price': data.course_price,
                 'course_discount': data.course_discount,
                 'course_price_after_discount' : data.course_after_discount,
-                'course_lp': data.lp_name
+                'course_lp': data.lp_name,
+                'source' : cardClass
             });
             window.location.href = $(this).attr('href');
         })
-        
+    });
+}
+
+var templateCourseSearch = function(target, data, cardClass, isCourse){ 
+    var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
+    var pageClass = $('html').attr('page-class');
+    // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
+    // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
+    var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">'
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
+    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
+    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
+    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+    var template = '<a class="course-list-card d-flex align-items-center course-recommend-searc" href="'+ course_detail +'">'+
+            imageCourse +
+            '<span class="d-block w-100">' +
+                '<span class="course-title">'+ data.course_title +'</span>' +
+                '<span class="d-flex justify-content-between"><span class="course-price">'+ finalPrice +'</span><span class="course-institution">'+ data.lp_name +'</span></span>' +
+            '</span>'+
+        '</a>';
+    $(target).append(template).ready(function () {
+        // trigger modal
+        // skipped because already have the page detail
+        // btnDescription('#detail-course' + data.index, data);
+        $('.course-recommend-search').unbind('click');
+        $('.course-recommend-search').click(function(e) {
+            e.preventDefault();
+            mixpanel.track('See Detail Course', {
+                'course_id' : data.course_id,
+                'course_title': data.course_title,
+                'course_category' : data.course_category,
+                'course_price': data.course_price,
+                'course_discount': data.course_discount,
+                'course_price_after_discount' : data.course_after_discount,
+                'course_lp': data.lp_name,
+                'source' : pageClass
+            });
+            window.location.href = $(this).attr('href');
+        })
+    });
+}
+
+
+/** function load course */
+var templateCourseProfile = function(target, data, cardClass, isCourse){ 
+    var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
+    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.thumbnail_pelatihan_detail_oss + '" class="card-img-top" alt="'+ data.course_title +'">';
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
+    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
+    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
+    // render the list
+    var template ='<div class="card pds-card pds-card-list mb-3">' +
+            '<div class="card-cover">'+ imageCourse +
+                '<div class="card-cover-overlay">' +
+                    '<div class="d-flex justify-content-between align-middle">'+
+                        '<div class="align-self-center">' +
+                            '<div class="card-company"> '+ logoLp +'<span class="course-lp-name">'+ data.lp_name +'</span></div></div>' +
+                        '<div class="align-self-center"> <span class="badge rounded-pill text-capitalize '+ pills +'">'+ (data.course_type).replace(/Online/g,'') +'</span></div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="card-body">' +
+                '<h6 class="mb-1 course-title text-capitalize" title="'+ data.course_title +'">'+ data.course_title +'</h6><span class="mb-2 badge text-bg-light text-capitalize">'+ data.course_category +'</span>' +
+                '<div class="d-md-flex">' +
+                    '<div class="course-real-price mb-1 me-md-3"><span>'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
+                    '<div class="course-price card-price mb-1">'+ finalPrice +'</div>' +
+                '</div>'+
+                '<div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-primary w-100 mb-2 text-truncate" href="'+ course_detail +'" title="">Selengkapnya</a></div>' +
+            '</div>'+
+        '</div>';
+
+    $(target).append(template).ready(function () {
+        // trigger modal
+        // skipped because already have the page detail
+        // btnDescription('#detail-course' + data.index, data);
+        $('.apply-course').unbind('click');
+        $('.apply-course').click(function(e) {
+            e.preventDefault();
+            mixpanel.track('See Detail Course', {
+                'course_id' : data.course_id,
+                'course_title': data.course_title,
+                'course_category' : data.course_category,
+                'course_price': data.course_price,
+                'course_discount': data.course_discount,
+                'course_price_after_discount' : data.course_after_discount,
+                'course_lp': data.lp_name,
+                'source' : cardClass
+            });
+            window.location.href = $(this).attr('href');
+        })
     });
 }
 
@@ -140,22 +236,44 @@ var templateDetail = function(data) {
     var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
     var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
     var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
-    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">' + data.total + '</b>&nbsp; peserta mengambil pelatihan ini</p>' : ''
+    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
     var getVoucherbtn;
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
      } else if (data.quota !== '' && Number(data.quota) == data.total) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else if (data.course_discount == '') {
-        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      } else {
-        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Voucher Ditutup</button>'
+        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+     }
+
+     var contactCenter = '';
+     if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
+        var html_call_center = '', html_wa = '', html_email = '';
+        _.each(data.cs_call_center.trim().split(','), function(number) {
+            if (!_.isEmpty(number)) {
+                return html_call_center += '<a class="btn btn-ghost-primary btn-contact-center" data-service="call center" target="_blank" href="tel:'+ number +'"> <i class="bi bi-telephone-fill me-2"></i>'+ number +'</a>'
+            }
+        })
+        _.each(data.cs_wa.trim().split(','), function(number) {
+            if (!_.isEmpty(number)) {
+                return html_wa += '<a class="btn btn-ghost-success btn-contact-center" data-service="whatsapp" target="_blank" href="https://wa.me/'+ number +'"> <i class="bi bi-whatsapp me-2"></i>'+ number +'</a>'
+            }
+        })
+        _.each(data.cs_email.trim().split(','), function(number) {
+            if (!_.isEmpty(number)) {
+                return html_email += '<a class="btn btn-ghost-light btn-contact-center" data-service="email" target="_blank" href="mailto:'+ number + '"> <i class="bi bi-envelope-at me-2"></i>'+ number +'</a>'
+            }
+        })
+        var phone = !_.isEmpty(data.cs_call_center) ? '<div class="pt-2 pb-2"><h6>Telepon </h6>'+ html_call_center +'</div>' : '';
+        var wa = !_.isEmpty(data.cs_wa) ? '<div class="pt-2 pb-2"><h6>Whatsapp </h6>'+ html_wa +'</div>' : '';
+        var email = !_.isEmpty(data.cs_email) ? '<div class="pt-2 pb-2"><h6>Email </h6>' + html_email +'</div>' : '' 
+        contactCenter = '<section class="py-3"><h4>Contact Center</h4>' + wa + phone + email +'</section>'
      }
 
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
-        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
+        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_detail_image +'" alt=""/></div>' +
           '<div class="mt-3 d-flex justify-content-between">' +
             '<div>' +
                 '<div class="course-real-price mb-1"><span class="me-1">'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
@@ -217,6 +335,7 @@ var templateDetail = function(data) {
               '<h4 class="mb-4">Cara Redeem Voucher</h4>' +
               '<article id="how-to-redeem">'+ (data.how_to_redeem).replace(/\n/g,'</br>') +'</article>' +
             '</section>' +
+            contactCenter +
             '<hr/>' +
           '</article>' +
         '</div>' +
@@ -566,7 +685,7 @@ var pushEventsFilter = function(target) {
 
 /** function to init the content at the first time */
 function courseLoaderInit(){
-    // $(document).ready(function(){
+    $(document).ready(function(){
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
         var applyFilter = $('#btn-apply-filter');
@@ -670,7 +789,7 @@ function courseLoaderInit(){
                 console.log("An error has occurred.");
             });
         }
-    // });
+    });
 }
 
 // function to load course on homepage
@@ -803,6 +922,24 @@ function courseLoaderDetail () {
                 var shareBtn = $('.share-button');
                 var shareDialog = $('.share-dialog');
                 var closeButton = $('.close-button');
+                var callCenter = $('.btn-contact-center')
+
+                callCenter.click(function(e) {
+                    var _this = $(this);
+                    var channel = _this.attr('data-service');
+                    var cc_val = _this.text();
+                    mixpanel.track('Contact Center', {
+                        'course_id': courseId,
+                        'course_title' : detail.course_title,
+                        'course_category' : detail.course_category,
+                        'course_price': detail.course_price,
+                        'course_discount': detail.course_discount,
+                        'course_price_after_discount' : detail.course_after_discount,
+                        'course_lp': detail.lp_name,
+                        'channel' : channel,
+                        'data_contact_center' : cc_val
+                    });
+                });
 
                 shareBtn.click(function() {
                     var shareFacebook = $('#share-facebook');
@@ -1026,6 +1163,8 @@ function courseLoaderDetail () {
 function homeCheckLogin() {
     var loginText = !_.isNull(dataUser) ? dataUser.email : 'Masuk';
     var loginButton = $('#btn-login');
+    var loginLink = $('#login');
+    var profileLink = $('#profile');
     var logoutButton = $('#btn-logout');
     var loginModal = $('#loginModal');
     var successLoginModal = $('#loginSuccessModal');
@@ -1033,11 +1172,24 @@ function homeCheckLogin() {
     var loginSkip = $('.login-dismiss');
     var formLogin = $("#login-form");
     var btnFormLogin = $('#submit-login');
+    var registerBtn = $('.register-account');
+    
+    // create account redirect
+    registerBtn.click(function(e) {
+        // e.preventDefault();
+        var _this = $(this);
+        var source = _this.attr('data-source');
+
+        mixpanel.track('Create Account', {
+            'source' : source
+        });
+    });
 
     // trigger popup
     if (_.isNull(dataUser)) {
         // set wording to login
-        loginButton.find('span').removeClass('skeleton-box rounded-pill').html(loginText)
+        loginButton.find('span').removeClass('skeleton-box rounded-pill').html(loginText);
+        loginLink.removeClass('hidden');
         
         // handle login
         loginButton.click(function() {
@@ -1078,7 +1230,8 @@ function homeCheckLogin() {
                         formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
                     } else {
                         localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
-                        loginButton.find('.text-users').html(dataPost.email);
+                        // temp disable for v4.0
+                        // loginButton.find('.text-users').html(dataPost.email);
 
                         mixpanel.track('Login Success', {
                             'email' : dataPost.email
@@ -1112,8 +1265,14 @@ function homeCheckLogin() {
                         });
                     }
                 }).fail(function(data) {
+                    var response = data.responseJSON;
                     formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
                     btnFormLogin.removeClass('disabled').html('Masuk');
+                    mixpanel.track('Login Error', {
+                        'email' : dataPost.email,
+                        'error Code' : response.errorCode,
+                        'error Message' : response.message
+                    });
                 })
             }
 
@@ -1125,7 +1284,8 @@ function homeCheckLogin() {
         // })
         
     } else {
-        loginButton.find('span').after(loginText).remove();
+        // loginButton.find('span').after(loginText).remove();
+        profileLink.removeClass('hidden');
         // handle login
         loginButton.click(function() {
             // window.location.href = 'profil/'
@@ -1139,7 +1299,117 @@ function homeCheckLogin() {
                 window.location.reload();
             })
         });
+        // logout actions
+        logoutButton.click(function() {
+            localStorage.removeItem('users');
+            mixpanel.reset();
+            localStorage.removeItem('course_takens');
+            window.location.reload();
+        })
         
+    }
+}
+
+function profile(dataCourse) {
+    var userProfile = $('#user-profile');
+    var courseList = $('#course-list');
+    var activeCourseContainer = $('#active-course-container');
+    var emptyCourseContainer = $('#empty-list');
+    var loginModal = $('#loginModal');
+    var profile = $('.section-profile');
+    // check if page profile properties is exists
+    // set the text to profile
+    if (userProfile.length) {
+        if (!_.isNull(dataUser)) {
+            // append active email to the user
+            $('.text-email').html('(' + dataUser.email + ')');
+
+            $.ajax({
+                dataType: "json",
+                contentType : "application/json",
+                type: "GET",
+                url: getTrxList,
+                headers: {
+                    'Authorization' : dataUser.token
+                }
+            }).done(function (response) {
+                // console.log(dataCourse);
+                if(!_.isNull(response.voucher)) {
+                    // render the list of the course
+                    courseList.html('');
+                    _.each(response.voucher, function(val, i) {
+                        var detail = _.findWhere(dataCourse, { 'course_id': val.CourseID });
+                        if (!_.isUndefined(detail)) {
+                            templateCourseProfile(courseList, detail, 'profile', true)
+                        }
+                    });
+                } else {
+                    emptyCourseContainer.removeClass('hidden');
+                    activeCourseContainer.addClass('hidden');
+                }
+            }).fail(function (response) {
+                // if expired token then reload
+                // window.location.reload();
+                localStorage.removeItem('users');
+                mixpanel.reset();
+                loginModal.modal('show');
+                profile.find('p').html('Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.');
+                profile.find('button').attr('class', 'btn btn-primary').html('Masuk');
+                activeCourseContainer.addClass('hidden')
+            })
+        } else {
+            loginModal.modal('show');
+            profile.find('p').html('Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.');
+            profile.find('button').attr('class', 'btn btn-primary').html('Masuk');
+            activeCourseContainer.addClass('hidden');
+        }
+    }
+}
+
+function globalSearch(dataCourse) {
+    var formSearch = $('#form-search-global');
+    var pageClass = $('html').attr('page-class');
+    if (formSearch.length) {
+        var btnFormSearch = formSearch.find('button');
+        var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
+        var recomendSearchLimited = $('#recomendSearchLimited article');
+        var recomendSearchTwenty = $('#recomendSearchTwenty article');
+        var recomendSearchFree = $('#recomendSearchFree article');
+
+        formSearch.find('input.modal-search-input').val(keyword);
+        formSearch.submit(function(e) {
+            e.preventDefault();
+            keyword = formSearch.find('input.modal-search-input').val();
+            mixpanel.track('Search Course', {
+                'keyword' : keyword,
+                'source' : pageClass
+            });
+            window.location.replace("/pelatihan/index.html?&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price=&lp=&topic=")
+        });
+
+        btnFormSearch.click(function() {
+            formSearch.trigger('submit');
+        });
+
+        dataLimited = _.sample(_.filter(dataCourse, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 5);
+        dataTwenty = _.sample(_.filter(dataCourse, function(list) { return list.course_after_discount == "20000"}), 5);
+        dataFree = _.sample(_.filter(dataCourse, function(list) { return list.course_after_discount == "0"}), 5);
+        
+        recomendSearchLimited.html('');
+        recomendSearchTwenty.html('');
+        recomendSearchFree.html('');
+
+        $.each(dataLimited, function(i, list) {
+            templateCourseSearch(recomendSearchLimited, list, 'home');
+        });
+
+        $.each(dataTwenty, function(i, list) {
+            templateCourseSearch(recomendSearchTwenty, list, 'home');
+        });
+
+        $.each(dataFree, function(i, list) {
+            templateCourseSearch(recomendSearchFree, list, 'home');
+        });
     }
 }
 
@@ -1181,19 +1451,19 @@ function homeCheckLogin() {
         $('body').removeClass('freeze');
     });
 
+    // Search Modal on header 
+    $('.modal-search-trigger').click (function(){
+        $('.modal-search').fadeIn().toggleClass('is-show');
+        $('.modal-search-input').focus();
+        $('body').toggleClass('freeze');
+      });
+
+      $('.modal-search-close').click (function(){
+        $('.modal-search').fadeOut().toggleClass('is-show');
+        $('body').toggleClass('freeze');
+      });
+
     
-    // $('#coworkingCarousel').owlCarousel({
-    //     loop:true,
-    //     margin:24,
-    //     nav:false,
-    //     autoplay: true,
-    //     responsive:{
-    //         0:{
-    //             items:1,
-    //             margin: 0
-    //         }
-    //     }
-    // });
 
     $('.testimony-carousel').owlCarousel({
         loop:true,
@@ -1210,6 +1480,37 @@ function homeCheckLogin() {
             0:{
                 items:1,
                 margin: 0
+            }
+        }
+    });
+
+    $('.howto-carousel').owlCarousel({
+        dots: false,
+        autoplay: false,
+        responsive:{
+            1200:{
+                items:5,
+                margin: 0,
+                loop:false
+            },
+            1000:{
+                items:3.5,
+                margin: 0
+            },
+            800:{
+                items:3.2,
+                margin: 0,
+                loop:true
+            },
+            600:{
+                items:2.2,
+                margin: 0,
+                loop:true
+            },
+            0:{
+                items:1.5,
+                margin: 0,
+                loop:true
             }
         }
     });
@@ -1241,6 +1542,7 @@ function homeCheckLogin() {
         })
     }
 
+
     $(document).ready(function(){
         // run init course loader on page course
         courseLoaderInit();
@@ -1253,6 +1555,12 @@ function homeCheckLogin() {
 
         // run popup
         homeCheckLogin();
+
+        // run profile
+        profile(dataCourse);
+        
+        //run script for global search
+        globalSearch(dataCourse);
     })
 
  })(jQuery);

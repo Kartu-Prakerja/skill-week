@@ -1,19 +1,39 @@
 // Hero start
 section.section-hero
   .container.py-4.py-lg-5.px-4.px-md-0
-    .row.d-flex.align-items-center
+    .row.d-flex.align-items-center.flex-row-reverse
       .col-md-5.p-0.hero-wrapper
-        img.img-hero(src=baseURL+'img/img-isw-hero.webp' alt='Prakerja ISW')
-        img.ornament-1(src=baseURL+'img/img-illustartion-1.svg' alt='Prakerja Illustration')
+        .img-hero-slider
+          img.img-hero(src=baseURL+'img/img-isw-girl.webp' alt='Prakerja ISW')
+          img.img-hero(src=baseURL+'img/img-isw-boy.webp' alt='Prakerja ISW')
+        //- img.ornament-1(src=baseURL+'img/img-illustartion-1.svg' alt='Prakerja Illustration')
       .col-md-7.mt-3.mt-md-0
-        h1.mb-4.display-4.mt-3.md-md-0
-          | Indonesia Skills Week by 
-          span.text-primary Prakerja
-        p.text-secondary.paragraph-lg
-          | Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara 
-          b.text-dark gratis, murah dan mudah
-          |  selama 
-          b.text-dark 1 minggu
-          | .
+        
+        h1.mb-3.mb-lg-4.display-2.mt-3.md-md-0.font-weight-black
+          | Tingkatkan
+          span.text-wrapper
+            span Keterampilan
+            span Produktivitas
+            span Daya Saing
+            span Kompetensi
+            span Keterampilan
+
+        p.text-secondary.text-subhero.pe-xl-5
+          b.text-dark Indonesia Skills Week 
+          | adalah event dua bulanan dari Prakerja yang terbuka untuk semua golongan, termasuk alumni Prakerja. Dengan menggunakan akun Prakerja, kamu bisa memilih&nbsp;
+          b.text-dark aneka pelatihan online yang gratis, murah, dan mudah
+          //- |  selama 
+          //- b.text-dark 1 minggu
+          //- | .
+
+        div
+          div.mb-3
+            span.d-block.text-secondary.fs-7.mb-1 Event ini berlangsung
+            span
+              i.bi.bi-calendar-range.text-secondary.me-2
+              b 7-15 Des 2023
+          div
+            span.d-block.text-secondary.fs-7.mb-1 Belum punya akun Prakerja?
+            a.btn.btn-orange.btn-lg.register-account(href="https://dashboard.prakerja.go.id/daftar" data-source="button banner") Buat Akun Sekarang 
 // Hero end
 

@@ -1,0 +1,24 @@
+//- INDEX LANDING PAGES
+//- start variable
+- var pageActive = 'profil'
+- var baseURL = '../'
+- var contentDescription = {}
+- contentDescription.title = "Profil Saya di Indonesia Skills Week - Prakerja.go.id"
+- contentDescription.description = "Indonesia Skills Week adalah event dua bulanan dari Prakerja yang terbuka untuk semua golongan, termasuk alumni Prakerja. Dengan menggunakan akun Prakerja, kamu bisa memilih aneka pelatihan online yang gratis, murah, dan mudah selama 1 minggu."
+
+//- doctype html
+<!DOCTYPE html>
+html(lang="id" page-class="profile")
+    include ../pug/includes/html_head.pug
+    body.page-profile
+        include ../pug/includes/analytics_no_script.pug
+        include ../pug/includes/navigation.pug
+        main
+            include ../pug/profil/section_my_course.pug
+            include ../pug/profil/section_account.pug
+           
+        
+        include ../pug/includes/modal.pug
+        include ../pug/includes/toast.pug
+        include ../pug/includes/footer.pug
+    include ../pug/includes/html_foot.pug

@@ -1,3 +1,9 @@
+/* = = = = = = = = = = = = = =
+
+// Version 3.1
+// For event 8-15 Dec 2023
+
+= = = = = = = = = = = = = = */
 @import "pds-style";
 @import "scss-custom/header";
 @import "scss-custom/badge";
@@ -76,15 +82,132 @@ body{
 
 .hero-wrapper{
   position: relative;
+  // outline: solid 1px red;
 }
+.img-hero-slider{
 
+  position: relative;
+  .img-hero:nth-of-type(1){
+    animation-name: slide-01;
+    position: relative;
+    top:0;
+    left:0;
+    z-index: 1;
+  }
+  .img-hero:nth-of-type(2){
+    // position: relative;
+    // transform: translateY(-100%);
+    animation-name: slide-02;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+  }
+}
 .img-hero{
   aspect-ratio: 1/1;
   width: 100%;
+  height: 100%;
   object-fit: contain;
   max-height: 30vh;
   display: block;
+  animation: 10s infinite;
+
 }
+
+@-webkit-keyframes slide-01 {
+  0% {opacity: 1;}
+  25% {opacity: 1;}
+  49% {opacity: 1;}
+  50% {opacity: 0;}
+  75% {opacity: 0;}
+  99% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@-webkit-keyframes slide-02 {
+  0% {opacity: 0;}
+  25% {opacity: 0;}
+  49% {opacity: 0;}
+  50% {opacity: 1;}
+  75% {opacity: 1;}
+  99% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+
+
+.font-weight-black{
+  font-weight: 900;
+}
+.text-subhero{
+  font-size: calc(18/16)+ rem;
+}
+.text-wrapper{
+  display: block;
+  height: 56px;
+  overflow: hidden;
+  // outline: solid 1px red;
+  background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  span{
+    display: block;
+    height: 60px;
+    color: var(--o500);
+    background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    // animation: spin_words 8s infinite cubic-bezier(.71,.4,.42,1.02);
+    animation-name: spin_words;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+
+    -moz-animation-name: spin_words;
+    -moz-animation-duration: 8s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+
+    -webkit-animation-name: spin_words;
+    -webkit-animation-duration: 8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
+  }
+}
+
+
+@keyframes spin_words {
+  10% {
+    transform: translateY(-100%);
+  }
+  25% {
+    transform: translateY(-100%);
+  }
+  35% {
+    transform: translateY(-200%);
+  }
+  50% {
+    transform: translateY(-200%);
+  }
+  60% {
+    transform: translateY(-300%);
+  }
+  75% {
+    transform: translateY(-300%);
+  }
+  85% {
+    transform: translateY(-400%);
+  }
+  100% {
+    transform: translateY(-400%);
+  }
+}
+
 
 
 .section-standard{
@@ -196,6 +319,38 @@ body{
       }
     }
   }
+}
+
+.howto-carousel{
+  .howto-item{
+    position: relative;
+    height: 210px;
+    
+
+    &::after{
+      content: '';
+      height: calc(100% - 2rem);
+      width: 2px;
+      border-right: dashed 2px var(--o200);
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 0;
+      // width: 16px;
+      // background-image: url('../img/img-separator-1.svg');
+      // background-repeat: no-repeat;
+      // background-size: contain;
+      // background-position: center top;
+    }
+
+    &.is-last{
+      &::after{
+        // display: none;
+      }
+    }
+
+  }
+  
 }
 
 // Card start 
@@ -539,6 +694,11 @@ body{
     line-height: 1.75rem;
   }
 
+.paragraph-sm{
+  font-size: calc(14/16)+ rem;
+  line-height: 1.55rem;
+}
+
   .skeleton-box {
     display: inline-block;
     height: 1em;
@@ -798,6 +958,12 @@ body{
   border-radius: 24px;
   box-shadow: 0px 8px 16px -4px rgba(1, 24, 48, 0.1),
     0px 0px 0px 1px rgba(214, 219, 224, 0.2);
+  &.shadow-flat{
+    box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.5);
+  }
+  &.shadow-none{
+    box-shadow: none;
+  }
 }
 
 .form-control::placeholder,
@@ -1342,6 +1508,13 @@ body{
 }
 
 
+.btn-contact-center {
+  margin-right: 10px;
+}
+
+.trending {
+  margin-left: 10px;
+}
 
 /* media querys */
 
@@ -1373,12 +1546,18 @@ body{
       max-width: 50%;
     }
   }
-  
 }
 
 @media (min-width: 576px) { 
-
+  .text-wrapper{
+    height: 70px;
+    span{
+      height: 86px;
+    }
+  }
+  
 }
+
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
@@ -1407,6 +1586,64 @@ body{
     .column-3-1{
         column-count: 2;
     }
+    .pds-card-list {
+      padding: 1rem;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+  }
+  .pds-card-list:hover .card-cover > img {
+      -webkit-transform: none;
+      transform: none;
+  }
+  .pds-card-list h6 {
+      min-height: auto;
+  }
+  .pds-card-list .card-cover {
+      width: 224px;
+      position: initial;
+      overflow: initial;
+      background: none;
+  }
+  .pds-card-list .card-cover .card-img-top {
+      width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      aspect-ratio: auto;
+      border-radius: 0.5rem;
+  }
+  .pds-card-list .card-cover-overlay {
+      position: absolute;
+      width: calc(100% - 224px - 40px);
+      left: auto;
+      right: 1rem;
+      top: 1rem;
+      height: 32px;
+      padding: 0;
+      background: none;
+  }
+  .pds-card-list .card-cover-overlay .course-lp-name {
+      color: var(--text-default);
+  }
+  .pds-card-list .card-body {
+      margin-top: 48px;
+      width: 100%;
+      padding: 0 1rem;
+  }
+  .pds-card-list .card-body .pds-card-list-footer.text-center {
+      text-align: left !important;
+  }
+  .pds-card-list .card-body .pds-card-list-footer .w-100 {
+      width: auto !important;
+  }
+  .text-wrapper{
+    height: 90px;
+    span{
+      height: 96px;
+    }
+  }
+  
 }
 
 // Large devices (desktops, 992px and up)
@@ -1484,6 +1721,18 @@ body{
       height: 9.25rem;
 
     }
+    .howto-carousel{
+      .howto-item{    
+        &.is-last{
+          &::after{
+            display: none;
+          }
+        }
+    
+      }
+      
+    }
+
 }
 
 @media (min-width: 1200px) { 

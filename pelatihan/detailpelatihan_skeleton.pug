@@ -1,7 +1,7 @@
 //- INDEX LANDING PAGES
 //- start variable
 - var pageActive = 'none'
-- var baseURL = '/v3/'
+- var baseURL = '../'
 - var contentDescription = {}
 - contentDescription.title = "Judul Pelatihan"
 - contentDescription.description = "Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara gratis, murah dan mudah selama 1 minggu."
@@ -121,6 +121,28 @@ html(lang="id")
                                         span.skeleton-box.rounded(style="width:70%; height:18px;")
                                     .mt-2 
                                         span.skeleton-box.rounded(style="width:50%; height:18px;")
+
+                                section.py-3
+                                    h4 Contact Center
+                                    div.pt-2.pb-2
+                                        h6 Telepon 
+                                        a.btn.btn-ghost-primary(href="tel:+6221222111") 
+                                            i.bi.bi-telephone-fill.me-2
+                                            | +6221 222 111
+
+                                    div.pt-2.pb-2
+                                        h6 Whatsapp 
+                                        a.btn.btn-ghost-success(href="https://wa.me/+628001503001") 
+                                            i.bi.bi-whatsapp.me-2
+                                            | +6280 0150 3001
+
+                                    div.pt-2.pb-2
+                                        h6 Email 
+                                        a.btn.btn-ghost-light(href="mailto:emailname@domain.com") 
+                                            i.bi.bi-envelope-at.me-2
+                                            | emailname@domain.com
+
+
 
                             hr
 

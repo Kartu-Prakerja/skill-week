@@ -79,13 +79,13 @@
         //-   button.login-dismiss.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
       .modal-footer.justify-content-start.border-top
        
-        p.fs-7.px-2 Belum punya akun? Yuk 
-          a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
-            b Buat Akun Prakerja
+        p.fs-7.px-2 Belum punya akun Prakerja? Yuk 
+          a.register-account.link-primary(href="https://dashboard.prakerja.go.id/daftar?utm_source=ISW_login_popup&utm_campaign=banner_landing&utm_content=link" target="_blank" data-source="button popup")
+            b Buat Akun Sekarang
             i.bi.bi-arrow-up-right-square.ms-1
 
 <!-- Modal User Sukses Login -->
-#loginSuccessModal.modal.fade(tabindex='-1' aria-labelledby='loginSuccessModal' aria-hidden='true')
+#loginSuccessModal.modal.fade.show(tabindex='-1' aria-labelledby='loginSuccessModal' aria-hidden='true')
   .modal-dialog.modal-dialog-centered.pds-modal
     .modal-content
       .modal-header.modal-header-custom.p-4
@@ -100,8 +100,13 @@
           |  berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.
           
       .modal-footer.ps-4.pb-4.pe-4
-        button#success-login.btn.btn-primary.w-100(data-bs-toggle="modal"  data-bs-dismiss='modal')
-          | Mengerti
+        .row.p-0.w-100
+          .col-12.col-md-6.ps-0.pe-0.pe-lg-2
+            button.btn.btn-outline-primary.w-100.mb-3.mb-lg-0(data-bs-toggle="modal" data-bs-dismiss='modal' onClick="window.location.reload();")
+              | Tutup
+          .col-12.col-md-6.ps-0.pe-0.ps-lg-2
+            a.btn.btn-primary.w-100(href="/profil/index.html" title="Lihat Profile Sekarang")
+              | Lihat Profil
 
 
 <!-- Modal Error Login -->
@@ -139,9 +144,9 @@
           button.btn.btn-borderless-primary.w-100(type='button' data-bs-dismiss='modal') Nanti Saja
       .modal-footer.justify-content-start.border-top
        
-        p.fs-7.px-2 Belum punya akun? Yuk 
+        p.fs-7.px-2 Belum punya akun Prakerja? Yuk 
           a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
-            b Buat Akun Prakerja
+            b Buat Akun Sekarang
             i.bi.bi-arrow-up-right-square.ms-1
 
 
@@ -225,9 +230,9 @@
             button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss='modal')
               i.bi.bi-person-circle.me-2
               | Masuk
-          .fs-7.w-100.p-3.border-top.text-center Belum punya akun? Yuk 
+          .fs-7.w-100.p-3.border-top.text-center Belum punya akun Prakerja? Yuk 
             a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
-              b Buat Akun Prakerja
+              b Buat Akun Sekarang
               i.bi.bi-arrow-up-right-square.ms-1
 
 
@@ -295,9 +300,9 @@
             button.btn.btn-primary.w-100.ms-1(data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss='modal')
               i.bi.bi-person-circle.me-2
               | Masuk
-          .fs-7.w-100.p-3.border-top.text-center Belum punya akun? Yuk 
+          .fs-7.w-100.p-3.border-top.text-center Belum punya akun Prakerja? Yuk 
             a.link-primary(href="https://dashboard.prakerja.go.id/daftar" target="_blank")
-              b Buat Akun Prakerja
+              b Buat Akun Sekarang
               i.bi.bi-arrow-up-right-square.ms-1
 
 <!-- Modal Get Course - Sudah Login -->

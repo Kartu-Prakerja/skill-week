@@ -1,13 +1,13 @@
 //- INDEX LANDING PAGES
 //- start variable
-- var pageActive = 'pelatihan'
-- var baseURL = '/'
+- var pageActive = 'pelatihan-detail'
+- var baseURL = '../'
 - var contentDescription = {}
 - contentDescription.title = "Pelatihan gratis, murah dan mudah di Indonesia Skills Week!"
 - contentDescription.description = "Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara gratis, murah dan mudah selama 1 minggu."
 
 doctype html
-html(lang="id")
+html(lang="id" page-class="course-detail")
     include ../pug/includes/html_head.pug
     body.page-course-detail
         include ../pug/includes/analytics_no_script.pug

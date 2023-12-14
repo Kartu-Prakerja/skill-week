@@ -424,7 +424,7 @@
 
 
 .owl-carousel button.owl-dot{
-  width: 2rem;
+  width: 1.5rem;
   height: .5rem;
   background: var(--n200);
   margin-right: .5rem;
@@ -432,5 +432,6 @@
 
   &.active{
     background: var(--primary);
+    width: 3rem;
   }
 }

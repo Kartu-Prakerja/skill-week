@@ -29,10 +29,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:wght@700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/v3/css/bootstrap.css">
-    <link rel="stylesheet" href="/v3/css/pds-skillweek.css">
-    <link rel="stylesheet" href="/v3/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/pds-skillweek.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
     <!-- Google Tag Manager-->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TTFX6N6');
+    </script>
+    <script type="text/javascript">
+      (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+      var users = JSON.parse(localStorage.getItem('users'));
+      mixpanel.init('ef0d1649ccb886338ac7d13f7854fd15', {debug: false, track_pageview: true, persistence: 'localStorage'});
+      if (users) {
+          mixpanel.people.set({'distinct_id': users.email, '$email': users.email, '$name': (users.email).split('@',1)[0]});
+          mixpanel.identify(users.email)
+      }
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript)-->
@@ -41,14 +57,22 @@
         <!-- End Google Tag Manager (noscript)-->
       </iframe>
     </noscript>
+    <section class="section-notification">
+      <div class="container">
+        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center m-0" role="alert">
+          <div class="alert-icon-circle me-2"><i class="bi bi-bell-fill"></i></div>
+          <div>ISW berikutnya akan hadir pada tanggal <b class="color-secondary">8-15 Desember 2023.</b> Gunakan akun Prakerja untuk masuk ISW, bagi yang belum punya akun <a class="color-secondary" href="https://dashboard.prakerja.go.id/daftar" target="_blank">Daftar Disini</a></div>
+          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </section>
     <header class="pdt-header">
       <div class="container-md px-4 px-md-0">
-        <div class="d-flex justify-content-between align-items-center"><a href="/v3/"><img src="/v3/img/logo-indonesia-skills-week.webp" height="54" width="92" alt="Indonesia Skills Week"></a>
+        <div class="d-flex justify-content-between align-items-center"><a href="/"><img src="/img/logo-indonesia-skills-week.webp" height="54" width="92" alt="Indonesia Skills Week"></a>
           <ul class="d-flex align-items-center navbar-custom">
-            <li class="nav-item md-hide"><a class="nav-link nav-link-active" href="/v3/">Beranda</a></li>
-            <li class="nav-item md-hide"><a class="nav-link" href="/v3/pelatihan/index.html">Pelatihan</a></li>
-            <li class="nav-item md-hide"><a class="nav-link" href="/v3/tanyajawab/index.html">Tanya Jawab</a></li>
-            <li class="nav-item md-hide"><a class="nav-link text-truncate max-width-200" href="/v3/profil/index.html"> <i class="bi bi-person-circle me-2"></i>bambangsarjanateknik@gmail.com</a></li>
+            <li class="nav-item md-hide"><a class="nav-link nav-link-active" href="/">Beranda</a></li>
+            <li class="nav-item md-hide"><a class="nav-link" href="/pelatihan/index.html">Pelatihan</a></li>
+            <li class="nav-item md-hide"><a class="nav-link" href="/tanyajawab/index.html">Tanya Jawab</a></li>
             <li class="nav-item md-hide">
               <button class="btn btn-primary" id="btn-login">
                 <div class="text-truncate max-width-200"><i class="bi bi-person-circle me-2"> </i><span class="text-users skeleton-box rounded-pill" style="width:50"></span></div>
@@ -68,7 +92,7 @@
       <section class="section-hero">
         <div class="container py-4 py-lg-5 px-4 px-md-0">
           <div class="row d-flex align-items-center">
-            <div class="col-md-5 p-0 hero-wrapper"><img class="img-hero" src="/v3/img/img-isw-hero.webp" alt="Prakerja ISW"><img class="ornament-1" src="/v3/img/img-illustartion-1.svg" alt="Prakerja Illustration"></div>
+            <div class="col-md-5 p-0 hero-wrapper"><img class="img-hero" src="/img/img-isw-hero.webp" alt="Prakerja ISW"><img class="ornament-1" src="/img/img-illustartion-1.svg" alt="Prakerja Illustration"></div>
             <div class="col-md-7 mt-3 mt-md-0">
               <h1 class="mb-4 display-4 mt-3 md-md-0">Indonesia Skills Week by <span class="text-primary">Prakerja</span></h1>
               <p class="text-secondary paragraph-lg">Indonesia Skills Week merupakan event dua bulanan dimana masyarakat dapat mengakses aneka pelatihan online secara <b class="text-dark">gratis, murah dan mudah</b> selama <b class="text-dark">1 minggu</b>.</p>
@@ -80,7 +104,7 @@
       <section class="section-course">
         <div class="container py-3 py-lg-5 px-4 px-md-0">
           <div class="d-flex align-items-center justify-content-between mb-3 custom-header-carousel"> 
-            <h4 class="custom-rfs-h4"><span>Pelatihan&nbsp;</span>Diskon Besar</h4><a class="btn text-primary" href="/v3/pelatihan/index.html?topic=&amp;keyword=&amp;price=&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
+            <h4 class="custom-rfs-h4"><span>Pelatihan&nbsp;</span>Diskon Besar</h4><a class="btn text-primary" href="/pelatihan/index.html?topic=&amp;keyword=&amp;price=&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
           </div>
           <!-- Set up your HTML-->
           <div class="row justify-content-md-center" id="courseCarouselDiscount">
@@ -158,7 +182,7 @@
       <section class="section-course">
         <div class="container py-3 py-lg-5 px-4 px-md-0">
           <div class="d-flex align-items-center justify-content-between mb-3 custom-header-carousel">
-            <h4 class="custom-rfs-h4"> <span>Pelatihan&nbsp;</span>Serba 20 Ribu</h4><a class="btn text-primary" href="/v3/pelatihan/index.html?topic=&amp;keyword=&amp;price=20000&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
+            <h4 class="custom-rfs-h4"> <span>Pelatihan&nbsp;</span>Serba 20 Ribu</h4><a class="btn text-primary" href="/pelatihan/index.html?topic=&amp;keyword=&amp;price=20000&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
           </div>
           <!-- Set up your HTML-->
           <div class="row justify-content-md-center" id="courseCarouselTwenty">
@@ -236,7 +260,7 @@
       <section class="section-course">
         <div class="container py-3 py-lg-5 px-4 px-md-0">
           <div class="d-flex align-items-center justify-content-between mb-3 custom-header-carousel">
-            <h4 class="custom-rfs-h4"> <span>Pelatihan&nbsp;</span>Gratis</h4><a class="btn text-primary" href="/v3/pelatihan/index.html?topic=&amp;keyword=&amp;price=0&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
+            <h4 class="custom-rfs-h4"> <span>Pelatihan&nbsp;</span>Gratis</h4><a class="btn text-primary" href="/pelatihan/index.html?topic=&amp;keyword=&amp;price=0&amp;lp=">Lihat Semua <i class="bi bi-chevron-right"></i></a>
           </div>
           <!-- Set up your HTML-->
           <div class="row justify-content-md-center" id="courseCarouselFree">
@@ -317,29 +341,29 @@
             <h4 class="custom-rfs-h4">Topik Pelatihan </h4>
           </div>
           <div class="row"> 
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=bahasa-asing&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-bahasa-asing.svg" alt="Bahasa Asing">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=bahasa-asing&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-bahasa-asing.svg" alt="Bahasa Asing">
                 <h6 class="mt-2">Bahasa Asing</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=gaya-hidup&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-gaya-hidup.svg" alt="Gaya Hidup">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=gaya-hidup&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-gaya-hidup.svg" alt="Gaya Hidup">
                 <h6 class="mt-2">Gaya Hidup</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=keuangan&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-keuangan.svg" alt="Keuangan">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=keuangan&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-keuangan.svg" alt="Keuangan">
                 <h6 class="mt-2">Keuangan</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=makanan-dan-minuman&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-makanan-minuman.svg" alt="Makanan Dan Minuman">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=makanan-dan-minuman&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-makanan-minuman.svg" alt="Makanan Dan Minuman">
                 <h6 class="mt-2">Makanan Dan Minuman</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=manajemen&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-manajemen.svg" alt="Manajemen">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=manajemen&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-manajemen.svg" alt="Manajemen">
                 <h6 class="mt-2">Manajemen</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=penjualan-dan-pemasaran&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-penjualan-pemasaran.svg" alt="Penjualan Dan Pemasaran">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=penjualan-dan-pemasaran&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-penjualan-pemasaran.svg" alt="Penjualan Dan Pemasaran">
                 <h6 class="mt-2">Penjualan Dan Pemasaran</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=perkantoran&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-perkantoran.svg" alt="Perkantoran">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=perkantoran&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-perkantoran.svg" alt="Perkantoran">
                 <h6 class="mt-2">Perkantoran</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=pertanian&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-pertanian.svg" alt="Pertanian">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=pertanian&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-pertanian.svg" alt="Pertanian">
                 <h6 class="mt-2">Pertanian</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=sosial-dan-perilaku&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-sosial-perilaku.svg" alt="Sosial Dan Perilaku">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=sosial-dan-perilaku&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-sosial-perilaku.svg" alt="Sosial Dan Perilaku">
                 <h6 class="mt-2">Sosial Dan Perilaku</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=teknik&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-teknik.svg" alt="Teknik">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=teknik&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-teknik.svg" alt="Teknik">
                 <h6 class="mt-2">Teknik</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=teknologi-informasi&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-teknologi-informasi.svg" alt="Teknologi Informasi">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=teknologi-informasi&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-teknologi-informasi.svg" alt="Teknologi Informasi">
                 <h6 class="mt-2">Teknologi Informasi</h6></a></div>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/v3/pelatihan/index.html?topic=lainnya&amp;keyword=&amp;price=&amp;lp="><img src="/v3/img/icon-lainnya.svg" alt="Lainnya">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center"><a class="category-card" href="/pelatihan/index.html?topic=lainnya&amp;keyword=&amp;price=&amp;lp="><img src="/img/icon-lainnya.svg" alt="Lainnya">
                 <h6 class="mt-2">Lainnya</h6></a></div>
           </div>
         </div>
@@ -374,6 +398,96 @@
           </div>
         </div>
       </section>
+      <section class="section-testimony">
+        <div class="container py-3 py-lg-5 px-4 px-md-0">
+          <h4 class="custom-rfs-h4 text-center">Apa Kata Mereka?</h4>
+          <div class="owl-carousel testimony-carousel">
+            <div class="testimony-card p-3">
+              <div class="testimony-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center"> 
+                  <div class="pe-2"> 
+                    <div class="testimony-img"><img class="owl-lazy" data-src="img/img-placeholder-logo.webp" data-src-retina="img/img-testimony-sabrina.webp" alt="Sabrina Lutfiani"></div>
+                  </div>
+                  <div> 
+                    <h6 class="m-0">Sabrina Lutfiani</h6><span class="fs-7 text-secondary">Cirebon, Jawa Barat </span>
+                  </div>
+                </div><span class="fs-1"><i class="bi bi-quote"></i></span>
+              </div>
+              <div class="testimony-body"> 
+                <p class="m-0 pt-3">
+                  Menurut saya ISW sangat membantu sekali untuk menambah skill-skill baru yg belum sempat saya ambil di waktu saya ikut pelatihan Prakerja, mengisi waktu luang untuk belajar, dan memberikan kesempatan SDM untuk lebih berkembang dan berpotensi. Harapan saya, semoga ISW bisa diadakan 1 bulan sekali, 
+                  mungkin untuk pelatihan gratis tidak dibatasi 1 pelatihan saja, dan jangka waktunya diperpanjang lebih dari 1 minggu.
+                </p>
+              </div>
+            </div>
+            <div class="testimony-card p-3">
+              <div class="testimony-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center"> 
+                  <div class="pe-2"> 
+                    <div class="testimony-img"><img class="owl-lazy" data-src="img/img-placeholder-logo.webp" data-src-retina="img/img-testimony-makhinun.webp" alt="Makhinun Amin"></div>
+                  </div>
+                  <div> 
+                    <h6 class="m-0">Makhinun Amin</h6><span class="fs-7 text-secondary">Cirebon, Jawa Barat </span>
+                  </div>
+                </div><span class="fs-1"><i class="bi bi-quote"></i></span>
+              </div>
+              <div class="testimony-body"> 
+                <p class="m-0 pt-3">Untuk saya ISW bisa menjadi sebuah pembelajaran dan pembekalan kita untuk menambah suatu proses pengetahuan cara di bidang yang kita minati. Semoga kedepannya lebih diperbanyak lagi pelatihan lainnya.</p>
+              </div>
+            </div>
+            <div class="testimony-card p-3">
+              <div class="testimony-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center"> 
+                  <div class="pe-2"> 
+                    <div class="testimony-img"><img class="owl-lazy" data-src="img/img-placeholder-logo.webp" data-src-retina="img/img-testimony-rony.webp" alt="Rony Purwono"></div>
+                  </div>
+                  <div> 
+                    <h6 class="m-0">Rony Purwono</h6><span class="fs-7 text-secondary">Surabaya, Jawa Timur</span>
+                  </div>
+                </div><span class="fs-1"><i class="bi bi-quote"></i></span>
+              </div>
+              <div class="testimony-body"> 
+                <p class="m-0 pt-3">
+                  ISW merupakan program yg sangat bagus ya, terutama untuk mengetahui perkembangan informasi tentang teknologi dan kemampuan apa yang seharusnya dimiliki atau disiapkan oleh peserta dalam menghadapi era digitalisasi atau perubahan teknologi ke depan. 
+                  Program seperti ini kalau bisa dilanjutkan, mengingat kebutuhan tentang peningkatan skill dan teknologi dalam DUDI (Dunia Usaha dan Dunia Industri) terus berkembang dan kebutuhan akan talenta-talenta digital ini dibutuhkan untuk bisa berpartisipasi dalam persaingan global.
+                </p>
+              </div>
+            </div>
+            <div class="testimony-card p-3">
+              <div class="testimony-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center"> 
+                  <div class="pe-2"> 
+                    <div class="testimony-img"><img class="owl-lazy" data-src="img/img-placeholder-logo.webp" data-src-retina="img/img-testimony-fenti.webp" alt="Fenti Sampe Sialla"></div>
+                  </div>
+                  <div> 
+                    <h6 class="m-0">Fenti Sampe Sialla</h6><span class="fs-7 text-secondary">Tana Toraja, Sulawesi Selatan</span>
+                  </div>
+                </div><span class="fs-1"><i class="bi bi-quote"></i></span>
+              </div>
+              <div class="testimony-body"> 
+                <p class="m-0 pt-3">
+                   Menurut saya, ISW merupakan program yang sangat bagus karena langsung mengacu pada kehidupan sehari-hari dan ISW ini langsung bertanya pada pakarnya atau badan terkait, jadi kalau ada masalah atau hal-hal yang perlu ditanyakan langsung ke pakarnya jadi mendapat jawaban lebih akurat. Semoga kedepan ISW dilakukan lagi dan semoga ada ISW secara offline.</p>
+              </div>
+            </div>
+            <div class="testimony-card p-3">
+              <div class="testimony-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center"> 
+                  <div class="pe-2"> 
+                    <div class="testimony-img"><img class="owl-lazy" data-src="img/img-placeholder-logo.webp" data-src-retina="img/img-testimony-rizki.webp" alt="Rizki Alwi Pratama"></div>
+                  </div>
+                  <div> 
+                    <h6 class="m-0">Rizki Alwi Pratama</h6><span class="fs-7 text-secondary">Labuan Batu, Sumatera Utara</span>
+                  </div>
+                </div><span class="fs-1"><i class="bi bi-quote"></i></span>
+              </div>
+              <div class="testimony-body"> 
+                <p class="m-0 pt-3">
+                   Indonesia Skill Week sangat berguna untuk semua kalangan masyarakat umum, untuk menambah skill yg dimiliki dengan memilih banyak pelatihan yang tersedia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- Modal start-->
     <div class="modal modal-lg fade" id="deskripsiPelatihanModal" tabindex="-1" aria-labelledby="deskripsiPelatihanModalLabel" aria-hidden="true">
@@ -402,7 +516,7 @@
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
         <div class="modal-content">
-          <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="/v3/img/img-ornament-1.svg" alt="ISW Login">
+          <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="/img/img-ornament-1.svg" alt="ISW Login">
             <h4 class="modal-title">Masuk Akun</h4>
             <button class="login-dismiss btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -445,7 +559,7 @@
       <div class="modal-dialog modal-dialog-centered pds-modal">
         <div class="modal-content">
           <div class="modal-header modal-header-custom p-4">
-            <div class="text-center w-100"><img src="/v3/img/img-login-success.svg" alt="ISW login success">
+            <div class="text-center w-100"><img src="/img/img-login-success.svg" alt="ISW login success">
               <h4 class="modal-title mt-3">Berhasil Masuk</h4>
             </div>
           </div>
@@ -461,7 +575,7 @@
     <div class="modal fade" id="loginErrorModal" tabindex="-1" aria-labelledby="loginErrorModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
         <div class="modal-content">
-          <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="/v3/img/img-ornament-1.svg" alt="ISW Login">
+          <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="/img/img-ornament-1.svg" alt="ISW Login">
             <h4 class="modal-title">Masuk Akun</h4>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -502,7 +616,7 @@
       <div class="modal-dialog modal-dialog-centered pds-modal">
         <div class="modal-content">
           <div class="modal-header modal-header-custom p-4">
-            <div class="text-center w-100"><img class="ratio-1-1" src="/v3/img/img-login-already.svg" alt="ISW Logged In">
+            <div class="text-center w-100"><img class="ratio-1-1" src="/img/img-login-already.svg" alt="ISW Logged In">
               <h4 class="modal-title mt-3">Kamu Masuk Sebagai</h4>
             </div>
           </div>
@@ -526,7 +640,7 @@
       <div class="modal-dialog modal-dialog-centered pds-modal">
         <div class="modal-content">
           <div class="modal-header modal-header-custom p-4 align-items-start position-relative">
-            <div class="text-center w-100"><img src="/v3/img/img-login-already.svg" alt="ISW Logout Confirmation">
+            <div class="text-center w-100"><img src="/img/img-login-already.svg" alt="ISW Logout Confirmation">
               <h4 class="modal-title mt-3">Kamu yakin akan keluar menggunakan akun ini?</h4>
             </div>
             <button class="btn-close position-absolute" type="button" data-bs-dismiss="modal" aria-label="Close" style="right:1.5rem;"></button>
@@ -553,7 +667,7 @@
           </div>
           <div class="modal-body px-4">
             <div class="row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Pelatihan ABC"></div>
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/img/course-7.jpeg" alt="Pelatihan ABC"></div>
               <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
                 <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
               </div>
@@ -583,7 +697,7 @@
           </div>
           <div class="modal-body px-4">
             <div class="detail-course row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Pelatihan ABC"></div>
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/img/course-7.jpeg" alt="Pelatihan ABC"></div>
               <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
                 <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
               </div>
@@ -619,7 +733,7 @@
           <div class="modal-body px-4">
             <p class="paragraph-md mb-4">Kamu yakin akan mengambil pelatihan ini?</p>
             <div class="detail-course row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Pelatihan ABC"></div>
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/img/course-7.jpeg" alt="Pelatihan ABC"></div>
               <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
                 <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
               </div>
@@ -650,7 +764,7 @@
           <div class="modal-body px-4">
             <p class="paragraph-md mb-4">Kamu yakin akan mengambil pelatihan ini?</p>
             <div class="row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point"></div>
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/img/course-7.jpeg" alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point"></div>
               <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
                 <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
               </div>
@@ -685,7 +799,7 @@
           </div>
           <div class="modal-body px-4">
             <div class="row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/v3/img/course-7.jpeg" alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point"></div>
+              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="/img/course-7.jpeg" alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point"></div>
               <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
                 <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
               </div>
@@ -715,7 +829,7 @@
     <div class="toast-container position-fixed top-0 start-0 p-3">
       <div class="toast" id="success-toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex p-3">
-          <div><img src="/v3/img/img-success-get-course.svg" alt="ISW Success get Course" style="width: 64px"></div>
+          <div><img src="/img/img-success-get-course.svg" alt="ISW Success get Course" style="width: 64px"></div>
           <div class="px-3">
             <h6>Voucher Pelatihan Berhasil Diambil</h6>
             <p class="p-0 m-0">Kode voucher pelatihan akan dikirim ke email kamu, silakan cek secara berkala.</p>
@@ -724,6 +838,17 @@
             <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed top-0 start-0 p-3">
+      <div class="toast" id="toast-sucess-copy" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">
+        <div class="toast-header">
+          <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img">
+            <rect width="100%" height="100%" fill="#007aff"></rect>
+          </svg><strong class="mr-auto">Skillsweek</strong><small class="text-muted">Saat ini</small>
+          <button class="ml-2 mb-1 close close-toast-copy" type="button" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="toast-body">Link Pelatihan berhasil di copy</div>
       </div>
     </div><!-- Footer start -->
     <footer class="section-footer">
@@ -813,7 +938,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="/v3/js/owl.carousel.min.js"></script>
-  <script src="/v3/js/function.js"></script>
-  <script src="/v3/js/ui-init.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/function.js"></script>
+  <script src="/js/ui-init.js"></script>
 </html>
