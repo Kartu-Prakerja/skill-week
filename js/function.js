@@ -238,12 +238,23 @@ var templateDetail = function(data) {
     var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
     var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
     var getVoucherbtn;
+    // comment for the next isw jan
+    // if(_.contains(courseTakens, data.course_id)) {
+    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+    //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
+    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+    //  } else {
+    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+    //  }
+
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
      } else if (data.quota !== '' && Number(data.quota) == data.total) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else {
+     } else if (data.course_discount == '') {
         getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+     } else {
+        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
      }
 
      var contactCenter = '';
