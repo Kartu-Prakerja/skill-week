@@ -31,19 +31,34 @@
 
 
 
-.navbar-custom{
+ul.navbar-custom{
     list-style-type: none;
     margin: 0;
     padding-inline-start: 0;
-    // outline: solid 1px red;
 
-    a.nav-link{
+    ul{
+      list-style-type: none;
+      margin:0;
+      padding: 0;
+      li{
+        // outline: solid 1px red;
+        a{
+          padding: .5rem 1rem;
+          color: var(--text-default);
+          text-decoration: none;
+          display: block;
+          text-align: center;
+        }
+      }
+    }
+
+    .nav-link{
       position: relative;
       // display: inline-block;
       padding: .5rem .75rem;
       border-radius: .5rem;
       &:hover{
-        background-color: rgba(#2A72C7, .05);
+        // background-color: rgba(#2A72C7, .05);
       }
     }
     
@@ -52,6 +67,9 @@
       background-color: rgba(#2A72C7, .05);
       
     }
+
+    
+
     // mobile custom
     &.m-menu{
         width: 100%;
@@ -158,7 +176,8 @@
   }
 
   .burger-menu.open {
-    right: 1rem;
+    top: .5rem;
+    right: 1.5rem;
     position: absolute;
   }
 
@@ -353,6 +372,143 @@
     .modal-search-trigger{
       margin-right: 0;
     }
+
+    ul.navbar-custom{
+      list-style-type: none;
+      margin: 0;
+      padding-inline-start: 0;
+      // outline: solid 1px red;
+  
+      li{
+        position: relative;
+        cursor: pointer;
+        border-radius: .5rem;
+        &:hover > ul,
+        &:focus-within > ul,
+        ul:hover,
+        ul:focus{
+          visibility: visible;
+          opacity: 1;
+          display: block
+        }
+        &:hover,
+        &:focus-within{
+          background-color: rgba(#2A72C7, .05);
+        }
+        // dropdown menu
+        ul{
+          visibility: hidden;
+          opacity: 0;
+          min-width: 5rem;
+          position: absolute;
+          transition: all 0.5s ease;
+          margin:0;
+          padding:0;
+          right: 0;
+          display: none;
+          top: 40px;
+          border-radius: 0.5rem;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.50);
+          padding: .5rem 0;
+          /* Card/Small Shadow */
+          box-shadow: 0px 8px 16px -8px rgba(1, 24, 48, 0.20), 0px 0px 0px 1px rgba(214, 219, 224, 0.20);
+          // z-index: 8888;
+          li{
+            clear: both;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding:0;
+            border-radius: 0;
+            a{
+              text-decoration: none;
+              text-align: left;
+              color: var(--text-default);
+              display: block;
+              padding: .5rem 1rem;
+              margin: 0;
+              width: 220px;
+              &:hover{
+                cursor: pointer;
+                background-color: rgba(#2A72C7, .05);
+              }
+            }
+          }
+        }
+      }
+  
+      .nav-link{
+        position: relative;
+        // display: inline-block;
+        padding: .5rem .75rem;
+        border-radius: .5rem;
+        &:hover{
+          // background-color: rgba(#2A72C7, .05);
+        }
+      }
+      
+      a.nav-link.nav-link-active{
+        color: var(--primary);
+        background-color: rgba(#2A72C7, .05);
+        
+      }
+  
+      
+  
+      // mobile custom
+      &.m-menu{
+          width: 100%;
+          height: 100%;
+          background-color: var(--b100);
+          position: fixed;
+          z-index: 9991;
+          margin:0 0 0 0;
+          padding:4rem 1rem 1rem 1rem;
+          top:0;
+          left: 0;
+          display: block!important;
+          &:before{
+              display: block;
+              content: '';
+              width: 100%;
+              height: 50%;
+              position: absolute;
+              left:0;
+              bottom: 0;
+              z-index: 0;
+              background: linear-gradient(0deg, #FFFFFF 21.93%, rgba(255, 255, 255, 0) 100%);
+              z-index: -1;
+          }
+          .md-hide{
+              display: inherit!important;
+          }
+          li{
+              
+              a.nav-link{
+                  padding: .5rem;
+                  margin: .5rem 0;
+                  text-align: center;
+                  border-radius: 4px;
+                  &:hover{
+                      // background-color: rgba(black, .1);
+                      background-color: rgba(white, .5);
+                  }
+              }
+  
+              .btn{
+                  width: 100%;
+              }
+          }
+          .burger-menu{
+              float: right;
+          }
+      }
+  
+      li{
+          margin: 0 .5rem;
+      }
+  }
 
     
 

@@ -78,6 +78,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var Trending = Number(data.total) >= 5 ? "<span class='mb-2 ml-2 badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
+            "<a href='"+ course_detail +"' class='text-decoration-none' title='"+ data.course_title +"'>"+
             "<div class='card-cover'>" + imageCourse +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between align-middle'>" +
@@ -91,17 +92,19 @@ var templateCourse = function(target, data, cardClass, isCourse){
             "</div>" +
             "<div class='card-body'>" +
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
+                // "<a href='"+ course_detail +"' class='mb-1 d-block course-title text-capitalize h6' title='"+ data.course_title +"'>"+ data.course_title +"</a>" +
                 "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" + Trending +
                 "<div>" +
                     "<div class='course-real-price mb-1'><span>"+ course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
                 "</div>" +
-                "<div class='mt-3 text-center'>" +
-                    "<a href='"+ course_detail +"' class='apply-course "+data.course_id+" btn btn-primary w-100 mb-2 text-truncate' rel='nofollow' data-event='skill_week_apply_course'>Selengkapnya</a>" +
-                    // "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
-                '</div>'
+                // "<div class='mt-3 text-center'>" +
+                //     // "<a href='"+ course_detail +"' class='apply-course "+data.course_id+" btn btn-primary w-100 mb-2 text-truncate' rel='nofollow' data-event='skill_week_apply_course'>Selengkapnya</a>" +
+                //     // "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
+                // '</div>'
             "</div>" +
         "</div>" +
+        "</a>" +
     "</div>";
     $(target).append(template).ready(function () {
         // trigger modal

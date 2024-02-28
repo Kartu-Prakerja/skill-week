@@ -324,18 +324,26 @@ body{
 .howto-carousel{
   .howto-item{
     position: relative;
-    height: 210px;
+    height: 216px;
+
+    h6{
+      // outline: solid 1px red;
+      &.first-letter{
+        font-size: 1.5rem;
+        color: var(--primary);
+      }
+    }
     
 
     &::after{
-      content: '';
-      height: calc(100% - 2rem);
-      width: 2px;
-      border-right: dashed 2px var(--o200);
-      display: block;
-      position: absolute;
-      top: 1rem;
-      right: 0;
+      // content: '';
+      // height: calc(100% - 2rem);
+      // width: 2px;
+      // border-right: dashed 2px var(--o200);
+      // display: block;
+      // position: absolute;
+      // top: 1rem;
+      // right: 0;
       // width: 16px;
       // background-image: url('../img/img-separator-1.svg');
       // background-repeat: no-repeat;
@@ -345,11 +353,42 @@ body{
 
     &.is-last{
       &::after{
-        // display: none;
       }
     }
 
+    .icon-float{
+      color: var(--primary);
+      opacity: .5;
+      position: absolute;
+      z-index: 0;
+      bottom: 0;
+      right: 0;
+      font-size: 1.5rem;
+      padding: .5rem;
+    }
+
+    &.box-1{
+      background: rgba(42, 114, 199, 0.03);
+    }
+    &.box-2{
+      background: rgba(42, 114, 199, 0.06);
+    }
+    &.box-3{
+      background: rgba(42, 114, 199, 0.09);
+    }
+    &.box-4{
+      background: rgba(42, 114, 199, 0.12);
+    }
+    &.box-5{
+      background: rgba(42, 114, 199, 0.15);
+    }
+    
   }
+
+  // .owl-item{
+  //   outline: solid 1px red;
+  //   height: 210px;
+  // }
   
 }
 
