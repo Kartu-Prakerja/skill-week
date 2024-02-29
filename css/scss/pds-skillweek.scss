@@ -1456,6 +1456,10 @@ body{
   display: none;
 }
 
+.supper-hidden, ul.navbar-custom.m-menu .supper-hidden {
+  display: none !important;
+}
+
 .share-dialog {
   position: absolute;
   top: 50%;

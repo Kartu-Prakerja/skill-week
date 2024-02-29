@@ -23,11 +23,19 @@ header.pdt-header
           a.nav-link(href=baseURL+'pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
         li.nav-item.md-hide
           a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
-        li#profile.nav-item.md-hide.hidden
+        li#profile.nav-item.md-hide.supper-hidden
           a.nav-link.text-truncate.max-width-200(href=baseURL+'profil/index.html' class={"nav-link-active" : pageActive === 'profil'}) 
             i.bi.bi-person-circle.me-2
-            | Profil Saya
-        li#login.nav-item.md-hide.hidden
+            span#user-email
+          ul.login-state
+            li
+              a(href="https://dashboard.prakerja.go.id/profil?utm_source=ISW-Menu&utm_campaign=ISW") Profil Saya 
+            li
+              a(href="https://dashboard.prakerja.go.id/riwayat-pelatihan?utm_source=ISW-Menu&utm_campaign=ISW") Pelatihan Saya 
+            li
+              a(href="https://dashboard.prakerja.go.id/?utm_source=ISW-Menu&utm_campaign=ISW") Dashboard Prakerja 
+                i.bi.bi-arrow-up-right-square
+        li#login.nav-item.md-hide.supper-hidden
           button#btn-login.btn.btn-primary
             .text-truncate.max-width-200
               i.bi.bi-person-circle.me-2 
@@ -36,7 +44,7 @@ header.pdt-header
               //- | Masuk
               //- | bambang_soehardjo@gmail.com
 
-        li.nav-item.md-hide
+        //- li.nav-item.md-hide
           button.nav-link.btn.d-none.d-lg-block
             .text-truncate.max-width-200
               i.bi.bi-person-circle.me-2
