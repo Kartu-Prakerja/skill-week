@@ -330,7 +330,7 @@ var templateDetail = function(data) {
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Kategori</h6>' +
                 // '<p class="fs-7">'+ data.course_category +'</p>' +
-                '<a href="#" class="badge text-bg-light text-capitalize text-decoration-none">'+ data.course_category +'</a>' +
+                '<a href="/pelatihan/index.html?topic='+ data.course_category.replace(/\s+/gi, '-').toLowerCase() +'&keyword=&price=&lp=" class="badge text-bg-light text-capitalize text-decoration-none">'+ data.course_category +'</a>' +
               '</div>' +
             '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-ticket-detailed"> </i>' +
