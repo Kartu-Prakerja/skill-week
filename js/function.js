@@ -75,7 +75,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
-    var Trending = Number(data.total) >= 5 ? "<span class='mb-2 ml-2 badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
+    var Trending = Number(data.total) >= 5 ? "<span class='badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
             "<a href='"+ course_detail +"' class='text-decoration-none' title='"+ data.course_title +"'>"+
@@ -91,9 +91,13 @@ var templateCourse = function(target, data, cardClass, isCourse){
                 "</div>" +
             "</div>" +
             "<div class='card-body'>" +
+                // Title
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
-                // "<a href='"+ course_detail +"' class='mb-1 d-block course-title text-capitalize h6' title='"+ data.course_title +"'>"+ data.course_title +"</a>" +
-                "<span class='mb-2 badge text-bg-light text-capitalize'>"+ data.course_category + "</span>" + Trending +
+                // Bagde
+                "<div class='d-flex my-2'>" +
+                    "<span class='badge text-bg-light text-capitalize badge-ellipsis' title='"+ data.course_category +"'>"+ data.course_category + "</span>" + Trending +
+                "</div>" +
+                // Price
                 "<div>" +
                     "<div class='course-real-price mb-1'><span>"+ course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
                     "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
@@ -324,7 +328,8 @@ var templateDetail = function(data) {
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-tag"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Kategori</h6>' +
-                '<p class="fs-7">'+ data.course_category +'</p>' +
+                // '<p class="fs-7">'+ data.course_category +'</p>' +
+                '<a href="#" class="badge text-bg-light text-capitalize text-decoration-none">'+ data.course_category +'</a>' +
               '</div>' +
             '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-ticket-detailed"> </i>' +

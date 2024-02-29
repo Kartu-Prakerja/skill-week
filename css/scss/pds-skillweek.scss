@@ -325,6 +325,13 @@ body{
   .howto-item{
     position: relative;
     height: 216px;
+    transition: cubic-bezier(.76,.34,.23,.65) .2s;
+
+    &:hover{
+      box-shadow: 0px 0px 0px 4px rgba(42,114,199,0.20) inset;
+    -webkit-box-shadow: 0px 0px 0px 4px rgba(42,114,199,0.20) inset;
+    -moz-box-shadow: 0px 0px 0px 4px rgba(42,114,199,0.20) inset;
+    }
 
     h6{
       // outline: solid 1px red;
@@ -528,6 +535,13 @@ body{
     background-color: var(--bg-default);
   }
 
+}
+
+.badge-ellipsis{
+  max-width: 50%;
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
