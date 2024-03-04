@@ -10,17 +10,23 @@ section.section-hero
           |  dan 
           a.link-primary(href=baseURL+'tanyajawab/#SyaratKetentuan')
             b Syarat &amp; Ketentuan
-    .row.justify-content-md-center
+    .row.justify-content-md-center.search-boxy
       .col-lg-8
         form#form-search(action='#search-pelatian')
-          .input-group.input-group-lg.custom-search-2.mb-3
+          .input-group.input-group-lg.custom-search-2
             button#button-search.btn.btn-outline-light(type='button')
               i.bi.bi-search
             input#filter-keyword.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
             button#button-addon1.btn.btn-outline-light(type='button' data-bs-toggle='modal' data-bs-target='#modalFilter')
               i.bi.bi-sliders2
-        .d-flex.justify-content-between.align-items-center
-          #course-counter.text-secondary
+        //- .d-flex.justify-content-between.align-items-center
+        //-   #course-counter.text-secondary
+        //-     .col-12.col-md-12.col-xl-12.col-xxl-12.mb-12.mb-lg-12 Memuat pelatihan, mohon tunggu...
+
+    .row.justify-content-md-center
+      .col-lg-8
+        .d-flex.justify-content-between.align-items-center.pt-2
+          #course-counter.text-secondary.fs-7
             .col-12.col-md-12.col-xl-12.col-xxl-12.mb-12.mb-lg-12 Memuat pelatihan, mohon tunggu...
           //- .dropdown
             button.btn.btn-ghost-white.btn-small(type='button' data-bs-toggle='dropdown' aria-expanded='false')

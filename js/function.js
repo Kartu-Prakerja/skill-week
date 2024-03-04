@@ -1448,6 +1448,13 @@ function globalSearch(dataCourse) {
             $('header').removeClass("header-fixed");
         }
 
+        // for search trigger at page pelatihan
+        if (scroll >= 214) {
+            $('.search-boxy').addClass("is-fixed");
+        } else {
+            $('.search-boxy').removeClass("is-fixed");
+        }
+
         // for scroll-top trigger
         if (scroll >= 400) {
             $('.scroll-top').addClass("is-show");

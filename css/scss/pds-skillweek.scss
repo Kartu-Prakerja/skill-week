@@ -1043,11 +1043,20 @@ body{
 
   /* CUSTOM SEARCH # global styles */
 .search-boxy{
-  outline: solid 1px red;
-  &.search-fixed{
+  // outline: solid 1px red;
+  transition: 0.3s background-color;
+  &.is-fixed{
     position: fixed;
     z-index: 121;
-    top:96px;
+    top:70px;
+    left: 0;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 8px 16px -8px rgba(1, 24, 48, 0.2);
+    
   }
 }
 
