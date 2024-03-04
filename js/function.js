@@ -557,9 +557,12 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
         
+        // console.log('test');
+        $(window).scrollTop(0);
+
         // remove existing content
         appendTarget.html('');
-        $('#course-counter div').html('Ditemukan <b>' + dataLength + '</b> pelatihan');
+        $('#course-counter div').html('Ditemukann <b>' + dataLength + '</b> pelatihan');
         
         // checking keyword then append with selected filter
         if (dataKeyword.length !== 0) {
@@ -585,7 +588,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 
     // to trigger the submit button
     $(buttonSearch).on('click', function(e) { 
-        $(formSeaerch).trigger('submit')
+        $(formSeaerch).trigger('submit');
     });
 }
 
@@ -767,6 +770,8 @@ function courseLoaderInit(){
                 var paging = Math.ceil(dataLength/loadItem);
                 var start = 0;
                 var end = loadItem;
+                console.log('test');
+                $(window).scrollTop(0);
     
                 setTimeout(function() {
                     // remove existing content
@@ -803,6 +808,7 @@ function courseLoaderInit(){
                     // invoke function push event GA
                     // pushEvents('.see-detail-course');
                     // pushEvents('.apply-course');
+
     
                 }, 1500)
             }).fail(function(){
