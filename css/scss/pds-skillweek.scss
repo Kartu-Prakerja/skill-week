@@ -279,6 +279,10 @@ body{
 // background: linear-gradient(90deg, #EAF1F9 0%, #EEF0FA 14.29%, #F3EFF9 28.57%, #F8EEF7 42.86%, #FDEDF3 57.14%, #FFEDEE 71.43%, #FFEEE9 85.71%, #FEEFE5 100%);
 }
 
+.bg-light-grey{
+  background-color: var(--s100);
+}
+
 .section-testimony > div{
   position: relative;
   z-index: 4;
@@ -584,47 +588,23 @@ body{
 .category-card{
   display: block;
   // outline: solid 1px red;
-  padding: 1rem 0;
-  margin-bottom: 1.5rem;
+  // padding: 1rem 0;
+  // margin-bottom: 1.5rem;
   text-decoration: none;
   color: var(--text-default);
-  padding: 1rem;
   border-radius: .5rem;
   &:hover{
     background-color: var(--bg-default);
   }
   img{
     aspect-ratio: 1/1;
+    width: 24px;
   }
-  // &.animate-me{
-  //   img{
-      // -webkit-animation-duration: 1s;
-      // animation-duration: 1s;
-      // -webkit-animation-fill-mode: both;
-      // animation-fill-mode: both;
-      // -webkit-animation-name: tada;
-      // animation-name: tada;
-  //   }
-  //   &:hover{
-  //     img{
-  //       -webkit-animation-iteration-count: 300;
-  //       animation-iteration-count: 300;
-  //     }
-  //   }
-  // }
+  h6{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+  }
 }
-
-// .animated {
-//   -webkit-animation-duration: 1s;
-//   animation-duration: 1s;
-//   -webkit-animation-fill-mode: both;
-//   animation-fill-mode: both;
-// }
-
-// .animated:hover {
-//   -webkit-animation-iteration-count: infinite;
-//   animation-iteration-count: infinite;
-// }
 
 
  
@@ -926,8 +906,8 @@ body{
     }
 }
 
+// .section-course,
 .adjust-anchor,
-.section-course,
 .section-snk,
 .section-highlight{
     position: relative;
@@ -1146,6 +1126,13 @@ body{
 
 .custom-search-2.search-only .form-control {
   padding-right: 0.5rem;
+}
+
+#button-addon1{
+  box-shadow: 0px 0px 0px 1px rgba(0,0,0, .25) inset;
+  span{
+    display: none;
+  }
 }
 
 
@@ -1667,6 +1654,11 @@ body{
       height: 86px;
     }
   }
+  .category-card{
+    img{
+      width: auto;
+    }
+  }
   
 }
 
@@ -1767,6 +1759,18 @@ body{
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
+  #button-addon1{
+    width:auto !important;
+    padding: 0 .75rem !important;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0, .25) inset;
+    span{
+      display: block;
+      font-size: 14px;
+      margin-left: 4px;
+    }
+  }
   .course-cta{
     position: relative;
     bottom: 0;

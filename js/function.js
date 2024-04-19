@@ -825,20 +825,23 @@ function courseLoaderHome() {
     var appendLimited = $('#courseCarouselDiscount');
     var appendTwenty = $('#courseCarouselTwenty');
     var appendFree = $('#courseCarouselFree');
+    var appendNewest = $('#courseCarouselNewest');
     var appendTarget = $('#course-provider-list');
     var loadMoreTarget = $('#load-more-lp');
     var loadItem = 12;
     var currentPage = 1;
     
     // check if this content is available on landing page or not
-    if (appendLimited.length || appendTwenty.length || appendFree.length) {
+    if (appendLimited.length || appendTwenty.length || appendFree.length || appendNewest.length) {
         $.getJSON(courseListURL, function(data){
             dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
             dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
             dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
+            dataNewest = _.sample(_.filter(data, function(list) { return list}), 10);
             appendLimited.addClass('owl-carousel').html('');
             appendTwenty.addClass('owl-carousel').html('');
             appendFree.addClass('owl-carousel').html('');
+            appendNewest.addClass('owl-carousel').html('');
 
             var lookupCourseLP = {};
             var resultCourseLP = [];
@@ -883,6 +886,10 @@ function courseLoaderHome() {
             $.each(dataFree, function(i, list) {
                 templateCourse(appendFree, list, 'home');
             });
+
+            $.each(dataNewest, function(i, list) {
+                templateCourse(appendNewest, list, 'home');
+            });
             
             // invoke function push event GA
             // pushEvents('.see-detail-course');
@@ -894,16 +901,17 @@ function courseLoaderHome() {
                 nav:true,
                 dots: false,
                 lazyLoad: true,
+                responsiveClass:true,
                 responsive:{
                     0:{
                         items:1.2,
                         margin: 16,
-                        nav:false,
+                        nav:false
                     },
                     600:{
                         items:3,
                         margin: 16,
-                        nav:false,
+                        nav:false
                     },
                     1000:{
                         items:3.75,
