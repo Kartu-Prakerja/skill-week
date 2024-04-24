@@ -244,7 +244,14 @@ body{
   }
 }
 
+.text-gradient-secondary{
+  background: var(--o500);;
+  background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 
+}
 
 .section-standard{
     position: relative;
