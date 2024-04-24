@@ -1415,6 +1415,21 @@ body{
   border-bottom: dashed 1px var(--border-default);
   // border-radius: .5rem;
 }
+
+
+
+.m_wrap{
+  width:100%;
+  }
+  .dx{
+     width:100%;
+    // height:100px;
+    overflow-x:scroll;
+    white-space: nowrap;
+  }
+
+
+
 @media (max-width: 575px) {
 #breadcrumb-detail .breadcrumb-item.active {
     max-width: calc(100% - 120px)!important;
