@@ -397,3 +397,31 @@
         span(aria-hidden='true') &times;
     .toast-body
       | Link Pelatihan berhasil di copy
+
+<!-- Modal Ads -->
+#adsModal.modal.fade.show(aria-hidden='true' aria-labelledby='adsModal' tabindex='-1')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      //- .modal-header
+      //-   h1.modal-title.fs-5 Modal 1
+      //-   button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        section.owl-carousel.boost-ads-carousel
+          div
+            img.owl-lazy(data-src=baseURL+"img/img-placeholder.webp" data-src-retina=baseURL+"img/List-Webinar-ISW-Mei-01.webp" alt="")
+          div
+            img.owl-lazy(data-src=baseURL+"img/img-placeholder.webp" data-src-retina=baseURL+"img/List-Webinar-ISW-Mei-02.webp" alt="")
+          div
+            img.owl-lazy(data-src=baseURL+"img/img-placeholder.webp" data-src-retina=baseURL+"img/List-Webinar-ISW-Mei-03.webp" alt="")
+          div
+            img.owl-lazy(data-src=baseURL+"img/img-placeholder.webp" data-src-retina=baseURL+"img/List-Webinar-ISW-Mei-04.webp" alt="")
+          div
+            img.owl-lazy(data-src=baseURL+"img/img-placeholder.webp" data-src-retina=baseURL+"img/List-Webinar-ISW-Mei-05.webp" alt="")
+          div
+            img.owl-lazy(data-src=baseURL+"img/img-placeholder.webp" data-src-retina=baseURL+"img/List-Webinar-ISW-Mei-06.webp" alt="")
+
+      .modal-footer.d-flex.justify-content-center
+        button.btn.btn-outline-primary(data-bs-dismiss="modal")
+          | Tutup
+        a.btn.btn-primary(href="https://bit.ly/WebinarISWMei" target="_blank") 
+          | Daftar Seminar Sekarang

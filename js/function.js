@@ -1452,6 +1452,12 @@ function globalSearch(dataCourse) {
 }
 
 
+window.onload = () => {
+    const adsModal = new bootstrap.Modal('#adsModal');
+    adsModal.show();
+    
+  }
+
 /** init function */
 (function($){
     // scroll function
@@ -1477,6 +1483,7 @@ function globalSearch(dataCourse) {
             $('.scroll-top').removeClass("is-show");
         }
     });
+
 
     // Scroll to top 
     $(".scroll-top").on("click", function() {
@@ -1527,6 +1534,14 @@ function globalSearch(dataCourse) {
                 margin: 0
             }
         }
+    });
+
+    $('.boost-ads-carousel').owlCarousel({
+        loop:true,
+        autoplay: false,
+        dots: true,
+        lazyLoad:true,
+        items:1
     });
 
     $('.howto-carousel').owlCarousel({
@@ -1608,8 +1623,11 @@ function globalSearch(dataCourse) {
         globalSearch(dataCourse);
     })
 
+
  })(jQuery);
 
+ // ads Modal
+        
 
 // function shareCourse(){
 //     const shareButton = document.querySelector('.share-button');
