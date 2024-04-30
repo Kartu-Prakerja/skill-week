@@ -1,9 +1,9 @@
 section.section-hero
-  .container.py-md-5.py-5.px-4.px-md-0
+  .container.py-md-5.pt-4.pb-5.px-4.px-md-0
     .row
       .col-12.text-center.mb-3.mb-lg-4
-        h2.mb-3 Pelatihan yang Tersedia
-        p
+        h1.h2.mb-3 Pelatihan yang Tersedia
+        p.fs-7
           | Pelajari lebih lanjut, baca tentang 
           a.link-primary(href=baseURL+'tanyajawab/#KategoriPelatihan')
             b Kategori Pelatihan
@@ -12,17 +12,32 @@ section.section-hero
             b Syarat &amp; Ketentuan
     .row.justify-content-md-center.search-boxy
       .col-lg-8
-        form#form-search(action='#search-pelatian')
-          .input-group.input-group-lg.custom-search-2
-            button#button-search.btn.btn-outline-light(type='button')
-              i.bi.bi-search
-            input#filter-keyword.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
-            button#button-addon1.btn.btn-outline-light(type='button' data-bs-toggle='modal' data-bs-target='#modalFilter')
-              i.bi.bi-sliders2
-        //- .d-flex.justify-content-between.align-items-center
-        //-   #course-counter.text-secondary
-        //-     .col-12.col-md-12.col-xl-12.col-xxl-12.mb-12.mb-lg-12 Memuat pelatihan, mohon tunggu...
+        .container
+          form#form-search(action='#search-pelatian')
+            .input-group.input-group-lg.custom-search-2
+              button#button-search.btn.btn-outline-light(type='button')
+                i.bi.bi-search
+              input#filter-keyword.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-default' placeholder='Cari Pelatihan...')
+              button#button-addon1.btn.btn-outline-light(type='button' data-bs-toggle='modal' data-bs-target='#modalFilter')
+                i.bi.bi-sliders2
+                span Filter
+          //- .d-flex.justify-content-between.align-items-center
+          //-   #course-counter.text-secondary
+          //-     .col-12.col-md-12.col-xl-12.col-xxl-12.mb-12.mb-lg-12 Memuat pelatihan, mohon tunggu...
 
+    .row.justify-content-md-center
+      .col-lg-8
+        .d-flex.justify-content-between.align-items-center.pt-2
+          .m_wrap
+            .dx.py-2
+              a.quick-filter.btn.btn-sm.btn-outline-light.rounded-pill.me-2(data-target="trending" href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=&new_course=&trending=true') 🔥 Trending 
+              a.quick-filter.btn.btn-sm.btn-outline-light.rounded-pill.me-2(data-target="new_course" href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=&new_course=true&trending=') Terbaru 
+              a.quick-filter.btn.btn-sm.btn-outline-light.rounded-pill.me-2(data-target="price" price="0" href=baseURL+'pelatihan/index.html?topic=&keyword=&price=0&lp=&new_course=&trending=') Gratis 
+              a.quick-filter.btn.btn-sm.btn-outline-light.rounded-pill.me-2(data-target="price" price="20000" href=baseURL+'pelatihan/index.html?topic=&keyword=&price=20000&lp=&new_course=&trending=') Serba 20ribu 
+              a.quick-filter.btn.btn-sm.btn-outline-light.rounded-pill.me-2(data-target="price" price="diskon besar" href=baseURL+'pelatihan/index.html?topic=&keyword=&price=diskon-besar&lp=&new_course=&trending=') Diskon Besar
+
+              //- a.btn.text-primary(href=baseURL+'pelatihan/index.html?topic=&keyword=&price=&lp=&new_course=true')
+              
     .row.justify-content-md-center
       .col-lg-8
         .d-flex.justify-content-between.align-items-center.pt-2

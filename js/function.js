@@ -25,7 +25,7 @@
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
 const BaseURL = '/'
 const loadItem = 12;
-const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_5.json";
+const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_6.json";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
 const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
@@ -75,7 +75,8 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
-    var Trending = Number(data.total) >= 5 ? "<span class='badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
+    var trending = Number(data.total) >= 100 ? "<span class='badge text-bg-lightttrending text-capitalize'>&#128293; Trending</span>" : ""
+    var new_course = data.new_course == "true" ? "<span class='badge text-bg-light trending text-capitalize'>Terbaru</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
             "<a href='"+ course_detail +"' class='text-decoration-none' title='"+ data.course_title +"'>"+
@@ -95,7 +96,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
                 // Bagde
                 "<div class='d-flex my-2'>" +
-                    "<span class='badge text-bg-light text-capitalize badge-ellipsis' title='"+ data.course_category +"'>"+ data.course_category + "</span>" + Trending +
+                    "<span class='badge text-bg-light text-capitalize badge-ellipsis' title='"+ data.course_category +"'>"+ data.course_category + "</span>" + trending + new_course +
                 "</div>" +
                 // Price
                 "<div>" +
@@ -247,24 +248,24 @@ var templateDetail = function(data) {
     var getVoucherbtn;
     
     // uncomment if on
-    // if(_.contains(courseTakens, data.course_id)) {
-    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-    //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
-    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    //  } else {
-    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-    //  }
-
-    // uncomment if off
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
      } else if (data.quota !== '' && Number(data.quota) == data.total) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else if (data.course_discount == '') {
-        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      } else {
-        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      }
+
+    // uncomment if off
+    // if(_.contains(courseTakens, data.course_id)) {
+    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+    //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
+    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+    //  } else if (data.course_discount == '') {
+    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+    //  } else {
+    //     getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+    //  }
 
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
@@ -433,7 +434,7 @@ var filterCourse = function(target, data, start, end) {
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
         var appendTarget = $('#course-lists');
-        var filterCategory = [], filterPrice = [], filterLP = [], dataFilter = data
+        var filterCategory = [], filterPrice = [], filterLP = [], filterTerbaru = [], filterTrending =[],  dataFilter = data;
         var keyword = $('#filter-keyword').val();
 
         $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
@@ -443,16 +444,27 @@ var filterCourse = function(target, data, start, end) {
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
             if (filterPrice.length == 3) {
-                dataFilter = dataFilter
+                dataFilter = dataFilter;
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="diskon besar"], .quick-filter[price="0"], .quick-filter[price="20000"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"});
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="20000"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
                 filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"});
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="0"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else if (_.contains(filterPrice, 'diskon besar')) {
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"});
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else {
-                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice});
+                _.each(filterPrice, function(val, i) {
+                    $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
+                })
             }
         } 
         if (!_.isEmpty(filterCategory)) {
@@ -526,16 +538,16 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
             if (filterPrice.length == 3) {
-                dataFilter = dataFilter
+                dataFilter = dataFilter;
             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
                 dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
                 filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"});
             } else if (_.contains(filterPrice, 'diskon besar')) {
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"});
             } else {
-                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice});
             }
         } 
         if (!_.isEmpty(filterCategory)) {
@@ -558,7 +570,6 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
         
-        // console.log('test');
         $(window).scrollTop(0);
 
         // remove existing content
@@ -721,6 +732,8 @@ function courseLoaderInit(){
         var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
+        var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ') : '';
+        var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ') : '';
 
         if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
             $('#button-addon1').attr('class', 'btn btn-primary')
@@ -729,21 +742,33 @@ function courseLoaderInit(){
         if (appendTarget.length) {
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
-                var data = _.shuffle(courses)
+                var data = _.shuffle(courses);
 
                 if (!_.isEmpty(filterPrice)) {
                     // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
                     if (filterPrice.length == 3) {
                         data = data
+                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                        $('.quick-filter[price="diskon besar"], .quick-filter[price="0"], .quick-filter[price="20000"]').addClass('btn-primary').removeClass('btn-outline-light');
                     } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                        data = _.filter(data, function(list) { return list.course_after_discount !== "0"});
+                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                        $('.quick-filter[price="20000"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
                     } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
                         filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
                         data = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
+                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                        $('.quick-filter[price="0"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
                     } else if (_.contains(filterPrice, 'diskon besar')) {
                         data = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
+                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                        $('.quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
                     } else {
                         data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
+                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                        _.each(filterPrice, function(val, i) {
+                            $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
+                        })
                     }
                 } 
                 if (!_.isEmpty(filterTopic)) {
@@ -751,6 +776,12 @@ function courseLoaderInit(){
                 }  
                 if (!_.isEmpty(filterLP)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
+                }
+                if (!_.isEmpty(filterNewCourse)) {
+                    data = _.filter(data, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
+                }
+                if (!_.isEmpty(filterTrending)) {
+                    data = _.filter(data, function(list) { return Number(list.total) >= 100})
                 }
                 var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
 
@@ -771,7 +802,6 @@ function courseLoaderInit(){
                 var paging = Math.ceil(dataLength/loadItem);
                 var start = 0;
                 var end = loadItem;
-                console.log('test');
                 $(window).scrollTop(0);
     
                 setTimeout(function() {
@@ -825,20 +855,28 @@ function courseLoaderHome() {
     var appendLimited = $('#courseCarouselDiscount');
     var appendTwenty = $('#courseCarouselTwenty');
     var appendFree = $('#courseCarouselFree');
+    var appendNewest = $('#courseCarouselNewest');
     var appendTarget = $('#course-provider-list');
     var loadMoreTarget = $('#load-more-lp');
     var loadItem = 12;
     var currentPage = 1;
+
+    // console.log(dataUser, 'datauser');
     
     // check if this content is available on landing page or not
-    if (appendLimited.length || appendTwenty.length || appendFree.length) {
+    if (appendLimited.length || appendTwenty.length || appendFree.length || appendNewest.length) {
+        const adsModal = new bootstrap.Modal('#adsModal');
+        adsModal.show();
+        
         $.getJSON(courseListURL, function(data){
             dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
             dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
             dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
+            dataNewest = _.sample(_.filter(data, function(list) { return list.new_course == "true"}), 10);
             appendLimited.addClass('owl-carousel').html('');
             appendTwenty.addClass('owl-carousel').html('');
             appendFree.addClass('owl-carousel').html('');
+            appendNewest.addClass('owl-carousel').html('');
 
             var lookupCourseLP = {};
             var resultCourseLP = [];
@@ -883,6 +921,10 @@ function courseLoaderHome() {
             $.each(dataFree, function(i, list) {
                 templateCourse(appendFree, list, 'home');
             });
+
+            $.each(dataNewest, function(i, list) {
+                templateCourse(appendNewest, list, 'home');
+            });
             
             // invoke function push event GA
             // pushEvents('.see-detail-course');
@@ -894,16 +936,17 @@ function courseLoaderHome() {
                 nav:true,
                 dots: false,
                 lazyLoad: true,
+                responsiveClass:true,
                 responsive:{
                     0:{
                         items:1.2,
                         margin: 16,
-                        nav:false,
+                        nav:false
                     },
                     600:{
                         items:3,
                         margin: 16,
-                        nav:false,
+                        nav:false
                     },
                     1000:{
                         items:3.75,
@@ -939,6 +982,7 @@ function courseLoaderDetail () {
             // appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
             var courseTakens = _.isNull(localStorage.getItem('course_takens')) ? [] : JSON.parse(localStorage.getItem('course_takens'));
+            
             $.when(
                 appendDetail.html('').append(templateDetail(detail))
             ).then(function() {
@@ -1043,7 +1087,8 @@ function courseLoaderDetail () {
                 closeButton.click(function() {
                     shareDialog.removeClass('is-open');
                 })
-
+                
+                getVoucherButton.unbind('click');
                 getVoucherButton.click(function() {
                     if (!_.isNull(localStorage.getItem('users'))) {
                         requestFormLogin.modal('show');
@@ -1051,6 +1096,7 @@ function courseLoaderDetail () {
                         requestFormLogin.find('.detail-course img').attr('src', detail.course_image);
                         requestFormLogin.find('.detail-course h6').html(detail.course_title);
                         requestFormLogin.find('.alert').addClass('alert-info').removeClass('alert-danger').html('<i class="fs-5 bi bi-info-circle-fill me-3"></i><div><div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div></div>')
+                        requetVoucher.unbind('click');
                         requetVoucher.click(function(event) {
                             event.preventDefault();
                             _this = $(this);
@@ -1088,6 +1134,7 @@ function courseLoaderDetail () {
                                 getVoucherButton.addClass('disabled btn-secondary').html('Voucher sudah diambil').removeClass('btn-primary');
                                 // push val to variable
                                 courseTakens.push(courseId);
+                                
                                 // set course taken to localstorage
                                 localStorage.setItem('course_takens',JSON.stringify(courseTakens));
 
@@ -1101,6 +1148,23 @@ function courseLoaderDetail () {
                                     'course_price_after_discount' : detail.course_after_discount,
                                     'course_lp': detail.lp_name
                                 });
+
+                                mixpanel.people.increment("total_trx");
+                                mixpanel.people.increment("amount_trx", detail.course_price);
+                                
+                                switch(Number(detail.course_price)) {
+                                    case 0:
+                                        mixpanel.people.increment("total_course_free");
+                                        break;
+                                    case 20000:
+                                        mixpanel.people.increment("total_trx_20k");
+                                        mixpanel.people.increment("total_amount_20k", detail.course_price);
+                                        break;
+                                    default:
+                                     mixpanel.people.increment("total_course_free");
+                                     mixpanel.people.increment("total_amount_big_discount", detail.course_price);
+                                  }
+
 
                             }).fail(function(responses) {
                                 var response = responses.responseJSON;
@@ -1444,6 +1508,12 @@ function globalSearch(dataCourse) {
 }
 
 
+// window.onload = () => {
+//     const adsModal = new bootstrap.Modal('#adsModal');
+//     adsModal.show();
+    
+//   }
+
 /** init function */
 (function($){
     // scroll function
@@ -1469,6 +1539,7 @@ function globalSearch(dataCourse) {
             $('.scroll-top').removeClass("is-show");
         }
     });
+
 
     // Scroll to top 
     $(".scroll-top").on("click", function() {
@@ -1519,6 +1590,14 @@ function globalSearch(dataCourse) {
                 margin: 0
             }
         }
+    });
+
+    $('.boost-ads-carousel').owlCarousel({
+        loop:true,
+        autoplay: false,
+        dots: true,
+        lazyLoad:true,
+        items:1
     });
 
     $('.howto-carousel').owlCarousel({
@@ -1600,8 +1679,11 @@ function globalSearch(dataCourse) {
         globalSearch(dataCourse);
     })
 
+
  })(jQuery);
 
+ // ads Modal
+        
 
 // function shareCourse(){
 //     const shareButton = document.querySelector('.share-button');

@@ -7,7 +7,7 @@ header.pdt-header
   .container-md.px-4.px-md-0
     .d-flex.justify-content-between.align-items-center.position-relative
       div.d-flex.justify-content-between.align-items-center.col-12.col-lg-auto
-        a(href=baseURL+'')
+        a(href=baseURL+'index.html')
           img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
 
         if(pageActive !== 'pelatihan')
@@ -18,7 +18,7 @@ header.pdt-header
           .menu.burger-menu(data-menu='13')
             .icon
         li.nav-item.md-hide
-          a.nav-link(href=baseURL+'' class={"nav-link-active" : pageActive === ''}) Beranda
+          a.nav-link(href=baseURL+'index.html' class={"nav-link-active" : pageActive === ''}) Beranda
         li.nav-item.md-hide
           a.nav-link(href=baseURL+'pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
         li.nav-item.md-hide
