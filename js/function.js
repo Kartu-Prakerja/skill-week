@@ -982,7 +982,7 @@ function courseLoaderDetail () {
             // appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
             var courseTakens = _.isNull(localStorage.getItem('course_takens')) ? [] : JSON.parse(localStorage.getItem('course_takens'));
-            console.log(courseTakens);
+            
             $.when(
                 appendDetail.html('').append(templateDetail(detail))
             ).then(function() {
