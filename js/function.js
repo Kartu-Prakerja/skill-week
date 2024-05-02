@@ -26,11 +26,13 @@ const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d67
 const BaseURL = '/'
 const loadItem = 12;
 const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_6.json";
+const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
 const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
+var dataCourseProfile = !_.isNull(localStorage.getItem('course_list_profile')) ? JSON.parse(localStorage.getItem('course_list_profile')) : $.getJSON(courseListURLAll).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
 var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
 var isPopupSkip = localStorage.getItem('login-popup-skip');
@@ -75,8 +77,8 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
-    var trending = Number(data.total) >= 100 ? "<span class='badge text-bg-lightttrending text-capitalize'>&#128293; Trending</span>" : ""
-    var new_course = data.new_course == "true" ? "<span class='badge text-bg-light trending text-capitalize'>Terbaru</span>" : ""
+    var trending = Number(data.total) >= 50 ? "<span class='badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
+    var new_course = data.new_course == "true" ? "<span class='badge text-bg-light new-course trending text-capitalize'>Terbaru</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
             "<a href='"+ course_detail +"' class='text-decoration-none to-detail-course' title='"+ data.course_title +"'>"+
@@ -781,7 +783,7 @@ function courseLoaderInit(){
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
                 }
                 if (!_.isEmpty(filterTrending)) {
-                    data = _.filter(data, function(list) { return Number(list.total) >= 100})
+                    data = _.filter(data, function(list) { return Number(list.total) >= 50})
                 }
                 var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
 
@@ -1404,7 +1406,7 @@ function homeCheckLogin() {
     }
 }
 
-function profile(dataCourse) {
+function profile(dataCourseProfile) {
     var userProfile = $('#user-profile');
     var courseList = $('#course-list');
     var activeCourseContainer = $('#active-course-container');
