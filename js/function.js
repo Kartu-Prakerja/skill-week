@@ -79,7 +79,7 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var new_course = data.new_course == "true" ? "<span class='badge text-bg-light trending text-capitalize'>Terbaru</span>" : ""
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
         "<div class='card pds-card'>" +
-            "<a href='"+ course_detail +"' class='text-decoration-none' title='"+ data.course_title +"'>"+
+            "<a href='"+ course_detail +"' class='text-decoration-none to-detail-course' title='"+ data.course_title +"'>"+
             "<div class='card-cover'>" + imageCourse +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between align-middle'>" +
@@ -115,8 +115,8 @@ var templateCourse = function(target, data, cardClass, isCourse){
         // trigger modal
         // skipped because already have the page detail
         // btnDescription('#detail-course' + data.index, data);
-        $('.apply-course').unbind('click');
-        $('.apply-course').click(function(e) {
+        $('.to-detail-course').unbind('click');
+        $('.to-detail-course').click(function(e) {
             e.preventDefault();
             mixpanel.track('See Detail Course', {
                 'course_id' : data.course_id,
@@ -209,8 +209,8 @@ var templateCourseProfile = function(target, data, cardClass, isCourse){
         // trigger modal
         // skipped because already have the page detail
         // btnDescription('#detail-course' + data.index, data);
-        $('.apply-course').unbind('click');
-        $('.apply-course').click(function(e) {
+        $('.to-detail-course').unbind('click');
+        $('.to-detail-course').click(function(e) {
             e.preventDefault();
             mixpanel.track('See Detail Course', {
                 'course_id' : data.course_id,
