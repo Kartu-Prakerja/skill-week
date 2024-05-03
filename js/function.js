@@ -436,13 +436,17 @@ var filterCourse = function(target, data, start, end) {
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
         var appendTarget = $('#course-lists');
-        var filterCategory = [], filterPrice = [], filterLP = [], filterTerbaru = [], filterTrending =[],  dataFilter = data;
+        var filterCategory = [], filterPrice = [], filterLP = [], filterNewCourse = [], filterTrending =[], filterMethod = [],  dataFilter = data;
         var keyword = $('#filter-keyword').val();
 
         $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
         $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
         $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
+        $.each($('.filter-trending:checked'), function (i, e) { filterTrending[i] = $(e).val()})
+        $.each($('.filter-newcourse:checked'), function (i, e) { filterNewCourse[i] = $(e).val()})
+        $.each($('.filter-method:checked'), function (i, e) { filterMethod[i] = $(e).val()})
 
+        $('.quick-filter').removeClass('btn-primary').addClass('btn-outline-light');
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
             if (filterPrice.length == 3) {
@@ -468,20 +472,46 @@ var filterCourse = function(target, data, start, end) {
                     $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
                 })
             }
-        } 
+        }
+
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
         }  
+
         if (!_.isEmpty(filterLP)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
+        
+        if (!_.isEmpty(filterNewCourse)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
+            $('.quick-filter.new_course').addClass('btn-primary').removeClass('btn-outline-light');
+        } else {
+            $('.quick-filter.new_course').addClass('btn-outline-light').removeClass('btn-primary');
+        }
+        
+        if (!_.isEmpty(filterTrending)) {
+            dataFilter = _.filter(dataFilter, function(list) { return list.total >= 50 });
+            $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
+        } else {
+            $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
+        }
+
+        if (!_.isEmpty(filterMethod)) {
+            console.log(filterMethod)
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_type.replace(/-|%20/gi, ' ').toLowerCase()) > -1; }, {"keys" : filterMethod});
+        }
+
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
 
         mixpanel.track('Filter Course Option', {
             'filter_price': filterPrice,
             'filter_category' : filterCategory,
             'filter_lp' : filterLP,
-            'filter_keyword' : keyword
+            'filter_keyword' : keyword,
+            'filter_trending' : filterTrending,
+            'filter_new_course' : filterNewCourse,
+            'filter_method' : filterMethod
+
         });
 
         var dataLength = dataKeyword.length;
@@ -513,8 +543,11 @@ var filterCourse = function(target, data, start, end) {
         var filterCategoryJoin =  filterCategory.join(",");
         var filterPriceJoin = filterPrice.join(",");
         var filterLPJoin = filterLP.join(",");
+        var filterNewJoin = filterNewCourse.join(",");
+        var filterTrendingJoin = filterTrending.join(",");
+        var filterMethodJoin = filterMethod.join(",");
 
-        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase())
+        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&new_course="+ filterNewJoin.replace(/\s+/gi, '-').toLowerCase()+"&trending="+ filterTrendingJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
     })
 }
 
@@ -524,7 +557,7 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         e.preventDefault();
         var appendTarget = $('#course-lists');
         var loadMoreTarget = $('#load-more');
-        var filterCategory = [], filterPrice = [], filterLP = [], dataFilter = data
+        var filterCategory = [], filterPrice = [], filterLP = [], filterNewCourse = [], filterTrending =[], filterMethod = [],  dataFilter = data;
         var keyword = $(this).find('input').val();
 
         $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
@@ -532,32 +565,66 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
         // var keyword = $(this).find('input').val();
 
-
         $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
         $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
         $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
+        $.each($('.filter-trending:checked'), function (i, e) { filterTrending[i] = $(e).val()})
+        $.each($('.filter-newcourse:checked'), function (i, e) { filterNewCourse[i] = $(e).val()})
+        $.each($('.filter-method:checked'), function (i, e) { filterMethod[i] = $(e).val()})
 
+        $('.quick-filter').removeClass('btn-primary').addClass('btn-outline-light');
         // to check the datalist based on current filter & keyword applied
         if (!_.isEmpty(filterPrice)) {
             if (filterPrice.length == 3) {
                 dataFilter = dataFilter;
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="diskon besar"], .quick-filter[price="0"], .quick-filter[price="20000"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"})
+                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"});
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="20000"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
                 filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
                 dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"});
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="0"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else if (_.contains(filterPrice, 'diskon besar')) {
                 dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"});
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
+                $('.quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
             } else {
                 dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice});
+                _.each(filterPrice, function(val, i) {
+                    $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
+                })
             }
-        } 
+        }
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
         }  
         if (!_.isEmpty(filterLP)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
+
+        if (!_.isEmpty(filterNewCourse)) {
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
+            $('.quick-filter.new_course').addClass('btn-primary').removeClass('btn-outline-light');
+        } else {
+            $('.quick-filter.new_course').addClass('btn-outline-light').removeClass('btn-primary');
+        }
+        
+        if (!_.isEmpty(filterTrending)) {
+            dataFilter = _.filter(dataFilter, function(list) { return list.total >= 50 });
+            $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
+        } else {
+            $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
+        }
+
+        if (!_.isEmpty(filterMethod)) {
+            console.log(filterMethod)
+            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_type.replace(/-|%20/gi, ' ').toLowerCase()) > -1; }, {"keys" : filterMethod});
+        }
+
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
 
         // run mixpanel event
@@ -565,7 +632,10 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
             'fiter_keyword': keyword,
             'filter_price': filterPrice,
             'filter_category' : filterCategory,
-            'filter_lp' : filterLP
+            'filter_lp' : filterLP,
+            'filter_trending' : filterTrending,
+            'filter_new_course' : filterNewCourse,
+            'filter_method' : filterMethod
         });
         
         // define pagination
@@ -596,8 +666,11 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var filterCategoryJoin =  filterCategory.join(",");
         var filterPriceJoin = filterPrice.join(",");
         var filterLPJoin = filterLP.join(",");
+        var filterNewJoin = filterNewCourse.join(",");
+        var filterTrendingJoin = filterTrending.join(",");
+        var filterMethodJoin = filterMethod.join(",");
 
-        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase())
+        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&new_course="+ filterNewJoin.replace(/\s+/gi, '-').toLowerCase()+"&trending="+ filterTrendingJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
     });
 
     // to trigger the submit button
@@ -607,9 +680,11 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 }
 
 /** function to get unique option */
-var optionList = function(data, filterLP, filterPrice, filterCategory) {
+var optionList = function(data, filterLP, filterPrice, filterCategory, filterTrending, filterNewCourse, filterMethod) {
     var lookupCategory = {}, lookupCourseLP = {};
     var resultCategory = [], resultCourseLP = [];
+
+    console.log(filterLP, filterPrice, filterCategory, filterMethod, filterTrending, filterNewCourse);
 
     // to get the list of category insert to array
     for (var item, i = 0; item = data[i++];) {
@@ -655,8 +730,22 @@ var optionList = function(data, filterLP, filterPrice, filterCategory) {
     _.each(filterPrice, function(value) {
         $('.filter-price[value="'+ value +'"]').attr('checked', true);
     })
+
+    // loop method selected
+    _.each(filterMethod, function(value) {
+        console.log(value)
+        $('.filter-method[value="'+ value +'"]').attr('checked', true);
+    })
+
+    if(!_.isEmpty(filterNewCourse)) {
+        $('.filter-newcourse[value="true"]').attr('checked', true);
+    }
+
+    if(!_.isEmpty(filterTrending)) {
+        $('.filter-trending[value="true"]').attr('checked', true);
+    }
     
-    if(!_.isEmpty(filterLP) || !_.isEmpty(filterPrice) || !_.isEmpty(filterCategory)) {
+    if(!_.isEmpty(filterLP) || !_.isEmpty(filterPrice) || !_.isEmpty(filterCategory) || !_.isEmpty(filterMethod) || !_.isEmpty(filterNewCourse) || !_.isEmpty(filterTrending)) {
         $('#btn-reset-filter').removeClass('disabled')
     }
 
@@ -734,9 +823,10 @@ function courseLoaderInit(){
         var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
-        var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ') : '';
-        var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ') : '';
-
+        var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ').split(',') : '';
+        var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ').split(',') : '';
+        var filterMethod = !_.isEmpty(queryParams.get('method')) ? (queryParams.get('method')).replace(/-|%20/gi, ' ').split(',') : '';
+        console.log(filterMethod);
         if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
             $('#button-addon1').attr('class', 'btn btn-primary')
         }
@@ -745,6 +835,8 @@ function courseLoaderInit(){
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 var data = _.shuffle(courses);
+                
+                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
 
                 if (!_.isEmpty(filterPrice)) {
                     // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
@@ -767,7 +859,6 @@ function courseLoaderInit(){
                         $('.quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
                     } else {
                         data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
-                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
                         _.each(filterPrice, function(val, i) {
                             $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
                         })
@@ -781,10 +872,22 @@ function courseLoaderInit(){
                 }
                 if (!_.isEmpty(filterNewCourse)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
+                    $('.quick-filter.new_course').addClass('btn-primary').removeClass('btn-outline-light');
+                } else {
+                    $('.quick-filter.new_course').addClass('btn-outline-light').removeClass('btn-primary');
                 }
+                
                 if (!_.isEmpty(filterTrending)) {
-                    data = _.filter(data, function(list) { return Number(list.total) >= 50})
+                    data = _.filter(data, function(list) { return list.total >= 50 });
+                    $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
+                } else {
+                    $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
                 }
+
+                if (!_.isEmpty(filterMethod)) {
+                    data = _.filter(data, function(list) { return this.keys.indexOf((list.course_type.toLowerCase()).replace(/-|%20/gi, ' ')) > -1; }, {"keys" : filterMethod});
+                }
+
                 var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
 
 
@@ -826,7 +929,7 @@ function courseLoaderInit(){
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
-                    optionList(courses, filterLP, filterPrice, filterTopic);
+                    optionList(courses, filterLP, filterPrice, filterTopic, filterNewCourse, filterTrending, filterMethod);
 
                     // trigger reset filter
                     resetFilter('#btn-reset-filter', 'input.form-check-input');
@@ -1508,13 +1611,6 @@ function globalSearch(dataCourse) {
         });
     }
 }
-
-
-// window.onload = () => {
-//     const adsModal = new bootstrap.Modal('#adsModal');
-//     adsModal.show();
-    
-//   }
 
 /** init function */
 (function($){
