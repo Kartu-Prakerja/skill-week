@@ -497,7 +497,6 @@ var filterCourse = function(target, data, start, end) {
         }
 
         if (!_.isEmpty(filterMethod)) {
-            console.log(filterMethod)
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_type.replace(/-|%20/gi, ' ').toLowerCase()) > -1; }, {"keys" : filterMethod});
         }
 
@@ -511,7 +510,6 @@ var filterCourse = function(target, data, start, end) {
             'filter_trending' : filterTrending,
             'filter_new_course' : filterNewCourse,
             'filter_method' : filterMethod
-
         });
 
         var dataLength = dataKeyword.length;
@@ -621,7 +619,6 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         }
 
         if (!_.isEmpty(filterMethod)) {
-            console.log(filterMethod)
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_type.replace(/-|%20/gi, ' ').toLowerCase()) > -1; }, {"keys" : filterMethod});
         }
 
@@ -679,12 +676,59 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
     });
 }
 
+var quickFilter = function (button) {
+    $(button).click(function(e,val) {
+        e.preventDefault();
+        var _this = $(this);
+        var target = _this.attr('data-target');
+        _this.hasClass('btn-primary') ? _this.addClass('btn-outline-light').removeClass('btn-primary') : _this.removeClass('btn-outline-light').addClass('btn-primary');
+        var filterCategory = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
+        // var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
+        var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
+        var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
+        var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ') : '';
+        var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ') : '';
+        var filterMethod = !_.isEmpty(queryParams.get('method')) ? (queryParams.get('method')).replace(/-|%20/gi, ' ') : '';
+        var valTrending = filterTrending, valNewCourse = filterNewCourse, price = [];
+
+        switch(target) {
+            case "trending":
+                valTrending = _this.hasClass('btn-primary') ? "true" : ""
+                _this.hasClass('btn-primary') ? $('.filter-trending[value="true"]').attr('checked', true) : $('.filter-trending[value="true"]').attr('checked', false)
+                break;
+            case "new_course":
+                valNewCourse = _this.hasClass('btn-primary') ? "true" : "";
+                _this.hasClass('btn-primary') ? $('.filter-newcourse[value="true"]').attr('checked', true) : $('.filter-newcourse[value="true"]').attr('checked', false);
+                break;
+            default:
+                var price = [];
+                $('.filter-price').attr('checked', false);
+                $.each($('.quick-filter.btn-primary[data-target="price"]'), function (i, e) { 
+                    price[i] = $(e).attr('price');
+                    $('.filter-price[value="'+ $(e).attr('price') +'"]').attr('checked', true);
+                });
+        }
+
+        mixpanel.track('Quick Filter', {
+            'filter_trending': valTrending,
+            'filter_course_new' : valNewCourse,
+            'filter_course_category' : filterCategory,
+            'filter_price': price,
+            'filter_lp': filterLP,
+            'fitler_method' : filterMethod
+        });
+
+        priceJoin = price.join(',');
+        window.history.replaceState(null, null, "?topic="+ filterCategory.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ priceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLP.replace(/\s+/gi, '-').toLowerCase()+"&new_course="+ valNewCourse.replace(/\s+/gi, '-').toLowerCase()+"&trending="+ valTrending.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethod.replace(/\s+/gi, '-').toLowerCase())
+        
+        $('#btn-apply-filter').trigger('click');
+    })
+}
+
 /** function to get unique option */
-var optionList = function(data, filterLP, filterPrice, filterCategory, filterTrending, filterNewCourse, filterMethod) {
+var optionList = function(data, filterLP, filterPrice, filterCategory, filterNewCourse, filterTrending,filterMethod) {
     var lookupCategory = {}, lookupCourseLP = {};
     var resultCategory = [], resultCourseLP = [];
-
-    console.log(filterLP, filterPrice, filterCategory, filterMethod, filterTrending, filterNewCourse);
 
     // to get the list of category insert to array
     for (var item, i = 0; item = data[i++];) {
@@ -733,7 +777,6 @@ var optionList = function(data, filterLP, filterPrice, filterCategory, filterTre
 
     // loop method selected
     _.each(filterMethod, function(value) {
-        console.log(value)
         $('.filter-method[value="'+ value +'"]').attr('checked', true);
     })
 
@@ -826,7 +869,6 @@ function courseLoaderInit(){
         var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ').split(',') : '';
         var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ').split(',') : '';
         var filterMethod = !_.isEmpty(queryParams.get('method')) ? (queryParams.get('method')).replace(/-|%20/gi, ' ').split(',') : '';
-        console.log(filterMethod);
         if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
             $('#button-addon1').attr('class', 'btn btn-primary')
         }
@@ -940,6 +982,7 @@ function courseLoaderInit(){
                     // filter implementation
                     filterCourse(applyFilter, courses, start, end);
                     filterKeyword(formSeaerch, buttonSearch, courses, start, end);
+                    quickFilter('.quick-filter')
     
                     // invoke function push event GA
                     // pushEvents('.see-detail-course');
