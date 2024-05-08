@@ -246,28 +246,28 @@ var templateDetail = function(data) {
     var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
     var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
     var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
-    var getTotal = Number(data.total) >= 5 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
+    var getTotal = Number(data.total) >= 20 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
     var getVoucherbtn;
     
     // uncomment if on
-    if(_.contains(courseTakens, data.course_id)) {
-        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-     } else if (data.quota !== '' && Number(data.quota) == data.total) {
-        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else {
-        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-     }
-
-    // uncomment if off
     // if(_.contains(courseTakens, data.course_id)) {
     //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
     //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
     //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    //  } else if (data.course_discount == '') {
-    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
     //  } else {
-    //     getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
     //  }
+
+    // uncomment if off
+    if(_.contains(courseTakens, data.course_id)) {
+        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+     } else if (data.quota !== '' && Number(data.quota) == data.total) {
+        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+     } else if (data.course_discount == '') {
+        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+     } else {
+        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+     }
 
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
@@ -490,7 +490,7 @@ var filterCourse = function(target, data, start, end) {
         }
         
         if (!_.isEmpty(filterTrending)) {
-            dataFilter = _.filter(dataFilter, function(list) { return list.total >= 50 });
+            dataFilter = _.filter(dataFilter, function(list) { return list.total >= 20 });
             $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
         } else {
             $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
