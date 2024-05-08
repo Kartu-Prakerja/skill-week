@@ -203,7 +203,7 @@ var templateCourseProfile = function(target, data, cardClass, isCourse){
                     '<div class="course-real-price mb-1 me-md-3"><span>'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
                     '<div class="course-price card-price mb-1">'+ finalPrice +'</div>' +
                 '</div>'+
-                '<div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-primary w-100 mb-2 text-truncate" href="'+ course_detail +'" title="">Selengkapnya</a></div>' +
+                '<div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-outline-primary w-100 mb-2 text-truncate" href="'+ course_detail +'" title="">Selengkapnya</a> <a class="btn btn-primary w-100 mb-2 text-truncate" href="'+ data.course_url +'" target="_blank">Buka Pelatihan</a></div>' +
             '</div>'+
         '</div>';
 
