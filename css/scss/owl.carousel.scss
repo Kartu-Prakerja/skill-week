@@ -443,7 +443,7 @@
     // outline: solid 1px red;
     .owl-stage{
       // background-color: pink;
-      display: flex;
+      display: flex!important;
       .owl-item{
         // outline: solid 1px red;
         background-color: white;
