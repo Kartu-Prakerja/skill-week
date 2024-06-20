@@ -1924,4 +1924,22 @@ background-clip: text;
    
 }
 
+.pra-modal{
+  .modal-header{
+    border-bottom: none;
+    .modal-title{
+      text-align: center;
+      // outline: solid 1px red;
+      width: 100%;
+    }
+  }
+  .modal-footer{
+    border-top: none;
+    padding-top: 0;
+  }
+  .owl-dots{
+    text-align: center;
+  }
+}
+
 @import "scss-custom/footer";
