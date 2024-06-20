@@ -70,8 +70,11 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    // Lazy load from owl carousel
+    // var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
@@ -141,7 +144,8 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
     var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">'
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
@@ -180,8 +184,11 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
 /** function load course */
 var templateCourseProfile = function(target, data, cardClass, isCourse){ 
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
-    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    // Lazy load from owl carousel
+    // var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
@@ -1083,7 +1090,7 @@ function courseLoaderHome() {
                 margin:24,
                 nav:true,
                 dots: false,
-                lazyLoad: true,
+                // lazyLoad: true,
                 responsiveClass:true,
                 responsive:{
                     0:{
@@ -1720,10 +1727,14 @@ function globalSearch(dataCourse) {
         autoplay: true,
         center: true,
         dots: true,
-        lazyLoad:true,
+        // lazyLoad:true,
         responsive:{
             1000:{
                 items:3,
+                margin: 0
+            },
+            756:{
+                items:2,
                 margin: 0
             },
             0:{

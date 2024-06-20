@@ -435,3 +435,21 @@
     width: 3rem;
   }
 }
+
+// custom
+.carousel-auto-height{
+  // background-color: yellow;
+  .owl-stage-outer{
+    // outline: solid 1px red;
+    .owl-stage{
+      // background-color: pink;
+      display: flex;
+      .owl-item{
+        // outline: solid 1px red;
+        background-color: white;
+        border-radius: 1rem;
+        margin: .5rem .75rem;
+      }
+    }
+  }
+}
