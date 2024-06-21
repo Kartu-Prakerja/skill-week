@@ -25,14 +25,14 @@
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
 const BaseURL = '/'
 const loadItem = 12;
-const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_6.json";
-const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json";
+const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_7.json?version=1";
+const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json?version=1";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
 const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
-var dataCourseProfile = !_.isNull(localStorage.getItem('course_list_profile')) ? JSON.parse(localStorage.getItem('course_list_profile')) : $.getJSON(courseListURLAll).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
+var dataCourseProfile = $.getJSON(courseListURLAll).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) });
 var currentPage = 1;
 var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
 var isPopupSkip = localStorage.getItem('login-popup-skip');
@@ -187,7 +187,7 @@ var templateCourseProfile = function(target, data, cardClass, isCourse){
     // Lazy load from owl carousel
     // var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
     // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
+    var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
     var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
@@ -257,24 +257,24 @@ var templateDetail = function(data) {
     var getVoucherbtn;
     
     // uncomment if on
-    // if(_.contains(courseTakens, data.course_id)) {
-    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-    //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
-    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    //  } else {
-    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-    //  }
-
-    // uncomment if off
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
      } else if (data.quota !== '' && Number(data.quota) == data.total) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else if (data.course_discount == '') {
-        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      } else {
-        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      }
+
+    // uncomment if off
+    // if(_.contains(courseTakens, data.course_id)) {
+    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+    //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
+    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+    //  } else if (data.course_discount == '') {
+    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+    //  } else {
+    //     getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+    //  }
 
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
@@ -1587,7 +1587,7 @@ function profile(dataCourseProfile) {
                     // render the list of the course
                     courseList.html('');
                     _.each(response.voucher, function(val, i) {
-                        var detail = _.findWhere(dataCourse, { 'course_id': val.CourseID });
+                        var detail = _.findWhere(dataCourseProfile, { 'course_id': val.CourseID });
                         if (!_.isUndefined(detail)) {
                             templateCourseProfile(courseList, detail, 'profile', true)
                         }
