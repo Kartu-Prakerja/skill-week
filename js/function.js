@@ -1749,7 +1749,7 @@ function globalSearch(dataCourse) {
         autoplay: false,
         dots: true,
         lazyLoad:true,
-        items:1
+        items:1.25
     });
 
     $('.howto-carousel').owlCarousel({
