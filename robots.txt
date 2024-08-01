@@ -4,3 +4,5 @@ Allow: /
 Disallow: /v4/*
 Disallow: /v3/*
 Disallow: /v2/*
+
+Sitemap: https://skillsweek.prakerja.go.id/sitemap.xml
