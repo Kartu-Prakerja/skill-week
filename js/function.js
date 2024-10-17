@@ -151,7 +151,7 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
-    var template = '<a class="course-list-card d-flex align-items-center course-recommend-searc" href="'+ course_detail +'">'+
+    var template = '<a class="course-list-card d-flex align-items-center course-recommend-search" href="'+ course_detail +'">'+
             imageCourse +
             '<span class="d-block w-100">' +
                 '<span class="course-title">'+ data.course_title +'</span>' +
@@ -1066,19 +1066,19 @@ function courseLoaderHome() {
             btnLoadMore(loadMoreTarget, loadItem, start, end, resultCourseLP, appendTarget, currentPage, paging, true);
 
             $.each(dataLimited, function(i, list) {
-                templateCourse(appendLimited, list, 'home');
+                templateCourse(appendLimited, list, 'home limited');
             });
 
             $.each(dataTwenty, function(i, list) {
-                templateCourse(appendTwenty, list, 'home');
+                templateCourse(appendTwenty, list, 'home twenty');
             });
 
             $.each(dataFree, function(i, list) {
-                templateCourse(appendFree, list, 'home');
+                templateCourse(appendFree, list, 'home free');
             });
 
             $.each(dataNewest, function(i, list) {
-                templateCourse(appendNewest, list, 'home');
+                templateCourse(appendNewest, list, 'home new');
             });
             
             // invoke function push event GA
@@ -1658,15 +1658,15 @@ function globalSearch(dataCourse) {
         recomendSearchFree.html('');
 
         $.each(dataLimited, function(i, list) {
-            templateCourseSearch(recomendSearchLimited, list, 'home');
+            templateCourseSearch(recomendSearchLimited, list, 'home global search');
         });
 
         $.each(dataTwenty, function(i, list) {
-            templateCourseSearch(recomendSearchTwenty, list, 'home');
+            templateCourseSearch(recomendSearchTwenty, list, 'home global search');
         });
 
         $.each(dataFree, function(i, list) {
-            templateCourseSearch(recomendSearchFree, list, 'home');
+            templateCourseSearch(recomendSearchFree, list, 'home global search');
         });
     }
 }
