@@ -1501,7 +1501,6 @@ function homeCheckLogin() {
                             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
                             afterLoginModal.modal('show');
                             logoutButton.click(function() {
-                                console.log('logout-1' )
                                 mixpanel.track('Logout Success', {
                                     'email' : dataPost.email
                                 });
@@ -1532,7 +1531,6 @@ function homeCheckLogin() {
         // })
         
     } else {
-        console.log(dataUser)
         // loginButton.find('span').after(loginText).remove();
         profileLink.removeClass('supper-hidden');
         $('#user-email').html(dataUser.email);
@@ -1543,7 +1541,6 @@ function homeCheckLogin() {
             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
             afterLoginModal.modal('show');
             logoutButton.click(function() {
-                console.log('logout-2' )
                 mixpanel.track('Logout Success', {
                     'email' : dataPost.email
                 });
@@ -1555,7 +1552,6 @@ function homeCheckLogin() {
         });
         // logout actions
         logoutButton.click(function() {
-            console.log('logout-3' )
             mixpanel.track('Logout Success', {
                 'email' : 'product@prakerja.go.id'
             });
