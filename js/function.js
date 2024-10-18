@@ -1788,6 +1788,28 @@ function globalSearch(dataCourse) {
         }
     });
 
+    $('.bootcamp-carousel').owlCarousel({
+        loop:true,
+        margin:24,
+        autoplay: true,
+        dots: false,
+        responsive:{
+            1000:{
+                items:3.5,
+                margin: 24,
+                nav:true,
+            },
+            756:{
+                items:2.2,
+                margin: 24
+            },
+            0:{
+                items:1.1,
+                margin: 16
+            }
+        }
+    });
+
 
     // show hide password 
     $('.show-password').click(function(e){
