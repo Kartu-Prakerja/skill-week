@@ -1004,6 +1004,33 @@ function courseLoaderInit(){
     });
 }
 
+function templateCoursev1(target, data){
+    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
+    var template = `<div class="card full-card rounded-3"><a class="text-decoration-none" href="${course_detail}">
+    <div class="full-card-cover">
+      <div class="badge rounded-0 lets-disco"><i class="bi bi-flag-fill"> </i>Bootcamp</div><img class="card-img-top" loading="lazy" src="${data.course_image}" alt="${data.course_title}"/>
+    </div>
+    <div class="full-card-body d-flex flex-column text-center p-3 justify-content-between">
+      <div>
+        <div class="full-card-logo py-1 px-2 rounded-3 d-inline-block"><img loading="lazy" src="${data.logo_lp}" alt="${data.lp_name}"/></div>
+      </div>
+      <div>
+        <h6 class="mb-2 course-title text-white" title="${data.course_title}">${data.course_title}</h6>
+        <div class="bg-brush-price"> 
+          <div class="course-real-price mb-1"><span class="text-light">${Number(data.course_price).toLocaleString('id')}</span><span class="badge text-bg-ghost-success ms-2">${data.course_discount}</span>
+            <div class="course-price card-price mb-1 text-white">${Number(data.course_after_discount).toLocaleString('id')}</div>
+          </div>
+        </div>
+      </div>
+    </div></a></div>`
+    
+    $(target).append(template).ready(function() {
+       
+        
+    })
+    
+}
+
 // function to load course on homepage
 function courseLoaderHome() {
     // $(document).ready(function(){
@@ -1013,6 +1040,7 @@ function courseLoaderHome() {
     var appendNewest = $('#courseCarouselNewest');
     var appendTarget = $('#course-provider-list');
     var loadMoreTarget = $('#load-more-lp');
+    var appendBootcamp = $('#boot');
     var loadItem = 12;
     var currentPage = 1;
 
@@ -1032,6 +1060,7 @@ function courseLoaderHome() {
             appendTwenty.addClass('owl-carousel').html('');
             appendFree.addClass('owl-carousel').html('');
             appendNewest.addClass('owl-carousel').html('');
+            appendBootcamp.addClass('owl-carousel bootcamp-carousel').html('');
 
             var lookupCourseLP = {};
             var resultCourseLP = [];
@@ -1080,36 +1109,66 @@ function courseLoaderHome() {
             $.each(dataNewest, function(i, list) {
                 templateCourse(appendNewest, list, 'home new');
             });
+            $.each(dataNewest, function(i, list) {
+                templateCoursev1(appendBootcamp, list);
+            });
             
             // invoke function push event GA
             // pushEvents('.see-detail-course');
             // pushEvents('.apply-course');
         }).done(function() {
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                margin:24,
-                nav:true,
+            $('.owl-carousel:not(.bootcamp-carousel)').owlCarousel({
+                loop: true,
+                margin: 24,
+                nav: true,
                 dots: false,
-                // lazyLoad: true,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:1.2,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1.2,
                         margin: 16,
-                        nav:false
+                        nav: false
                     },
-                    600:{
-                        items:3,
+                    600: {
+                        items: 3,
                         margin: 16,
-                        nav:false
+                        nav: false
                     },
-                    1000:{
-                        items:3.75,
-                        nav:false
+                    1000: {
+                        items: 3.75,
+                        nav: false
                     },
-                    1200:{
-                        items:4.2,
-                        nav:true
+                    1200: {
+                        items: 4.2,
+                        nav: true
+                    }
+                }
+            });
+            
+            // Instance kedua: untuk elemen dengan class .bootcamp-carousel
+            $('.bootcamp-carousel').owlCarousel({
+                loop: true,
+                margin: 24,
+                autoplay: true,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1.1,
+                        margin: 16
+                    },
+                    756: {
+                        items: 2.2,
+                        margin: 24
+                    },
+                    1000: {
+                        items: 3.5,
+                        margin: 24,
+                        nav: true
+                    },
+                    1200: {
+                        items: 3.2,  // Pada lebar 1200px, tampilkan 3.2 item
+                        margin: 24,
+                        nav: true
                     }
                 }
             });
@@ -1184,7 +1243,7 @@ function courseLoaderDetail () {
                         'course_price_after_discount' : detail.course_after_discount,
                         'course_lp': detail.lp_name
                     });
-
+ 
                     shareFacebook.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
                     shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Dapatkan voucher pelatihan ' + detail.course_title + ' hanya di Indonesia Skills Week, dan jutaan voucher lainnya&url='+  window.location.href +'&hashtags=IndonesiSKillsWeek')
                     shareLinkedin.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+ window.location.href +'&title=Voucher pelatihan ' + detail.course_title + '&source=skillsweek.prakerja.go.id&summary=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya')
@@ -1788,27 +1847,7 @@ function globalSearch(dataCourse) {
         }
     });
 
-    $('.bootcamp-carousel').owlCarousel({
-        loop:true,
-        margin:24,
-        autoplay: true,
-        dots: false,
-        responsive:{
-            1000:{
-                items:3.5,
-                margin: 24,
-                nav:true,
-            },
-            756:{
-                items:2.2,
-                margin: 24
-            },
-            0:{
-                items:1.1,
-                margin: 16
-            }
-        }
-    });
+
 
 
     // show hide password 

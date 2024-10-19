@@ -4,139 +4,68 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header align-items-start align-items-lg-center">
-        <button class="header-anchor btn btn-ghost-white" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-chevron-left"></i><b>Filter Pelatihan</b></button>
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+        <button class="header-anchor btn btn-ghost-white" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-chevron-left"></i><b>Filter Pelatihan</b></button><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <section class="mb-4">
-          <h6 class="mb-3">Topik Pelatihan</h6>
-          <div class="column-3-1">
+          <h6 class="filter-group-sticky mb-3"> <i class="bi bi-percent color-success"> </i>Harga</h6>
+          <div class="course-filter column-3-1" id="course-price">
             <div class="form-check">
-              <input class="form-check-input" id="check1" type="checkbox" value=""/>
-              <label class="form-check-label" for="check1">Bahasa Asing</label>
+              <input class="form-check-input filter-price" id="filter-price-1" type="checkbox" value="0"/>
+              <label class="form-check-label text-capitalize" for="filter-price-1">gratis (Rp0)</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="check2" type="checkbox" value=""/>
-              <label class="form-check-label" for="check2">Gaya hidup</label>
+              <input class="form-check-input filter-price" id="filter-price-2" type="checkbox" value="20000"/>
+              <label class="form-check-label text-capitalize" for="filter-price-2">Rp20.000,-</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="check3" type="checkbox" value=""/>
-              <label class="form-check-label" for="check3">Keuangan</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check4" type="checkbox" value=""/>
-              <label class="form-check-label" for="check4">Makanan dan Minuman</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Manajemen</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Penjualan dan Pemasaran</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Perkantoran</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Pertanian</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Sosial dan Perilaku</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Teknik</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Teknologi Informasi</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check5" type="checkbox" value=""/>
-              <label class="form-check-label" for="check5">Lainnya</label>
+              <input class="form-check-input filter-price" id="filter-price-3" type="checkbox" value="diskon besar"/>
+              <label class="form-check-label text-capitalize" for="filter-price-3">Diskon Besar</label>
             </div>
           </div>
         </section>
-        <!-- <hr>-->
         <section class="mb-4">
-          <h6 class="mb-3">Harga</h6>
-          <div class="column-3-1">
+          <h6 class="filter-group-sticky mb-3"> <i class="bi bi-stars text-danger"> </i>Highlight</h6>
+          <div class="course-filter column-3-1" id="course-trending">
             <div class="form-check">
-              <input class="form-check-input" id="check6" type="radio" value=""/>
-              <label class="form-check-label" for="check6">Gratis</label>
+              <input class="form-check-input filter-trending" id="filter-trending-1" type="checkbox" value="true"/>
+              <label class="form-check-label text-capitalize" for="filter-trending-1">Trending</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="check7" type="radio" value=""/>
-              <label class="form-check-label" for="check7">Rp 20.000,-</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check8" type="radio" value=""/>
-              <label class="form-check-label" for="check8">Diskon</label>
+              <input class="form-check-input filter-newcourse" id="filter-newcourse" type="checkbox" value="true"/>
+              <label class="form-check-label text-capitalize" for="filter-newcourse">Bootcamp</label>
             </div>
           </div>
         </section>
-        <!-- <hr>-->
         <section class="mb-4">
-          <h6 class="mb-3">Lembaga Pelatihan</h6>
-          <div class="column-3-1">
+          <h6 class="filter-group-sticky mb-3"> <i class="bi bi-person-video2 text-info"> </i>Tipe Pelatihan</h6>
+          <div class="course-filter column-3-1" id="course-trending">
             <div class="form-check">
-              <input class="form-check-input" id="check11" type="checkbox" value=""/>
-              <label class="form-check-label" for="check11">Skillvul</label>
+              <input class="form-check-input filter-method" id="filter-pelatihan-1" type="checkbox" value="online self paced learning"/>
+              <label class="form-check-label text-capitalize" for="filter-pelatihan-1">Self-Paced Learning</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="check12" type="checkbox" value=""/>
-              <label class="form-check-label" for="check12">Akademia</label>
+              <input class="form-check-input filter-method" id="filter-pelatihan-2" type="checkbox" value="online webinar"/>
+              <label class="form-check-label text-capitalize" for="filter-pelatihan-2">Webinar</label>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check13" type="checkbox" value=""/>
-              <label class="form-check-label" for="check13">Bright Future</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check13" type="checkbox" value=""/>
-              <label class="form-check-label" for="check13">Animatua</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check11" type="checkbox" value=""/>
-              <label class="form-check-label" for="check11">Skillvul</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check12" type="checkbox" value=""/>
-              <label class="form-check-label" for="check12">Akademia</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check13" type="checkbox" value=""/>
-              <label class="form-check-label" for="check13">Bright Future</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check13" type="checkbox" value=""/>
-              <label class="form-check-label" for="check13">Animatua</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check11" type="checkbox" value=""/>
-              <label class="form-check-label" for="check11">Skillvul</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check12" type="checkbox" value=""/>
-              <label class="form-check-label" for="check12">Akademia</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check13" type="checkbox" value=""/>
-              <label class="form-check-label" for="check13">Bright Future</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check13" type="checkbox" value=""/>
-              <label class="form-check-label" for="check13">Animatua</label>
-            </div>
+          </div>
+        </section>
+        <section class="mb-4">
+          <h6 class="filter-group-sticky mb-3"> <i class="bi bi-tag-fill color-primary"> </i>Topik Pelatihan</h6>
+          <div class="course-filter column-3-1" id="course-category">
+            <p>Memuat Daftar Topik Pelatihan...</p>
+          </div>
+        </section>
+        <section class="mb-4">
+          <h6 class="filter-group-sticky mb-3"> <i class="bi bi-bank2 color-secondary"> </i>Lembaga Pelatihan</h6>
+          <div class="course-filter column-3-1" id="course-LP">
+            <p>Memuat Daftar Lembaga Pelatihan...</p>
           </div>
         </section>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline-primary" type="button col-6" data-bs-dismiss="modal">Reset</button>
-        <button class="btn btn-primary" type="button col-6">Tampilkan</button>
+        <button class="btn btn-outline-primary disabled" id="btn-reset-filter" type="button col-6">Reset</button>
+        <button class="btn btn-primary" id="btn-apply-filter" type="button col-6">Tampilkan Hasil</button>
       </div>
     </div>
   </div>

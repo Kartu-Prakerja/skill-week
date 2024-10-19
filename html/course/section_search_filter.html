@@ -1,33 +1,39 @@
 
 <section class="section-hero">
-  <div class="container py-md-5 py-5 px-4 px-md-0">
+  <div class="container py-md-5 pt-4 pb-5 px-4 px-md-0">
     <div class="row">
       <div class="col-12 text-center mb-3 mb-lg-4">
-        <h2 class="mb-3">Pelatihan yang Tersedia</h2>
-        <p>Pelajari lebih lanjut, baca tentang <a class="link-primary" href="#KategoriPelatihan"><b>Kategori Pelatihan</b></a> dan <a class="link-primary" href="#SyaratKetentuan"><b>Syarat &amp; Ketentuan</b></a></p>
+        <h1 class="h2 mb-3">Pelatihan yang Tersedia</h1>
+        <p class="fs-7">Pelajari lebih lanjut, baca tentang <a class="link-primary" href="undefinedtanyajawab/#KategoriPelatihan"><b>Kategori Pelatihan</b></a> dan <a class="link-primary" href="undefinedtanyajawab/#SyaratKetentuan"><b>Syarat &amp; Ketentuan</b></a></p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center search-boxy">
+      <div class="col-lg-8">
+        <div class="container">
+          <form id="form-search" action="#search-pelatian">
+            <div class="input-group input-group-lg custom-search-2">
+              <button class="btn btn-outline-light" id="button-search" type="button"><i class="bi bi-search"></i></button>
+              <input class="form-control" id="filter-keyword" type="text" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cari Pelatihan..."/>
+              <button class="btn btn-outline-light" id="button-addon1" type="button" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-sliders2"></i><span>Filter</span></button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <div class="row justify-content-md-center">
       <div class="col-lg-8">
-        <form id="form-search" action="#search-pelatian">
-          <div class="input-group input-group-lg custom-search-2 mb-3">
-            <button class="btn btn-outline-light" id="button-addon1" type="button"><i class="bi bi-search"></i></button>
-            <input class="form-control" type="text" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cari Pelatihan..."/>
-            <button class="btn btn-outline-light" id="button-addon1" type="button" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-sliders2"></i></button>
+        <div class="d-flex justify-content-between align-items-center pt-2">
+          <div class="m_wrap">
+            <div class="dx py-2"><a class="quick-filter trending btn btn-sm btn-outline-light rounded-pill me-2" data-target="trending" href="undefinedpelatihan/index.html?topic=&amp;keyword=&amp;price=&amp;lp=&amp;new_course=&amp;trending=true">🔥 Trending </a><a class="quick-filter new_course btn btn-sm btn-outline-light rounded-pill me-2" data-target="new_course" href="undefinedpelatihan/index.html?topic=&amp;keyword=&amp;price=&amp;lp=&amp;new_course=true&amp;trending=">Bootcamp </a><a class="quick-filter btn btn-sm btn-outline-light rounded-pill me-2" data-target="price" price="0" href="undefinedpelatihan/index.html?topic=&amp;keyword=&amp;price=0&amp;lp=&amp;new_course=&amp;trending=">Gratis </a><a class="quick-filter btn btn-sm btn-outline-light rounded-pill me-2" data-target="price" price="20000" href="undefinedpelatihan/index.html?topic=&amp;keyword=&amp;price=20000&amp;lp=&amp;new_course=&amp;trending=">Serba 20ribu </a><a class="quick-filter btn btn-sm btn-outline-light rounded-pill me-2" data-target="price" price="diskon besar" href="undefinedpelatihan/index.html?topic=&amp;keyword=&amp;price=diskon-besar&amp;lp=&amp;new_course=&amp;trending=">Diskon Besar</a></div>
           </div>
-        </form>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="text-secondary" id="course-counter">
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center pt-2">
+          <div class="text-secondary fs-7" id="course-counter">
             <div class="col-12 col-md-12 col-xl-12 col-xxl-12 mb-12 mb-lg-12">Memuat pelatihan, mohon tunggu...</div>
-          </div>
-          <div class="dropdown">
-            <button class="btn btn-ghost-white btn-small" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-sort-down"></i></button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Terbaru</a></li>
-              <li><a class="dropdown-item" href="#">Terlama</a></li>
-              <li><a class="dropdown-item" href="#">A-Z</a></li>
-              <li><a class="dropdown-item" href="#">Z-A</a></li>
-            </ul>
           </div>
         </div>
       </div>
