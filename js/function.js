@@ -257,24 +257,24 @@ var templateDetail = function(data) {
     var getVoucherbtn;
     
     // uncomment if on
-    // if(_.contains(courseTakens, data.course_id)) {
-    //      getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-    //   } else if (data.quota !== '' && Number(data.quota) == data.total) {
-    //      getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    //   } else {
-    //      getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-    //   }
+    if(_.contains(courseTakens, data.course_id)) {
+         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+      } else if (data.quota !== '' && Number(data.quota) == data.total) {
+         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+      } else {
+         getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+      }
 
     // uncomment if off
-    if(_.contains(courseTakens, data.course_id)) {
-       getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-    } else if (data.quota !== '' && Number(data.quota) == data.total) {
-       getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    } else if (data.course_discount == '') {
-       getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-    } else {
-      getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
-    }
+    // if(_.contains(courseTakens, data.course_id)) {
+    //    getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+    // } else if (data.quota !== '' && Number(data.quota) == data.total) {
+    //    getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+    // } else if (data.course_discount == '') {
+    //    getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+    // } else {
+    //   getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+    // }
 
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
@@ -1008,11 +1008,12 @@ function templateCoursev1(target, data){
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var template = `<div class="card full-card rounded-3"><a class="text-decoration-none" href="${course_detail}">
     <div class="full-card-cover">
-      <div class="badge rounded-0 lets-disco"><i class="bi bi-flag-fill"> </i>Bootcamp</div><img class="card-img-top" loading="lazy" src="${data.course_image}" alt="${data.course_title}"/>
+      <div class="badge rounded-0 lets-disco"><i class="bi bi-stars"> </i>Bootcamp</div><img class="card-img-top" loading="lazy" src="${data.course_image}" alt="${data.course_title}"/>
     </div>
     <div class="full-card-body d-flex flex-column text-center p-3 justify-content-between">
       <div>
         <div class="full-card-logo py-1 px-2 rounded-3 d-inline-block"><img loading="lazy" src="${data.logo_lp}" alt="${data.lp_name}"/></div>
+        <h6 class="text-white fs-7">${data.lp_name}</h6>
       </div>
       <div>
         <h6 class="mb-2 course-title text-white" title="${data.course_title}">${data.course_title}</h6>
