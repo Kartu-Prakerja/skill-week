@@ -293,47 +293,63 @@ body{
     
     // animation: spin_words 8s infinite cubic-bezier(.71,.4,.42,1.02);
     animation-name: spin_words;
-    animation-duration: 8s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
 
     -moz-animation-name: spin_words;
-    -moz-animation-duration: 8s;
+    -moz-animation-duration: 4s;
     -moz-animation-iteration-count: infinite;
     -moz-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
 
     -webkit-animation-name: spin_words;
-    -webkit-animation-duration: 8s;
+    -webkit-animation-duration: 4s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: cubic-bezier(.71,.4,.42,1.02);
   }
 }
 
+// untuk 4 kata
+// @keyframes spin_words {
+//   10% {
+//     transform: translateY(-100%);
+//   }
+//   25% {
+//     transform: translateY(-100%);
+//   }
+//   35% {
+//     transform: translateY(-200%);
+//   }
+//   50% {
+//     transform: translateY(-200%);
+//   }
+//   60% {
+//     transform: translateY(-300%);
+//   }
+//   75% {
+//     transform: translateY(-300%);
+//   }
+//   85% {
+//     transform: translateY(-400%);
+//   }
+//   100% {
+//     transform: translateY(-400%);
+//   }
+// }
 
+// untuk 2 kata
 @keyframes spin_words {
   10% {
     transform: translateY(-100%);
   }
-  25% {
+  50% {
     transform: translateY(-100%);
   }
-  35% {
-    transform: translateY(-200%);
-  }
-  50% {
-    transform: translateY(-200%);
-  }
-  60% {
-    transform: translateY(-300%);
-  }
   75% {
-    transform: translateY(-300%);
-  }
-  85% {
-    transform: translateY(-400%);
+    transform: translateY(-200%);
   }
   100% {
-    transform: translateY(-400%);
+    transform: translateY(-200%);
   }
 }
 
