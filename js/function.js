@@ -1012,6 +1012,7 @@ function templateCoursev1(target, data){
     </div>
     <div class="full-card-body d-flex flex-column text-center p-3 justify-content-between">
       <div>
+        <!--- <div class="full-card-logo py-1 px-2 rounded-3 d-inline-block"><img loading="lazy" src="${data.logo_lp}" alt="${data.lp_name}"/></div> -->
         <div class="full-card-logo py-1 px-2 rounded-3 d-inline-block"><img loading="lazy" src="${data.logo_lp}" alt="${data.lp_name}"/></div>
         <h6 class="text-white fs-7">${data.lp_name}</h6>
       </div>

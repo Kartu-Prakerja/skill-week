@@ -749,6 +749,11 @@ background-clip: text;
       // filter: hue-rotate(90deg);
       transition: cubic-bezier(.76,.34,.23,.65) .5s !important;
     }
+    &:hover{
+      .full-card-body{
+        background: linear-gradient(0deg, #173F6D 100%, rgba(29, 80, 139, 0.00) 100%);
+      }
+    }
   }
   .full-card-body{
     aspect-ratio: 1/.8;
@@ -766,10 +771,19 @@ background-clip: text;
     }
 
   }
+  // .full-card-logo{
+  //   background-color: white;
+  //   img{
+  //     max-height: 40px;
+  //     width: auto;
+  //   }
+  // }
   .full-card-logo{
     background-color: white;
+    height: 48px;
     img{
-      height: 40px;
+      max-height: 100%;
+      width: auto!important;
     }
   }
   .course-title{
@@ -793,7 +807,7 @@ background-clip: text;
 }
 
 .lets-disco {
-  animation: colorchange 10s; /* animation-name followed by duration in seconds*/ /* you could also use milliseconds (ms) or something like 2.5s */ 
+  animation: colorchange 1s; /* animation-name followed by duration in seconds*/ /* you could also use milliseconds (ms) or something like 2.5s */ 
   animation-timing-function: ease-in-out; 
   animation-iteration-count: infinite; 
   animation-play-state: running;
@@ -801,10 +815,10 @@ background-clip: text;
 
 @keyframes colorchange { 
   0% { background: $r500; } 
-  25% {background: $p500;}
-  50% {background: $r500;}
-  75% {background: $p500;}
-  100% {background: $r500;}
+  25% {background: $y600;}
+  50% {background: $o500;}
+  75% {background: $b500;}
+  100% {background: $t500;}
 }
 
 .badge-ellipsis{
