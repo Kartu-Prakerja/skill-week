@@ -764,7 +764,7 @@ background-clip: text;
     top:0;
     left: 0;
     z-index: 2;
-    background: linear-gradient(0deg, #173F6D 10%, rgba(29, 80, 139, 0.00) 100%);
+    background: linear-gradient(0deg, #173F6D 0%, rgba(29, 80, 139, 0.00) 100%);
     &>div{
       position: relative;
       z-index: 4;

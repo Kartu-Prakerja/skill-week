@@ -1014,7 +1014,8 @@ function templateCoursev1(target, data){
       <div>
         <!--- <div class="full-card-logo py-1 px-2 rounded-3 d-inline-block"><img loading="lazy" src="${data.logo_lp}" alt="${data.lp_name}"/></div> -->
         <div class="full-card-logo py-1 px-2 rounded-3 d-inline-block"><img loading="lazy" src="${data.logo_lp}" alt="${data.lp_name}"/></div>
-        <h6 class="text-white fs-7">${data.lp_name}</h6>
+        <br/>
+        <h6 class="text-white fs-7 badge bg-dark clearfix">${data.lp_name}</h6>
       </div>
       <div>
         <h6 class="mb-2 course-title text-white" title="${data.course_title}">${data.course_title}</h6>
