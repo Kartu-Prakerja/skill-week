@@ -1058,7 +1058,7 @@ function courseLoaderHome() {
             dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
             dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
             dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
-            dataNewest = _.sample(_.filter(data, function(list) { return list.new_course == "true"}), 10);
+            dataNewest = _.sample(_.filter(data, function(list) { return list.new_course == "YA"}), 10);
             appendLimited.addClass('owl-carousel').html('');
             appendTwenty.addClass('owl-carousel').html('');
             appendFree.addClass('owl-carousel').html('');
