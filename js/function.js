@@ -5,7 +5,7 @@
  * 1.1.1 KALAU USER SKIP GAK PERLU MUNCULIN POP-UP (√)
  * 1.2 CEK LOCAL STORAGE UNTUK LOGIN USER (√)
  * 1.2.1 SIMPAN KE LOCAL STORAGE KALAU USER SUDAH LOGIN (√)
- * 1.2.2 SET WAKTU UNTUK NGE TIMEOUT LOCALSTORAGE
+ * 1.2.2 SET WAKTU UNTUK NGE TIMEOUT sessionStorage
  * 1.2.3 HAPUS LOCAL STORAGE KALAU USER MAU GANTI AKUN DAN HAPUS SESSION POPUP UNTUK MINTA USER LOGIN KEMBALI (√)
  * 1.3 POP UP KONFIRMASI UNTUK AMBIL VOUCHER (√)
  * 
@@ -25,17 +25,17 @@
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
 const BaseURL = '/'
 const loadItem = 12;
-const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_7.json?version=1";
-const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json?version=1";
+const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_7.json?version=2";
+const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json?version=2";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
 const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
 const queryParams = new URLSearchParams(window.location.search);
-var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
-var dataCourseProfile = $.getJSON(courseListURLAll).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) });
+var dataCourse = !_.isNull(sessionStorage.getItem('course_list')) ? JSON.parse(sessionStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { sessionStorage.setItem('course_list', JSON.stringify(courses)) })
+var dataCourseProfile = $.getJSON(courseListURLAll).done(function(courses) { sessionStorage.setItem('course_profiles', JSON.stringify(courses)) });
 var currentPage = 1;
-var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
-var isPopupSkip = localStorage.getItem('login-popup-skip');
+var dataUser = !_.isNull(sessionStorage.getItem('users')) ? JSON.parse(sessionStorage.getItem('users')) : null;
+var isPopupSkip = sessionStorage.getItem('login-popup-skip');
 var forms = document.querySelectorAll('.needs-validation');
 
 // Loop over them and prevent submission
@@ -138,46 +138,48 @@ var templateCourse = function(target, data, cardClass, isCourse){
     });
 }
 
-var templateCourseSearch = function(target, data, cardClass, isCourse){ 
-    var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
-    var pageClass = $('html').attr('page-class');
-    // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
-    // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">'
-    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
-    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
-    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
-    var template = '<a class="course-list-card d-flex align-items-center course-recommend-search" href="'+ course_detail +'">'+
-            imageCourse +
-            '<span class="d-block w-100">' +
-                '<span class="course-title">'+ data.course_title +'</span>' +
-                '<span class="d-flex justify-content-between"><span class="course-price">'+ finalPrice +'</span><span class="course-institution">'+ data.lp_name +'</span></span>' +
-            '</span>'+
-        '</a>';
-    $(target).append(template).ready(function () {
-        // trigger modal
-        // skipped because already have the page detail
-        // btnDescription('#detail-course' + data.index, data);
-        $('.course-recommend-search').unbind('click');
-        $('.course-recommend-search').click(function(e) {
-            e.preventDefault();
-            mixpanel.track('See Detail Course', {
-                'course_id' : data.course_id,
-                'course_title': data.course_title,
-                'course_category' : data.course_category,
-                'course_price': data.course_price,
-                'course_discount': data.course_discount,
-                'course_price_after_discount' : data.course_after_discount,
-                'course_lp': data.lp_name,
-                'source' : pageClass
-            });
-            window.location.href = $(this).attr('href');
-        })
-    });
+var templateCourseSearch = function(target, data, cardClass, isCourse) { 
+    if(!_.isEmpty(data)) {
+        var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
+        var pageClass = $('html').attr('page-class');
+        // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
+        // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
+        var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">'
+        // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+        var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+        var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
+        var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
+        var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
+        var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
+        var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
+        var template = '<a class="course-list-card d-flex align-items-center course-recommend-search" href="'+ course_detail +'">'+
+                imageCourse +
+                '<span class="d-block w-100">' +
+                    '<span class="course-title">'+ data.course_title +'</span>' +
+                    '<span class="d-flex justify-content-between"><span class="course-price">'+ finalPrice +'</span><span class="course-institution">'+ data.lp_name +'</span></span>' +
+                '</span>'+
+            '</a>';
+        $(target).append(template).ready(function () {
+            // trigger modal
+            // skipped because already have the page detail
+            // btnDescription('#detail-course' + data.index, data);
+            $('.course-recommend-search').unbind('click');
+            $('.course-recommend-search').click(function(e) {
+                e.preventDefault();
+                mixpanel.track('See Detail Course', {
+                    'course_id' : data.course_id,
+                    'course_title': data.course_title,
+                    'course_category' : data.course_category,
+                    'course_price': data.course_price,
+                    'course_discount': data.course_discount,
+                    'course_price_after_discount' : data.course_after_discount,
+                    'course_lp': data.lp_name,
+                    'source' : pageClass
+                });
+                window.location.href = $(this).attr('href');
+            })
+        });
+    }
 }
 
 
@@ -251,7 +253,7 @@ var templateDetail = function(data) {
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
-    var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
+    var courseTakens = JSON.parse(sessionStorage.getItem('course_takens'));
     var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
     var getTotal = Number(data.total) >= 20 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
     var getVoucherbtn;
@@ -1200,7 +1202,7 @@ function courseLoaderDetail () {
             var requestFormNotLogin = $('#getCourseNotLoginModal');
             // appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
-            var courseTakens = _.isNull(localStorage.getItem('course_takens')) ? [] : JSON.parse(localStorage.getItem('course_takens'));
+            var courseTakens = _.isNull(sessionStorage.getItem('course_takens')) ? [] : JSON.parse(sessionStorage.getItem('course_takens'));
             
             $.when(
                 appendDetail.html('').append(templateDetail(detail))
@@ -1309,7 +1311,7 @@ function courseLoaderDetail () {
                 
                 getVoucherButton.unbind('click');
                 getVoucherButton.click(function() {
-                    if (!_.isNull(localStorage.getItem('users'))) {
+                    if (!_.isNull(sessionStorage.getItem('users'))) {
                         requestFormLogin.modal('show');
                         requestFormLogin.find('#emailUserVoucher').val(dataUser.email);
                         requestFormLogin.find('.detail-course img').attr('src', detail.course_image);
@@ -1354,8 +1356,8 @@ function courseLoaderDetail () {
                                 // push val to variable
                                 courseTakens.push(courseId);
                                 
-                                // set course taken to localstorage
-                                localStorage.setItem('course_takens',JSON.stringify(courseTakens));
+                                // set course taken to sessionStorage
+                                sessionStorage.setItem('course_takens',JSON.stringify(courseTakens));
 
                                 // run mixpanel event
                                 mixpanel.track('Get Voucher Success', {
@@ -1392,7 +1394,7 @@ function courseLoaderDetail () {
                                     if (response.message == "[ERR40005] sign expired") {
                                         requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
                                         $('#get-voucher-botton').click(function() {
-                                            localStorage.removeItem('users');
+                                            sessionStorage.removeItem('users');
                                             mixpanel.reset();
                                             window.location.reload();
                                         })
@@ -1510,7 +1512,7 @@ function homeCheckLogin() {
         if(_.isNull(isPopupSkip)) {
             loginModal.modal('show');
             loginSkip.click(function() {
-                localStorage.setItem('login-popup-skip', true);
+                sessionStorage.setItem('login-popup-skip', true);
                 formLogin.find('.alert.alert-danger').addClass('visually-hidden');
                 btnFormLogin.removeClass('disabled').html('Masuk');
             })
@@ -1539,7 +1541,7 @@ function homeCheckLogin() {
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
                     } else {
-                        localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
+                        sessionStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
                         // temp disable for v4.0
                         // loginButton.find('.text-users').html(dataPost.email);
                         $('#user-email').html(dataPost.email);
@@ -1568,9 +1570,9 @@ function homeCheckLogin() {
                                 mixpanel.track('Logout Success', {
                                     'email' : dataPost.email
                                 });
-                                localStorage.removeItem('users');
+                                sessionStorage.removeItem('users');
                                 mixpanel.reset();
-                                localStorage.removeItem('course_takens');
+                                sessionStorage.removeItem('course_takens');
                                 window.location.reload();
                             })
                         });
@@ -1608,9 +1610,9 @@ function homeCheckLogin() {
                 mixpanel.track('Logout Success', {
                     'email' : dataPost.email
                 });
-                localStorage.removeItem('users');
+                sessionStorage.removeItem('users');
                 mixpanel.reset();
-                localStorage.removeItem('course_takens');
+                sessionStorage.removeItem('course_takens');
                 window.location.reload();
             })
         });
@@ -1619,9 +1621,9 @@ function homeCheckLogin() {
             mixpanel.track('Logout Success', {
                 'email' : 'product@prakerja.go.id'
             });
-            localStorage.removeItem('users');
+            sessionStorage.removeItem('users');
             mixpanel.reset();
-            localStorage.removeItem('course_takens');
+            sessionStorage.removeItem('course_takens');
             window.location.reload();
         })
         
@@ -1668,7 +1670,7 @@ function profile(dataCourseProfile) {
             }).fail(function (response) {
                 // if expired token then reload
                 // window.location.reload();
-                localStorage.removeItem('users');
+                sessionStorage.removeItem('users');
                 mixpanel.reset();
                 loginModal.modal('show');
                 profile.find('p').html('Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.');
