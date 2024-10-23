@@ -884,9 +884,8 @@ function courseLoaderInit(){
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
                 // remove ketika sudah bener complain-complain LP
-                var data = _.shuffle(_.filter(courses, course => !_.contains(['Course-Net Indonesia', 'LPK GETI INCUBATOR', 'First English', 'QuBisa', 'BISA AI Academy'], course.lp_name)));
-                // aktifkan ketika pelatihan sudah beres
-                // var data = _.shuffle(courses);
+                // var data = _.shuffle(_.filter(courses, course => !_.contains(['Course-Net Indonesia', 'LPK GETI INCUBATOR', 'First English', 'QuBisa', 'BISA AI Academy'], course.lp_name)));
+                var data = _.shuffle(courses);
 
                 $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
 
