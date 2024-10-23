@@ -883,8 +883,11 @@ function courseLoaderInit(){
         if (appendTarget.length) {
             $.getJSON(courseListURL, function(courses){
                 // get query param by 
-                var data = _.shuffle(courses);
-                
+                // remove ketika sudah bener complain-complain LP
+                var data = _.shuffle(_.filter(courses, course => !_.contains(['Course-Net Indonesia', 'LPK GETI INCUBATOR', 'First English', 'QuBisa', 'BISA AI Academy'], course.lp_name)));
+                // aktifkan ketika pelatihan sudah beres
+                // var data = _.shuffle(courses);
+
                 $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
 
                 if (!_.isEmpty(filterPrice)) {
@@ -978,7 +981,7 @@ function courseLoaderInit(){
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
-                    optionList(courses, filterLP, filterPrice, filterTopic, filterNewCourse, filterTrending, filterMethod);
+                    optionList(data, filterLP, filterPrice, filterTopic, filterNewCourse, filterTrending, filterMethod);
 
                     // trigger reset filter
                     resetFilter('#btn-reset-filter', 'input.form-check-input');
