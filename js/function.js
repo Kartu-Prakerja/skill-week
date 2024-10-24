@@ -1537,7 +1537,7 @@ function homeCheckLogin() {
                     data: JSON.stringify(dataPost)
                 }).done(function (response) {
                     var data = response.data
-                    if(data.stat.step !== 7) {
+                    if(data.stat.step !== 7 && data.stat.totalStep !== 7) {
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
                     } else {
