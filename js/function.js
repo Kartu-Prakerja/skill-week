@@ -1579,7 +1579,7 @@ function homeCheckLogin() {
                     }
                 }).fail(function(data) {
                     var response = data.responseJSON;
-                    formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
+                    formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html(response.message);
                     btnFormLogin.removeClass('disabled').html('Masuk');
                     mixpanel.track('Login Error', {
                         'email' : dataPost.email,
