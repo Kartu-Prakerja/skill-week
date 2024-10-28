@@ -1056,8 +1056,8 @@ function courseLoaderHome() {
     // check if this content is available on landing page or not
     if (appendLimited.length || appendTwenty.length || appendFree.length || appendNewest.length) {
         // Uncomment bellow to show banner Modal
-        // const adsModal = new bootstrap.Modal('#adsModal');
-        // adsModal.show();
+        const adsModal = new bootstrap.Modal('#adsModal');
+        adsModal.show();
         
         $.getJSON(courseListURL, function(data){
             dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
