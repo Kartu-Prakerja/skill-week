@@ -259,24 +259,24 @@ var templateDetail = function(data) {
     var getVoucherbtn;
     
     // uncomment if on
-    if(_.contains(courseTakens, data.course_id)) {
-         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-      } else if (data.quota !== '' && Number(data.quota) == data.total) {
-         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-      } else {
-         getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-      }
+    // if(_.contains(courseTakens, data.course_id)) {
+    //      getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+    //   } else if (data.quota !== '' && Number(data.quota) == data.total) {
+    //      getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+    //   } else {
+    //      getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+    //   }
 
     // uncomment if off
-    // if(_.contains(courseTakens, data.course_id)) {
-    //    getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-    // } else if (data.quota !== '' && Number(data.quota) == data.total) {
-    //    getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    // } else if (data.course_discount == '') {
-    //    getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-    // } else {
-    //   getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
-    // }
+    if(_.contains(courseTakens, data.course_id)) {
+       getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
+    } else if (data.quota !== '' && Number(data.quota) == data.total) {
+       getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
+    } else if (data.course_discount == '') {
+       getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
+    } else {
+      getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+    }
 
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
@@ -1056,8 +1056,8 @@ function courseLoaderHome() {
     // check if this content is available on landing page or not
     if (appendLimited.length || appendTwenty.length || appendFree.length || appendNewest.length) {
         // Uncomment bellow to show banner Modal
-        const adsModal = new bootstrap.Modal('#adsModal');
-        adsModal.show();
+        // const adsModal = new bootstrap.Modal('#adsModal');
+        // adsModal.show();
         
         $.getJSON(courseListURL, function(data){
             dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
@@ -1505,19 +1505,19 @@ function homeCheckLogin() {
         loginLink.removeClass('supper-hidden');
         
         // handle login
-        loginButton.click(function() {
-            loginModal.modal('show');
-        });
+        // loginButton.click(function() {
+        //     loginModal.modal('show');
+        // });
         
-        // handle popup and skipped popup
-        if(_.isNull(isPopupSkip)) {
-            loginModal.modal('show');
-            loginSkip.click(function() {
-                sessionStorage.setItem('login-popup-skip', true);
-                formLogin.find('.alert.alert-danger').addClass('visually-hidden');
-                btnFormLogin.removeClass('disabled').html('Masuk');
-            })
-        }
+        // // handle popup and skipped popup
+        // if(_.isNull(isPopupSkip)) {
+        //     loginModal.modal('show');
+        //     loginSkip.click(function() {
+        //         sessionStorage.setItem('login-popup-skip', true);
+        //         formLogin.find('.alert.alert-danger').addClass('visually-hidden');
+        //         btnFormLogin.removeClass('disabled').html('Masuk');
+        //     })
+        // }
 
         formLogin.submit(function(e) {
             e.preventDefault();
